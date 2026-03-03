@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "name": "Nios project",
+  "description": "Template project",
+  "paths": {
+    "device_model": "device-configurations/nios-device-config.json",
+    "default_patch": "patch-configurations/nios-device-config/nios-patch-config.json",
+    "patch_directory": "patch-configurations",
+    "output_html_directory": "outputs/html",
+    "output_svg_directory": "outputs/svgs",
+    "output_debug_directory": "outputs/debug"
+  },
+  "device_patch_map": {
+    "device-configurations/nios-device-config.json": [
+      "patch-configurations/nios-device-config/nios-patch-config.json"
+    ]
+  }
+}

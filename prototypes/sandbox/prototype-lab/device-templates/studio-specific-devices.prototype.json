@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "title": "Studio Specific Devices",
+  "description": "Curated templates for devices used in this studio.",
+  "templates": [
+    {
+      "name": "RME UFX III",
+      "manufacturer": "RME",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 4,
+        "line_in": 8,
+        "line_out": 12,
+        "headphone_out": 2,
+        "midi_in": 1,
+        "midi_out": 1,
+        "adat_in": 16,
+        "adat_out": 16,
+        "aes_in": 1,
+        "aes_out": 1,
+        "madi_in": 1,
+        "madi_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "RME Digiface Dante",
+      "manufacturer": "RME",
+      "device_type": "Network Audio Interface",
+      "layout_group": "Network Audio",
+      "port_spec": {
+        "dante_in": 32,
+        "dante_out": 32,
+        "adat_in": 32,
+        "adat_out": 32,
+        "midi_in": 1,
+        "midi_out": 1,
+        "ethernet_io": 2,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "SSL MADI AX",
+      "manufacturer": "SSL",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "line_in": 24,
+        "line_out": 24,
+        "madi_in": 1,
+        "madi_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1
+      }
+    },
+    {
+      "name": "Ferrofish 32M",
+      "manufacturer": "Ferrofish",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "line_in": 32,
+        "line_out": 32,
+        "madi_in": 1,
+        "madi_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "ethernet_io": 1
+      }
+    }
+  ]
+}

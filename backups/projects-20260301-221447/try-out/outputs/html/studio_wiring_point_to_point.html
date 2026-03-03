@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Studio Sidecar | 2026-03-01</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #e9eef4;
+      --panel: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #cbd5e1;
+      --link: #1d4ed8;
+      --diagram-bg: #ffffff;
+      --thead-bg: #e2e8f0;
+      --chip-bg: #eef2ff;
+      --chip-border: #bfdbfe;
+      --toolbar-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    }
+    body.theme-dark {
+      color-scheme: dark;
+      --bg: #0b1220;
+      --panel: #111827;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --border: #334155;
+      --link: #60a5fa;
+      --diagram-bg: #0f172a;
+      --thead-bg: #1f2937;
+      --chip-bg: #1e293b;
+      --chip-border: #334155;
+      --toolbar-shadow: 0 1px 2px rgba(2, 6, 23, 0.4);
+    }
+    body {
+      margin: 0;
+      padding: 14px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.35;
+    }
+    .page {
+      display: grid;
+      gap: 12px;
+    }
+    .top-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 1.5rem;
+    }
+    .meta {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+    .layer {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      margin: 0;
+      scroll-margin-top: 84px;
+    }
+    .layer-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+    .layer h2 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      font-size: 1.18rem;
+    }
+    .layer-note {
+      margin: 0 0 10px 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+    .layer-stats {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .stat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid var(--chip-border);
+      background: var(--chip-bg);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 0.74rem;
+    }
+    .swatch {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+    }
+    .diagram {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--diagram-bg);
+      padding: 10px;
+    }
+    .diagram svg {
+      display: block;
+    }
+    details {
+      margin-top: 10px;
+    }
+    .connection-details > summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--text);
+      padding: 4px 0;
+    }
+    .connection-table-wrap {
+      margin-top: 8px;
+      max-height: 360px;
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+    table {
+      width: 100%;
+      min-width: 980px;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--thead-bg);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    tbody tr:nth-child(even) {
+      background: color-mix(in srgb, var(--panel) 88%, var(--bg) 12%);
+    }
+    td:first-child {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+    .toolbar {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 8px;
+      z-index: 10;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--toolbar-shadow);
+      padding: 8px 10px;
+    }
+    .layer-nav {
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .nav-chip {
+      color: var(--link);
+      text-decoration: none;
+      font-size: 0.8rem;
+      border: 1px solid var(--chip-border);
+      background: var(--chip-bg);
+      border-radius: 999px;
+      padding: 2px 8px;
+    }
+    .nav-chip:hover {
+      text-decoration: none;
+      filter: brightness(0.98);
+    }
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .theme-toggle-btn {
+      font-size: 0.86rem;
+      padding: 4px 9px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      cursor: pointer;
+    }
+    .list-toggle-btn {
+      font-size: 0.82rem;
+      padding: 4px 8px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      cursor: pointer;
+    }
+    @media (max-width: 900px) {
+      .toolbar {
+        top: 6px;
+      }
+      .connection-table-wrap {
+        max-height: 280px;
+      }
+    }
+  </style>
+</head>
+<body class="main-prototype-mode">
+  <div class="page">
+  <header class="top-panel">
+    <h1>Studio Sidecar | 2026-03-01</h1>
+    <div class="meta">Generated: 2026-03-01 | Source: model/matrix JSON | No Graphviz</div>
+  </header>
+  <div class="toolbar">
+    <nav class="layer-nav"><a class="nav-chip" href="#audio-analog">Audio Analog</a></nav>
+    <div class="toolbar-actions">
+      <button id="toggleListsBtn" class="list-toggle-btn" type="button">Expand Lists</button>
+      <button id="themeToggleBtn" class="theme-toggle-btn" type="button">Dark Mode: Off</button>
+    </div>
+  </div>
+  <section class="layer" id="audio-analog">
+  <div class="layer-head">
+    <h2><span class="swatch" style="background:#2563eb;"></span>Audio Analog</h2>
+    <div class="layer-stats">
+      <span class="stat-chip">Cables <strong>8</strong></span>
+      <span class="stat-chip">Devices <strong>1</strong></span>
+    </div>
+  </div>
+  <p class="layer-note">Grouped by device type. IN ports are left, OUT ports are right.</p>
+  <div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="100%" height="100%" fill="#f8fafc"/>
+  <text x="30" y="34" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#0f172a">Studio Sidecar | Audio Analog | 2026-03-01</text>
+  <text x="30" y="54" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Devices: 1 | Cables: 8 | Ports shown: 16/16 wired</text>
+  <rect x="20.0" y="162.0" width="290.0" height="234.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <path d="M 300.0 217.0 H 347.9 V 406.0 H 12.0 V 217.0 H 30.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-001: Focusrite 18i20 [Line Out 1] -&gt; Focusrite 18i20 [Mic In 1]</title></path>
+  <path d="M 300.0 239.0 H 351.0 V 416.0 H 12.0 V 239.0 H 30.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-002: Focusrite 18i20 [Line Out 2] -&gt; Focusrite 18i20 [Mic In 2]</title></path>
+  <path d="M 300.0 261.0 H 366.6 V 426.0 H 12.0 V 261.0 H 30.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-003: Focusrite 18i20 [Line Out 3] -&gt; Focusrite 18i20 [Mic In 3]</title></path>
+  <path d="M 300.0 283.0 H 382.2 V 436.0 H 12.0 V 283.0 H 30.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-004: Focusrite 18i20 [Line Out 4] -&gt; Focusrite 18i20 [Mic In 4]</title></path>
+  <path d="M 300.0 305.0 H 397.8 V 446.0 H 12.0 V 305.0 H 30.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-005: Focusrite 18i20 [Line Out 5] -&gt; Focusrite 18i20 [Mic In 5]</title></path>
+  <path d="M 300.0 327.0 H 413.4 V 456.0 H 12.0 V 327.0 H 30.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-006: Focusrite 18i20 [Line Out 6] -&gt; Focusrite 18i20 [Mic In 6]</title></path>
+  <path d="M 300.0 349.0 H 429.0 V 466.0 H 12.0 V 349.0 H 30.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-007: Focusrite 18i20 [Line Out 7] -&gt; Focusrite 18i20 [Mic In 7]</title></path>
+  <path d="M 300.0 371.0 H 432.1 V 476.0 H 12.0 V 371.0 H 30.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-008: Focusrite 18i20 [Line Out 8] -&gt; Focusrite 18i20 [Mic In 8]</title></path>
+  <rect x="283.2" y="199.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="324.0" y="209.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-001 MONO</text>
+  <rect x="39.0" y="221.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="79.8" y="231.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-001 MONO</text>
+  <rect x="284.7" y="221.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="325.5" y="231.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-002 MONO</text>
+  <rect x="39.0" y="243.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="79.8" y="253.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-002 MONO</text>
+  <rect x="292.5" y="243.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="333.3" y="253.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-003 MONO</text>
+  <rect x="39.0" y="265.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="79.8" y="275.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-003 MONO</text>
+  <rect x="300.3" y="265.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="341.1" y="275.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-004 MONO</text>
+  <rect x="39.0" y="287.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="79.8" y="297.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-004 MONO</text>
+  <rect x="308.1" y="287.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="348.9" y="297.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-005 MONO</text>
+  <rect x="39.0" y="309.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="79.8" y="319.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-005 MONO</text>
+  <rect x="315.9" y="309.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="356.7" y="319.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-006 MONO</text>
+  <rect x="39.0" y="331.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="79.8" y="341.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-006 MONO</text>
+  <rect x="323.7" y="331.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="364.5" y="341.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-007 MONO</text>
+  <rect x="39.0" y="353.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="79.8" y="363.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-007 MONO</text>
+  <rect x="325.2" y="353.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="366.0" y="363.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-008 MONO</text>
+  <rect x="39.0" y="375.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="79.8" y="385.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-008 MONO</text>
+  <rect x="30.0" y="170.0" width="270.0" height="218.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="30.0" y="170.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="30.0" y1="206.0" x2="300.0" y2="206.0" stroke="#334155" stroke-width="1"/>
+  <text x="40.0" y="184.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="290.0" y="184.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="165.0" y="190.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Focusrite 18i20</text>
+  <text x="165.0" y="201.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">16/16 wired ports</text>
+  <text x="43.0" y="220.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 1</text>
+  <circle cx="30.0" cy="217.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="287.0" y="220.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 1</text>
+  <circle cx="300.0" cy="217.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="228.0" x2="300.0" y2="228.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="242.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 2</text>
+  <circle cx="30.0" cy="239.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="287.0" y="242.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 2</text>
+  <circle cx="300.0" cy="239.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="250.0" x2="300.0" y2="250.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="264.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 3</text>
+  <circle cx="30.0" cy="261.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="287.0" y="264.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 3</text>
+  <circle cx="300.0" cy="261.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="272.0" x2="300.0" y2="272.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="286.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 4</text>
+  <circle cx="30.0" cy="283.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="287.0" y="286.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 4</text>
+  <circle cx="300.0" cy="283.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="294.0" x2="300.0" y2="294.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="308.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 5</text>
+  <circle cx="30.0" cy="305.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="287.0" y="308.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 5</text>
+  <circle cx="300.0" cy="305.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="316.0" x2="300.0" y2="316.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="330.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 6</text>
+  <circle cx="30.0" cy="327.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="287.0" y="330.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 6</text>
+  <circle cx="300.0" cy="327.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="338.0" x2="300.0" y2="338.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="352.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 7</text>
+  <circle cx="30.0" cy="349.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="287.0" y="352.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 7</text>
+  <circle cx="300.0" cy="349.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="360.0" x2="300.0" y2="360.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="374.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 8</text>
+  <circle cx="30.0" cy="371.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="287.0" y="374.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 8</text>
+  <circle cx="300.0" cy="371.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="26.0" y="149.0" width="121.8" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="28.0" y="158.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Interface / Converter</text>
+  <rect x="900.0" y="26.0" width="280" height="76.0" rx="8" ry="8" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="910.0" y="38.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#475569">Connection Types</text>
+  <rect x="910.0" y="45.0" width="9" height="9" fill="#dc2626" rx="1" ry="1"/>
+  <text x="924.0" y="53.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Analog Audio (8)</text>
+  <text x="910.0" y="80.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">IN ports are left, OUT ports are right</text>
+  <text x="910.0" y="93.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">Unwired ports are light gray</text>
+</svg></div>
+  <details class="connection-details"><summary>Connection List (8)</summary>
+    <div class="connection-table-wrap"><table><thead><tr><th>Cable ID</th><th>Source Device</th><th>Source Type</th><th>Source Port</th><th>Dest Device</th><th>Dest Type</th><th>Dest Port</th><th>Cable Type</th><th>Connection Type</th><th>Signal Type</th><th>Status</th></tr></thead><tbody><tr><td>AUDIO-001</td><td>Focusrite 18i20</td><td>Other</td><td>Line Out 1</td><td>Focusrite 18i20</td><td>Other</td><td>Mic In 1</td><td>Analog</td><td>MONO</td><td>Analog Audio</td><td>Connected</td></tr>
+<tr><td>AUDIO-002</td><td>Focusrite 18i20</td><td>Other</td><td>Line Out 2</td><td>Focusrite 18i20</td><td>Other</td><td>Mic In 2</td><td>Analog</td><td>MONO</td><td>Analog Audio</td><td>Connected</td></tr>
+<tr><td>AUDIO-003</td><td>Focusrite 18i20</td><td>Other</td><td>Line Out 3</td><td>Focusrite 18i20</td><td>Other</td><td>Mic In 3</td><td>Analog</td><td>MONO</td><td>Analog Audio</td><td>Connected</td></tr>
+<tr><td>AUDIO-004</td><td>Focusrite 18i20</td><td>Other</td><td>Line Out 4</td><td>Focusrite 18i20</td><td>Other</td><td>Mic In 4</td><td>Analog</td><td>MONO</td><td>Analog Audio</td><td>Connected</td></tr>
+<tr><td>AUDIO-005</td><td>Focusrite 18i20</td><td>Other</td><td>Line Out 5</td><td>Focusrite 18i20</td><td>Other</td><td>Mic In 5</td><td>Analog</td><td>MONO</td><td>Analog Audio</td><td>Connected</td></tr>
+<tr><td>AUDIO-006</td><td>Focusrite 18i20</td><td>Other</td><td>Line Out 6</td><td>Focusrite 18i20</td><td>Other</td><td>Mic In 6</td><td>Analog</td><td>MONO</td><td>Analog Audio</td><td>Connected</td></tr>
+<tr><td>AUDIO-007</td><td>Focusrite 18i20</td><td>Other</td><td>Line Out 7</td><td>Focusrite 18i20</td><td>Other</td><td>Mic In 7</td><td>Analog</td><td>MONO</td><td>Analog Audio</td><td>Connected</td></tr>
+<tr><td>AUDIO-008</td><td>Focusrite 18i20</td><td>Other</td><td>Line Out 8</td><td>Focusrite 18i20</td><td>Other</td><td>Mic In 8</td><td>Analog</td><td>MONO</td><td>Analog Audio</td><td>Connected</td></tr></tbody></table></div>
+  </details>
+</section>
+  </div>
+  <script>
+    (function() {
+      const STORAGE_KEY = "studioWiringThemeModeV1";
+      const btn = document.getElementById("themeToggleBtn");
+      const listBtn = document.getElementById("toggleListsBtn");
+      if (!btn) return;
+
+      function getInitialTheme() {
+        try {
+          const stored = String(window.localStorage.getItem(STORAGE_KEY) || "").toLowerCase().trim();
+          if (stored === "dark" || stored === "light") return stored;
+        } catch (error) {
+          // Ignore storage issues.
+        }
+        return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+      }
+
+      function applyTheme(mode, persist) {
+        const resolved = mode === "dark" ? "dark" : "light";
+        document.body.classList.toggle("theme-dark", resolved === "dark");
+        document.body.classList.toggle("theme-light", resolved !== "dark");
+        btn.textContent = resolved === "dark" ? "Dark Mode: On" : "Dark Mode: Off";
+        btn.title = resolved === "dark" ? "Switch to light mode" : "Switch to dark mode";
+        if (persist) {
+          try {
+            window.localStorage.setItem(STORAGE_KEY, resolved);
+          } catch (error) {
+            // Ignore storage issues.
+          }
+        }
+      }
+
+      let mode = getInitialTheme();
+      applyTheme(mode, false);
+
+      btn.addEventListener("click", function() {
+        mode = mode === "dark" ? "light" : "dark";
+        applyTheme(mode, true);
+      });
+
+      if (listBtn) {
+        listBtn.addEventListener("click", function() {
+          const details = Array.from(document.querySelectorAll("details.connection-details"));
+          if (!details.length) return;
+          const shouldOpen = details.some((item) => !item.open);
+          details.forEach((item) => {
+            item.open = shouldOpen;
+          });
+          listBtn.textContent = shouldOpen ? "Collapse Lists" : "Expand Lists";
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

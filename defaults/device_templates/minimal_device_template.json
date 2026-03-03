@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "title": "Minimal Device Template",
+  "templates": [
+    {
+      "name": "New Device",
+      "device_type": "Custom",
+      "layout_group": "Unassigned",
+      "matrix_order": 999,
+      "ports": [
+        {
+          "name": "Port 1",
+          "direction": "io",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Port"
+          },
+          "order": 0,
+          "visible": true,
+          "enabled": true
+        }
+      ],
+      "visible": true
+    }
+  ]
+}

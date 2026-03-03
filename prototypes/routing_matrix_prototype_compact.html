@@ -1,0 +1,3058 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Prototype Lab (Sandbox) | Routing Matrix Prototype (Compact)</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f3f5f9;
+      --panel: #ffffff;
+      --panel-2: #eef2f8;
+      --ink: #1b2840;
+      --muted: #5f738f;
+      --border: #c9d5e4;
+      --cell: #f9f2dc;
+      --cell-on: #d9fbe8;
+      --cell-on-ink: #0f172a;
+      --cell-on-border: #22c55e;
+      --row-hover: #6db8bf;
+      --col-hover: #75c5cb;
+      --point-hover: #0f8d97;
+      --sticky: #dbe4f0;
+      --sticky-2: #cdd8e7;
+      --button: #eff3f9;
+      --button-hover: #d9e3f2;
+      --warn: #b91c1c;
+      --ok: #0369a1;
+      --matrix-bg: #edf2f8;
+      --filter-bg: #ffffff;
+      --filter-border: #b8c9de;
+      --filter-ink: #1b2840;
+      --dest-label-ink: #314862;
+      --dest-group-ink: #2a5e95;
+      --dest-device-ink: #1b2840;
+      --source-device-ink: #1b2840;
+      --source-group-ink: #2a5e95;
+      --source-port-ink: #30445d;
+      --hover-outline: #2f6ef2;
+      --group-cell-bg: #e4edf8;
+      --group-cell-ink: #557195;
+      --folder-source-bg: #dfe8f5;
+      --folder-dest-bg: #d7e6f6;
+      --folder-junction-bg: #cfdef0;
+      --folder-device-bg: #d3dfef;
+      --folder-group-bg: #dbe7f7;
+      --folder-toggle-bg: #ffffff;
+      --folder-toggle-border: #9cb3cf;
+      --folder-toggle-ink: #1f3b5d;
+      --axis-cell-light: #f9f2dc;
+      --axis-cell-medium: #dde8f6;
+      --axis-cell-dark: #cbd9ee;
+      --disabled-cell-bg: #edf2f8;
+      --disabled-cell-ink: #95a6bb;
+      --axis-hover-overlay: rgba(15, 141, 151, 0.12);
+      --tooltip-bg: rgba(255, 255, 255, 0.98);
+      --tooltip-ink: #1b2840;
+      --tooltip-border: #b8c9de;
+      --empty-ink: #5f738f;
+      --incompatible-cell-bg: #fde2e2;
+      --incompatible-cell-ink: #991b1b;
+      --incompatible-cell-border: #fca5a5;
+      --matrix-row-size: 34px;
+      --matrix-col-size: 36px;
+      --dest-header-size: 168px;
+      --axis-header-size: 360px;
+    }
+    body.theme-dark {
+      color-scheme: dark;
+      --bg: #0a0f14;
+      --panel: #111822;
+      --panel-2: #171f2b;
+      --ink: #dbe5f3;
+      --muted: #8ea2bb;
+      --border: #2a3a4d;
+      --cell: #1a232f;
+      --cell-on: #14532d;
+      --cell-on-ink: #dcfce7;
+      --cell-on-border: #22c55e;
+      --row-hover: #0e5b62;
+      --col-hover: #0f6d74;
+      --point-hover: #0dc8d4;
+      --sticky: #141d28;
+      --sticky-2: #1a2533;
+      --button: #1f2b3a;
+      --button-hover: #2a3b51;
+      --warn: #f87171;
+      --ok: #38bdf8;
+      --matrix-bg: #0f1620;
+      --filter-bg: #28384b;
+      --filter-border: #314559;
+      --filter-ink: #dbe5f3;
+      --dest-label-ink: #c6d5e9;
+      --dest-group-ink: #9ec5f0;
+      --dest-device-ink: #dbe5f3;
+      --source-device-ink: #e7effa;
+      --source-group-ink: #a9c6ea;
+      --source-port-ink: #dbe5f3;
+      --hover-outline: #5fa3ff;
+      --group-cell-bg: #202b39;
+      --group-cell-ink: #90a6be;
+      --folder-source-bg: #202f40;
+      --folder-dest-bg: #1f3146;
+      --folder-junction-bg: #223850;
+      --folder-device-bg: #263343;
+      --folder-group-bg: #223245;
+      --folder-toggle-bg: #122131;
+      --folder-toggle-border: #40556e;
+      --folder-toggle-ink: #cfe3ff;
+      --axis-cell-light: #1a232f;
+      --axis-cell-medium: #223245;
+      --axis-cell-dark: #2a3b52;
+      --disabled-cell-bg: #192330;
+      --disabled-cell-ink: #66788f;
+      --axis-hover-overlay: rgba(13, 200, 212, 0.08);
+      --tooltip-bg: rgba(7, 12, 19, 0.96);
+      --tooltip-ink: #dbe5f3;
+      --tooltip-border: #3c4f66;
+      --empty-ink: #8ea2bb;
+      --incompatible-cell-bg: #40202a;
+      --incompatible-cell-ink: #fecaca;
+      --incompatible-cell-border: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    .app {
+      min-height: 100vh;
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      min-width: 0;
+    }
+    .title {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .meta {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .toolbar {
+      display: grid;
+      gap: 10px;
+      align-items: stretch;
+    }
+    .toolbar-fields {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 8px 12px;
+      align-items: end;
+    }
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+    .toolbar-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel-2);
+      min-height: 40px;
+    }
+    .toolbar-group-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      padding-right: 2px;
+      white-space: nowrap;
+    }
+    .toolbar-group button {
+      min-width: 86px;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+    .toggle-field {
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 18px;
+      white-space: nowrap;
+    }
+    .toggle-field input {
+      min-height: auto;
+      width: 16px;
+      height: 16px;
+      margin: 0;
+    }
+    input, select, button {
+      min-height: 30px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--button);
+      color: var(--ink);
+      padding: 4px 8px;
+      font-size: 0.82rem;
+    }
+    select {
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: none;
+      box-shadow: none;
+    }
+    button:hover {
+      background: var(--button-hover);
+      cursor: pointer;
+    }
+    .status {
+      min-height: 1em;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .status.warn { color: var(--warn); }
+    .status.ok { color: var(--ok); }
+
+    .matrix-wrap {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: auto;
+      padding: 0;
+      height: calc(100vh - 190px);
+      min-height: 560px;
+      background: var(--matrix-bg);
+      background-clip: padding-box;
+      position: relative;
+      isolation: isolate;
+      overscroll-behavior: contain;
+      overflow-anchor: none;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-gutter: stable both-edges;
+      clip-path: inset(0 round 10px);
+    }
+    .matrix-wrap.matrix-panning {
+      cursor: grabbing;
+      user-select: none;
+    }
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      table-layout: fixed;
+      min-width: max-content;
+      position: relative;
+      z-index: 0;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      border-left-width: 0;
+      border-top-width: 0;
+      padding: 0;
+    }
+    tr:first-child th,
+    tr:first-child td {
+      border-top-width: 1px;
+    }
+    th:first-child,
+    td:first-child {
+      border-left-width: 1px;
+    }
+
+    .sticky-top {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--sticky);
+      background-clip: padding-box;
+    }
+    .sticky-left {
+      position: sticky;
+      left: 0;
+      z-index: 50;
+      background: var(--sticky);
+      background-clip: padding-box;
+    }
+    tbody .sticky-left {
+      z-index: 52;
+      background: var(--sticky);
+    }
+    thead .sticky-left {
+      z-index: 70;
+    }
+    .top-left {
+      z-index: 80;
+      min-width: var(--axis-header-size);
+      width: var(--axis-header-size);
+      max-width: var(--axis-header-size);
+      vertical-align: top;
+      background: var(--sticky-2);
+      background-clip: padding-box;
+    }
+    tbody td {
+      position: relative;
+      z-index: 1;
+    }
+
+    .tl-box {
+      height: calc(var(--dest-header-size) - 8px);
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 8px;
+      padding: 10px;
+      align-content: start;
+    }
+    .tl-box .mini,
+    .tl-box .line {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+    .tl-axis-metrics {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .axis-metric {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .icon-btn {
+      width: 24px;
+      min-width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      font-weight: 700;
+    }
+
+    .dest-col-head {
+      width: var(--matrix-col-size);
+      min-width: var(--matrix-col-size);
+      max-width: var(--matrix-col-size);
+      height: var(--dest-header-size);
+      min-height: var(--dest-header-size);
+      max-height: var(--dest-header-size);
+      vertical-align: top;
+      background: var(--sticky);
+    }
+    .dest-col-head.dest-kind-device { background: var(--folder-device-bg); }
+    .dest-col-head.dest-kind-group { background: var(--folder-group-bg); }
+    .dest-col-inner {
+      height: var(--dest-header-size);
+      display: grid;
+      grid-template-rows: 20px 1fr;
+      align-items: start;
+      justify-items: center;
+      padding: 4px 1px;
+      gap: 4px;
+    }
+    .dest-col-inner.port {
+      grid-template-rows: 1fr;
+      padding-top: 6px;
+    }
+    .dest-head-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 3px;
+      min-width: 0;
+      min-height: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .dest-head-line.folder {
+      justify-content: flex-start;
+      padding-top: 2px;
+    }
+    .dest-head-line.port {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      justify-items: center;
+      align-content: start;
+      padding-top: 1px;
+    }
+    .dest-icon-wrap {
+      min-height: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dest-icon-wrap .conn-icon {
+      min-width: 30px;
+      height: 16px;
+      font-size: 0.69rem;
+    }
+    .dest-name {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      text-align: left;
+      font-size: 0.78rem;
+      line-height: 1.03;
+      max-height: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
+    }
+    .dest-head-line.folder .dest-name {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+    .dest-name.device {
+      font-weight: 700;
+      color: var(--source-device-ink);
+    }
+    .dest-name.group {
+      font-weight: 700;
+      color: var(--source-group-ink);
+    }
+    .dest-name.port {
+      font-weight: 600;
+      color: var(--dest-label-ink);
+      max-height: none;
+      height: 100%;
+      margin-top: 2px;
+    }
+    .dest-count {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-size: 0.7rem;
+      line-height: 1;
+      max-height: 24px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .source-head {
+      min-width: var(--axis-header-size);
+      width: var(--axis-header-size);
+      max-width: var(--axis-header-size);
+      height: var(--matrix-row-size);
+      min-height: var(--matrix-row-size);
+      max-height: var(--matrix-row-size);
+      background: var(--sticky);
+      color: var(--source-port-ink);
+      font-size: 0.78rem;
+      text-align: left;
+      padding: 0 8px;
+    }
+    .source-head.source-kind-device { background: var(--folder-device-bg); }
+    .source-head.source-kind-group { background: var(--folder-group-bg); }
+    .source-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .source-line .name {
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .source-line .name.device {
+      font-weight: 700;
+      color: var(--source-device-ink);
+    }
+    .source-line .name.group {
+      font-weight: 700;
+      color: var(--source-group-ink);
+    }
+    .source-line .name.port {
+      font-weight: 500;
+      color: var(--source-port-ink);
+    }
+    .source-line .count {
+      margin-left: auto;
+      flex: 0 0 auto;
+      padding-left: 6px;
+      color: var(--muted);
+      font-size: 0.7rem;
+    }
+
+    td.cell {
+      width: var(--matrix-col-size);
+      min-width: var(--matrix-col-size);
+      max-width: var(--matrix-col-size);
+      height: var(--matrix-row-size);
+      min-height: var(--matrix-row-size);
+      max-height: var(--matrix-row-size);
+      background: var(--cell);
+      text-align: center;
+      vertical-align: middle;
+      font-size: 0.76rem;
+      user-select: none;
+    }
+    td.cell.editable { cursor: pointer; }
+    td.cell.editable:hover { outline: 1px solid var(--hover-outline); outline-offset: -1px; }
+    td.cell.on {
+      background: var(--cell-on);
+      color: var(--cell-on-ink);
+      font-weight: 800;
+      box-shadow: inset 0 0 0 1px var(--cell-on-border);
+    }
+    td.cell.groupcell {
+      background: var(--group-cell-bg);
+      color: var(--group-cell-ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    td.cell.folder-source { color: #4e6888; }
+    td.cell.folder-dest { color: #486b8d; }
+    td.cell.folder-junction { color: #3f5f82; }
+    body.theme-dark td.cell.folder-source { color: #9bb7d6; }
+    body.theme-dark td.cell.folder-dest { color: #a7c6e8; }
+    body.theme-dark td.cell.folder-junction { color: #b4d0ee; }
+    td.cell.groupcell:hover {
+      outline: 1px solid var(--hover-outline);
+      outline-offset: -1px;
+    }
+    td.cell.folder-source { background: var(--folder-source-bg); }
+    td.cell.folder-dest { background: var(--folder-dest-bg); }
+    td.cell.folder-junction { background: var(--folder-junction-bg); }
+    td.cell.groupcell.axis-base:not(.disabled) { background: var(--axis-cell-light); }
+    td.cell.groupcell.axis-group:not(.disabled) { background: var(--axis-cell-medium); }
+    td.cell.groupcell.axis-device:not(.disabled) { background: var(--axis-cell-dark); }
+    td.cell.disabled {
+      background: var(--disabled-cell-bg);
+      color: var(--disabled-cell-ink);
+      cursor: not-allowed;
+    }
+    td.cell.incompatible {
+      background: var(--incompatible-cell-bg);
+      color: var(--incompatible-cell-ink);
+      box-shadow: inset 0 0 0 1px var(--incompatible-cell-border);
+    }
+    td.cell.axis-hover-row {
+      outline: 1px solid rgba(15, 141, 151, 0.34);
+      outline-offset: -1px;
+    }
+    td.cell.axis-hover-col {
+      outline: 1px solid rgba(15, 141, 151, 0.42);
+      outline-offset: -1px;
+    }
+    td.cell.axis-hover-point {
+      outline: 2px solid var(--point-hover);
+      outline-offset: -2px;
+      z-index: 2;
+    }
+
+    .tooltip {
+      position: fixed;
+      z-index: 30;
+      pointer-events: none;
+      background: var(--tooltip-bg);
+      color: var(--tooltip-ink);
+      border: 1px solid var(--tooltip-border);
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 0.74rem;
+      max-width: 400px;
+      white-space: pre-wrap;
+      display: none;
+    }
+    .conn-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 16px;
+      font-size: 0.66rem;
+      line-height: 1;
+      font-weight: 900;
+      flex: 0 0 auto;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      text-shadow: 0 0 0.3px currentColor;
+    }
+    .conn-icon.analog { color: #c43030; }
+    .conn-icon.speaker { color: #d97706; }
+    .conn-icon.digi { color: #2563eb; }
+    .conn-icon.net { color: #0f766e; }
+    .conn-icon.usb { color: #4b5563; }
+    .conn-icon.tb { color: #7c3aed; }
+    .conn-icon.midi { color: #db2777; }
+    .conn-icon.unknown { color: var(--muted); }
+    .port-with-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .port-with-icon .text {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    @media (max-width: 900px) {
+      .top-left, .source-head {
+        min-width: 300px;
+        width: 300px;
+        max-width: 300px;
+      }
+      :root {
+        --matrix-row-size: 30px;
+        --matrix-col-size: 32px;
+        --dest-header-size: 140px;
+      }
+      .dest-col-head, td.cell {
+        width: var(--matrix-col-size);
+        min-width: var(--matrix-col-size);
+        max-width: var(--matrix-col-size);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="panel">
+      <div class="toolbar">
+        <div class="toolbar-fields">
+          <label>Family
+            <select id="familySelect"></select>
+          </label>
+          <label>Patch Mode
+            <select id="patchModeSelect">
+              <option value="single">Single</option>
+              <option value="stereo">Stereo (2)</option>
+              <option value="multi">Multi</option>
+              <option value="paint">Paint</option>
+            </select>
+          </label>
+          <label>Pair Count
+            <input id="pairCountInput" type="number" min="2" max="64" step="1" value="8" />
+          </label>
+          <label>Type Tag
+            <input id="typeTagInput" type="text" placeholder="ST, MC8, CAT6..." />
+          </label>
+          <label class="toggle-field" title="When off, each endpoint can only be used once.">
+            <input id="allowDoublePatchingToggle" type="checkbox" />
+            Allow Double Patching
+          </label>
+          <label>Filter Transmitters
+            <input id="sourceFilterInput" type="search" placeholder="device or port..." />
+          </label>
+          <label>Filter Receivers
+            <input id="destFilterInput" type="search" placeholder="device or port..." />
+          </label>
+        </div>
+        <div class="toolbar-actions">
+          <div class="toolbar-group">
+            <span class="toolbar-group-label">Transmitters</span>
+            <button id="collapseSourceBtn" type="button">Collapse</button>
+            <button id="expandSourceBtn" type="button">Expand</button>
+          </div>
+          <div class="toolbar-group">
+            <span class="toolbar-group-label">Receivers</span>
+            <button id="collapseDestBtn" type="button">Collapse</button>
+            <button id="expandDestBtn" type="button">Expand</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="matrix-wrap panel" id="matrixWrap">
+      <div id="matrixContainer" style="padding:12px;color:var(--empty-ink);">Loading prototype matrix...</div>
+    </div>
+  </div>
+
+  <div id="tooltip" class="tooltip"></div>
+
+  <script>
+    const QUERY_PARAMS = new URLSearchParams(window.location.search || "");
+
+    function queryBoolean(name) {
+      const raw = String(QUERY_PARAMS.get(name) || "").trim().toLowerCase();
+      return raw === "1" || raw === "true" || raw === "yes" || raw === "on";
+    }
+
+    function withPreferredCandidate(preferred, fallbackList) {
+      const out = [];
+      const seen = new Set();
+      for (const raw of [preferred, ...(Array.isArray(fallbackList) ? fallbackList : [])]) {
+        const value = String(raw || "").trim();
+        if (!value || seen.has(value)) continue;
+        seen.add(value);
+        out.push(value);
+      }
+      return out;
+    }
+
+    const HAS_MODEL_QUERY_PARAM = QUERY_PARAMS.has("model");
+    const HAS_CONNECTIONS_QUERY_PARAM = QUERY_PARAMS.has("connections");
+    const MODEL_QUERY_PATH = String(QUERY_PARAMS.get("model") || "").trim();
+    const CONNECTIONS_QUERY_PATH = String(QUERY_PARAMS.get("connections") || "").trim();
+    const STARTUP_THEME = String(QUERY_PARAMS.get("theme") || "").trim().toLowerCase();
+    let themeOverrideMode = (STARTUP_THEME === "dark" || STARTUP_THEME === "light") ? STARTUP_THEME : "";
+    const USE_SAVE_API = queryBoolean("use_save_api");
+    const ALLOW_SOURCE_PUT = queryBoolean("allow_source_put");
+    const ALLOW_DOUBLE_PATCHING_DEFAULT = queryBoolean("allow_double_patching");
+    const AUTO_SAVE_CONFIGS_DEFAULT = queryBoolean("auto_save_configs");
+    const SAVE_CONNECTIONS_API = String(QUERY_PARAMS.get("save_connections_api") || "/api/save-connections").trim()
+      || "/api/save-connections";
+    const SET_TARGETS_API = String(QUERY_PARAMS.get("set_targets_api") || "/api/set-targets").trim()
+      || "/api/set-targets";
+
+    const MODEL_FALLBACK_CANDIDATES = [
+      "./sandbox/prototype-lab/device-configurations/studio-model.prototype.json",
+      "../projects/studio-sidecar/device-configurations/studio-model-001.json",
+    ];
+    const CONNECTIONS_FALLBACK_CANDIDATES = [
+      "./sandbox/prototype-lab/patch-configurations/patch-default.prototype.json",
+      "../projects/studio-sidecar/patch-configurations/studio-model-001/patch-default.json",
+    ];
+    const MODEL_URL_CANDIDATES = withPreferredCandidate(
+      MODEL_QUERY_PATH,
+      HAS_MODEL_QUERY_PARAM ? [] : MODEL_FALLBACK_CANDIDATES,
+    );
+    const CONNECTIONS_URL_CANDIDATES = withPreferredCandidate(
+      CONNECTIONS_QUERY_PATH,
+      HAS_CONNECTIONS_QUERY_PARAM ? [] : CONNECTIONS_FALLBACK_CANDIDATES,
+    );
+    const FAMILY_ALL = "ALL";
+    const FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK", "CONTROL"];
+    const PORT_FOLDER_THRESHOLD = 8;
+    const PATCH_MODE_SINGLE = "single";
+    const PATCH_MODE_STEREO = "stereo";
+    const PATCH_MODE_MULTI = "multi";
+    const PATCH_MODE_PAINT = "paint";
+    const PATCH_AUTO_SAVE_DEBOUNCE_MS = 450;
+
+    const familySelect = document.getElementById("familySelect");
+    const patchModeSelect = document.getElementById("patchModeSelect");
+    const pairCountInput = document.getElementById("pairCountInput");
+    const typeTagInput = document.getElementById("typeTagInput");
+    const allowDoublePatchingToggle = document.getElementById("allowDoublePatchingToggle");
+    const sourceFilterInput = document.getElementById("sourceFilterInput");
+    const destFilterInput = document.getElementById("destFilterInput");
+    const collapseSourceBtn = document.getElementById("collapseSourceBtn");
+    const expandSourceBtn = document.getElementById("expandSourceBtn");
+    const collapseDestBtn = document.getElementById("collapseDestBtn");
+    const expandDestBtn = document.getElementById("expandDestBtn");
+    const matrixContainer = document.getElementById("matrixContainer");
+    const tooltip = document.getElementById("tooltip");
+    const statusEl = document.getElementById("status");
+    const matrixWrapEl = document.getElementById("matrixWrap");
+
+    let MODEL = { devices: [], families: {} };
+    let connections = [];
+
+    let sourceFilter = "";
+    let destFilter = "";
+    let selectedPatchMode = PATCH_MODE_SINGLE;
+    let pairCount = 8;
+    let typeTagValue = "";
+    let allowDoublePatching = ALLOW_DOUBLE_PATCHING_DEFAULT;
+    let autoSaveConfigsEnabled = AUTO_SAVE_CONFIGS_DEFAULT;
+    let cableIdAllocator = new Map();
+    let patchFileHandle = null;
+    let patchFileName = "routing_matrix_connections.prototype.json";
+    let modelSourceUrl = "";
+    let patchSourceUrl = "";
+    let saveTargetsConfiguredKey = "";
+    let patchAutoSaveTimer = 0;
+    let patchAutoSaveReason = "";
+    let patchAutoSaveInFlight = false;
+    let normalizedPortsCache = null;
+    const portsForFamilyCache = new Map();
+
+    const collapsedSourceDevices = new Set();
+    const collapsedDestDevices = new Set();
+    const collapsedSourceGroups = new Set();
+    const collapsedDestGroups = new Set();
+    const autoCollapsedFamilies = new Set();
+    const autoCollapsedDeviceFamilies = new Set();
+
+    function invalidatePortCaches() {
+      normalizedPortsCache = null;
+      portsForFamilyCache.clear();
+    }
+
+    function setStatus(message, warn = false) {
+      if (!(statusEl instanceof HTMLElement)) return;
+      statusEl.textContent = String(message || "");
+      statusEl.classList.toggle("warn", Boolean(warn));
+      statusEl.classList.toggle("ok", !warn && Boolean(message));
+    }
+
+    function setAutoSaveConfigsEnabled(enabled, announce = false) {
+      autoSaveConfigsEnabled = Boolean(enabled);
+      if (announce) {
+        setStatus(`Auto Save Configs: ${autoSaveConfigsEnabled ? "On" : "Off"}`);
+      }
+    }
+
+    function queuePatchAutoSave(reason = "patch-change") {
+      if (!autoSaveConfigsEnabled) return;
+      patchAutoSaveReason = String(reason || "patch-change");
+      if (patchAutoSaveTimer) {
+        window.clearTimeout(patchAutoSaveTimer);
+      }
+      patchAutoSaveTimer = window.setTimeout(async () => {
+        patchAutoSaveTimer = 0;
+        if (patchAutoSaveInFlight) {
+          queuePatchAutoSave(patchAutoSaveReason || reason);
+          return;
+        }
+        patchAutoSaveInFlight = true;
+        try {
+          await savePatch(false, {
+            silent: true,
+            auto: true,
+            reason: patchAutoSaveReason || reason,
+          });
+        } finally {
+          patchAutoSaveInFlight = false;
+        }
+      }, PATCH_AUTO_SAVE_DEBOUNCE_MS);
+    }
+
+    let renderScheduled = false;
+    function scheduleRender(immediate = false) {
+      if (immediate) {
+        renderScheduled = false;
+        renderMatrix();
+        return;
+      }
+      if (renderScheduled) return;
+      renderScheduled = true;
+      window.requestAnimationFrame(() => {
+        renderScheduled = false;
+        renderMatrix();
+      });
+    }
+
+    function captureMatrixViewportState() {
+      if (!(matrixWrapEl instanceof HTMLElement)) return null;
+      return {
+        top: Number(matrixWrapEl.scrollTop || 0),
+        left: Number(matrixWrapEl.scrollLeft || 0),
+      };
+    }
+
+    function restoreMatrixViewportState(state) {
+      if (!(matrixWrapEl instanceof HTMLElement)) return;
+      if (!state || typeof state !== "object") return;
+      const maxTop = Math.max(0, Number(matrixWrapEl.scrollHeight || 0) - Number(matrixWrapEl.clientHeight || 0));
+      const maxLeft = Math.max(0, Number(matrixWrapEl.scrollWidth || 0) - Number(matrixWrapEl.clientWidth || 0));
+      const nextTop = Math.max(0, Math.min(maxTop, Number(state.top || 0)));
+      const nextLeft = Math.max(0, Math.min(maxLeft, Number(state.left || 0)));
+      matrixWrapEl.scrollTop = nextTop;
+      matrixWrapEl.scrollLeft = nextLeft;
+    }
+
+    const panState = {
+      active: false,
+      pointerId: -1,
+      startX: 0,
+      startY: 0,
+      startLeft: 0,
+      startTop: 0,
+      moved: false,
+      suppressClick: false,
+    };
+
+    function bindMatrixDiagonalPan() {
+      if (!(matrixWrapEl instanceof HTMLElement)) return;
+      if (matrixWrapEl.dataset.panBound === "1") return;
+      matrixWrapEl.dataset.panBound = "1";
+
+      matrixWrapEl.addEventListener("pointerdown", (event) => {
+        const button = Number(event.button);
+        const wantsPan = button === 1 || (button === 0 && event.altKey);
+        if (!wantsPan) return;
+
+        const target = event.target instanceof Element ? event.target : null;
+        if (button === 0 && target && target.closest("button,input,select,textarea,a,label")) return;
+
+        panState.active = true;
+        panState.pointerId = Number(event.pointerId);
+        panState.startX = Number(event.clientX || 0);
+        panState.startY = Number(event.clientY || 0);
+        panState.startLeft = Number(matrixWrapEl.scrollLeft || 0);
+        panState.startTop = Number(matrixWrapEl.scrollTop || 0);
+        panState.moved = false;
+
+        matrixWrapEl.classList.add("matrix-panning");
+        matrixWrapEl.setPointerCapture(event.pointerId);
+        event.preventDefault();
+      });
+
+      matrixWrapEl.addEventListener("pointermove", (event) => {
+        if (!panState.active) return;
+        if (Number(event.pointerId) !== panState.pointerId) return;
+
+        const dx = Number(event.clientX || 0) - panState.startX;
+        const dy = Number(event.clientY || 0) - panState.startY;
+        if (!panState.moved && (Math.abs(dx) > 2 || Math.abs(dy) > 2)) {
+          panState.moved = true;
+        }
+        matrixWrapEl.scrollLeft = panState.startLeft - dx;
+        matrixWrapEl.scrollTop = panState.startTop - dy;
+        event.preventDefault();
+      });
+
+      const finishPan = (event) => {
+        if (!panState.active) return;
+        if (Number(event.pointerId) !== panState.pointerId) return;
+
+        panState.active = false;
+        if (panState.moved) panState.suppressClick = true;
+        matrixWrapEl.classList.remove("matrix-panning");
+        try {
+          if (matrixWrapEl.hasPointerCapture(event.pointerId)) {
+            matrixWrapEl.releasePointerCapture(event.pointerId);
+          }
+        } catch (error) {
+          // Ignore capture release errors.
+        }
+      };
+
+      matrixWrapEl.addEventListener("pointerup", finishPan);
+      matrixWrapEl.addEventListener("pointercancel", finishPan);
+
+      matrixWrapEl.addEventListener("click", (event) => {
+        if (!panState.suppressClick) return;
+        panState.suppressClick = false;
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+    }
+
+    function bindMatrixTrackpadDiagonalScroll() {
+      if (!(matrixWrapEl instanceof HTMLElement)) return;
+      if (matrixWrapEl.dataset.trackpadBound === "1") return;
+      matrixWrapEl.dataset.trackpadBound = "1";
+
+      matrixWrapEl.addEventListener("wheel", (event) => {
+        if (!(event instanceof WheelEvent)) return;
+        if (event.ctrlKey) return;
+        if (panState.active) return;
+
+        const canScrollX = matrixWrapEl.scrollWidth > (matrixWrapEl.clientWidth + 1);
+        const canScrollY = matrixWrapEl.scrollHeight > (matrixWrapEl.clientHeight + 1);
+        if (!canScrollX && !canScrollY) return;
+
+        const unit = event.deltaMode === 1
+          ? 16
+          : (event.deltaMode === 2
+            ? Math.max(Number(matrixWrapEl.clientWidth || 0), Number(matrixWrapEl.clientHeight || 0), 1)
+            : 1);
+        const deltaXRaw = Number(event.deltaX || 0) * unit;
+        const deltaYRaw = Number(event.deltaY || 0) * unit;
+        const deltaX = Number.isFinite(deltaXRaw) ? deltaXRaw : 0;
+        const deltaY = Number.isFinite(deltaYRaw) ? deltaYRaw : 0;
+        const horizontalDelta = (deltaX !== 0)
+          ? deltaX
+          : ((event.shiftKey && deltaY !== 0) ? deltaY : 0);
+        const applyX = canScrollX ? horizontalDelta : 0;
+        const applyY = canScrollY ? deltaY : 0;
+        if (applyX === 0 && applyY === 0) return;
+
+        const startLeft = Number(matrixWrapEl.scrollLeft || 0);
+        const startTop = Number(matrixWrapEl.scrollTop || 0);
+        const maxLeft = Math.max(0, Number(matrixWrapEl.scrollWidth || 0) - Number(matrixWrapEl.clientWidth || 0));
+        const maxTop = Math.max(0, Number(matrixWrapEl.scrollHeight || 0) - Number(matrixWrapEl.clientHeight || 0));
+        const nextLeft = Math.max(0, Math.min(maxLeft, startLeft + applyX));
+        const nextTop = Math.max(0, Math.min(maxTop, startTop + applyY));
+        const consumedX = nextLeft - startLeft;
+        const consumedY = nextTop - startTop;
+
+        if (consumedX !== 0) matrixWrapEl.scrollLeft = nextLeft;
+        if (consumedY !== 0) matrixWrapEl.scrollTop = nextTop;
+
+        const remainingY = applyY - consumedY;
+        let stillRemainingY = remainingY;
+        if (Math.abs(stillRemainingY) > 0.5) {
+          const before = Number(window.scrollY || window.pageYOffset || 0);
+          window.scrollBy(0, stillRemainingY);
+          const after = Number(window.scrollY || window.pageYOffset || 0);
+          stillRemainingY -= (after - before);
+        }
+        if (Math.abs(stillRemainingY) > 0.5 && window.parent && window.parent !== window) {
+          try {
+            window.parent.postMessage({
+              type: "studio-prototype-scroll-handoff",
+              delta_y: stillRemainingY,
+            }, "*");
+          } catch (_error) {
+            // Ignore cross-frame message failures.
+          }
+        }
+
+        if (consumedX !== 0 || consumedY !== 0 || Math.abs(remainingY) > 0.5) {
+          event.preventDefault();
+        }
+      }, { passive: false });
+    }
+
+    window.addEventListener("error", (event) => {
+      const message = event && event.message ? String(event.message) : "Unknown prototype error";
+      const detail = event && event.filename
+        ? `${message} @ ${event.filename}:${event.lineno || 0}`
+        : message;
+      setStatus(`Runtime error: ${detail}`, true);
+      if (matrixContainer) {
+        matrixContainer.innerHTML = `<div style="padding:12px;color:#fca5a5;">Runtime error: ${escHtml(detail)}</div>`;
+      }
+      if (matrixWrapEl) matrixWrapEl.scrollTop = 0;
+    });
+
+    function getPath(obj, path, fallback) {
+      let cur = obj;
+      for (const key of path) {
+        if (cur == null || typeof cur !== "object" || !(key in cur)) return fallback;
+        cur = cur[key];
+      }
+      return cur == null ? fallback : cur;
+    }
+
+    function resolveThemeModeFromModel(model) {
+      const raw = String(getPath(model, ["ui_config", "theme", "mode"], "")).trim().toLowerCase();
+      if (raw === "dark" || raw === "light") return raw;
+      return "light";
+    }
+
+    function normalizeThemeMode(mode) {
+      const token = String(mode || "").trim().toLowerCase();
+      if (token === "dark" || token === "light") return token;
+      return "";
+    }
+
+    function applyThemeMode(mode) {
+      const resolved = normalizeThemeMode(mode) || "light";
+      document.body.classList.toggle("theme-dark", resolved === "dark");
+      document.body.classList.toggle("theme-light", resolved !== "dark");
+    }
+
+    function applyThemeFromModel(model) {
+      const mode = themeOverrideMode || resolveThemeModeFromModel(model);
+      applyThemeMode(mode);
+    }
+
+    function normalizeFamily(value) {
+      const token = String(value || "").trim().toUpperCase();
+      if (["AUDIO", "ANALOG", "AN"].includes(token)) return "AUDIO";
+      if (["COMP", "COMPUTER", "DATA", "VIDEO", "USB", "TB4", "HDMI"].includes(token)) return "COMP";
+      if (["DIGI", "DIGITAL", "MADI", "SPDIF", "ADAT", "AES"].includes(token)) return "DIGI";
+      if (["NETWORK", "NET", "ETH", "ETHERNET", "RJ45", "CAT", "CAT6"].includes(token)) return "NETWORK";
+      if (["CONTROL", "CTRL", "MIDI", "OSC", "DANTE"].includes(token)) return "CONTROL";
+      return token;
+    }
+
+    function normalizeDirection(value, name) {
+      const text = String(value || "").trim().toLowerCase();
+      if (text === "in" || text === "input") return "in";
+      if (text === "out" || text === "output") return "out";
+      if (["io", "i/o", "inout", "in/out"].includes(text)) return "io";
+      const hay = `${text} ${String(name || "").toLowerCase()}`;
+      const hasIn = /\bin\b|input|return|recv|receive/.test(hay);
+      const hasOut = /\bout\b|output|send|tx|transmit/.test(hay);
+      if (hasIn && hasOut) return "io";
+      if (hasIn) return "in";
+      if (hasOut) return "out";
+      return "io";
+    }
+
+    function parseBoolLike(value, fallback) {
+      if (typeof value === "boolean") return value;
+      if (value == null) return fallback;
+      const token = String(value).trim().toLowerCase();
+      if (["true", "1", "yes", "on"].includes(token)) return true;
+      if (["false", "0", "no", "off"].includes(token)) return false;
+      return fallback;
+    }
+
+    function compareNatural(a, b) {
+      return String(a || "").localeCompare(String(b || ""), undefined, { numeric: true, sensitivity: "base" });
+    }
+
+    function inferPortTypeName(portName, explicitGroupName = "") {
+      const explicit = String(explicitGroupName || "").trim();
+      if (explicit) return explicit;
+      let text = String(portName || "").trim();
+      if (!text) return "Ports";
+      text = text.replace(/\s*\([^)]*\)\s*$/g, "").trim();
+      text = text.replace(/\s+\d+(?:\s*[-/]\s*\d+)?\s*$/g, "").trim();
+      text = text.replace(/\s+[LR]$/i, "").trim();
+      return text || "Ports";
+    }
+
+    function numberFromName(name) {
+      const match = String(name || "").match(/(\d+)/);
+      return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
+    }
+
+    function comparePorts(a, b) {
+      const ao = Number.isFinite(Number(a.order)) ? Number(a.order) : Number.POSITIVE_INFINITY;
+      const bo = Number.isFinite(Number(b.order)) ? Number(b.order) : Number.POSITIVE_INFINITY;
+      if (ao !== bo) return ao - bo;
+      const at = compareNatural(a.type_name, b.type_name);
+      if (at !== 0) return at;
+      const ai = Number.isFinite(Number(a.group_index)) ? Number(a.group_index) : numberFromName(a.port);
+      const bi = Number.isFinite(Number(b.group_index)) ? Number(b.group_index) : numberFromName(b.port);
+      if (ai !== bi) return ai - bi;
+      return compareNatural(a.port, b.port);
+    }
+
+    function normalizePorts() {
+      if (Array.isArray(normalizedPortsCache)) return normalizedPortsCache;
+      const devices = Array.isArray(MODEL && MODEL.devices) ? MODEL.devices : [];
+      const list = [];
+      for (let d = 0; d < devices.length; d += 1) {
+        const rawDevice = devices[d] || {};
+        const device = String(rawDevice.name || "").trim();
+        if (!device) continue;
+        if (parseBoolLike(rawDevice.hidden, false) || rawDevice.visible === false) continue;
+        const matrixOrder = Number.isFinite(Number(rawDevice.matrix_order)) ? Number(rawDevice.matrix_order) : d;
+        const rawPorts = Array.isArray(rawDevice.ports) ? rawDevice.ports : [];
+        for (let p = 0; p < rawPorts.length; p += 1) {
+          const port = rawPorts[p] || {};
+          const portName = String(port.name || "").trim();
+          if (!portName) continue;
+          const visible = !parseBoolLike(port.hidden, false) && parseBoolLike(port.visible, true);
+          if (!visible) continue;
+          const enabled = parseBoolLike(port.enabled, true) && !parseBoolLike(port.disabled, false);
+          const familiesRaw = Array.isArray(port.families) ? port.families : [];
+          const families = familiesRaw.map((entry) => normalizeFamily(entry)).filter(Boolean);
+          if (!families.length) continue;
+          const group = port.group && typeof port.group === "object" ? port.group : {};
+          list.push({
+            device,
+            device_order: matrixOrder,
+            port: portName,
+            direction: normalizeDirection(port.direction, portName),
+            families,
+            transport: String(port.transport || "").trim(),
+            type_name: inferPortTypeName(portName, group.name),
+            group_index: Number.isFinite(Number(group.index)) ? Number(group.index) : null,
+            order: Number.isFinite(Number(port.order)) ? Number(port.order) : p,
+            enabled,
+          });
+        }
+      }
+      normalizedPortsCache = list;
+      return normalizedPortsCache;
+    }
+
+    function portsForFamily(family, sourceSide) {
+      const key = `${String(family || "")}::${sourceSide ? "source" : "dest"}`;
+      if (portsForFamilyCache.has(key)) return portsForFamilyCache.get(key);
+      const all = normalizePorts();
+      const selected = [];
+      for (const port of all) {
+        const supports = family === FAMILY_ALL ? port.families.length > 0 : port.families.includes(family);
+        if (!supports) continue;
+        if (sourceSide) {
+          if (!(port.direction === "out" || port.direction === "io")) continue;
+        } else {
+          if (!(port.direction === "in" || port.direction === "io")) continue;
+        }
+        selected.push(port);
+      }
+      selected.sort((a, b) => {
+        if (a.device_order !== b.device_order) return a.device_order - b.device_order;
+        const dn = compareNatural(a.device, b.device);
+        if (dn !== 0) return dn;
+        return comparePorts(a, b);
+      });
+      portsForFamilyCache.set(key, selected);
+      return selected;
+    }
+
+    function buildGroupKey(family, axis, device, typeName) {
+      return `${family}::${axis}::${device}::${String(typeName || "").toLowerCase()}`;
+    }
+
+    function buildDeviceKey(family, axis, device) {
+      return `${family}::${axis}::${device}`;
+    }
+
+    function buildAxisEntries(family, ports, axis, collapsedGroups, collapsedDevices) {
+      const byDevice = new Map();
+      for (const port of ports) {
+        if (!byDevice.has(port.device)) byDevice.set(port.device, []);
+        byDevice.get(port.device).push(port);
+      }
+
+      const entries = [];
+      const devices = Array.from(byDevice.entries()).sort((a, b) => {
+        const ao = Number((a[1] && a[1][0] && a[1][0].device_order) || 0);
+        const bo = Number((b[1] && b[1][0] && b[1][0].device_order) || 0);
+        if (ao !== bo) return ao - bo;
+        return compareNatural(a[0], b[0]);
+      });
+
+      for (const [device, members] of devices) {
+        members.sort(comparePorts);
+        const deviceKey = buildDeviceKey(family, axis, device);
+        const isCollapsedDevice = collapsedDevices.has(deviceKey);
+        entries.push({
+          kind: "device",
+          axis,
+          device,
+          deviceKey,
+          members,
+          memberCount: members.length,
+          collapsed: isCollapsedDevice,
+        });
+
+        if (isCollapsedDevice) continue;
+
+        const byType = new Map();
+        for (const port of members) {
+          if (!byType.has(port.type_name)) byType.set(port.type_name, []);
+          byType.get(port.type_name).push(port);
+        }
+
+        const typeEntries = Array.from(byType.entries()).sort((a, b) => {
+          return compareNatural(a[0], b[0]);
+        });
+        const forceTypeFoldersForDenseDevice = members.length > 24;
+        const folderEligibleTypeCount = typeEntries.reduce((count, entry) => {
+          const portsOfType = Array.isArray(entry?.[1]) ? entry[1] : [];
+          return count + (portsOfType.length > PORT_FOLDER_THRESHOLD ? 1 : 0);
+        }, 0);
+        const allowTypeFolders = forceTypeFoldersForDenseDevice || folderEligibleTypeCount > 1;
+
+        for (const [typeName, portsOfType] of typeEntries) {
+          portsOfType.sort(comparePorts);
+          const groupKey = buildGroupKey(family, axis, device, typeName);
+          const canShowTypeFolder = forceTypeFoldersForDenseDevice
+            || (allowTypeFolders && portsOfType.length > PORT_FOLDER_THRESHOLD);
+          if (canShowTypeFolder) {
+            const isCollapsedGroup = collapsedGroups.has(groupKey);
+            if (isCollapsedGroup) {
+              entries.push({
+                kind: "group",
+                axis,
+                device,
+                deviceKey,
+                groupKey,
+                typeName,
+                members: portsOfType,
+                memberCount: portsOfType.length,
+                collapsed: true,
+              });
+            } else {
+              entries.push({
+                kind: "group",
+                axis,
+                device,
+                deviceKey,
+                groupKey,
+                typeName,
+                members: portsOfType,
+                memberCount: portsOfType.length,
+                collapsed: false,
+              });
+              for (const port of portsOfType) {
+                entries.push({
+                  kind: "port",
+                  axis,
+                  device,
+                  deviceKey,
+                  groupKey,
+                  typeName,
+                  port,
+                });
+              }
+            }
+          } else {
+            for (const port of portsOfType) {
+              entries.push({
+                kind: "port",
+                axis,
+                device,
+                deviceKey,
+                typeName,
+                port,
+              });
+            }
+          }
+        }
+      }
+      return entries;
+    }
+
+    function normalizeConnection(row) {
+      const source = (row && row.source) || {};
+      const dest = (row && row.dest) || {};
+      return {
+        cable_id: String((row && row.cable_id) || "").trim(),
+        family: normalizeFamily((row && row.family) || ""),
+        source_device: String((row && row.source_device) || source.device || "").trim(),
+        source_port: String((row && row.source_port) || source.port || "").trim(),
+        dest_device: String((row && row.dest_device) || dest.device || "").trim(),
+        dest_port: String((row && row.dest_port) || dest.port || "").trim(),
+        connection_type: String((row && row.connection_type) || "").trim(),
+        status: String((row && row.status) || "Connected").trim() || "Connected",
+        notes: String((row && row.notes) || "").trim(),
+        override_1to1: Boolean(row && row.override_1to1),
+      };
+    }
+
+    function parseCableIdParts(cableId) {
+      const match = String(cableId || "").trim().match(/^([A-Za-z]+)-?(\d+)$/);
+      if (!match) return null;
+      return { prefix: match[1].toUpperCase(), number: Number(match[2]), width: match[2].length };
+    }
+
+    function resequenceCableIds(rows) {
+      const famOrder = new Map(FAMILY_ORDER.map((fam, idx) => [fam, idx]));
+      const sorted = rows.slice().sort((a, b) => {
+        const af = famOrder.has(a.family) ? famOrder.get(a.family) : 999;
+        const bf = famOrder.has(b.family) ? famOrder.get(b.family) : 999;
+        if (af !== bf) return af - bf;
+        const sd = compareNatural(a.source_device, b.source_device);
+        if (sd !== 0) return sd;
+        const sp = compareNatural(a.source_port, b.source_port);
+        if (sp !== 0) return sp;
+        const dd = compareNatural(a.dest_device, b.dest_device);
+        if (dd !== 0) return dd;
+        return compareNatural(a.dest_port, b.dest_port);
+      });
+
+      const widthByPrefix = {};
+      for (const row of sorted) {
+        const prefix = row.family || "WIRE";
+        const parts = parseCableIdParts(row.cable_id);
+        const parsedWidth = parts && parts.prefix === prefix ? Number(parts.width || 0) : 0;
+        widthByPrefix[prefix] = Math.max(3, Number(widthByPrefix[prefix] || 3), parsedWidth);
+      }
+
+      const nextByPrefix = {};
+      for (const row of sorted) {
+        const prefix = row.family || "WIRE";
+        const next = Number(nextByPrefix[prefix] || 0) + 1;
+        nextByPrefix[prefix] = next;
+        const width = Number(widthByPrefix[prefix] || 3);
+        row.cable_id = `${prefix}-${String(next).padStart(width, "0")}`;
+      }
+      return sorted;
+    }
+
+    function connectionKey(sourceDevice, sourcePort, destDevice, destPort) {
+      return `${sourceDevice}::${sourcePort}=>${destDevice}::${destPort}`;
+    }
+
+    function buildCableIdAllocator(rows) {
+      const state = new Map();
+      const list = Array.isArray(rows) ? rows : [];
+      for (const row of list) {
+        const family = normalizeFamily(row?.family || "") || "WIRE";
+        const parts = parseCableIdParts(row?.cable_id || "");
+        const existing = state.get(family) || { next: 1, width: 3 };
+        if (parts && parts.prefix === family) {
+          existing.next = Math.max(existing.next, Number(parts.number || 0) + 1);
+          existing.width = Math.max(existing.width, Number(parts.width || 0), 3);
+        }
+        state.set(family, existing);
+      }
+      return state;
+    }
+
+    function nextCableId(allocator, family) {
+      const prefix = normalizeFamily(family || "") || "WIRE";
+      const info = allocator.get(prefix) || { next: 1, width: 3 };
+      const id = `${prefix}-${String(info.next).padStart(info.width, "0")}`;
+      info.next += 1;
+      allocator.set(prefix, info);
+      return id;
+    }
+
+    function findConnectionIndex(family, sourceDevice, sourcePort, destDevice, destPort) {
+      return connections.findIndex((row) =>
+        (family === FAMILY_ALL || row.family === family)
+        && row.source_device === sourceDevice
+        && row.source_port === sourcePort
+        && row.dest_device === destDevice
+        && row.dest_port === destPort
+      );
+    }
+
+    function endpointKey(device, port) {
+      return `${String(device || "")}::${String(port || "")}`;
+    }
+
+    function findStrictConflict(sourceDevice, sourcePort, destDevice, destPort, excludingPairKey = "") {
+      const srcKey = endpointKey(sourceDevice, sourcePort);
+      const dstKey = endpointKey(destDevice, destPort);
+      const skipPairKey = String(excludingPairKey || "");
+      for (const row of connections) {
+        if (!row || typeof row !== "object") continue;
+        const rowPairKey = connectionKey(row.source_device, row.source_port, row.dest_device, row.dest_port);
+        if (skipPairKey && rowPairKey === skipPairKey) continue;
+        const rowSource = endpointKey(row.source_device, row.source_port);
+        const rowDest = endpointKey(row.dest_device, row.dest_port);
+        if (rowSource === srcKey || rowDest === srcKey || rowSource === dstKey || rowDest === dstKey) {
+          return row;
+        }
+      }
+      return null;
+    }
+
+    function allowDoublePatchingEnabled() {
+      if (allowDoublePatchingToggle instanceof HTMLInputElement) {
+        return Boolean(allowDoublePatchingToggle.checked);
+      }
+      return Boolean(allowDoublePatching);
+    }
+
+    function sharedFamilies(sourcePort, destPort) {
+      const src = Array.isArray(sourcePort && sourcePort.families) ? sourcePort.families : [];
+      const dst = Array.isArray(destPort && destPort.families) ? destPort.families : [];
+      return FAMILY_ORDER.filter((fam) => src.includes(fam) && dst.includes(fam));
+    }
+
+    function linkCompatibilityReason(selectedFamily, sourcePort, destPort) {
+      const shared = sharedFamilies(sourcePort, destPort);
+      if (!shared.length) return "Incompatible port families";
+      const candidates = selectedFamily === FAMILY_ALL
+        ? shared
+        : (shared.includes(selectedFamily) ? [selectedFamily] : []);
+      if (!candidates.length) return `No shared family for ${selectedFamily}`;
+      for (const family of candidates) {
+        if (supportsTransportCompatibilityForFamily(family, sourcePort, destPort)) return "";
+      }
+      if (candidates.includes("AUDIO") && isSpeakerToAnalogPair(sourcePort, destPort)) {
+        return "Speaker to analog connection is not allowed";
+      }
+      if (candidates.includes("CONTROL")) {
+        const sourceProtocol = controlProtocolForPort(sourcePort) || "?";
+        const destProtocol = controlProtocolForPort(destPort) || "?";
+        return `CONTROL transport mismatch: ${sourceProtocol} -> ${destProtocol}`;
+      }
+      return "Unavailable connection";
+    }
+
+    function resolveLinkFamily(selectedFamily, sourcePort, destPort) {
+      const shared = sharedFamilies(sourcePort, destPort);
+      if (!shared.length) return "";
+      if (selectedFamily === FAMILY_ALL) {
+        for (const candidate of shared) {
+          if (supportsTransportCompatibilityForFamily(candidate, sourcePort, destPort)) {
+            return candidate;
+          }
+        }
+        return "";
+      }
+      if (!shared.includes(selectedFamily)) return "";
+      return supportsTransportCompatibilityForFamily(selectedFamily, sourcePort, destPort)
+        ? selectedFamily
+        : "";
+    }
+
+    function guessTypeTag(family) {
+      if (family === "AUDIO") return "MONO";
+      if (family === "NETWORK") return "CAT6";
+      if (family === "CONTROL") return "MIDI";
+      return "";
+    }
+
+    function resolveConnectionTag(family) {
+      const typed = String(typeTagValue || "").trim();
+      if (typed) return typed;
+      return guessTypeTag(family);
+    }
+
+    function normalizePatchMode(value) {
+      const token = String(value || "").trim().toLowerCase();
+      if ([PATCH_MODE_SINGLE, PATCH_MODE_STEREO, PATCH_MODE_MULTI, PATCH_MODE_PAINT].includes(token)) return token;
+      return PATCH_MODE_SINGLE;
+    }
+
+    function normalizePairCount(value) {
+      const numeric = Math.floor(Number(value));
+      if (!Number.isFinite(numeric)) return 8;
+      return Math.max(2, Math.min(64, numeric));
+    }
+
+    function patchSpan() {
+      if (selectedPatchMode === PATCH_MODE_STEREO) return 2;
+      if (selectedPatchMode === PATCH_MODE_MULTI) return pairCount;
+      return 1;
+    }
+
+    function eventClosest(event, selector) {
+      const target = event && event.target;
+      if (target instanceof Element) return target.closest(selector);
+      if (target && target.parentElement instanceof Element) return target.parentElement.closest(selector);
+      return null;
+    }
+
+    function iconForPort(port) {
+      const transport = String(port?.transport || "").trim().toUpperCase();
+      const portName = String(port?.port || "").trim().toUpperCase();
+      const families = Array.isArray(port?.families) ? port.families : [];
+      if (/THUNDERBOLT|(^|[^A-Z])TB(4)?([^A-Z]|$)/.test(transport)) return { label: "TBT", cls: "tb", title: transport || "Thunderbolt" };
+      if (/USB/.test(transport)) return { label: "USB", cls: "usb", title: transport || "USB" };
+      if (/MIDI/.test(transport) || /MIDI/.test(portName)) return { label: "MID", cls: "midi", title: transport || "MIDI" };
+      if (/CAT|RJ45|ETH|NETWORK/.test(transport) || /ETH|NETWORK|RJ45|CAT/.test(portName)) return { label: "NET", cls: "net", title: transport || "Network" };
+      if (/SPK|SPEAKER/.test(transport) || /SPK|SPEAKER/.test(portName)) return { label: "SPK", cls: "speaker", title: transport || "Speaker" };
+      if (/MADI|SPDIF|S\/PDIF|ADAT|AES|OPT|HDMI/.test(transport)) return { label: "DIG", cls: "digi", title: transport || "Digital" };
+      if (/(^|[^A-Z])(XLR|TRS|TS|RCA|JACK)([^A-Z]|$)/.test(transport)) return { label: "ANA", cls: "analog", title: transport || "Analog" };
+      if (/LINE|MIC|MON|AUX|GROUP|INSERT|TAPE|HEADPHONE|HP/.test(portName)) return { label: "ANA", cls: "analog", title: "Analog" };
+      if (families.includes("AUDIO")) return { label: "ANA", cls: "analog", title: "Analog" };
+      if (families.includes("DIGI")) return { label: "DIG", cls: "digi", title: "Digital" };
+      if (families.includes("NETWORK")) return { label: "NET", cls: "net", title: "Network" };
+      if (families.includes("COMP")) return { label: "USB", cls: "usb", title: "Computer/Data" };
+      return { label: "?", cls: "unknown", title: transport || "Connector" };
+    }
+
+    function isSpeakerToAnalogPair(sourcePort, destPort) {
+      const sourceClass = String(iconForPort(sourcePort)?.cls || "");
+      const destClass = String(iconForPort(destPort)?.cls || "");
+      return (sourceClass === "speaker" && destClass === "analog")
+        || (sourceClass === "analog" && destClass === "speaker");
+    }
+
+    function controlProtocolForPort(port) {
+      const transport = String(port?.transport || "").trim().toUpperCase();
+      const portName = String(port?.port || "").trim().toUpperCase();
+      if (/MIDI/.test(transport) || /MIDI/.test(portName)) return "MIDI";
+      if (/OSC/.test(transport) || /OSC/.test(portName)) return "OSC";
+      if (/DANTE/.test(transport) || /DANTE/.test(portName)) return "DANTE";
+      return "";
+    }
+
+    function supportsTransportCompatibilityForFamily(family, sourcePort, destPort) {
+      const normalized = normalizeFamily(family);
+      if (normalized === "AUDIO") {
+        return !isSpeakerToAnalogPair(sourcePort, destPort);
+      }
+      if (normalized === "CONTROL") {
+        const sourceProtocol = controlProtocolForPort(sourcePort);
+        const destProtocol = controlProtocolForPort(destPort);
+        if (!sourceProtocol || !destProtocol) return false;
+        return sourceProtocol === destProtocol;
+      }
+      return true;
+    }
+
+    function iconHtmlForPort(port) {
+      const icon = iconForPort(port);
+      return `<span class="conn-icon ${escAttr(icon.cls)}" title="${escAttr(icon.title)}">${escHtml(icon.label)}</span>`;
+    }
+
+    function isEntryVisible(entry, query) {
+      if (!query) return true;
+      const q = String(query || "").trim().toLowerCase();
+      if (!q) return true;
+      const texts = [];
+      if (entry.kind === "port") {
+        texts.push(entry.device, entry.port.port, entry.typeName || "");
+      } else {
+        texts.push(entry.device, entry.typeName || "");
+      }
+      return texts.some((text) => String(text || "").toLowerCase().includes(q));
+    }
+
+    function collectMembers(entry) {
+      if (!entry) return [];
+      if (entry.kind === "port") return [entry.port];
+      if (Array.isArray(entry.members)) return entry.members;
+      return [];
+    }
+
+    function alignedMemberPairs(entryA, entryB) {
+      const srcMembers = collectMembers(entryA);
+      const dstMembers = collectMembers(entryB);
+      const span = Math.min(srcMembers.length, dstMembers.length);
+      const pairs = [];
+      for (let i = 0; i < span; i += 1) {
+        const src = srcMembers[i];
+        const dst = dstMembers[i];
+        if (!src || !dst) continue;
+        pairs.push([src, dst]);
+      }
+      return pairs;
+    }
+
+    // Single source of truth for +/- symbols on header toggles.
+    function toggleMetaForEntry(entry) {
+      const kind = String(entry?.kind || "");
+      if (kind !== "device" && kind !== "group") {
+        return { enabled: false, symbol: "", title: "" };
+      }
+      const collapsed = Boolean(entry?.collapsed);
+      const noun = kind === "device" ? "device" : "group";
+      return {
+        enabled: true,
+        collapsed,
+        symbol: collapsed ? "+" : "−",
+        title: `${collapsed ? "Expand" : "Collapse"} ${noun}`,
+      };
+    }
+
+    // Single source of truth for +/- symbols on folder intersection cells.
+    function folderCellToggleMeta(family, sourceEntry, destEntry) {
+      const sourceFolder = Boolean(sourceEntry && sourceEntry.kind !== "port");
+      const destFolder = Boolean(destEntry && destEntry.kind !== "port");
+      const canToggle = sourceFolder && destFolder;
+      if (!canToggle) {
+        return {
+          sourceFolder,
+          destFolder,
+          canToggle: false,
+          action: "none",
+          symbol: "",
+          hover: "Folder toggle appears only on folder junctions.",
+        };
+      }
+      const sourceCollapsed = isEntryCollapsedOnAxis(family, "source", sourceEntry);
+      const destCollapsed = isEntryCollapsedOnAxis(family, "dest", destEntry);
+      const action = (sourceCollapsed && destCollapsed) ? "expand" : "collapse";
+      return {
+        sourceFolder,
+        destFolder,
+        canToggle: true,
+        targetAxis: "both",
+        action,
+        symbol: action === "expand" ? "+" : "−",
+        hover: `${action === "expand" ? "Expand" : "Collapse"} source + destination folders.`,
+      };
+    }
+
+    function setDeviceCollapsedOnAxis(family, axis, deviceName, collapsed) {
+      if (!deviceName) return false;
+      const primarySet = axis === "dest" ? collapsedDestDevices : collapsedSourceDevices;
+      const primaryKey = buildDeviceKey(family, axis, deviceName);
+      if (collapsed) {
+        primarySet.add(primaryKey);
+      } else {
+        primarySet.delete(primaryKey);
+      }
+      return true;
+    }
+
+    function setGroupCollapsedOnAxis(family, axis, deviceName, typeName, collapsed) {
+      if (!deviceName || !typeName) return false;
+      const primarySet = axis === "dest" ? collapsedDestGroups : collapsedSourceGroups;
+      const primaryKey = buildGroupKey(family, axis, deviceName, typeName);
+      if (collapsed) {
+        primarySet.add(primaryKey);
+      } else {
+        primarySet.delete(primaryKey);
+      }
+      return true;
+    }
+
+    function setEntryCollapsedOnAxis(family, axis, entry, collapsed) {
+      if (!entry) return false;
+      if (entry.kind === "device") {
+        return setDeviceCollapsedOnAxis(family, axis, String(entry.device || ""), collapsed);
+      }
+      if (entry.kind === "group") {
+        return setGroupCollapsedOnAxis(family, axis, String(entry.device || ""), String(entry.typeName || ""), collapsed);
+      }
+      return false;
+    }
+
+    function isEntryCollapsedOnAxis(family, axis, entry) {
+      if (!entry) return false;
+      if (entry.kind === "device") {
+        const key = buildDeviceKey(family, axis, String(entry.device || ""));
+        const setRef = axis === "dest" ? collapsedDestDevices : collapsedSourceDevices;
+        return setRef.has(key);
+      }
+      if (entry.kind === "group") {
+        const key = buildGroupKey(family, axis, String(entry.device || ""), String(entry.typeName || ""));
+        const setRef = axis === "dest" ? collapsedDestGroups : collapsedSourceGroups;
+        return setRef.has(key);
+      }
+      return false;
+    }
+
+    function toggleHeaderEntryOnAxis(family, axis, entry) {
+      if (!entry || (entry.kind !== "device" && entry.kind !== "group")) {
+        return { ok: false, changed: false, action: "none" };
+      }
+      const currentlyCollapsed = isEntryCollapsedOnAxis(family, axis, entry);
+      const nextCollapsed = !currentlyCollapsed;
+      const changed = setEntryCollapsedOnAxis(family, axis, entry, nextCollapsed);
+      return {
+        ok: true,
+        changed,
+        action: nextCollapsed ? "collapse" : "expand",
+      };
+    }
+
+    function entryFromToggleDataset(dataset) {
+      if (!dataset) return null;
+      const deviceName = String(dataset.deviceName || "").trim();
+      const typeName = String(dataset.typeName || "").trim();
+      if (dataset.deviceToggle) {
+        return {
+          kind: "device",
+          device: deviceName,
+        };
+      }
+      if (dataset.groupToggle) {
+        return {
+          kind: "group",
+          device: deviceName,
+          typeName,
+        };
+      }
+      return null;
+    }
+
+    function setAxisCollapsed(entries, axis, collapsed) {
+      const isDest = axis === "dest";
+      const deviceSet = isDest ? collapsedDestDevices : collapsedSourceDevices;
+      const groupSet = isDest ? collapsedDestGroups : collapsedSourceGroups;
+      for (const entry of entries) {
+        if (entry.kind === "device") {
+          if (collapsed) deviceSet.add(entry.deviceKey);
+          else deviceSet.delete(entry.deviceKey);
+        } else if (entry.kind === "group") {
+          if (collapsed) groupSet.add(entry.groupKey);
+          else groupSet.delete(entry.groupKey);
+        }
+      }
+    }
+
+    function familyKeysForAutoCollapse() {
+      const keys = new Set(FAMILY_ORDER);
+      const defs = MODEL && typeof MODEL.families === "object" ? MODEL.families : {};
+      for (const rawKey of Object.keys(defs)) {
+        const fam = normalizeFamily(rawKey);
+        if (fam) keys.add(fam);
+      }
+      return Array.from(keys).filter((fam) => fam && fam !== FAMILY_ALL);
+    }
+
+    function collapseGroupsForFamilyIfNeeded(family, sourcePortsOverride = null, destPortsOverride = null) {
+      const fam = normalizeFamily(family);
+      if (!fam || autoCollapsedFamilies.has(fam)) return;
+
+      const sourcePorts = Array.isArray(sourcePortsOverride) ? sourcePortsOverride : portsForFamily(fam, true);
+      const destPorts = Array.isArray(destPortsOverride) ? destPortsOverride : portsForFamily(fam, false);
+      const sourceEntries = buildAxisEntries(fam, sourcePorts, "source", collapsedSourceGroups, collapsedSourceDevices);
+      const destEntries = buildAxisEntries(fam, destPorts, "dest", collapsedDestGroups, collapsedDestDevices);
+
+      for (const entry of sourceEntries) {
+        if (entry?.kind === "group" && entry.groupKey) collapsedSourceGroups.add(entry.groupKey);
+      }
+      for (const entry of destEntries) {
+        if (entry?.kind === "group" && entry.groupKey) collapsedDestGroups.add(entry.groupKey);
+      }
+      autoCollapsedFamilies.add(fam);
+    }
+
+    function collapseDevicesForFamilyIfNeeded(family, sourcePortsOverride = null, destPortsOverride = null) {
+      const fam = normalizeFamily(family);
+      if (!fam || autoCollapsedDeviceFamilies.has(fam)) return;
+
+      const sourcePorts = Array.isArray(sourcePortsOverride) ? sourcePortsOverride : portsForFamily(fam, true);
+      const destPorts = Array.isArray(destPortsOverride) ? destPortsOverride : portsForFamily(fam, false);
+      const sourceDevices = new Set(sourcePorts.map((port) => String(port?.device || "").trim()).filter(Boolean));
+      const destDevices = new Set(destPorts.map((port) => String(port?.device || "").trim()).filter(Boolean));
+
+      for (const device of sourceDevices) {
+        collapsedSourceDevices.add(buildDeviceKey(fam, "source", device));
+      }
+      for (const device of destDevices) {
+        collapsedDestDevices.add(buildDeviceKey(fam, "dest", device));
+      }
+      autoCollapsedDeviceFamilies.add(fam);
+    }
+
+    function ensureAutoCollapsedForFamily(family, sourcePortsOverride = null, destPortsOverride = null) {
+      const fam = String(family || "");
+      collapseGroupsForFamilyIfNeeded(fam, sourcePortsOverride, destPortsOverride);
+    }
+
+    function axisToggleMeta(family, axis, entries) {
+      const noun = axis === "dest" ? "destination" : "source";
+      const togglable = (Array.isArray(entries) ? entries : []).filter((entry) => entry && (entry.kind === "device" || entry.kind === "group"));
+      if (!togglable.length) {
+        return {
+          enabled: false,
+          action: "none",
+          label: "−",
+          title: `No ${noun} folders available.`,
+        };
+      }
+      let collapsedCount = 0;
+      for (const entry of togglable) {
+        if (isEntryCollapsedOnAxis(family, axis, entry)) collapsedCount += 1;
+      }
+      const allCollapsed = collapsedCount === togglable.length;
+      const action = allCollapsed ? "expand" : "collapse";
+      return {
+        enabled: true,
+        action,
+        label: action === "expand" ? "+" : "−",
+        title: `${action === "expand" ? "Expand" : "Collapse"} ${noun} folders`,
+      };
+    }
+
+    function renderMatrix() {
+      const viewportState = captureMatrixViewportState();
+      if (tooltip) tooltip.style.display = "none";
+      const prevMatrixVisibility = matrixContainer ? String(matrixContainer.style.visibility || "") : "";
+      if (matrixContainer) matrixContainer.style.visibility = "hidden";
+      const family = String(familySelect.value || "AUDIO");
+      const sourcePorts = portsForFamily(family, true);
+      const destPorts = portsForFamily(family, false);
+      if (family === FAMILY_ALL) {
+        collapseDevicesForFamilyIfNeeded(family, sourcePorts, destPorts);
+      }
+      ensureAutoCollapsedForFamily(family, sourcePorts, destPorts);
+      const sourceEntries = buildAxisEntries(family, sourcePorts, "source", collapsedSourceGroups, collapsedSourceDevices);
+      const destEntries = buildAxisEntries(family, destPorts, "dest", collapsedDestGroups, collapsedDestDevices);
+
+      const visibleSources = sourceEntries.filter((entry) => isEntryVisible(entry, sourceFilter));
+      const visibleDests = destEntries.filter((entry) => isEntryVisible(entry, destFilter));
+      const sourceLeafEntries = visibleSources.filter((entry) => entry.kind === "port");
+      const destLeafEntries = visibleDests.filter((entry) => entry.kind === "port");
+      const sourceLeafIndexByKey = new Map(
+        sourceLeafEntries.map((entry, idx) => [connectionKey(entry.port.device, entry.port.port, "", ""), idx])
+      );
+      const destLeafIndexByKey = new Map(
+        destLeafEntries.map((entry, idx) => [connectionKey("", "", entry.port.device, entry.port.port), idx])
+      );
+      const sourceVisibleIndexByKey = new Map();
+      for (let idx = 0; idx < visibleSources.length; idx += 1) {
+        const entry = visibleSources[idx];
+        if (entry.kind !== "port") continue;
+        sourceVisibleIndexByKey.set(connectionKey(entry.port.device, entry.port.port, "", ""), idx);
+      }
+      const destVisibleIndexByKey = new Map();
+      for (let idx = 0; idx < visibleDests.length; idx += 1) {
+        const entry = visibleDests[idx];
+        if (entry.kind !== "port") continue;
+        destVisibleIndexByKey.set(connectionKey("", "", entry.port.device, entry.port.port), idx);
+      }
+
+      const sourceLeafCount = visibleSources.filter((entry) => entry.kind === "port").length;
+      const destLeafCount = visibleDests.filter((entry) => entry.kind === "port").length;
+      const sourceAxisToggle = axisToggleMeta(family, "source", sourceEntries);
+      const destAxisToggle = axisToggleMeta(family, "dest", destEntries);
+
+      if (!visibleSources.length || !visibleDests.length) {
+        matrixContainer.innerHTML = `<div style=\"padding:12px;color:var(--empty-ink);\">No entries to show for ${family}. Adjust filters or expand devices.</div>`;
+        setStatus(`No entries to show for ${family}.`, true);
+        restoreMatrixViewportState(viewportState);
+        if (matrixContainer) matrixContainer.style.visibility = prevMatrixVisibility;
+        return;
+      }
+
+      const familyConnIndexByKey = new Map();
+      for (let i = 0; i < connections.length; i += 1) {
+        const row = connections[i];
+        if (family !== FAMILY_ALL && row.family !== family) continue;
+        familyConnIndexByKey.set(connectionKey(row.source_device, row.source_port, row.dest_device, row.dest_port), i);
+      }
+      const familyConnectionKeys = new Set(familyConnIndexByKey.keys());
+      matrixContainer.style.padding = "0";
+      matrixContainer.style.color = "";
+      matrixContainer.style.position = "relative";
+
+      let html = "<table><thead><tr>";
+      html += "<th class=\"top-left sticky-top sticky-left\"><div class=\"tl-box\">";
+      html += "<div class=\"mini tl-axis-metrics\">";
+      html += `<span class=\"axis-metric\">Transmitters: ${sourceLeafCount}<button class=\"icon-btn\" id=\"toggleSourceTopBtn\" type=\"button\" title=\"${escAttr(sourceAxisToggle.title)}\"${sourceAxisToggle.enabled ? "" : " disabled"}>${escHtml(sourceAxisToggle.label)}</button></span>`;
+      html += `<span class=\"axis-metric\">Receivers: ${destLeafCount}<button class=\"icon-btn\" id=\"toggleDestTopBtn\" type=\"button\" title=\"${escAttr(destAxisToggle.title)}\"${destAxisToggle.enabled ? "" : " disabled"}>${escHtml(destAxisToggle.label)}</button></span>`;
+      html += "</div>";
+      html += "</div></th>";
+
+      for (let d = 0; d < visibleDests.length; d += 1) {
+        const entry = visibleDests[d];
+        const classes = ["dest-col-head", "sticky-top"];
+        let nameClass = "port";
+        let entryName = "";
+        let entryCount = "";
+        let toggle = "";
+        if (entry.kind === "device") {
+          classes.push("dest-kind-device");
+          nameClass = "device";
+          entryName = `${entry.device}`;
+          entryCount = `${entry.memberCount}`;
+          const toggleMeta = toggleMetaForEntry(entry);
+          toggle = `<button class=\"icon-btn\" data-device-toggle=\"1\" data-axis=\"dest\" data-device=\"${escAttr(entry.deviceKey)}\" data-device-name=\"${escAttr(entry.device)}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\">${toggleMeta.symbol}</button>`;
+        } else if (entry.kind === "group") {
+          classes.push("dest-kind-group");
+          nameClass = "group";
+          entryName = `${entry.typeName}`;
+          entryCount = `${entry.memberCount}`;
+          const toggleMeta = toggleMetaForEntry(entry);
+          toggle = `<button class=\"icon-btn\" data-group-toggle=\"1\" data-axis=\"dest\" data-group=\"${escAttr(entry.groupKey)}\" data-device-name=\"${escAttr(entry.device)}\" data-type-name=\"${escAttr(entry.typeName)}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\">${toggleMeta.symbol}</button>`;
+        } else {
+          classes.push("dest-kind-port");
+          nameClass = "port";
+          entryName = entry.port.port;
+        }
+        const iconHtml = entry.kind === "port"
+          ? `<span class="dest-icon-wrap">${iconHtmlForPort(entry.port)}</span>`
+          : "";
+        const nameHtml = escHtml(entryName);
+        const countHtml = entryCount ? `<span class="dest-count">${escHtml(entryCount)}</span>` : "";
+        const titleText = entry.kind === "port"
+          ? `${entry.device} ${entryName}`
+          : `${entry.device} ${entryName} ${entryCount}`.trim();
+        const lineClass = entry.kind === "port" ? "dest-head-line port" : "dest-head-line folder";
+        const innerClass = entry.kind === "port" ? "dest-col-inner port" : "dest-col-inner folder";
+        html += `<th class=\"${classes.join(" ")}\"><div class=\"${innerClass}\">${toggle}<div class=\"${lineClass}\">${iconHtml}<span class=\"dest-name ${nameClass}\" title=\"${escAttr(titleText)}\">${nameHtml}</span>${countHtml}</div></div></th>`;
+      }
+      html += "</tr></thead><tbody>";
+
+      for (let s = 0; s < visibleSources.length; s += 1) {
+        const source = visibleSources[s];
+        let rowName = "";
+        let rowClass = "port";
+        const sourceHeadClasses = ["source-head", "sticky-left"];
+        let toggle = "";
+        let countText = "";
+        if (source.kind === "device") {
+          rowName = source.device;
+          rowClass = "device";
+          sourceHeadClasses.push("source-kind-device");
+          countText = `${source.memberCount} ports`;
+          const toggleMeta = toggleMetaForEntry(source);
+          toggle = `<button class=\"icon-btn\" data-device-toggle=\"1\" data-axis=\"source\" data-device=\"${escAttr(source.deviceKey)}\" data-device-name=\"${escAttr(source.device)}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\">${toggleMeta.symbol}</button>`;
+        } else if (source.kind === "group") {
+          rowName = source.typeName;
+          rowClass = "group";
+          sourceHeadClasses.push("source-kind-group");
+          countText = `${source.memberCount}`;
+          const toggleMeta = toggleMetaForEntry(source);
+          toggle = `<button class=\"icon-btn\" data-group-toggle=\"1\" data-axis=\"source\" data-group=\"${escAttr(source.groupKey)}\" data-device-name=\"${escAttr(source.device)}\" data-type-name=\"${escAttr(source.typeName)}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\">${toggleMeta.symbol}</button>`;
+        } else {
+          rowName = `<span class="port-with-icon">${iconHtmlForPort(source.port)}<span class="text">${escHtml(source.port.port)}</span></span>`;
+          rowClass = "port";
+          sourceHeadClasses.push("source-kind-port");
+        }
+
+        html += "<tr>";
+        if (source.kind === "port") {
+          html += `<th class=\"${sourceHeadClasses.join(" ")}\"><div class=\"source-line\">${toggle}<span class=\"name ${rowClass}\" title=\"${escAttr(source.device + ' ' + source.port.port)}\">${rowName}</span>${countText ? `<span class=\"count\">${escHtml(countText)}</span>` : ""}</div></th>`;
+        } else {
+          html += `<th class=\"${sourceHeadClasses.join(" ")}\"><div class=\"source-line\">${toggle}<span class=\"name ${rowClass}\" title=\"${escAttr(source.device + ' ' + rowName)}\">${escHtml(rowName)}</span>${countText ? `<span class=\"count\">${escHtml(countText)}</span>` : ""}</div></th>`;
+        }
+
+        for (let d = 0; d < visibleDests.length; d += 1) {
+          const dest = visibleDests[d];
+          const editable = source.kind === "port" && dest.kind === "port";
+          if (!editable) {
+            const cls = ["cell", "groupcell"];
+            const hasDeviceAxis = source.kind === "device" || dest.kind === "device";
+            const hasGroupAxis = source.kind === "group" || dest.kind === "group";
+            if (hasDeviceAxis) cls.push("axis-device");
+            else if (hasGroupAxis) cls.push("axis-group");
+            else cls.push("axis-base");
+            const meta = folderCellToggleMeta(family, source, dest);
+            if (meta.sourceFolder) cls.push("folder-source");
+            if (meta.destFolder) cls.push("folder-dest");
+            if (meta.sourceFolder && meta.destFolder) cls.push("folder-junction");
+            if (!meta.canToggle) cls.push("disabled");
+            html += `<td class=\"${cls.join(" ")}\" data-si=\"${s}\" data-di=\"${d}\" data-folder-toggle=\"${escAttr(meta.action)}\" data-hover=\"${escAttr(meta.hover)}\">${escHtml(meta.symbol)}</td>`;
+            continue;
+          }
+
+          const src = source.port;
+          const dst = dest.port;
+          const linkFamily = resolveLinkFamily(family, src, dst);
+          const key = connectionKey(src.device, src.port, dst.device, dst.port);
+          const connIdx = familyConnIndexByKey.has(key) ? Number(familyConnIndexByKey.get(key)) : -1;
+          const connected = connIdx >= 0;
+          const enabled = Boolean(src.enabled) && Boolean(dst.enabled);
+          const cls = ["cell"];
+          if (enabled) cls.push("editable");
+          if (!enabled) cls.push("disabled");
+          if (connected) cls.push("on");
+          if (!connected && !linkFamily) cls.push("incompatible");
+          const title = connected
+            ? `${connections[connIdx].cable_id || "(auto)"}: ${src.port} -> ${dst.port}`
+            : ((!enabled)
+              ? "Disabled port"
+              : (linkFamily
+                ? `${selectedPatchMode === PATCH_MODE_PAINT ? "Drag to paint diagonally from first point" : "Click to connect"} (${linkFamily})`
+                : linkCompatibilityReason(family, src, dst)));
+          const text = "";
+          html += `<td class=\"${cls.join(" ")}\" data-si=\"${s}\" data-di=\"${d}\" data-hover=\"${escAttr(title)}\">${text}</td>`;
+        }
+
+        html += "</tr>";
+      }
+
+      html += "</tbody></table>";
+      matrixContainer.innerHTML = html;
+
+      const toggleSourceTopBtn = document.getElementById("toggleSourceTopBtn");
+      const toggleDestTopBtn = document.getElementById("toggleDestTopBtn");
+
+      if (toggleSourceTopBtn) toggleSourceTopBtn.onclick = () => {
+        toggleSourceTopBtn.blur();
+        if (!sourceAxisToggle.enabled || sourceAxisToggle.action === "none") {
+          setStatus("No source folders available for toggle.", true);
+          return;
+        }
+        const collapse = sourceAxisToggle.action === "collapse";
+        setAxisCollapsed(sourceEntries, "source", collapse);
+        setStatus(`${collapse ? "Collapsed" : "Expanded"} source folders.`);
+        scheduleRender(true);
+      };
+      if (toggleDestTopBtn) toggleDestTopBtn.onclick = () => {
+        toggleDestTopBtn.blur();
+        if (!destAxisToggle.enabled || destAxisToggle.action === "none") {
+          setStatus("No destination folders available for toggle.", true);
+          return;
+        }
+        const collapse = destAxisToggle.action === "collapse";
+        setAxisCollapsed(destEntries, "dest", collapse);
+        setStatus(`${collapse ? "Collapsed" : "Expanded"} destination folders.`);
+        scheduleRender(true);
+      };
+
+      const table = matrixContainer.querySelector("table");
+      if (!table) {
+        restoreMatrixViewportState(viewportState);
+        if (matrixContainer) matrixContainer.style.visibility = prevMatrixVisibility;
+        return;
+      }
+
+      function resolveEditableCellContext(cell) {
+        if (!(cell instanceof HTMLTableCellElement)) {
+          return { ok: false, error: "No editable patch point selected." };
+        }
+        const si = Number(cell.dataset.si);
+        const di = Number(cell.dataset.di);
+        const srcEntry = visibleSources[si];
+        const dstEntry = visibleDests[di];
+        if (!srcEntry || !dstEntry || srcEntry.kind !== "port" || dstEntry.kind !== "port") {
+          return { ok: false, error: "No editable patch point selected." };
+        }
+        const src = srcEntry.port;
+        const dst = dstEntry.port;
+        const srcIdx = sourceLeafIndexByKey.get(connectionKey(src.device, src.port, "", ""));
+        const dstIdx = destLeafIndexByKey.get(connectionKey("", "", dst.device, dst.port));
+        if (!Number.isInteger(srcIdx) || !Number.isInteger(dstIdx)) {
+          return { ok: false, error: "Could not resolve patch indices for selected cell." };
+        }
+        return { ok: true, si, di, src, dst, srcIdx, dstIdx };
+      }
+
+      function resolvePaintContextByLeafIndex(srcIdx, dstIdx) {
+        if (!Number.isInteger(srcIdx) || !Number.isInteger(dstIdx)) return null;
+        const srcEntry = sourceLeafEntries[srcIdx];
+        const dstEntry = destLeafEntries[dstIdx];
+        if (!srcEntry || !dstEntry || srcEntry.kind !== "port" || dstEntry.kind !== "port") {
+          return null;
+        }
+        const src = srcEntry.port;
+        const dst = dstEntry.port;
+        const si = sourceVisibleIndexByKey.get(connectionKey(src.device, src.port, "", ""));
+        const di = destVisibleIndexByKey.get(connectionKey("", "", dst.device, dst.port));
+        if (!Number.isInteger(si) || !Number.isInteger(di)) return null;
+        return { ok: true, si, di, src, dst, srcIdx, dstIdx };
+      }
+
+      function collectPaintDiagonalContexts(anchorContext, targetContext) {
+        if (!anchorContext || !anchorContext.ok || !targetContext || !targetContext.ok) return [];
+        const srcDelta = targetContext.srcIdx - anchorContext.srcIdx;
+        const dstDelta = targetContext.dstIdx - anchorContext.dstIdx;
+        const srcStep = srcDelta === 0 ? 0 : (srcDelta > 0 ? 1 : -1);
+        const dstStep = dstDelta === 0 ? 0 : (dstDelta > 0 ? 1 : -1);
+        const span = Math.min(Math.abs(srcDelta), Math.abs(dstDelta));
+
+        const contexts = [];
+        for (let offset = 0; offset <= span; offset += 1) {
+          const context = resolvePaintContextByLeafIndex(
+            anchorContext.srcIdx + (offset * srcStep),
+            anchorContext.dstIdx + (offset * dstStep)
+          );
+          if (context) contexts.push(context);
+        }
+        return contexts;
+      }
+
+      function connectionIndexForPair(sourcePort, destPort) {
+        const key = connectionKey(sourcePort.device, sourcePort.port, destPort.device, destPort.port);
+        if (!familyConnectionKeys.has(key)) return -1;
+        const idx = findConnectionIndex(family, sourcePort.device, sourcePort.port, destPort.device, destPort.port);
+        if (idx < 0) familyConnectionKeys.delete(key);
+        return idx;
+      }
+
+      function applyPatchRangeFromStart(sourceIndex, destIndex, action, span) {
+        let changed = 0;
+        let skipped = 0;
+        let firstError = "";
+        for (let offset = 0; offset < span; offset += 1) {
+          const srcLeaf = sourceLeafEntries[sourceIndex + offset];
+          const dstLeaf = destLeafEntries[destIndex + offset];
+          if (!srcLeaf || !dstLeaf) {
+            skipped += 1;
+            if (!firstError) firstError = "Patch range exceeded available aligned ports.";
+            continue;
+          }
+          const sPort = srcLeaf.port;
+          const dPort = dstLeaf.port;
+
+          const key = connectionKey(sPort.device, sPort.port, dPort.device, dPort.port);
+          let idx = -1;
+          if (familyConnectionKeys.has(key)) {
+            idx = findConnectionIndex(family, sPort.device, sPort.port, dPort.device, dPort.port);
+            if (idx < 0) familyConnectionKeys.delete(key);
+          }
+
+          if (action === "disconnect") {
+            if (idx >= 0) {
+              connections.splice(idx, 1);
+              if (findConnectionIndex(family, sPort.device, sPort.port, dPort.device, dPort.port) >= 0) {
+                familyConnectionKeys.add(key);
+              } else {
+                familyConnectionKeys.delete(key);
+              }
+              changed += 1;
+            }
+            continue;
+          }
+
+          const linkFamily = resolveLinkFamily(family, sPort, dPort);
+          if (!sPort.enabled || !dPort.enabled) {
+            skipped += 1;
+            if (!firstError) firstError = `Disabled port in selection: ${sPort.device} [${sPort.port}] -> ${dPort.device} [${dPort.port}]`;
+            continue;
+          }
+          if (!linkFamily) {
+            skipped += 1;
+            if (!firstError) {
+              const reason = linkCompatibilityReason(family, sPort, dPort) || "Unavailable connection";
+              firstError = `${reason}: ${sPort.device} [${sPort.port}] -> ${dPort.device} [${dPort.port}]`;
+            }
+            continue;
+          }
+
+          if (idx >= 0) continue;
+          const conflict = findStrictConflict(sPort.device, sPort.port, dPort.device, dPort.port, key);
+          if (!allowDoublePatchingEnabled() && conflict) {
+            skipped += 1;
+            if (!firstError) {
+              firstError = `Double patching blocked: ${sPort.device} [${sPort.port}] or ${dPort.device} [${dPort.port}] already used by ${String(conflict.cable_id || "(auto)")}. Enable "Allow Double Patching" to allow.`;
+            }
+            continue;
+          }
+          connections.push({
+            cable_id: nextCableId(cableIdAllocator, linkFamily),
+            family: linkFamily,
+            source_device: sPort.device,
+            source_port: sPort.port,
+            dest_device: dPort.device,
+            dest_port: dPort.port,
+            connection_type: resolveConnectionTag(linkFamily),
+            status: "Connected",
+            notes: "",
+            override_1to1: Boolean(conflict),
+          });
+          familyConnectionKeys.add(key);
+          changed += 1;
+        }
+        return { changed, skipped, firstError };
+      }
+
+      function applyPatchFromCell(cell, forcedAction = "", forcedSpan = patchSpan()) {
+        const context = resolveEditableCellContext(cell);
+        if (!context.ok) {
+          return {
+            changed: 0,
+            skipped: 0,
+            firstError: context.error || "No editable patch point selected.",
+            action: "",
+            context: null,
+          };
+        }
+        const action = forcedAction || (connectionIndexForPair(context.src, context.dst) >= 0 ? "disconnect" : "connect");
+        const span = Math.max(1, Number(forcedSpan || 1));
+        const result = applyPatchRangeFromStart(context.srcIdx, context.dstIdx, action, span);
+        return { ...result, action, context };
+      }
+
+      let hoveredPointCell = null;
+      let hoveredRowIndex = -1;
+      let hoveredColIndex = -1;
+      let lastHoverKey = "";
+      let hoverFrame = 0;
+      let pendingHover = null;
+
+      function clearHoveredRow() {
+        if (!Number.isInteger(hoveredRowIndex) || hoveredRowIndex < 0) {
+          hoveredRowIndex = -1;
+          return;
+        }
+        const row = table.rows[hoveredRowIndex];
+        if (row) {
+          for (const rowCell of Array.from(row.cells)) {
+            rowCell.classList.remove("axis-hover-row");
+          }
+        }
+        hoveredRowIndex = -1;
+      }
+
+      function clearHoveredCol() {
+        if (!Number.isInteger(hoveredColIndex) || hoveredColIndex < 0) {
+          hoveredColIndex = -1;
+          return;
+        }
+        for (const rowEntry of Array.from(table.rows)) {
+          const colCell = rowEntry.cells[hoveredColIndex];
+          if (colCell instanceof HTMLTableCellElement) {
+            colCell.classList.remove("axis-hover-col");
+          }
+        }
+        hoveredColIndex = -1;
+      }
+
+      function clearAxisHover() {
+        clearHoveredRow();
+        clearHoveredCol();
+        if (hoveredPointCell instanceof HTMLTableCellElement) {
+          hoveredPointCell.classList.remove("axis-hover-point");
+          hoveredPointCell = null;
+        }
+      }
+
+      function applyAxisHover(cell) {
+        const row = cell.parentElement instanceof HTMLTableRowElement ? cell.parentElement : null;
+        if (!row) {
+          clearAxisHover();
+          return;
+        }
+        const rowIndex = Number(row.rowIndex || -1);
+        const colIndex = Number(cell.cellIndex || -1);
+        if (rowIndex < 0 || colIndex < 0) {
+          clearAxisHover();
+          return;
+        }
+
+        if (rowIndex !== hoveredRowIndex) {
+          clearHoveredRow();
+          const rowCells = Array.from(row.cells);
+          for (const rowCell of rowCells) {
+            rowCell.classList.add("axis-hover-row");
+          }
+          hoveredRowIndex = rowIndex;
+        }
+
+        if (colIndex !== hoveredColIndex) {
+          clearHoveredCol();
+          for (const rowEntry of Array.from(table.rows)) {
+            const colCell = rowEntry.cells[colIndex];
+            if (colCell instanceof HTMLTableCellElement) {
+              colCell.classList.add("axis-hover-col");
+            }
+          }
+          hoveredColIndex = colIndex;
+        }
+
+        if (hoveredPointCell !== cell) {
+          if (hoveredPointCell instanceof HTMLTableCellElement) {
+            hoveredPointCell.classList.remove("axis-hover-point");
+          }
+          hoveredPointCell = cell;
+          hoveredPointCell.classList.add("axis-hover-point");
+        }
+      }
+
+      function applyPendingHover() {
+        hoverFrame = 0;
+        const payload = pendingHover;
+        pendingHover = null;
+        if (!payload) return;
+        const cell = payload.cell;
+        if (!(cell instanceof HTMLTableCellElement) || !table.contains(cell)) {
+          clearAxisHover();
+          lastHoverKey = "";
+          tooltip.style.display = "none";
+          return;
+        }
+        const hoverKey = `${cell.dataset.si || ""}:${cell.dataset.di || ""}`;
+        if (hoverKey !== lastHoverKey) {
+          applyAxisHover(cell);
+          lastHoverKey = hoverKey;
+          const si = Number(cell.dataset.si);
+          const di = Number(cell.dataset.di);
+          const src = visibleSources[si];
+          const dst = visibleDests[di];
+          const title = src && dst
+            ? `${formatEntryLabel(src)} -> ${formatEntryLabel(dst)}`
+            : "Patch point";
+          const detail = String(cell.dataset.hover || "");
+          tooltip.textContent = `${title}\n${detail}`;
+        }
+        tooltip.style.display = "block";
+        tooltip.style.left = `${payload.clientX + 10}px`;
+        tooltip.style.top = `${payload.clientY + 10}px`;
+      }
+
+      function matrixCellByIndices(si, di) {
+        if (!Number.isInteger(si) || !Number.isInteger(di)) return null;
+        const row = table.rows[si + 1];
+        if (!(row instanceof HTMLTableRowElement)) return null;
+        const cell = row.cells[di + 1];
+        return (cell instanceof HTMLTableCellElement) ? cell : null;
+      }
+
+      table.onmousemove = (event) => {
+        const cell = eventClosest(event, "td.cell");
+        pendingHover = {
+          cell: (cell && table.contains(cell)) ? cell : null,
+          clientX: Number(event.clientX || 0),
+          clientY: Number(event.clientY || 0),
+        };
+        if (hoverFrame) return;
+        hoverFrame = window.requestAnimationFrame(applyPendingHover);
+      };
+
+      table.onmouseleave = () => {
+        pendingHover = null;
+        if (hoverFrame) {
+          window.cancelAnimationFrame(hoverFrame);
+          hoverFrame = 0;
+        }
+        clearAxisHover();
+        lastHoverKey = "";
+        tooltip.style.display = "none";
+      };
+
+      let paintSession = null;
+
+      function endPaintSession() {
+        window.removeEventListener("mouseup", endPaintSession, true);
+        window.removeEventListener("blur", endPaintSession);
+        if (!paintSession) return;
+        const session = paintSession;
+        paintSession = null;
+        if (session.changed > 0) {
+          if (session.action === "connect") {
+            setStatus(`Connected ${session.changed} link(s) in paint mode${session.skipped > 0 ? ` (${session.skipped} skipped)` : ""}.`);
+          } else {
+            setStatus(`Disconnected ${session.changed} link(s) in paint mode${session.skipped > 0 ? ` (${session.skipped} skipped)` : ""}.`);
+          }
+          queuePatchAutoSave(session.action === "connect" ? "paint-connect" : "paint-disconnect");
+          scheduleRender(true);
+          return;
+        }
+        setStatus(session.firstError || "No changes.", true);
+      }
+
+      function paintCell(cell) {
+        if (!paintSession) return;
+        if (!(cell instanceof HTMLTableCellElement) || !table.contains(cell)) return;
+        const targetContext = resolveEditableCellContext(cell);
+        if (!targetContext.ok) {
+          paintSession.skipped += 1;
+          if (!paintSession.firstError) {
+            paintSession.firstError = targetContext.error || "No editable patch point selected.";
+          }
+          return;
+        }
+        const contexts = collectPaintDiagonalContexts(paintSession.anchor, targetContext);
+        if (!contexts.length) {
+          paintSession.skipped += 1;
+          if (!paintSession.firstError) {
+            paintSession.firstError = "Could not resolve diagonal paint path.";
+          }
+          return;
+        }
+        for (const context of contexts) {
+          const cellKey = `${context.srcIdx}:${context.dstIdx}`;
+          if (paintSession.visited.has(cellKey)) continue;
+          paintSession.visited.add(cellKey);
+          const result = applyPatchRangeFromStart(context.srcIdx, context.dstIdx, paintSession.action, 1);
+          paintSession.changed += result.changed;
+          paintSession.skipped += result.skipped;
+          if (!paintSession.firstError && result.firstError) paintSession.firstError = result.firstError;
+          if (result.changed <= 0) continue;
+          const paintCellEl = matrixCellByIndices(context.si, context.di);
+          if (!(paintCellEl instanceof HTMLTableCellElement)) continue;
+          const isConnected = paintSession.action === "connect";
+          paintCellEl.classList.toggle("on", isConnected);
+          const srcPortName = String(context?.src?.port || "");
+          const dstPortName = String(context?.dst?.port || "");
+          if (!srcPortName || !dstPortName) continue;
+          paintCellEl.dataset.hover = isConnected
+            ? `Paint connect: ${srcPortName} -> ${dstPortName}`
+            : `Paint disconnect: ${srcPortName} -> ${dstPortName}`;
+        }
+      }
+
+      table.onmousedown = (event) => {
+        if (selectedPatchMode !== PATCH_MODE_PAINT) return;
+        if (Number(event.button) !== 0) return;
+        const cell = eventClosest(event, "td.cell.editable");
+        if (!(cell instanceof HTMLTableCellElement) || !table.contains(cell)) return;
+        event.preventDefault();
+
+        endPaintSession();
+        const context = resolveEditableCellContext(cell);
+        if (!context.ok) {
+          setStatus(context.error || "No editable patch point selected.", true);
+          return;
+        }
+        const action = connectionIndexForPair(context.src, context.dst) >= 0 ? "disconnect" : "connect";
+        paintSession = {
+          action,
+          anchor: context,
+          changed: 0,
+          skipped: 0,
+          firstError: "",
+          visited: new Set(),
+        };
+        window.addEventListener("mouseup", endPaintSession, true);
+        window.addEventListener("blur", endPaintSession);
+        paintCell(cell);
+      };
+
+      table.onmouseover = (event) => {
+        if (!paintSession || selectedPatchMode !== PATCH_MODE_PAINT) return;
+        const cell = eventClosest(event, "td.cell.editable");
+        if (!(cell instanceof HTMLTableCellElement) || !table.contains(cell)) return;
+        paintCell(cell);
+      };
+
+      table.onclick = (event) => {
+        const headerToggle = eventClosest(event, "[data-device-toggle],[data-group-toggle]");
+        if (headerToggle) {
+          if (headerToggle instanceof HTMLButtonElement) headerToggle.blur();
+          const axis = String(headerToggle.dataset.axis || "");
+          const entry = entryFromToggleDataset(headerToggle.dataset);
+          const result = toggleHeaderEntryOnAxis(family, axis, entry);
+          if (!result.ok || !result.changed) {
+            setStatus("No folder toggle available for this header.", true);
+            return;
+          }
+          setStatus(`${result.action === "collapse" ? "Collapsed" : "Expanded"} ${entry.kind} on ${axis}.`);
+          scheduleRender(true);
+          return;
+        }
+
+        const folderCell = eventClosest(event, "td.cell.groupcell");
+        if (folderCell) {
+          const si = Number(folderCell.dataset.si);
+          const di = Number(folderCell.dataset.di);
+          const srcEntry = visibleSources[si];
+          const dstEntry = visibleDests[di];
+          if (!srcEntry || !dstEntry) return;
+          const meta = folderCellToggleMeta(family, srcEntry, dstEntry);
+          if (!meta.canToggle) {
+            setStatus("No folder toggle available for this cell.", true);
+            return;
+          }
+          const collapse = meta.action === "collapse";
+          let toggled = 0;
+          if (meta.targetAxis === "both") {
+            if (setEntryCollapsedOnAxis(family, "source", srcEntry, collapse)) toggled += 1;
+            if (setEntryCollapsedOnAxis(family, "dest", dstEntry, collapse)) toggled += 1;
+          } else if (meta.targetAxis === "source") {
+            toggled = setEntryCollapsedOnAxis(family, "source", srcEntry, collapse) ? 1 : 0;
+          } else if (meta.targetAxis === "dest") {
+            toggled = setEntryCollapsedOnAxis(family, "dest", dstEntry, collapse) ? 1 : 0;
+          }
+          if (!toggled) {
+            setStatus("No folder toggle available for this cell.", true);
+            return;
+          }
+          const axisLabel = meta.targetAxis === "both" ? "source + destination folders" : `${meta.targetAxis} folder`;
+          setStatus(`${collapse ? "Collapsed" : "Expanded"} ${axisLabel}.`);
+          scheduleRender(true);
+          return;
+        }
+
+        if (selectedPatchMode === PATCH_MODE_PAINT) return;
+
+        const cell = eventClosest(event, "td.cell.editable");
+        if (!cell) return;
+        const result = applyPatchFromCell(cell, "", patchSpan());
+        if (result.changed > 0 && result.action === "connect") {
+          setStatus(`Connected ${result.changed} link(s) with ${selectedPatchMode}${result.skipped > 0 ? ` (${result.skipped} skipped)` : ""}.`);
+          queuePatchAutoSave(`${selectedPatchMode}-connect`);
+          scheduleRender(true);
+        } else if (result.changed > 0 && result.action === "disconnect") {
+          setStatus(`Disconnected ${result.changed} link(s) with ${selectedPatchMode}${result.skipped > 0 ? ` (${result.skipped} skipped)` : ""}.`);
+          queuePatchAutoSave(`${selectedPatchMode}-disconnect`);
+          scheduleRender(true);
+        } else {
+          setStatus(result.firstError || "No changes.", true);
+        }
+      };
+
+      restoreMatrixViewportState(viewportState);
+      // Force one sync layout pass so sticky/rotated destination headers settle
+      // before the refreshed matrix becomes visible.
+      void table.offsetHeight;
+      void table.getBoundingClientRect();
+      if (matrixWrapEl instanceof HTMLElement) {
+        const settledTop = Number(matrixWrapEl.scrollTop || 0);
+        const settledLeft = Number(matrixWrapEl.scrollLeft || 0);
+        matrixWrapEl.scrollTop = settledTop;
+        matrixWrapEl.scrollLeft = settledLeft;
+      }
+      if (matrixContainer) matrixContainer.style.visibility = prevMatrixVisibility;
+      window.requestAnimationFrame(() => {
+        restoreMatrixViewportState(viewportState);
+      });
+
+    }
+
+    function formatEntryLabel(entry) {
+      if (!entry) return "Entry";
+      if (entry.kind === "port") return `${entry.port.device} [${entry.port.port}]`;
+      if (entry.kind === "group") return `${entry.device} [${entry.typeName}]`;
+      if (entry.kind === "device") return `${entry.device} [device]`;
+      return "Entry";
+    }
+
+    function escHtml(text) {
+      return String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function escAttr(text) {
+      return escHtml(text).replace(/`/g, "&#96;");
+    }
+
+    async function fetchJson(url) {
+      const base = String(url || "").trim();
+      if (!base) throw new Error("Empty URL");
+      const target = `${base}${base.includes("?") ? "&" : "?"}_ts=${Date.now()}`;
+      const response = await fetch(target, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText} @ ${base}`);
+      }
+      return response.json();
+    }
+
+    async function fetchJsonFromCandidates(candidates) {
+      const urls = Array.isArray(candidates) ? candidates : [];
+      const errors = [];
+      for (const url of urls) {
+        try {
+          const payload = await fetchJson(url);
+          return { payload, url };
+        } catch (error) {
+          errors.push(String(error));
+        }
+      }
+      throw new Error(errors.join(" | "));
+    }
+
+    function initFamilySelect() {
+      const previous = String(familySelect.value || "").trim();
+      const defs = MODEL && typeof MODEL.families === "object" ? MODEL.families : {};
+      const keys = [FAMILY_ALL, ...FAMILY_ORDER];
+      for (const key of Object.keys(defs)) {
+        const fam = normalizeFamily(key);
+        if (fam && !keys.includes(fam)) keys.push(fam);
+      }
+      familySelect.innerHTML = keys.map((fam) => `<option value=\"${escAttr(fam)}\">${escHtml(fam)}</option>`).join("");
+      if (previous && keys.includes(previous)) {
+        familySelect.value = previous;
+      } else if (keys.includes(FAMILY_ALL)) {
+        familySelect.value = FAMILY_ALL;
+      } else if (keys.includes("AUDIO")) {
+        familySelect.value = "AUDIO";
+      } else if (keys.length > 0) {
+        familySelect.value = keys[0];
+      }
+    }
+
+    function filenameFromUrl(rawUrl) {
+      const token = String(rawUrl || "").trim();
+      if (!token) return "";
+      try {
+        const url = new URL(token, window.location.href);
+        const path = String(url.pathname || "");
+        return decodeURIComponent(path.split("/").filter(Boolean).pop() || "");
+      } catch (_error) {
+        const path = token.split("?")[0].split("#")[0];
+        return decodeURIComponent(path.split("/").filter(Boolean).pop() || "");
+      }
+    }
+
+    function stripUrlQueryHash(rawUrl) {
+      const token = String(rawUrl || "").trim();
+      if (!token) return "";
+      try {
+        const url = new URL(token, window.location.href);
+        url.search = "";
+        url.hash = "";
+        return url.toString();
+      } catch (_error) {
+        return token.split("?")[0].split("#")[0];
+      }
+    }
+
+    function normalizePatchFilename(name) {
+      let token = String(name || "").trim();
+      if (!token) token = "routing_matrix_connections.prototype.json";
+      token = token.replace(/[\\/:*?"<>|]+/g, "_");
+      if (!/\.json$/i.test(token)) token += ".json";
+      return token;
+    }
+
+    function buildPatchPayload() {
+      return {
+        version: 1,
+        connections: connections.map((row) => ({ ...row })),
+      };
+    }
+
+    function downloadPatchPayload(payloadText, filename) {
+      const blob = new Blob([payloadText], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = normalizePatchFilename(filename);
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    async function writePatchToHandle(fileHandle, payloadText) {
+      const writable = await fileHandle.createWritable();
+      await writable.write(payloadText);
+      await writable.close();
+    }
+
+    async function writePatchToSourceUrl(sourceUrl, payloadText) {
+      const target = stripUrlQueryHash(sourceUrl);
+      if (!target) throw new Error("No patch source path available");
+      const response = await fetch(target, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: payloadText,
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      return target;
+    }
+
+    async function writePatchToSaveApi(apiUrl, payloadObject) {
+      const target = String(apiUrl || "").trim();
+      if (!target) throw new Error("No save API target configured");
+      const response = await fetch(target, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payloadObject),
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      const result = await response.json().catch(() => ({}));
+      if (result && typeof result === "object" && result.ok === false) {
+        throw new Error(String(result.error || "Save API rejected patch payload"));
+      }
+      return result;
+    }
+
+    function normalizeApiTargetPath(rawPath) {
+      let token = String(rawPath || "").trim();
+      if (!token) return "";
+      try {
+        const parsed = new URL(token, window.location.href);
+        if (/^[a-z][a-z0-9+.-]*:/i.test(token) && parsed.origin !== window.location.origin) {
+          return "";
+        }
+        token = String(parsed.pathname || "").trim();
+      } catch (_error) {
+        // Keep raw token.
+      }
+      token = token.split("?")[0].split("#")[0].trim();
+      if (!token) return "";
+      token = token.replace(/^\.\/+/, "");
+      token = token.replace(/^\/+/, "");
+      if (token.startsWith("sandbox/")) {
+        token = `prototypes/${token}`;
+      }
+      return token;
+    }
+
+    function buildSaveTargetsPayload() {
+      const payload = {};
+      const modelTarget = normalizeApiTargetPath(MODEL_QUERY_PATH) || normalizeApiTargetPath(modelSourceUrl);
+      const patchTarget = normalizeApiTargetPath(CONNECTIONS_QUERY_PATH) || normalizeApiTargetPath(patchSourceUrl);
+      if (modelTarget) payload.model_path = modelTarget;
+      if (patchTarget) payload.connections_path = patchTarget;
+      return payload;
+    }
+
+    async function ensureSaveTargetsConfigured() {
+      const payload = buildSaveTargetsPayload();
+      const keys = Object.keys(payload);
+      if (!keys.length) return;
+      const targetKey = `${payload.model_path || ""}|${payload.connections_path || ""}`;
+      if (saveTargetsConfiguredKey === targetKey) return;
+      const response = await fetch(SET_TARGETS_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      const result = await response.json().catch(() => ({}));
+      if (result && typeof result === "object" && result.ok === false) {
+        throw new Error(String(result.error || "set-targets failed"));
+      }
+      saveTargetsConfiguredKey = targetKey;
+    }
+
+    function shouldAutoTrySaveApi() {
+      // In browser-served contexts, prefer server save endpoint over unsupported PUT writes.
+      return window.location.protocol === "http:" || window.location.protocol === "https:";
+    }
+
+    async function savePatch(saveAs = false, options = {}) {
+      const silent = Boolean(options?.silent);
+      const auto = Boolean(options?.auto);
+      const reason = String(options?.reason || "").trim() || "change";
+      const payloadObject = buildPatchPayload();
+      const payloadText = JSON.stringify(payloadObject, null, 2);
+      const canUseFilePicker = typeof window.showSaveFilePicker === "function";
+      const defaultName = normalizePatchFilename(patchFileName);
+
+      if (!saveAs && (USE_SAVE_API || shouldAutoTrySaveApi())) {
+        try {
+          await ensureSaveTargetsConfigured();
+          const apiResult = await writePatchToSaveApi(SAVE_CONNECTIONS_API, payloadObject);
+          if (apiResult && typeof apiResult === "object" && apiResult.regenerate_ok === false) {
+            const warning = String(apiResult.regenerate_error || "unknown error");
+            setStatus(
+              silent
+                ? `Auto-save patch warning (${reason}): ${warning}`
+                : `Saved patch JSON via API, but regenerate failed: ${warning}`,
+              true
+            );
+          } else if (!silent) {
+            setStatus(`Saved patch JSON via API: ${SAVE_CONNECTIONS_API}`);
+          }
+          return true;
+        } catch (error) {
+          if (USE_SAVE_API) {
+            const detail = String(error);
+            if (silent || auto) {
+              setStatus(`Auto-save patch failed (${reason}): ${detail}`, true);
+            } else {
+              setStatus(`Save API patch save failed (${detail}). Falling back to local save options...`, true);
+            }
+            if (auto) return false;
+          }
+        }
+      }
+
+      if (!saveAs && patchFileHandle && canUseFilePicker) {
+        try {
+          await writePatchToHandle(patchFileHandle, payloadText);
+          const handleName = String(patchFileHandle.name || "").trim();
+          if (handleName) patchFileName = normalizePatchFilename(handleName);
+          if (!silent) {
+            setStatus(`Saved patch JSON: ${patchFileName}`);
+          }
+          return true;
+        } catch (error) {
+          const detail = String(error);
+          if (silent || auto) {
+            setStatus(`Auto-save patch quick-save failed (${reason}): ${detail}`, true);
+          } else {
+            setStatus(
+              ALLOW_SOURCE_PUT
+                ? `Quick save failed (${detail}). Trying source-path overwrite...`
+                : `Quick save failed (${detail}).`,
+              true
+            );
+          }
+          if (auto) return false;
+        }
+      }
+
+      if (!saveAs && ALLOW_SOURCE_PUT && patchSourceUrl) {
+        try {
+          const savedUrl = await writePatchToSourceUrl(patchSourceUrl, payloadText);
+          patchFileName = normalizePatchFilename(filenameFromUrl(savedUrl) || patchFileName);
+          if (!silent) {
+            setStatus(`Saved patch JSON: ${patchFileName}`);
+          }
+          return true;
+        } catch (error) {
+          const detail = String(error);
+          if (silent || auto) {
+            setStatus(`Auto-save patch source-path overwrite failed (${reason}): ${detail}`, true);
+          } else {
+            setStatus(`Source-path overwrite failed (${detail}).`, true);
+          }
+          if (auto) return false;
+        }
+      }
+
+      if (auto || silent) {
+        setStatus("Auto-save patch skipped: no non-interactive save target available.", true);
+        return false;
+      }
+
+      if (canUseFilePicker) {
+        try {
+          const fileHandle = await window.showSaveFilePicker({
+            suggestedName: defaultName,
+            types: [{
+              description: "JSON",
+              accept: { "application/json": [".json"] },
+            }],
+          });
+          await writePatchToHandle(fileHandle, payloadText);
+          patchFileHandle = fileHandle;
+          patchFileName = normalizePatchFilename(String(fileHandle.name || defaultName));
+          setStatus(`Saved patch JSON: ${patchFileName}`);
+          return true;
+        } catch (error) {
+          if (error && String(error.name || "") === "AbortError") {
+            setStatus("Save cancelled.");
+            return false;
+          }
+          setStatus(
+            saveAs
+              ? `Save picker failed (${String(error)}). Falling back to download.`
+              : `Save picker failed (${String(error)}).`,
+            true
+          );
+        }
+      }
+
+      if (!saveAs) {
+        setStatus("Could not overwrite existing patch file. Use Save Patch As to pick the existing patch JSON once, then Save Patch will overwrite it.", true);
+        return false;
+      }
+
+      let filename = defaultName;
+      if (saveAs) {
+        const typed = window.prompt("Save patch as filename", defaultName);
+        if (typed === null) {
+          setStatus("Save cancelled.");
+          return false;
+        }
+        filename = normalizePatchFilename(typed);
+      }
+      patchFileHandle = null;
+      patchFileName = filename;
+      downloadPatchPayload(payloadText, filename);
+      setStatus(`Downloaded patch JSON: ${filename}`);
+      return true;
+    }
+
+    async function reloadData() {
+      try {
+        const explicitSelectionMode = HAS_MODEL_QUERY_PARAM || HAS_CONNECTIONS_QUERY_PARAM;
+        setStatus(explicitSelectionMode
+          ? "Loading selected prototype JSON..."
+          : "Loading prototype sandbox JSON...");
+        const modelResult = MODEL_URL_CANDIDATES.length > 0
+          ? await fetchJsonFromCandidates(MODEL_URL_CANDIDATES)
+          : { payload: { devices: [], families: {} }, url: "" };
+        const connResult = CONNECTIONS_URL_CANDIDATES.length > 0
+          ? await fetchJsonFromCandidates(CONNECTIONS_URL_CANDIDATES)
+          : { payload: { version: 1, connections: [] }, url: "" };
+        const modelPayload = modelResult.payload;
+        const connPayload = connResult.payload;
+        MODEL = modelPayload && typeof modelPayload === "object" ? modelPayload : { devices: [], families: {} };
+        applyThemeFromModel(MODEL);
+        const matrixCfg = getPath(MODEL, ["ui_config", "matrix"], {});
+        allowDoublePatching = parseBoolLike(
+          matrixCfg.allow_double_patching,
+          ALLOW_DOUBLE_PATCHING_DEFAULT
+        );
+        if (allowDoublePatchingToggle instanceof HTMLInputElement) {
+          allowDoublePatchingToggle.checked = allowDoublePatching;
+        }
+        invalidatePortCaches();
+        const rows = Array.isArray(connPayload && connPayload.connections)
+          ? connPayload.connections
+          : (Array.isArray(connPayload) ? connPayload : []);
+        connections = rows.map(normalizeConnection).filter((row) => row.source_device && row.source_port && row.dest_device && row.dest_port);
+        cableIdAllocator = buildCableIdAllocator(connections);
+        for (const row of connections) {
+          if (!String(row.cable_id || "").trim()) {
+            row.cable_id = nextCableId(cableIdAllocator, row.family);
+          }
+        }
+        collapsedSourceDevices.clear();
+        collapsedDestDevices.clear();
+        collapsedSourceGroups.clear();
+        collapsedDestGroups.clear();
+        autoCollapsedFamilies.clear();
+        autoCollapsedDeviceFamilies.clear();
+        patchFileHandle = null;
+        modelSourceUrl = modelResult.url ? stripUrlQueryHash(modelResult.url) : "";
+        patchSourceUrl = connResult.url ? stripUrlQueryHash(connResult.url) : "";
+        if (connResult.url) {
+          patchFileName = normalizePatchFilename(filenameFromUrl(connResult.url) || patchFileName);
+        } else if (!patchFileName) {
+          patchFileName = "routing_matrix_connections.prototype.json";
+        }
+        initFamilySelect();
+        scheduleRender();
+        const loadedModelLabel = modelResult.url || "(empty model)";
+        const loadedPatchLabel = connResult.url || "(empty patch)";
+        setStatus(`Loaded model: ${loadedModelLabel} | patch: ${loadedPatchLabel}`);
+      } catch (error) {
+        matrixContainer.innerHTML = `<div style=\"padding:12px;color:#fca5a5;\">Load failed: ${escHtml(String(error))}</div>`;
+        setStatus(`Load failed: ${String(error)}`, true);
+      }
+    }
+
+    familySelect.onchange = () => scheduleRender();
+    if (patchModeSelect) {
+      patchModeSelect.value = selectedPatchMode;
+      patchModeSelect.onchange = () => {
+        selectedPatchMode = normalizePatchMode(patchModeSelect.value);
+        if (selectedPatchMode !== PATCH_MODE_MULTI) {
+          pairCountInput.disabled = true;
+        } else {
+          pairCountInput.disabled = false;
+        }
+        scheduleRender();
+      };
+    }
+    if (pairCountInput) {
+      pairCountInput.value = String(pairCount);
+      pairCountInput.disabled = selectedPatchMode !== PATCH_MODE_MULTI;
+      pairCountInput.oninput = () => {
+        pairCount = normalizePairCount(pairCountInput.value);
+        pairCountInput.value = String(pairCount);
+        if (selectedPatchMode === PATCH_MODE_MULTI) scheduleRender();
+      };
+    }
+    if (typeTagInput) {
+      typeTagInput.value = typeTagValue;
+      typeTagInput.oninput = () => {
+        typeTagValue = String(typeTagInput.value || "").trim();
+      };
+    }
+    if (allowDoublePatchingToggle instanceof HTMLInputElement) {
+      allowDoublePatchingToggle.checked = allowDoublePatching;
+      allowDoublePatchingToggle.onchange = () => {
+        allowDoublePatching = Boolean(allowDoublePatchingToggle.checked);
+        setStatus(`Allow Double Patching: ${allowDoublePatching ? "On" : "Off"}`);
+      };
+    }
+    if (sourceFilterInput) {
+      sourceFilterInput.value = sourceFilter;
+      sourceFilterInput.oninput = () => {
+        sourceFilter = String(sourceFilterInput.value || "");
+        scheduleRender();
+      };
+    }
+    if (destFilterInput) {
+      destFilterInput.value = destFilter;
+      destFilterInput.oninput = () => {
+        destFilter = String(destFilterInput.value || "");
+        scheduleRender();
+      };
+    }
+    collapseSourceBtn.onclick = () => {
+      const family = String(familySelect.value || "AUDIO");
+      const sourceEntries = buildAxisEntries(family, portsForFamily(family, true), "source", collapsedSourceGroups, collapsedSourceDevices);
+      setAxisCollapsed(sourceEntries, "source", true);
+      scheduleRender(true);
+    };
+    expandSourceBtn.onclick = () => {
+      const family = String(familySelect.value || "AUDIO");
+      const sourceEntries = buildAxisEntries(family, portsForFamily(family, true), "source", collapsedSourceGroups, collapsedSourceDevices);
+      setAxisCollapsed(sourceEntries, "source", false);
+      scheduleRender(true);
+    };
+    collapseDestBtn.onclick = () => {
+      const family = String(familySelect.value || "AUDIO");
+      const destEntries = buildAxisEntries(family, portsForFamily(family, false), "dest", collapsedDestGroups, collapsedDestDevices);
+      setAxisCollapsed(destEntries, "dest", true);
+      scheduleRender(true);
+    };
+    expandDestBtn.onclick = () => {
+      const family = String(familySelect.value || "AUDIO");
+      const destEntries = buildAxisEntries(family, portsForFamily(family, false), "dest", collapsedDestGroups, collapsedDestDevices);
+      setAxisCollapsed(destEntries, "dest", false);
+      scheduleRender(true);
+    };
+    window.addEventListener("message", (event) => {
+      const data = event?.data;
+      if (!data || typeof data !== "object") return;
+      if (data.type === "studio-theme-set") {
+        const incoming = normalizeThemeMode(data.mode);
+        if (!incoming) return;
+        themeOverrideMode = incoming;
+        applyThemeMode(incoming);
+        return;
+      }
+      if (data.type === "studio-prototype-autosave-set") {
+        setAutoSaveConfigsEnabled(Boolean(data.enabled), false);
+        return;
+      }
+      if (data.type === "studio-prototype-save-patch") {
+        const saveAs = Boolean(data.save_as);
+        void savePatch(saveAs);
+      }
+    });
+
+    bindMatrixDiagonalPan();
+    bindMatrixTrackpadDiagonalScroll();
+    reloadData();
+  </script>
+</body>
+</html>

@@ -1,0 +1,797 @@
+{
+  "version": 1,
+  "title": "Manufacturer Device Library",
+  "description": "Large starter library grouped by manufacturer. Port specs are starter profiles and can be refined per studio.",
+  "templates": [
+    {
+      "name": "Apollo Solo",
+      "manufacturer": "Universal Audio",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "line_in": 2,
+        "line_out": 4,
+        "instrument_in": 1,
+        "headphone_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Apollo Twin X DUO",
+      "manufacturer": "Universal Audio",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 2,
+        "line_in": 2,
+        "line_out": 4,
+        "instrument_in": 2,
+        "headphone_out": 1,
+        "adat_in": 8,
+        "adat_out": 8,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "thunderbolt_io": 1
+      }
+    },
+    {
+      "name": "Apollo Twin X QUAD",
+      "manufacturer": "Universal Audio",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 2,
+        "line_in": 2,
+        "line_out": 4,
+        "instrument_in": 2,
+        "headphone_out": 1,
+        "adat_in": 8,
+        "adat_out": 8,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "thunderbolt_io": 1
+      }
+    },
+    {
+      "name": "Apollo x4",
+      "manufacturer": "Universal Audio",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 4,
+        "line_in": 4,
+        "line_out": 6,
+        "instrument_in": 2,
+        "headphone_out": 2,
+        "adat_in": 8,
+        "adat_out": 8,
+        "midi_in": 1,
+        "midi_out": 1,
+        "thunderbolt_io": 1
+      }
+    },
+    {
+      "name": "Apollo x6",
+      "manufacturer": "Universal Audio",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 2,
+        "line_in": 6,
+        "line_out": 6,
+        "instrument_in": 2,
+        "headphone_out": 2,
+        "adat_in": 8,
+        "adat_out": 8,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "thunderbolt_io": 1
+      }
+    },
+    {
+      "name": "Apollo x8",
+      "manufacturer": "Universal Audio",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 4,
+        "line_in": 8,
+        "line_out": 8,
+        "instrument_in": 2,
+        "headphone_out": 2,
+        "adat_in": 8,
+        "adat_out": 8,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "thunderbolt_io": 1
+      }
+    },
+    {
+      "name": "Apollo x8p",
+      "manufacturer": "Universal Audio",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 8,
+        "line_in": 8,
+        "line_out": 8,
+        "headphone_out": 2,
+        "adat_in": 8,
+        "adat_out": 8,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "thunderbolt_io": 1
+      }
+    },
+    {
+      "name": "Apollo x16",
+      "manufacturer": "Universal Audio",
+      "device_type": "Converter",
+      "layout_group": "Interface",
+      "port_spec": {
+        "line_in": 16,
+        "line_out": 16,
+        "thunderbolt_io": 1
+      }
+    },
+    {
+      "name": "Apollo x16D",
+      "manufacturer": "Universal Audio",
+      "device_type": "Network Audio Interface",
+      "layout_group": "Network Audio",
+      "port_spec": {
+        "line_in": 16,
+        "line_out": 16,
+        "dante_in": 16,
+        "dante_out": 16,
+        "ethernet_io": 2
+      }
+    },
+    {
+      "name": "UFX III",
+      "manufacturer": "RME",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 4,
+        "line_in": 8,
+        "line_out": 12,
+        "headphone_out": 2,
+        "midi_in": 1,
+        "midi_out": 1,
+        "adat_in": 16,
+        "adat_out": 16,
+        "aes_in": 1,
+        "aes_out": 1,
+        "madi_in": 1,
+        "madi_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "UFX II",
+      "manufacturer": "RME",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 4,
+        "line_in": 8,
+        "line_out": 12,
+        "headphone_out": 2,
+        "midi_in": 1,
+        "midi_out": 1,
+        "adat_in": 16,
+        "adat_out": 16,
+        "aes_in": 1,
+        "aes_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "UFX+",
+      "manufacturer": "RME",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 4,
+        "line_in": 8,
+        "line_out": 12,
+        "headphone_out": 2,
+        "midi_in": 1,
+        "midi_out": 1,
+        "adat_in": 16,
+        "adat_out": 16,
+        "aes_in": 1,
+        "aes_out": 1,
+        "madi_in": 1,
+        "madi_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "usb_io": 1,
+        "thunderbolt_io": 1
+      }
+    },
+    {
+      "name": "UCX II",
+      "manufacturer": "RME",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 2,
+        "line_in": 6,
+        "line_out": 8,
+        "headphone_out": 2,
+        "midi_in": 1,
+        "midi_out": 1,
+        "adat_in": 8,
+        "adat_out": 8,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Babyface Pro FS",
+      "manufacturer": "RME",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 2,
+        "line_in": 2,
+        "line_out": 4,
+        "headphone_out": 2,
+        "midi_in": 1,
+        "midi_out": 1,
+        "adat_in": 8,
+        "adat_out": 8,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Digiface USB",
+      "manufacturer": "RME",
+      "device_type": "Digital Interface",
+      "layout_group": "Digital Audio",
+      "port_spec": {
+        "adat_in": 32,
+        "adat_out": 32,
+        "midi_in": 1,
+        "midi_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Digiface Dante",
+      "manufacturer": "RME",
+      "device_type": "Network Audio Interface",
+      "layout_group": "Network Audio",
+      "port_spec": {
+        "dante_in": 32,
+        "dante_out": 32,
+        "adat_in": 32,
+        "adat_out": 32,
+        "midi_in": 1,
+        "midi_out": 1,
+        "ethernet_io": 2,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Digiface AVB",
+      "manufacturer": "RME",
+      "device_type": "Network Audio Interface",
+      "layout_group": "Network Audio",
+      "port_spec": {
+        "adat_in": 32,
+        "adat_out": 32,
+        "midi_in": 1,
+        "midi_out": 1,
+        "ethernet_io": 2,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "MADIface USB",
+      "manufacturer": "RME",
+      "device_type": "Digital Interface",
+      "layout_group": "Digital Audio",
+      "port_spec": {
+        "madi_in": 1,
+        "madi_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "M-32 AD Pro II",
+      "manufacturer": "RME",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "line_in": 32,
+        "madi_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "ethernet_io": 1
+      }
+    },
+    {
+      "name": "M-32 DA Pro II",
+      "manufacturer": "RME",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "line_out": 32,
+        "madi_in": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "ethernet_io": 1
+      }
+    },
+    {
+      "name": "ADI-2 Pro FS R",
+      "manufacturer": "RME",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "line_in": 2,
+        "line_out": 4,
+        "headphone_out": 2,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "OctaMic XTC",
+      "manufacturer": "RME",
+      "device_type": "Mic Preamp",
+      "layout_group": "Analog Front End",
+      "port_spec": {
+        "mic_in": 8,
+        "adat_out": 8,
+        "aes_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "midi_in": 1,
+        "midi_out": 1
+      }
+    },
+    {
+      "name": "Pro Tools Carbon",
+      "manufacturer": "Avid",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "mic_in": 8,
+        "line_in": 8,
+        "line_out": 8,
+        "headphone_out": 2,
+        "adat_in": 16,
+        "adat_out": 16,
+        "midi_in": 1,
+        "midi_out": 1,
+        "ethernet_io": 1
+      }
+    },
+    {
+      "name": "HD I/O 8x8x8",
+      "manufacturer": "Avid",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "line_in": 8,
+        "line_out": 8,
+        "adat_in": 8,
+        "adat_out": 8,
+        "aes_in": 8,
+        "aes_out": 8
+      }
+    },
+    {
+      "name": "HD I/O 16x16 Analog",
+      "manufacturer": "Avid",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "line_in": 16,
+        "line_out": 16
+      }
+    },
+    {
+      "name": "MTRX Studio",
+      "manufacturer": "Avid",
+      "device_type": "Matrix / Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "mic_in": 2,
+        "line_in": 16,
+        "line_out": 16,
+        "headphone_out": 2,
+        "adat_in": 16,
+        "adat_out": 16,
+        "aes_in": 16,
+        "aes_out": 16,
+        "spdif_in": 2,
+        "spdif_out": 2,
+        "dante_in": 16,
+        "dante_out": 16,
+        "midi_in": 1,
+        "midi_out": 1,
+        "ethernet_io": 1
+      }
+    },
+    {
+      "name": "MTRX II",
+      "manufacturer": "Avid",
+      "device_type": "Matrix / Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "line_in": 16,
+        "line_out": 16,
+        "aes_in": 16,
+        "aes_out": 16,
+        "madi_in": 2,
+        "madi_out": 2,
+        "dante_in": 32,
+        "dante_out": 32,
+        "ethernet_io": 1
+      }
+    },
+    {
+      "name": "Scarlett 2i2",
+      "manufacturer": "Focusrite",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 2,
+        "line_out": 2,
+        "headphone_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Scarlett 4i4",
+      "manufacturer": "Focusrite",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 2,
+        "line_in": 4,
+        "line_out": 4,
+        "headphone_out": 1,
+        "midi_in": 1,
+        "midi_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Scarlett 8i6",
+      "manufacturer": "Focusrite",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 2,
+        "line_in": 8,
+        "line_out": 6,
+        "headphone_out": 1,
+        "midi_in": 1,
+        "midi_out": 1,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Scarlett 18i8",
+      "manufacturer": "Focusrite",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 4,
+        "line_in": 8,
+        "line_out": 10,
+        "headphone_out": 2,
+        "midi_in": 1,
+        "midi_out": 1,
+        "adat_in": 8,
+        "adat_out": 8,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Scarlett 18i20",
+      "manufacturer": "Focusrite",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 8,
+        "line_in": 8,
+        "line_out": 10,
+        "headphone_out": 2,
+        "midi_in": 1,
+        "midi_out": 1,
+        "adat_in": 16,
+        "adat_out": 16,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Clarett+ 8Pre",
+      "manufacturer": "Focusrite",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 8,
+        "line_in": 8,
+        "line_out": 10,
+        "headphone_out": 2,
+        "adat_in": 16,
+        "adat_out": 16,
+        "midi_in": 1,
+        "midi_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Red 8Line",
+      "manufacturer": "Focusrite",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "line_in": 8,
+        "line_out": 8,
+        "headphone_out": 2,
+        "adat_in": 16,
+        "adat_out": 16,
+        "midi_in": 1,
+        "midi_out": 1,
+        "thunderbolt_io": 1,
+        "ethernet_io": 1
+      }
+    },
+    {
+      "name": "Red 16Line",
+      "manufacturer": "Focusrite",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "line_in": 16,
+        "line_out": 16,
+        "headphone_out": 2,
+        "adat_in": 16,
+        "adat_out": 16,
+        "midi_in": 1,
+        "midi_out": 1,
+        "thunderbolt_io": 1,
+        "ethernet_io": 1
+      }
+    },
+    {
+      "name": "RedNet A16R MkII",
+      "manufacturer": "Focusrite",
+      "device_type": "Network Converter",
+      "layout_group": "Network Audio",
+      "port_spec": {
+        "line_in": 16,
+        "line_out": 16,
+        "dante_in": 16,
+        "dante_out": 16,
+        "ethernet_io": 2
+      }
+    },
+    {
+      "name": "RedNet D16R MkII",
+      "manufacturer": "Focusrite",
+      "device_type": "Network Converter",
+      "layout_group": "Network Audio",
+      "port_spec": {
+        "aes_in": 16,
+        "aes_out": 16,
+        "dante_in": 16,
+        "dante_out": 16,
+        "ethernet_io": 2
+      }
+    },
+    {
+      "name": "RedNet AM2",
+      "manufacturer": "Focusrite",
+      "device_type": "Network Headphone Amp",
+      "layout_group": "Network Audio",
+      "port_spec": {
+        "line_out": 2,
+        "headphone_out": 1,
+        "dante_in": 2,
+        "ethernet_io": 1
+      }
+    },
+    {
+      "name": "SSL MADI AX",
+      "manufacturer": "SSL",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "line_in": 24,
+        "line_out": 24,
+        "madi_in": 1,
+        "madi_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1
+      }
+    },
+    {
+      "name": "SSL ALPHA 8",
+      "manufacturer": "SSL",
+      "device_type": "Converter",
+      "layout_group": "Interface",
+      "port_spec": {
+        "line_in": 8,
+        "line_out": 8,
+        "adat_in": 8,
+        "adat_out": 8,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Ferrofish 32M",
+      "manufacturer": "Ferrofish",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "line_in": 32,
+        "line_out": 32,
+        "madi_in": 1,
+        "madi_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "ethernet_io": 1
+      }
+    },
+    {
+      "name": "Ferrofish A32 Pro",
+      "manufacturer": "Ferrofish",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "line_in": 32,
+        "line_out": 32,
+        "madi_in": 1,
+        "madi_out": 1,
+        "adat_in": 32,
+        "adat_out": 32,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "ethernet_io": 1
+      }
+    },
+    {
+      "name": "Ferrofish Pulse16 MX",
+      "manufacturer": "Ferrofish",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "port_spec": {
+        "line_in": 16,
+        "line_out": 16,
+        "madi_in": 1,
+        "madi_out": 1,
+        "adat_in": 16,
+        "adat_out": 16,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "ethernet_io": 1
+      }
+    },
+    {
+      "name": "Symphony I/O Mk II 8x8",
+      "manufacturer": "Apogee",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "line_in": 8,
+        "line_out": 8,
+        "adat_in": 8,
+        "adat_out": 8,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "thunderbolt_io": 1
+      }
+    },
+    {
+      "name": "Symphony Desktop",
+      "manufacturer": "Apogee",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 2,
+        "instrument_in": 2,
+        "line_out": 2,
+        "headphone_out": 2,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Duet 3",
+      "manufacturer": "Apogee",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "line_in": 2,
+        "line_out": 2,
+        "headphone_out": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Orion 32+ Gen 4",
+      "manufacturer": "Antelope",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "line_in": 32,
+        "line_out": 32,
+        "adat_in": 16,
+        "adat_out": 16,
+        "madi_in": 1,
+        "madi_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "thunderbolt_io": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Zen Tour Synergy Core",
+      "manufacturer": "Antelope",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "port_spec": {
+        "mic_in": 4,
+        "line_in": 8,
+        "line_out": 8,
+        "instrument_in": 2,
+        "headphone_out": 2,
+        "adat_in": 8,
+        "adat_out": 8,
+        "spdif_in": 1,
+        "spdif_out": 1,
+        "thunderbolt_io": 1,
+        "usb_io": 1
+      }
+    },
+    {
+      "name": "Galaxy 32 Synergy Core",
+      "manufacturer": "Antelope",
+      "device_type": "Converter",
+      "layout_group": "Interface",
+      "port_spec": {
+        "line_in": 32,
+        "line_out": 32,
+        "dante_in": 64,
+        "dante_out": 64,
+        "madi_in": 1,
+        "madi_out": 1,
+        "wordclock_in": 1,
+        "wordclock_out": 1,
+        "thunderbolt_io": 1,
+        "ethernet_io": 2
+      }
+    }
+  ]
+}

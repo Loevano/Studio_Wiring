@@ -1,0 +1,169 @@
+/* Global reset so width/height math is predictable in all components. */
+* {
+  box-sizing: border-box;
+}
+
+/* Full-page defaults used by shell and tab wrapper pages. */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Helvetica, Arial, sans-serif;
+  background: var(--shell-bg);
+  color: var(--shell-ink);
+}
+
+/* Main shell layout and panel surfaces. */
+.shell-page {
+  min-height: 100vh;
+  display: grid;
+  gap: var(--shell-gap);
+  padding: var(--shell-gap);
+}
+
+.shell-panel {
+  background: var(--shell-panel);
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  padding: 8px;
+}
+
+/* Header row and metadata text styles. */
+.shell-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.shell-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.shell-meta {
+  color: var(--shell-muted);
+  font-size: 0.82rem;
+}
+
+/* Tab button bar plus active/inactive button states. */
+.shell-tabrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.shell-tabbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1 1 auto;
+}
+
+.shell-tab-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .shell-tabrow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .shell-tab-actions {
+    justify-content: flex-start;
+  }
+}
+
+.shell-tab-btn {
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+  background: #f4f8ff;
+  color: var(--shell-ink);
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 7px 11px;
+  cursor: pointer;
+}
+
+.shell-tab-btn.active {
+  background: var(--shell-accent-soft);
+  border-color: #8db0e2;
+  color: var(--shell-accent);
+}
+
+/* Iframe viewport that hosts the active tab page. */
+.shell-frame-wrap {
+  width: 100%;
+  height: calc(100vh - 110px);
+  min-height: 640px;
+}
+
+.shell-frame {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--shell-border);
+  border-radius: var(--shell-radius);
+  background: #fff;
+}
+
+/* Warning text color for shell status messages. */
+.shell-warn {
+  color: #b45309;
+}
+
+/* Dark theme overrides toggled by `body.theme-dark`. */
+body.theme-dark {
+  background: #0f1726;
+  color: #dbe6f6;
+}
+
+body.theme-dark .shell-panel {
+  background: #111c2e;
+  border-color: #2e425f;
+}
+
+body.theme-dark .shell-meta {
+  color: #9db4d3;
+}
+
+body.theme-dark .shell-tab-btn {
+  background: #1a2a42;
+  border-color: #3a5579;
+  color: #dbe6f6;
+}
+
+body.theme-dark .shell-tab-btn.active {
+  background: #25466f;
+  border-color: #4f7db4;
+  color: #eaf3ff;
+}
+
+body.theme-dark .shell-frame {
+  border-color: #2e425f;
+  background: #0f1726;
+}
+
+/* Shared classes for tab wrapper pages (the pages inside shell iframe). */
+.tab-host-page {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #eef3fb;
+}
+
+.tab-host-frame {
+  width: 100%;
+  height: 100vh;
+  border: 0;
+  display: block;
+  background: #fff;
+}

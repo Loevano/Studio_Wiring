@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "default_tab": "routing",
+  "tabs": [
+    {
+      "key": "routing",
+      "label": "Routing Matrix",
+      "src": "../../routing_matrix.html?embedded=1&tab=matrix&matrix_subtab=prototype"
+    },
+    {
+      "key": "connection-overview",
+      "label": "Connection Overview",
+      "src": "../../routing_matrix.html?embedded=1&tab=connection-overview"
+    },
+    {
+      "key": "devices",
+      "label": "Devices & Ports",
+      "src": "../../routing_matrix.html?embedded=1&tab=devices"
+    },
+    {
+      "key": "visibility",
+      "label": "Visibility",
+      "src": "../../routing_matrix.html?embedded=1&tab=visibility"
+    },
+    {
+      "key": "visuals",
+      "label": "Visuals",
+      "src": "../../routing_matrix.html?embedded=1&tab=visuals"
+    }
+  ]
+}

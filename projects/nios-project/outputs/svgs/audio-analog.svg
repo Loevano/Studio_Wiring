@@ -1,0 +1,277 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="852" viewBox="0 0 1200 852">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="100%" height="100%" fill="#f8fafc"/>
+  <text x="30" y="34" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#0f172a">Studio Sidecar | Audio Analog | 2026-03-03</text>
+  <text x="30" y="54" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Devices: 2 | Cables: 15 | Ports shown: 30/64 wired</text>
+  <rect x="20.0" y="162.0" width="290.0" height="586.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="670.0" y="162.0" width="290.0" height="410.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <path d="M 300.0 217.0 H 409.6 H 428.0 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-001: Nios mic preamps [Line Out 1] -&gt; Nios Converter [Mic In 1]</title></path>
+  <path d="M 300.0 261.0 H 409.6 H 445.7 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-003: Nios mic preamps [Line Out 3] -&gt; Nios Converter [Mic In 3]</title></path>
+  <path d="M 300.0 283.0 H 409.6 H 454.6 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-004: Nios mic preamps [Line Out 4] -&gt; Nios Converter [Mic In 4]</title></path>
+  <path d="M 300.0 305.0 H 409.6 H 463.4 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-005: Nios mic preamps [Line Out 5] -&gt; Nios Converter [Mic In 5]</title></path>
+  <path d="M 300.0 239.0 H 409.6 H 436.9 V 393.0 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-002: Nios mic preamps [Line Out 2] -&gt; Nios Converter [Mic In 9]</title></path>
+  <path d="M 300.0 327.0 H 409.6 H 472.3 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-006: Nios mic preamps [Line Out 6] -&gt; Nios Converter [Mic In 6]</title></path>
+  <path d="M 300.0 349.0 H 409.6 H 481.1 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-007: Nios mic preamps [Line Out 7] -&gt; Nios Converter [Mic In 7]</title></path>
+  <path d="M 300.0 371.0 H 409.6 H 490.0 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-008: Nios mic preamps [Line Out 8] -&gt; Nios Converter [Mic In 8]</title></path>
+  <path d="M 300.0 415.0 H 409.6 H 498.9 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-009: Nios mic preamps [Line Out 10] -&gt; Nios Converter [Mic In 10]</title></path>
+  <path d="M 300.0 437.0 H 409.6 H 507.7 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-010: Nios mic preamps [Line Out 11] -&gt; Nios Converter [Mic In 11]</title></path>
+  <path d="M 300.0 459.0 H 409.6 H 516.6 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-011: Nios mic preamps [Line Out 12] -&gt; Nios Converter [Mic In 12]</title></path>
+  <path d="M 300.0 481.0 H 409.6 H 525.4 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-012: Nios mic preamps [Line Out 13] -&gt; Nios Converter [Mic In 13]</title></path>
+  <path d="M 300.0 503.0 H 409.6 H 534.3 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-013: Nios mic preamps [Line Out 14] -&gt; Nios Converter [Mic In 14]</title></path>
+  <path d="M 300.0 525.0 H 409.6 H 543.1 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-014: Nios mic preamps [Line Out 15] -&gt; Nios Converter [Mic In 15]</title></path>
+  <path d="M 300.0 547.0 H 409.6 H 552.0 H 570.4 H 680.0" fill="none" stroke="#dc2626" stroke-width="1.35" marker-end="url(#arrow)"><title>AUDIO-015: Nios mic preamps [Line Out 16] -&gt; Nios Converter [Mic In 16]</title></path>
+  <rect x="314.0" y="199.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="209.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-001 MONO</text>
+  <rect x="584.4" y="221.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="231.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-001 MONO</text>
+  <rect x="314.0" y="243.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="253.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-003 MONO</text>
+  <rect x="584.4" y="265.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="275.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-003 MONO</text>
+  <rect x="314.0" y="265.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="275.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-004 MONO</text>
+  <rect x="584.4" y="287.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="297.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-004 MONO</text>
+  <rect x="314.0" y="287.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="297.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-005 MONO</text>
+  <rect x="584.4" y="309.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="319.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-005 MONO</text>
+  <rect x="314.0" y="221.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="231.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-002 MONO</text>
+  <rect x="584.4" y="397.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="407.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-002 MONO</text>
+  <rect x="314.0" y="309.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="319.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-006 MONO</text>
+  <rect x="584.4" y="331.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="341.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-006 MONO</text>
+  <rect x="314.0" y="331.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="341.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-007 MONO</text>
+  <rect x="584.4" y="353.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="363.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-007 MONO</text>
+  <rect x="314.0" y="353.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="363.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-008 MONO</text>
+  <rect x="584.4" y="375.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="385.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-008 MONO</text>
+  <rect x="314.0" y="397.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="407.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-009 MONO</text>
+  <rect x="584.4" y="419.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="429.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-009 MONO</text>
+  <rect x="314.0" y="419.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="429.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-010 MONO</text>
+  <rect x="584.4" y="441.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="451.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-010 MONO</text>
+  <rect x="314.0" y="441.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="451.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-011 MONO</text>
+  <rect x="584.4" y="463.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="473.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-011 MONO</text>
+  <rect x="314.0" y="463.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="473.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-012 MONO</text>
+  <rect x="584.4" y="485.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="495.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-012 MONO</text>
+  <rect x="314.0" y="485.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="495.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-013 MONO</text>
+  <rect x="584.4" y="507.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="517.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-013 MONO</text>
+  <rect x="314.0" y="507.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="517.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-014 MONO</text>
+  <rect x="584.4" y="529.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="539.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-014 MONO</text>
+  <rect x="314.0" y="529.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.8" y="539.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-015 MONO</text>
+  <rect x="584.4" y="551.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="625.2" y="561.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-015 MONO</text>
+  <rect x="30.0" y="170.0" width="270.0" height="570.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="30.0" y="170.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="30.0" y1="206.0" x2="300.0" y2="206.0" stroke="#334155" stroke-width="1"/>
+  <text x="40.0" y="184.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="290.0" y="184.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="165.0" y="190.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Nios mic preamps</text>
+  <text x="165.0" y="201.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">15/48 wired ports</text>
+  <text x="43.0" y="220.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 1</text>
+  <circle cx="30.0" cy="217.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="220.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 1</text>
+  <circle cx="300.0" cy="217.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="228.0" x2="300.0" y2="228.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="242.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 2</text>
+  <circle cx="30.0" cy="239.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="242.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 2</text>
+  <circle cx="300.0" cy="239.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="250.0" x2="300.0" y2="250.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="264.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 3</text>
+  <circle cx="30.0" cy="261.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="264.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 3</text>
+  <circle cx="300.0" cy="261.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="272.0" x2="300.0" y2="272.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="286.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 4</text>
+  <circle cx="30.0" cy="283.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="286.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 4</text>
+  <circle cx="300.0" cy="283.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="294.0" x2="300.0" y2="294.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="308.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 5</text>
+  <circle cx="30.0" cy="305.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="308.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 5</text>
+  <circle cx="300.0" cy="305.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="316.0" x2="300.0" y2="316.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="330.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 6</text>
+  <circle cx="30.0" cy="327.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="330.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 6</text>
+  <circle cx="300.0" cy="327.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="338.0" x2="300.0" y2="338.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="352.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 7</text>
+  <circle cx="30.0" cy="349.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="352.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 7</text>
+  <circle cx="300.0" cy="349.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="360.0" x2="300.0" y2="360.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="374.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 8</text>
+  <circle cx="30.0" cy="371.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="374.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 8</text>
+  <circle cx="300.0" cy="371.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="382.0" x2="300.0" y2="382.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="396.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 9</text>
+  <circle cx="30.0" cy="393.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="396.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line Out 9</text>
+  <circle cx="300.0" cy="393.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="30.0" y1="404.0" x2="300.0" y2="404.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="418.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 10</text>
+  <circle cx="30.0" cy="415.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="418.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 10</text>
+  <circle cx="300.0" cy="415.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="426.0" x2="300.0" y2="426.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="440.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 11</text>
+  <circle cx="30.0" cy="437.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="440.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 11</text>
+  <circle cx="300.0" cy="437.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="448.0" x2="300.0" y2="448.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="462.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 12</text>
+  <circle cx="30.0" cy="459.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="462.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 12</text>
+  <circle cx="300.0" cy="459.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="470.0" x2="300.0" y2="470.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="484.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 13</text>
+  <circle cx="30.0" cy="481.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="484.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 13</text>
+  <circle cx="300.0" cy="481.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="492.0" x2="300.0" y2="492.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="506.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 14</text>
+  <circle cx="30.0" cy="503.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="506.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 14</text>
+  <circle cx="300.0" cy="503.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="514.0" x2="300.0" y2="514.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="528.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 15</text>
+  <circle cx="30.0" cy="525.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="528.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 15</text>
+  <circle cx="300.0" cy="525.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="536.0" x2="300.0" y2="536.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="550.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 16</text>
+  <circle cx="30.0" cy="547.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="550.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 16</text>
+  <circle cx="300.0" cy="547.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="30.0" y1="558.0" x2="300.0" y2="558.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="572.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 17</text>
+  <circle cx="30.0" cy="569.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="572.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line Out 17</text>
+  <circle cx="300.0" cy="569.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="30.0" y1="580.0" x2="300.0" y2="580.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="594.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 18</text>
+  <circle cx="30.0" cy="591.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="594.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line Out 18</text>
+  <circle cx="300.0" cy="591.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="30.0" y1="602.0" x2="300.0" y2="602.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="616.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 19</text>
+  <circle cx="30.0" cy="613.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="616.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line Out 19</text>
+  <circle cx="300.0" cy="613.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="30.0" y1="624.0" x2="300.0" y2="624.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="638.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 20</text>
+  <circle cx="30.0" cy="635.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="638.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line Out 20</text>
+  <circle cx="300.0" cy="635.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="30.0" y1="646.0" x2="300.0" y2="646.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="660.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 21</text>
+  <circle cx="30.0" cy="657.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="660.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line Out 21</text>
+  <circle cx="300.0" cy="657.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="30.0" y1="668.0" x2="300.0" y2="668.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="682.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 22</text>
+  <circle cx="30.0" cy="679.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="682.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line Out 22</text>
+  <circle cx="300.0" cy="679.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="30.0" y1="690.0" x2="300.0" y2="690.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="704.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 23</text>
+  <circle cx="30.0" cy="701.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="704.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line Out 23</text>
+  <circle cx="300.0" cy="701.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="30.0" y1="712.0" x2="300.0" y2="712.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43.0" y="726.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line In 24</text>
+  <circle cx="30.0" cy="723.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="287.0" y="726.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Line Out 24</text>
+  <circle cx="300.0" cy="723.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <rect x="680.0" y="170.0" width="270.0" height="394.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="680.0" y="170.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="680.0" y1="206.0" x2="950.0" y2="206.0" stroke="#334155" stroke-width="1"/>
+  <text x="690.0" y="184.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="940.0" y="184.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="815.0" y="190.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Nios Converter</text>
+  <text x="815.0" y="201.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">15/16 wired ports</text>
+  <text x="693.0" y="220.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 1</text>
+  <circle cx="680.0" cy="217.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="228.0" x2="950.0" y2="228.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="242.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Mic In 2</text>
+  <circle cx="680.0" cy="239.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="680.0" y1="250.0" x2="950.0" y2="250.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="264.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 3</text>
+  <circle cx="680.0" cy="261.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="272.0" x2="950.0" y2="272.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="286.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 4</text>
+  <circle cx="680.0" cy="283.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="294.0" x2="950.0" y2="294.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="308.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 5</text>
+  <circle cx="680.0" cy="305.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="316.0" x2="950.0" y2="316.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="330.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 6</text>
+  <circle cx="680.0" cy="327.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="338.0" x2="950.0" y2="338.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="352.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 7</text>
+  <circle cx="680.0" cy="349.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="360.0" x2="950.0" y2="360.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="374.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 8</text>
+  <circle cx="680.0" cy="371.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="382.0" x2="950.0" y2="382.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="396.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 9</text>
+  <circle cx="680.0" cy="393.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="404.0" x2="950.0" y2="404.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="418.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 10</text>
+  <circle cx="680.0" cy="415.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="426.0" x2="950.0" y2="426.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="440.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 11</text>
+  <circle cx="680.0" cy="437.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="448.0" x2="950.0" y2="448.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="462.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 12</text>
+  <circle cx="680.0" cy="459.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="470.0" x2="950.0" y2="470.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="484.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 13</text>
+  <circle cx="680.0" cy="481.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="492.0" x2="950.0" y2="492.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="506.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 14</text>
+  <circle cx="680.0" cy="503.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="514.0" x2="950.0" y2="514.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="528.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 15</text>
+  <circle cx="680.0" cy="525.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="680.0" y1="536.0" x2="950.0" y2="536.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="693.0" y="550.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic In 16</text>
+  <circle cx="680.0" cy="547.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="26.0" y="149.0" width="42.0" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="28.0" y="158.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Mic Pre</text>
+  <rect x="676.0" y="149.0" width="52.2" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="678.0" y="158.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Converter</text>
+  <rect x="900.0" y="26.0" width="280" height="76.0" rx="8" ry="8" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="910.0" y="38.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#475569">Connection Types</text>
+  <rect x="910.0" y="45.0" width="9" height="9" fill="#dc2626" rx="1" ry="1"/>
+  <text x="924.0" y="53.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Analog Audio (15)</text>
+  <text x="910.0" y="80.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">IN ports are left, OUT ports are right</text>
+  <text x="910.0" y="93.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">Unwired ports are light gray</text>
+</svg>

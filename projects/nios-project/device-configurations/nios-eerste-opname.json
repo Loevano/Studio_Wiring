@@ -1,0 +1,1350 @@
+{
+  "version": 1,
+  "title": "Studio Sidecar",
+  "families": {
+    "AUDIO": {
+      "prefix": "AUDIO",
+      "layer": "Audio Analog",
+      "signal_type": "Analog Audio",
+      "default_cable_type": "Analog"
+    },
+    "COMP": {
+      "prefix": "COMP",
+      "layer": "Computer/Data",
+      "signal_type": "Computer Data",
+      "default_cable_type": "Computer/Data"
+    },
+    "DIGI": {
+      "prefix": "DIGI",
+      "layer": "Digital Audio",
+      "signal_type": "Digital Audio",
+      "default_cable_type": "Digital Audio"
+    },
+    "NETWORK": {
+      "prefix": "NETWORK",
+      "layer": "Network",
+      "signal_type": "Network Data",
+      "default_cable_type": "Network"
+    }
+  },
+  "devices": [
+    {
+      "name": "Nios Converter",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "ports": [
+        {
+          "name": "Mic In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 0,
+          "group": {
+            "name": "Mic In",
+            "member": "1",
+            "index": 1,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 1,
+          "group": {
+            "name": "Mic In",
+            "member": "2",
+            "index": 2,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 2,
+          "group": {
+            "name": "Mic In",
+            "member": "3",
+            "index": 3,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 3,
+          "group": {
+            "name": "Mic In",
+            "member": "4",
+            "index": 4,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 4,
+          "group": {
+            "name": "Mic In",
+            "member": "5",
+            "index": 5,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 5,
+          "group": {
+            "name": "Mic In",
+            "member": "6",
+            "index": 6,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 6,
+          "group": {
+            "name": "Mic In",
+            "member": "7",
+            "index": 7,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 7,
+          "group": {
+            "name": "Mic In",
+            "member": "8",
+            "index": 8,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 9",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 8,
+          "group": {
+            "name": "Mic In",
+            "member": "9",
+            "index": 9,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 10",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 9,
+          "group": {
+            "name": "Mic In",
+            "member": "10",
+            "index": 10,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 11",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 10,
+          "group": {
+            "name": "Mic In",
+            "member": "11",
+            "index": 11,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 12",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 11,
+          "group": {
+            "name": "Mic In",
+            "member": "12",
+            "index": 12,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 13",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 12,
+          "group": {
+            "name": "Mic In",
+            "member": "13",
+            "index": 13,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 14",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 13,
+          "group": {
+            "name": "Mic In",
+            "member": "14",
+            "index": 14,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 15",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 14,
+          "group": {
+            "name": "Mic In",
+            "member": "15",
+            "index": 15,
+            "size": 16
+          }
+        },
+        {
+          "name": "Mic In 16",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 15,
+          "group": {
+            "name": "Mic In",
+            "member": "16",
+            "index": 16,
+            "size": 16
+          }
+        }
+      ],
+      "matrix_order": 0
+    },
+    {
+      "name": "Nios mic preamps",
+      "device_type": "Mic Pre",
+      "layout_group": "Converter",
+      "ports": [
+        {
+          "name": "MADI In 1",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MADI-OPT",
+          "order": 0,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false
+        },
+        {
+          "name": "Line In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 1,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "1",
+            "index": 1,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 2,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "2",
+            "index": 2,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 3,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "3",
+            "index": 3,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 4,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "4",
+            "index": 4,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 5,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "5",
+            "index": 5,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 6,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "6",
+            "index": 6,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 7,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "7",
+            "index": 7,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 8,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "8",
+            "index": 8,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 9",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 9,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "9",
+            "index": 9,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 10",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 10,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "10",
+            "index": 10,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 11",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 11,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "11",
+            "index": 11,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 12",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 12,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "12",
+            "index": 12,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 13",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 13,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "13",
+            "index": 13,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 14",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 14,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "14",
+            "index": 14,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 15",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 15,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "15",
+            "index": 15,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 16",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 16,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "16",
+            "index": 16,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 17",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 17,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "17",
+            "index": 17,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 18",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 18,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "18",
+            "index": 18,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 19",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 19,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "19",
+            "index": 19,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 20",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 20,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "20",
+            "index": 20,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 21",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 21,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "21",
+            "index": 21,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 22",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 22,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "22",
+            "index": 22,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 23",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 23,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "23",
+            "index": 23,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line In 24",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 24,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line In",
+            "member": "24",
+            "index": 24,
+            "size": 24
+          }
+        },
+        {
+          "name": "Wordclock In 1",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "BNC",
+          "order": 25,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false
+        },
+        {
+          "name": "Line Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 26,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "1",
+            "index": 1,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 27,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "2",
+            "index": 2,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 28,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "3",
+            "index": 3,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 29,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "4",
+            "index": 4,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 30,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "5",
+            "index": 5,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 31,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "6",
+            "index": 6,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 32,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "7",
+            "index": 7,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 33,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "8",
+            "index": 8,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 9",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 34,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "9",
+            "index": 9,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 10",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 35,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "10",
+            "index": 10,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 11",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 36,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "11",
+            "index": 11,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 12",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 37,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "12",
+            "index": 12,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 13",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 38,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "13",
+            "index": 13,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 14",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 39,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "14",
+            "index": 14,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 15",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 40,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "15",
+            "index": 15,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 16",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 41,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "16",
+            "index": 16,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 17",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 42,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "17",
+            "index": 17,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 18",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 43,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "18",
+            "index": 18,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 19",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 44,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "19",
+            "index": 19,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 20",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 45,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "20",
+            "index": 20,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 21",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 46,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "21",
+            "index": 21,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 22",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 47,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "22",
+            "index": 22,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 23",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 48,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "23",
+            "index": 23,
+            "size": 24
+          }
+        },
+        {
+          "name": "Line Out 24",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 49,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "group": {
+            "name": "Line Out",
+            "member": "24",
+            "index": 24,
+            "size": 24
+          }
+        },
+        {
+          "name": "MADI Out 1",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MADI-OPT",
+          "order": 50,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false
+        },
+        {
+          "name": "Wordclock Out 1",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "BNC",
+          "order": 51,
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false
+        }
+      ],
+      "matrix_order": 1
+    }
+  ],
+  "ui_config": {
+    "version": 1,
+    "updated_at": "2026-03-02T23:11:19.927Z",
+    "matrix": {
+      "patch_mode": "single",
+      "pair_count": 8,
+      "type_tag": "",
+      "allow_double_patching": false,
+      "sub_tab": "prototype",
+      "collapsed_source_groups": [],
+      "collapsed_dest_groups": [],
+      "collapsed_source_devices": [],
+      "collapsed_dest_devices": [],
+      "auto_collapsed_families": [],
+      "scale": {
+        "sourceWidth": 110,
+        "destWidth": 110,
+        "rowHeight": 26,
+        "firstRowHeight": 26,
+        "destHeaderHeight": 172
+      }
+    },
+    "editor": {
+      "selected_device_name": "Nios mic preamps",
+      "selected_port_tab": "in"
+    },
+    "visibility": {
+      "hidden_devices": [],
+      "device_order": [
+        "Nios Converter",
+        "Nios mic preamps"
+      ]
+    }
+  }
+}

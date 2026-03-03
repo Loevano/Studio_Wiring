@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "name": "Studio Sidecar",
+  "description": "Main studio project",
+  "paths": {
+    "device_model": "device-configurations/basis.json",
+    "default_patch": "patch-configurations/basis/patch-default.json",
+    "patch_directory": "patch-configurations",
+    "output_html_directory": "outputs/html",
+    "output_svg_directory": "outputs/svgs",
+    "output_debug_directory": "outputs/debug"
+  },
+  "device_patch_map": {
+    "device-configurations/studio-model-001.json": [
+      "patch-configurations/studio-model-001/patch-default.json"
+    ],
+    "device-configurations/basis.json": [
+      "patch-configurations/basis/patch-default.json"
+    ]
+  }
+}

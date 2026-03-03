@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "name": "Prototype Lab",
+  "description": "Standalone sandbox for matrix prototype testing",
+  "paths": {
+    "device_model": "device-configurations/studio-model.prototype.json",
+    "default_patch": "patch-configurations/patch-default.prototype.json"
+  }
+}

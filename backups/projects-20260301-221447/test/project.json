@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "name": "Test",
+  "description": "Template project",
+  "paths": {
+    "device_model": "device-configurations/Test.json",
+    "default_patch": "patch-configurations/Test/patch-default-001.json",
+    "patch_directory": "patch-configurations",
+    "output_html_directory": "outputs/html",
+    "output_svg_directory": "outputs/svgs",
+    "output_debug_directory": "outputs/debug"
+  },
+  "device_patch_map": {
+    "device-configurations/Test.json": [
+      "patch-configurations/Test/patch-default-001.json"
+    ]
+  }
+}

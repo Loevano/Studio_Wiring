@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "title": "Studio Sidecar",
+  "families": {
+    "AUDIO": {
+      "prefix": "AUDIO",
+      "layer": "Audio Analog",
+      "signal_type": "Analog Audio",
+      "default_cable_type": "Analog"
+    },
+    "COMP": {
+      "prefix": "COMP",
+      "layer": "Computer/Data",
+      "signal_type": "Computer Data",
+      "default_cable_type": "Computer/Data"
+    },
+    "DIGI": {
+      "prefix": "DIGI",
+      "layer": "Digital Audio",
+      "signal_type": "Digital Audio",
+      "default_cable_type": "Digital Audio"
+    },
+    "NETWORK": {
+      "prefix": "NETWORK",
+      "layer": "Network",
+      "signal_type": "Network Data",
+      "default_cable_type": "Network"
+    }
+  },
+  "devices": [],
+  "ui_config": {
+    "version": 1,
+    "theme": {
+      "mode": "light",
+      "explicit": false
+    },
+    "matrix": {
+      "type_tag": "",
+      "allow_double_patching": false,
+      "patch_mode": "single",
+      "pair_count": 8,
+      "sub_tab": "patch",
+      "collapsed_source_groups": [],
+      "collapsed_dest_groups": [],
+      "collapsed_source_devices": [],
+      "collapsed_dest_devices": [],
+      "auto_collapsed_families": []
+    },
+    "editor": {
+      "selected_device_name": "",
+      "selected_port_tab": "in"
+    },
+    "visibility": {
+      "hidden_devices": [],
+      "device_order": []
+    }
+  }
+}

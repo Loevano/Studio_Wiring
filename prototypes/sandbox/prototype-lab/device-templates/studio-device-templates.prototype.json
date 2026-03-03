@@ -1,0 +1,1131 @@
+{
+  "version": 1,
+  "title": "Prototype Device Templates",
+  "description": "Fast-add templates for common studio device categories in prototype mode.",
+  "templates": [
+    {
+      "name": "Audio Interface 8x8 + MIDI",
+      "category": "Interfaces / Converters",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "ports": [
+        {
+          "name": "Mic In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "1",
+            "index": 1,
+            "size": 4
+          }
+        },
+        {
+          "name": "Mic In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "2",
+            "index": 2,
+            "size": 4
+          }
+        },
+        {
+          "name": "Mic In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "3",
+            "index": 3,
+            "size": 4
+          }
+        },
+        {
+          "name": "Mic In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "4",
+            "index": 4,
+            "size": 4
+          }
+        },
+        {
+          "name": "Line In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "1",
+            "index": 1,
+            "size": 4
+          }
+        },
+        {
+          "name": "Line In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "2",
+            "index": 2,
+            "size": 4
+          }
+        },
+        {
+          "name": "Line In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "3",
+            "index": 3,
+            "size": 4
+          }
+        },
+        {
+          "name": "Line In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "4",
+            "index": 4,
+            "size": 4
+          }
+        },
+        {
+          "name": "Line Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        },
+        {
+          "name": "Headphone Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Headphone Out",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          }
+        },
+        {
+          "name": "Headphone Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Headphone Out",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          }
+        },
+        {
+          "name": "MIDI In 1",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI"
+        },
+        {
+          "name": "MIDI Out 1",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI"
+        },
+        {
+          "name": "USB 1",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB"
+        }
+      ]
+    },
+    {
+      "name": "AD/DA Converter 8x8",
+      "category": "Interfaces / Converters",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "ports": [
+        {
+          "name": "Analog In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog In",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog In",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog In",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog In",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog In",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog In",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog In",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog In",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog Out",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog Out",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog Out",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog Out",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog Out",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog Out",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog Out",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "Analog Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Analog Out",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        },
+        {
+          "name": "AES In 1",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES"
+        },
+        {
+          "name": "AES Out 1",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES"
+        },
+        {
+          "name": "MADI In 1",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MADI-OPT"
+        },
+        {
+          "name": "MADI Out 1",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MADI-OPT"
+        }
+      ]
+    },
+    {
+      "name": "MIDI Controller Surface",
+      "category": "MIDI Controllers",
+      "device_type": "Controller",
+      "layout_group": "Control",
+      "ports": [
+        {
+          "name": "MIDI Out 1",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "1",
+            "index": 1,
+            "size": 4
+          }
+        },
+        {
+          "name": "MIDI Out 2",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "2",
+            "index": 2,
+            "size": 4
+          }
+        },
+        {
+          "name": "MIDI Out 3",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "3",
+            "index": 3,
+            "size": 4
+          }
+        },
+        {
+          "name": "MIDI Out 4",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "4",
+            "index": 4,
+            "size": 4
+          }
+        },
+        {
+          "name": "MIDI In 1",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI"
+        },
+        {
+          "name": "OSC In 1",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "OSC"
+        },
+        {
+          "name": "OSC Out 1",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "OSC"
+        },
+        {
+          "name": "USB 1",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB"
+        }
+      ]
+    },
+    {
+      "name": "MIDI Interface 8x8",
+      "category": "MIDI Interfaces",
+      "device_type": "MIDI Interface",
+      "layout_group": "Control",
+      "ports": [
+        {
+          "name": "MIDI In 1",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI In 2",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI In 3",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI In 4",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI In 5",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI In 6",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI In 7",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI In 8",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI Out 1",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI Out 2",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI Out 3",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI Out 4",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI Out 5",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI Out 6",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI Out 7",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "MIDI Out 8",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        },
+        {
+          "name": "USB 1",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB"
+        }
+      ]
+    },
+    {
+      "name": "DANTE Bridge 8x8",
+      "category": "Network Audio",
+      "device_type": "Network Audio Interface",
+      "layout_group": "Network Audio",
+      "ports": [
+        {
+          "name": "DANTE In 1",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE In",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE In 2",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE In",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE In 3",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE In",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE In 4",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE In",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE In 5",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE In",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE In 6",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE In",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE In 7",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE In",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE In 8",
+          "direction": "in",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE In",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE Out 1",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE Out",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE Out 2",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE Out",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE Out 3",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE Out",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE Out 4",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE Out",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE Out 5",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE Out",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE Out 6",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE Out",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE Out 7",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE Out",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "DANTE Out 8",
+          "direction": "out",
+          "families": [
+            "CONTROL"
+          ],
+          "transport": "DANTE",
+          "group": {
+            "name": "DANTE Out",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        },
+        {
+          "name": "Ethernet 1",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "CAT6"
+        }
+      ]
+    }
+  ]
+}

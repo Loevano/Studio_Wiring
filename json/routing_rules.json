@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "labels": {
+    "source_side": "above",
+    "destination_side": "below",
+    "font_size": 7.0
+  },
+  "routing": {
+    "fifo_forward_turns": true,
+    "backward_out_to_in_wrap": "below",
+    "video_early_turn": true,
+    "video_vertical_rows_threshold": 6.0
+  }
+}

@@ -1,0 +1,385 @@
+{
+  "version": 1,
+  "title": "Studio Sidecar",
+  "families": {
+    "AUDIO": {
+      "prefix": "AUDIO",
+      "layer": "Audio Analog",
+      "signal_type": "Analog Audio",
+      "default_cable_type": "Analog"
+    },
+    "COMP": {
+      "prefix": "COMP",
+      "layer": "Computer/Data",
+      "signal_type": "Computer Data",
+      "default_cable_type": "Computer/Data"
+    },
+    "DIGI": {
+      "prefix": "DIGI",
+      "layer": "Digital Audio",
+      "signal_type": "Digital Audio",
+      "default_cable_type": "Digital Audio"
+    },
+    "NETWORK": {
+      "prefix": "NETWORK",
+      "layer": "Network",
+      "signal_type": "Network Data",
+      "default_cable_type": "Network"
+    }
+  },
+  "devices": [
+    {
+      "name": "Focusrite 18i20",
+      "device_type": "Converter",
+      "layout_group": "Converter",
+      "ports": [
+        {
+          "name": "Mic In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 0,
+          "group": {
+            "name": "Mic In",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "Mic In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 1,
+          "group": {
+            "name": "Mic In",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "Mic In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 2,
+          "group": {
+            "name": "Mic In",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "Mic In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 3,
+          "group": {
+            "name": "Mic In",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "Mic In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 4,
+          "group": {
+            "name": "Mic In",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "Mic In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 5,
+          "group": {
+            "name": "Mic In",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "Mic In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 6,
+          "group": {
+            "name": "Mic In",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "Mic In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 7,
+          "group": {
+            "name": "Mic In",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 8,
+          "group": {
+            "name": "Line Out",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 9,
+          "group": {
+            "name": "Line Out",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 10,
+          "group": {
+            "name": "Line Out",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 11,
+          "group": {
+            "name": "Line Out",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 12,
+          "group": {
+            "name": "Line Out",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 13,
+          "group": {
+            "name": "Line Out",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 14,
+          "group": {
+            "name": "Line Out",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "Line Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 15,
+          "group": {
+            "name": "Line Out",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        }
+      ],
+      "matrix_order": 0
+    }
+  ],
+  "ui_config": {
+    "version": 1,
+    "updated_at": "2026-03-01T20:42:43.442Z",
+    "theme": {
+      "mode": "light",
+      "explicit": false
+    },
+    "matrix": {
+      "patch_mode": "single",
+      "pair_count": 8,
+      "type_tag": "",
+      "allow_double_patching": false,
+      "override_new_links": false,
+      "sub_tab": "prototype",
+      "collapsed_source_groups": [],
+      "collapsed_dest_groups": [],
+      "collapsed_source_devices": [],
+      "collapsed_dest_devices": [],
+      "auto_collapsed_families": [
+        "ALL",
+        "AUDIO"
+      ],
+      "scale": {
+        "sourceWidth": 80,
+        "destWidth": 55,
+        "rowHeight": 27,
+        "firstRowHeight": 55,
+        "destHeaderHeight": 120
+      }
+    },
+    "editor": {
+      "selected_device_name": "Focusrite 18i20",
+      "selected_port_tab": "out"
+    },
+    "visibility": {
+      "hidden_devices": [],
+      "device_order": [
+        "Focusrite 18i20"
+      ]
+    }
+  }
+}

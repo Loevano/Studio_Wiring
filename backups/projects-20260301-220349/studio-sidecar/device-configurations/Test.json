@@ -1,0 +1,694 @@
+{
+  "version": 1,
+  "title": "Studio Sidecar",
+  "families": {
+    "AUDIO": {
+      "prefix": "AUDIO",
+      "layer": "Audio Analog",
+      "signal_type": "Analog Audio",
+      "default_cable_type": "Analog"
+    },
+    "COMP": {
+      "prefix": "COMP",
+      "layer": "Computer/Data",
+      "signal_type": "Computer Data",
+      "default_cable_type": "Computer/Data"
+    },
+    "DIGI": {
+      "prefix": "DIGI",
+      "layer": "Digital Audio",
+      "signal_type": "Digital Audio",
+      "default_cable_type": "Digital Audio"
+    },
+    "NETWORK": {
+      "prefix": "NETWORK",
+      "layer": "Network",
+      "signal_type": "Network Data",
+      "default_cable_type": "Network"
+    },
+    "CONTROL": {
+      "prefix": "CONTROL",
+      "layer": "Control",
+      "signal_type": "Control Data",
+      "default_cable_type": "Control"
+    }
+  },
+  "devices": [
+    {
+      "name": "QL1",
+      "device_type": "Interface",
+      "layout_group": "Interface",
+      "ports": [
+        {
+          "name": "Mic In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 0,
+          "group": {
+            "name": "Mic In",
+            "member": "1",
+            "index": 1,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 1,
+          "group": {
+            "name": "Mic In",
+            "member": "2",
+            "index": 2,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 2,
+          "group": {
+            "name": "Mic In",
+            "member": "3",
+            "index": 3,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 3,
+          "group": {
+            "name": "Mic In",
+            "member": "4",
+            "index": 4,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 4,
+          "group": {
+            "name": "Mic In",
+            "member": "5",
+            "index": 5,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 5,
+          "group": {
+            "name": "Mic In",
+            "member": "6",
+            "index": 6,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 6,
+          "group": {
+            "name": "Mic In",
+            "member": "7",
+            "index": 7,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 7,
+          "group": {
+            "name": "Mic In",
+            "member": "8",
+            "index": 8,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 9",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 8,
+          "group": {
+            "name": "Mic In",
+            "member": "9",
+            "index": 9,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 10",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 9,
+          "group": {
+            "name": "Mic In",
+            "member": "10",
+            "index": 10,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 11",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 10,
+          "group": {
+            "name": "Mic In",
+            "member": "11",
+            "index": 11,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 12",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 11,
+          "group": {
+            "name": "Mic In",
+            "member": "12",
+            "index": 12,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 13",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 12,
+          "group": {
+            "name": "Mic In",
+            "member": "13",
+            "index": 13,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 14",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 13,
+          "group": {
+            "name": "Mic In",
+            "member": "14",
+            "index": 14,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 15",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 14,
+          "group": {
+            "name": "Mic In",
+            "member": "15",
+            "index": 15,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 16",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 15,
+          "group": {
+            "name": "Mic In",
+            "member": "16",
+            "index": 16,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 17",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 16,
+          "group": {
+            "name": "Mic In",
+            "member": "17",
+            "index": 17,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 18",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 17,
+          "group": {
+            "name": "Mic In",
+            "member": "18",
+            "index": 18,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 19",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 18,
+          "group": {
+            "name": "Mic In",
+            "member": "19",
+            "index": 19,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 20",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 19,
+          "group": {
+            "name": "Mic In",
+            "member": "20",
+            "index": 20,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 21",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 20,
+          "group": {
+            "name": "Mic In",
+            "member": "21",
+            "index": 21,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 22",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 21,
+          "group": {
+            "name": "Mic In",
+            "member": "22",
+            "index": 22,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 23",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 22,
+          "group": {
+            "name": "Mic In",
+            "member": "23",
+            "index": 23,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 24",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 23,
+          "group": {
+            "name": "Mic In",
+            "member": "24",
+            "index": 24,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 25",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 24,
+          "group": {
+            "name": "Mic In",
+            "member": "25",
+            "index": 25,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 26",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 25,
+          "group": {
+            "name": "Mic In",
+            "member": "26",
+            "index": 26,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 27",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 26,
+          "group": {
+            "name": "Mic In",
+            "member": "27",
+            "index": 27,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 28",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 27,
+          "group": {
+            "name": "Mic In",
+            "member": "28",
+            "index": 28,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 29",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 28,
+          "group": {
+            "name": "Mic In",
+            "member": "29",
+            "index": 29,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 30",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 29,
+          "group": {
+            "name": "Mic In",
+            "member": "30",
+            "index": 30,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 31",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 30,
+          "group": {
+            "name": "Mic In",
+            "member": "31",
+            "index": 31,
+            "size": 32
+          }
+        },
+        {
+          "name": "Mic In 32",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 31,
+          "group": {
+            "name": "Mic In",
+            "member": "32",
+            "index": 32,
+            "size": 32
+          }
+        }
+      ],
+      "matrix_order": 0
+    }
+  ],
+  "ui_config": {
+    "version": 1,
+    "updated_at": "2026-03-01T13:37:08.274Z",
+    "theme": {
+      "mode": "light",
+      "explicit": false
+    },
+    "matrix": {
+      "patch_mode": "single",
+      "pair_count": 8,
+      "type_tag": "",
+      "allow_double_patching": false,
+      "override_new_links": false,
+      "sub_tab": "patch",
+      "collapsed_source_groups": [],
+      "collapsed_dest_groups": [],
+      "collapsed_source_devices": [],
+      "collapsed_dest_devices": [],
+      "auto_collapsed_families": [
+        "ALL"
+      ],
+      "scale": {
+        "sourceWidth": 80,
+        "destWidth": 55,
+        "rowHeight": 27,
+        "firstRowHeight": 55,
+        "destHeaderHeight": 120
+      }
+    },
+    "editor": {
+      "selected_device_name": "QL1",
+      "selected_port_tab": "in"
+    },
+    "visibility": {
+      "hidden_devices": [],
+      "device_order": [
+        "QL1"
+      ]
+    }
+  }
+}

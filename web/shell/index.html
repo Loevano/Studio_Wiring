@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Core document metadata and shared shell styling. -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Routing Matrix Shell</title>
+  <link rel="stylesheet" href="../shared/styles/tokens.css" />
+  <link rel="stylesheet" href="../shared/styles/base.css" />
+</head>
+<body>
+  <!-- Shell page wrapper: header, tab buttons, and loaded tab iframe. -->
+  <div class="shell-page">
+    <!-- Top header panel: title and theme toggle. -->
+    <div class="shell-panel shell-head">
+      <div>
+        <div class="shell-title">Routing Matrix Shell</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button id="shellThemeToggle" class="shell-tab-btn" type="button">Dark Mode: Off</button>
+      </div>
+    </div>
+
+    <!-- Dynamic tab button container populated by `shell.js`. -->
+    <div class="shell-panel">
+      <div class="shell-tabrow">
+        <div id="shellTabBar" class="shell-tabbar"></div>
+        <div class="shell-tab-actions">
+          <button id="shellAutoSaveToggle" class="shell-tab-btn" type="button" title="Enable automatic save after edits">Auto Save: Off</button>
+          <button id="shellCopyDebugReportBtn" class="shell-tab-btn" type="button">Copy Debug Report</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active tab content is loaded in this iframe. -->
+    <div class="shell-frame-wrap">
+      <iframe id="shellTabFrame" class="shell-frame" title="Routing Tab Frame" loading="eager"></iframe>
+    </div>
+  </div>
+
+  <!-- Shell controller: loads manifest, renders tabs, and syncs theme. -->
+  <script src="./shell.js"></script>
+</body>
+</html>

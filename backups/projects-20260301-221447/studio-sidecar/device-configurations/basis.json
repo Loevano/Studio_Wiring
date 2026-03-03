@@ -1,0 +1,6975 @@
+{
+  "version": 1,
+  "title": "Studio Sidecar",
+  "families": {
+    "AUDIO": {
+      "prefix": "AUDIO",
+      "layer": "Audio Analog",
+      "signal_type": "Analog Audio",
+      "default_cable_type": "Analog"
+    },
+    "COMP": {
+      "prefix": "COMP",
+      "layer": "Computer/Data",
+      "signal_type": "Computer Data",
+      "default_cable_type": "Computer/Data"
+    },
+    "DIGI": {
+      "prefix": "DIGI",
+      "layer": "Digital Audio",
+      "signal_type": "Digital Audio",
+      "default_cable_type": "Digital Audio"
+    },
+    "NETWORK": {
+      "prefix": "NETWORK",
+      "layer": "Network",
+      "signal_type": "Network Data",
+      "default_cable_type": "Network"
+    }
+  },
+  "devices": [
+    {
+      "name": "Allen & Heath GS3000",
+      "device_type": "Console / Mixer",
+      "layout_group": "Analog Front End",
+      "ports": [
+        {
+          "name": "Mic In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "1",
+            "index": 1,
+            "size": 32
+          },
+          "order": 0
+        },
+        {
+          "name": "Mic In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "2",
+            "index": 2,
+            "size": 32
+          },
+          "order": 1
+        },
+        {
+          "name": "Mic In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "3",
+            "index": 3,
+            "size": 32
+          },
+          "order": 2
+        },
+        {
+          "name": "Mic In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "4",
+            "index": 4,
+            "size": 32
+          },
+          "order": 3
+        },
+        {
+          "name": "Mic In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "5",
+            "index": 5,
+            "size": 32
+          },
+          "order": 4
+        },
+        {
+          "name": "Mic In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "6",
+            "index": 6,
+            "size": 32
+          },
+          "order": 5
+        },
+        {
+          "name": "Mic In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "7",
+            "index": 7,
+            "size": 32
+          },
+          "order": 6
+        },
+        {
+          "name": "Mic In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "8",
+            "index": 8,
+            "size": 32
+          },
+          "order": 7
+        },
+        {
+          "name": "Mic In 9",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "9",
+            "index": 9,
+            "size": 32
+          },
+          "order": 8
+        },
+        {
+          "name": "Mic In 10",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "10",
+            "index": 10,
+            "size": 32
+          },
+          "order": 9
+        },
+        {
+          "name": "Mic In 11",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "11",
+            "index": 11,
+            "size": 32
+          },
+          "order": 10
+        },
+        {
+          "name": "Mic In 12",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "12",
+            "index": 12,
+            "size": 32
+          },
+          "order": 11
+        },
+        {
+          "name": "Mic In 13",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "13",
+            "index": 13,
+            "size": 32
+          },
+          "order": 12
+        },
+        {
+          "name": "Mic In 14",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "14",
+            "index": 14,
+            "size": 32
+          },
+          "order": 13
+        },
+        {
+          "name": "Mic In 15",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "15",
+            "index": 15,
+            "size": 32
+          },
+          "order": 14
+        },
+        {
+          "name": "Mic In 16",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "16",
+            "index": 16,
+            "size": 32
+          },
+          "order": 15
+        },
+        {
+          "name": "Mic In 17",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "17",
+            "index": 17,
+            "size": 32
+          },
+          "order": 16
+        },
+        {
+          "name": "Mic In 18",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "18",
+            "index": 18,
+            "size": 32
+          },
+          "order": 17
+        },
+        {
+          "name": "Mic In 19",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "19",
+            "index": 19,
+            "size": 32
+          },
+          "order": 18
+        },
+        {
+          "name": "Mic In 20",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "20",
+            "index": 20,
+            "size": 32
+          },
+          "order": 19
+        },
+        {
+          "name": "Mic In 21",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "21",
+            "index": 21,
+            "size": 32
+          },
+          "order": 20
+        },
+        {
+          "name": "Mic In 22",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "22",
+            "index": 22,
+            "size": 32
+          },
+          "order": 21
+        },
+        {
+          "name": "Mic In 23",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "23",
+            "index": 23,
+            "size": 32
+          },
+          "order": 22
+        },
+        {
+          "name": "Mic In 24",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "24",
+            "index": 24,
+            "size": 32
+          },
+          "order": 23
+        },
+        {
+          "name": "Mic In 25",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "25",
+            "index": 25,
+            "size": 32
+          },
+          "order": 24
+        },
+        {
+          "name": "Mic In 26",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "26",
+            "index": 26,
+            "size": 32
+          },
+          "order": 25
+        },
+        {
+          "name": "Mic In 27",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "27",
+            "index": 27,
+            "size": 32
+          },
+          "order": 26
+        },
+        {
+          "name": "Mic In 28",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "28",
+            "index": 28,
+            "size": 32
+          },
+          "order": 27
+        },
+        {
+          "name": "Mic In 29",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "29",
+            "index": 29,
+            "size": 32
+          },
+          "order": 28
+        },
+        {
+          "name": "Mic In 30",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "30",
+            "index": 30,
+            "size": 32
+          },
+          "order": 29
+        },
+        {
+          "name": "Mic In 31",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "31",
+            "index": 31,
+            "size": 32
+          },
+          "order": 30
+        },
+        {
+          "name": "Mic In 32",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In",
+            "member": "32",
+            "index": 32,
+            "size": 32
+          },
+          "order": 31
+        },
+        {
+          "name": "Line In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "1",
+            "index": 1,
+            "size": 24
+          },
+          "order": 32
+        },
+        {
+          "name": "Line In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "2",
+            "index": 2,
+            "size": 24
+          },
+          "order": 33
+        },
+        {
+          "name": "Line In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "3",
+            "index": 3,
+            "size": 24
+          },
+          "order": 34
+        },
+        {
+          "name": "Line In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "4",
+            "index": 4,
+            "size": 24
+          },
+          "order": 35
+        },
+        {
+          "name": "Line In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "5",
+            "index": 5,
+            "size": 24
+          },
+          "order": 36
+        },
+        {
+          "name": "Line In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "6",
+            "index": 6,
+            "size": 24
+          },
+          "order": 37
+        },
+        {
+          "name": "Line In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "7",
+            "index": 7,
+            "size": 24
+          },
+          "order": 38
+        },
+        {
+          "name": "Line In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "8",
+            "index": 8,
+            "size": 24
+          },
+          "order": 39
+        },
+        {
+          "name": "Line In 9",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "9",
+            "index": 9,
+            "size": 24
+          },
+          "order": 40
+        },
+        {
+          "name": "Line In 10",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "10",
+            "index": 10,
+            "size": 24
+          },
+          "order": 41
+        },
+        {
+          "name": "Line In 11",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "11",
+            "index": 11,
+            "size": 24
+          },
+          "order": 42
+        },
+        {
+          "name": "Line In 12",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "12",
+            "index": 12,
+            "size": 24
+          },
+          "order": 43
+        },
+        {
+          "name": "Line In 13",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "13",
+            "index": 13,
+            "size": 24
+          },
+          "order": 44
+        },
+        {
+          "name": "Line In 14",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "14",
+            "index": 14,
+            "size": 24
+          },
+          "order": 45
+        },
+        {
+          "name": "Line In 15",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "15",
+            "index": 15,
+            "size": 24
+          },
+          "order": 46
+        },
+        {
+          "name": "Line In 16",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "16",
+            "index": 16,
+            "size": 24
+          },
+          "order": 47
+        },
+        {
+          "name": "Line In 17",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "17",
+            "index": 17,
+            "size": 24
+          },
+          "order": 48
+        },
+        {
+          "name": "Line In 18",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "18",
+            "index": 18,
+            "size": 24
+          },
+          "order": 49
+        },
+        {
+          "name": "Line In 19",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "19",
+            "index": 19,
+            "size": 24
+          },
+          "order": 50
+        },
+        {
+          "name": "Line In 20",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "20",
+            "index": 20,
+            "size": 24
+          },
+          "order": 51
+        },
+        {
+          "name": "Line In 21",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "21",
+            "index": 21,
+            "size": 24
+          },
+          "order": 52
+        },
+        {
+          "name": "Line In 22",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "22",
+            "index": 22,
+            "size": 24
+          },
+          "order": 53
+        },
+        {
+          "name": "Line In 23",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "23",
+            "index": 23,
+            "size": 24
+          },
+          "order": 54
+        },
+        {
+          "name": "Line In 24",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "24",
+            "index": 24,
+            "size": 24
+          },
+          "order": 55
+        },
+        {
+          "name": "Tape In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "1",
+            "index": 1,
+            "size": 16
+          },
+          "order": 56
+        },
+        {
+          "name": "Tape In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "2",
+            "index": 2,
+            "size": 16
+          },
+          "order": 57
+        },
+        {
+          "name": "Tape In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "3",
+            "index": 3,
+            "size": 16
+          },
+          "order": 58
+        },
+        {
+          "name": "Tape In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "4",
+            "index": 4,
+            "size": 16
+          },
+          "order": 59
+        },
+        {
+          "name": "Tape In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "5",
+            "index": 5,
+            "size": 16
+          },
+          "order": 60
+        },
+        {
+          "name": "Tape In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "6",
+            "index": 6,
+            "size": 16
+          },
+          "order": 61
+        },
+        {
+          "name": "Tape In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "7",
+            "index": 7,
+            "size": 16
+          },
+          "order": 62
+        },
+        {
+          "name": "Tape In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "8",
+            "index": 8,
+            "size": 16
+          },
+          "order": 63
+        },
+        {
+          "name": "Tape In 9",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "9",
+            "index": 9,
+            "size": 16
+          },
+          "order": 64
+        },
+        {
+          "name": "Tape In 10",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "10",
+            "index": 10,
+            "size": 16
+          },
+          "order": 65
+        },
+        {
+          "name": "Tape In 11",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "11",
+            "index": 11,
+            "size": 16
+          },
+          "order": 66
+        },
+        {
+          "name": "Tape In 12",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "12",
+            "index": 12,
+            "size": 16
+          },
+          "order": 67
+        },
+        {
+          "name": "Tape In 13",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "13",
+            "index": 13,
+            "size": 16
+          },
+          "order": 68
+        },
+        {
+          "name": "Tape In 14",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "14",
+            "index": 14,
+            "size": 16
+          },
+          "order": 69
+        },
+        {
+          "name": "Tape In 15",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "15",
+            "index": 15,
+            "size": 16
+          },
+          "order": 70
+        },
+        {
+          "name": "Tape In 16",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape In",
+            "member": "16",
+            "index": 16,
+            "size": 16
+          },
+          "order": 71
+        },
+        {
+          "name": "Tape In 17",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 72,
+          "group": {
+            "name": "Tape In",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "Tape In 18",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 73,
+          "group": {
+            "name": "Tape In",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "Tape In 19",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 74,
+          "group": {
+            "name": "Tape In",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "Tape In 20",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 75,
+          "group": {
+            "name": "Tape In",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "Tape In 21",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 76,
+          "group": {
+            "name": "Tape In",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "Tape In 22",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 77,
+          "group": {
+            "name": "Tape In",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "Tape In 23",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 78,
+          "group": {
+            "name": "Tape In",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "Tape In 24",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "visible": true,
+          "hidden": false,
+          "enabled": true,
+          "disabled": false,
+          "order": 79,
+          "group": {
+            "name": "Tape In",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        },
+        {
+          "name": "Insert Return 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "1",
+            "index": 1,
+            "size": 32
+          },
+          "order": 80
+        },
+        {
+          "name": "Insert Return 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "2",
+            "index": 2,
+            "size": 32
+          },
+          "order": 81
+        },
+        {
+          "name": "Insert Return 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "3",
+            "index": 3,
+            "size": 32
+          },
+          "order": 82
+        },
+        {
+          "name": "Insert Return 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "4",
+            "index": 4,
+            "size": 32
+          },
+          "order": 83
+        },
+        {
+          "name": "Insert Return 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "5",
+            "index": 5,
+            "size": 32
+          },
+          "order": 84
+        },
+        {
+          "name": "Insert Return 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "6",
+            "index": 6,
+            "size": 32
+          },
+          "order": 85
+        },
+        {
+          "name": "Insert Return 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "7",
+            "index": 7,
+            "size": 32
+          },
+          "order": 86
+        },
+        {
+          "name": "Insert Return 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "8",
+            "index": 8,
+            "size": 32
+          },
+          "order": 87
+        },
+        {
+          "name": "Insert Return 9",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "9",
+            "index": 9,
+            "size": 32
+          },
+          "order": 88
+        },
+        {
+          "name": "Insert Return 10",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "10",
+            "index": 10,
+            "size": 32
+          },
+          "order": 89
+        },
+        {
+          "name": "Insert Return 11",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "11",
+            "index": 11,
+            "size": 32
+          },
+          "order": 90
+        },
+        {
+          "name": "Insert Return 12",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "12",
+            "index": 12,
+            "size": 32
+          },
+          "order": 91
+        },
+        {
+          "name": "Insert Return 13",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "13",
+            "index": 13,
+            "size": 32
+          },
+          "order": 92
+        },
+        {
+          "name": "Insert Return 14",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "14",
+            "index": 14,
+            "size": 32
+          },
+          "order": 93
+        },
+        {
+          "name": "Insert Return 15",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "15",
+            "index": 15,
+            "size": 32
+          },
+          "order": 94
+        },
+        {
+          "name": "Insert Return 16",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "16",
+            "index": 16,
+            "size": 32
+          },
+          "order": 95
+        },
+        {
+          "name": "Insert Return 17",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "17",
+            "index": 17,
+            "size": 32
+          },
+          "order": 96
+        },
+        {
+          "name": "Insert Return 18",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "18",
+            "index": 18,
+            "size": 32
+          },
+          "order": 97
+        },
+        {
+          "name": "Insert Return 19",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "19",
+            "index": 19,
+            "size": 32
+          },
+          "order": 98
+        },
+        {
+          "name": "Insert Return 20",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "20",
+            "index": 20,
+            "size": 32
+          },
+          "order": 99
+        },
+        {
+          "name": "Insert Return 21",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "21",
+            "index": 21,
+            "size": 32
+          },
+          "order": 100
+        },
+        {
+          "name": "Insert Return 22",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "22",
+            "index": 22,
+            "size": 32
+          },
+          "order": 101
+        },
+        {
+          "name": "Insert Return 23",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "23",
+            "index": 23,
+            "size": 32
+          },
+          "order": 102
+        },
+        {
+          "name": "Insert Return 24",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "24",
+            "index": 24,
+            "size": 32
+          },
+          "order": 103
+        },
+        {
+          "name": "Insert Return 25",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "25",
+            "index": 25,
+            "size": 32
+          },
+          "order": 104
+        },
+        {
+          "name": "Insert Return 26",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "26",
+            "index": 26,
+            "size": 32
+          },
+          "order": 105
+        },
+        {
+          "name": "Insert Return 27",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "27",
+            "index": 27,
+            "size": 32
+          },
+          "order": 106
+        },
+        {
+          "name": "Insert Return 28",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "28",
+            "index": 28,
+            "size": 32
+          },
+          "order": 107
+        },
+        {
+          "name": "Insert Return 29",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "29",
+            "index": 29,
+            "size": 32
+          },
+          "order": 108
+        },
+        {
+          "name": "Insert Return 30",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "30",
+            "index": 30,
+            "size": 32
+          },
+          "order": 109
+        },
+        {
+          "name": "Insert Return 31",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "31",
+            "index": 31,
+            "size": 32
+          },
+          "order": 110
+        },
+        {
+          "name": "Insert Return 32",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return",
+            "member": "32",
+            "index": 32,
+            "size": 32
+          },
+          "order": 111
+        },
+        {
+          "name": "ST Aux In 1 L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "ST Aux In",
+            "member": "1 L",
+            "index": 1,
+            "size": 8
+          },
+          "order": 112
+        },
+        {
+          "name": "ST Aux In 1 R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "ST Aux In",
+            "member": "1 R",
+            "index": 2,
+            "size": 8
+          },
+          "order": 113
+        },
+        {
+          "name": "ST Aux In 2 L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "ST Aux In",
+            "member": "2 L",
+            "index": 3,
+            "size": 8
+          },
+          "order": 114
+        },
+        {
+          "name": "ST Aux In 2 R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "ST Aux In",
+            "member": "2 R",
+            "index": 4,
+            "size": 8
+          },
+          "order": 115
+        },
+        {
+          "name": "ST Aux In 3 L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "ST Aux In",
+            "member": "3 L",
+            "index": 5,
+            "size": 8
+          },
+          "order": 116
+        },
+        {
+          "name": "ST Aux In 3 R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "ST Aux In",
+            "member": "3 R",
+            "index": 6,
+            "size": 8
+          },
+          "order": 117
+        },
+        {
+          "name": "ST Aux In 4 L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "ST Aux In",
+            "member": "4 L",
+            "index": 7,
+            "size": 8
+          },
+          "order": 118
+        },
+        {
+          "name": "ST Aux In 4 R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "ST Aux In",
+            "member": "4 R",
+            "index": 8,
+            "size": 8
+          },
+          "order": 119
+        },
+        {
+          "name": "Monitor In L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Monitor In",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 120
+        },
+        {
+          "name": "Monitor In R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Monitor In",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 121
+        },
+        {
+          "name": "Direct Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "1",
+            "index": 1,
+            "size": 32
+          },
+          "order": 122
+        },
+        {
+          "name": "Direct Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "2",
+            "index": 2,
+            "size": 32
+          },
+          "order": 123
+        },
+        {
+          "name": "Direct Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "3",
+            "index": 3,
+            "size": 32
+          },
+          "order": 124
+        },
+        {
+          "name": "Direct Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "4",
+            "index": 4,
+            "size": 32
+          },
+          "order": 125
+        },
+        {
+          "name": "Direct Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "5",
+            "index": 5,
+            "size": 32
+          },
+          "order": 126
+        },
+        {
+          "name": "Direct Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "6",
+            "index": 6,
+            "size": 32
+          },
+          "order": 127
+        },
+        {
+          "name": "Direct Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "7",
+            "index": 7,
+            "size": 32
+          },
+          "order": 128
+        },
+        {
+          "name": "Direct Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "8",
+            "index": 8,
+            "size": 32
+          },
+          "order": 129
+        },
+        {
+          "name": "Direct Out 9",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "9",
+            "index": 9,
+            "size": 32
+          },
+          "order": 130
+        },
+        {
+          "name": "Direct Out 10",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "10",
+            "index": 10,
+            "size": 32
+          },
+          "order": 131
+        },
+        {
+          "name": "Direct Out 11",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "11",
+            "index": 11,
+            "size": 32
+          },
+          "order": 132
+        },
+        {
+          "name": "Direct Out 12",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "12",
+            "index": 12,
+            "size": 32
+          },
+          "order": 133
+        },
+        {
+          "name": "Direct Out 13",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "13",
+            "index": 13,
+            "size": 32
+          },
+          "order": 134
+        },
+        {
+          "name": "Direct Out 14",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "14",
+            "index": 14,
+            "size": 32
+          },
+          "order": 135
+        },
+        {
+          "name": "Direct Out 15",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "15",
+            "index": 15,
+            "size": 32
+          },
+          "order": 136
+        },
+        {
+          "name": "Direct Out 16",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "16",
+            "index": 16,
+            "size": 32
+          },
+          "order": 137
+        },
+        {
+          "name": "Direct Out 17",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "17",
+            "index": 17,
+            "size": 32
+          },
+          "order": 138
+        },
+        {
+          "name": "Direct Out 18",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "18",
+            "index": 18,
+            "size": 32
+          },
+          "order": 139
+        },
+        {
+          "name": "Direct Out 19",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "19",
+            "index": 19,
+            "size": 32
+          },
+          "order": 140
+        },
+        {
+          "name": "Direct Out 20",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "20",
+            "index": 20,
+            "size": 32
+          },
+          "order": 141
+        },
+        {
+          "name": "Direct Out 21",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "21",
+            "index": 21,
+            "size": 32
+          },
+          "order": 142
+        },
+        {
+          "name": "Direct Out 22",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "22",
+            "index": 22,
+            "size": 32
+          },
+          "order": 143
+        },
+        {
+          "name": "Direct Out 23",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "23",
+            "index": 23,
+            "size": 32
+          },
+          "order": 144
+        },
+        {
+          "name": "Direct Out 24",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "24",
+            "index": 24,
+            "size": 32
+          },
+          "order": 145
+        },
+        {
+          "name": "Direct Out 25",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "25",
+            "index": 25,
+            "size": 32
+          },
+          "order": 146
+        },
+        {
+          "name": "Direct Out 26",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "26",
+            "index": 26,
+            "size": 32
+          },
+          "order": 147
+        },
+        {
+          "name": "Direct Out 27",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "27",
+            "index": 27,
+            "size": 32
+          },
+          "order": 148
+        },
+        {
+          "name": "Direct Out 28",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "28",
+            "index": 28,
+            "size": 32
+          },
+          "order": 149
+        },
+        {
+          "name": "Direct Out 29",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "29",
+            "index": 29,
+            "size": 32
+          },
+          "order": 150
+        },
+        {
+          "name": "Direct Out 30",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "30",
+            "index": 30,
+            "size": 32
+          },
+          "order": 151
+        },
+        {
+          "name": "Direct Out 31",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "31",
+            "index": 31,
+            "size": 32
+          },
+          "order": 152
+        },
+        {
+          "name": "Direct Out 32",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Direct Out",
+            "member": "32",
+            "index": 32,
+            "size": 32
+          },
+          "order": 153
+        },
+        {
+          "name": "Insert Send 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "1",
+            "index": 1,
+            "size": 32
+          },
+          "order": 154
+        },
+        {
+          "name": "Insert Send 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "2",
+            "index": 2,
+            "size": 32
+          },
+          "order": 155
+        },
+        {
+          "name": "Insert Send 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "3",
+            "index": 3,
+            "size": 32
+          },
+          "order": 156
+        },
+        {
+          "name": "Insert Send 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "4",
+            "index": 4,
+            "size": 32
+          },
+          "order": 157
+        },
+        {
+          "name": "Insert Send 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "5",
+            "index": 5,
+            "size": 32
+          },
+          "order": 158
+        },
+        {
+          "name": "Insert Send 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "6",
+            "index": 6,
+            "size": 32
+          },
+          "order": 159
+        },
+        {
+          "name": "Insert Send 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "7",
+            "index": 7,
+            "size": 32
+          },
+          "order": 160
+        },
+        {
+          "name": "Insert Send 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "8",
+            "index": 8,
+            "size": 32
+          },
+          "order": 161
+        },
+        {
+          "name": "Insert Send 9",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "9",
+            "index": 9,
+            "size": 32
+          },
+          "order": 162
+        },
+        {
+          "name": "Insert Send 10",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "10",
+            "index": 10,
+            "size": 32
+          },
+          "order": 163
+        },
+        {
+          "name": "Insert Send 11",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "11",
+            "index": 11,
+            "size": 32
+          },
+          "order": 164
+        },
+        {
+          "name": "Insert Send 12",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "12",
+            "index": 12,
+            "size": 32
+          },
+          "order": 165
+        },
+        {
+          "name": "Insert Send 13",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "13",
+            "index": 13,
+            "size": 32
+          },
+          "order": 166
+        },
+        {
+          "name": "Insert Send 14",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "14",
+            "index": 14,
+            "size": 32
+          },
+          "order": 167
+        },
+        {
+          "name": "Insert Send 15",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "15",
+            "index": 15,
+            "size": 32
+          },
+          "order": 168
+        },
+        {
+          "name": "Insert Send 16",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "16",
+            "index": 16,
+            "size": 32
+          },
+          "order": 169
+        },
+        {
+          "name": "Insert Send 17",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "17",
+            "index": 17,
+            "size": 32
+          },
+          "order": 170
+        },
+        {
+          "name": "Insert Send 18",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "18",
+            "index": 18,
+            "size": 32
+          },
+          "order": 171
+        },
+        {
+          "name": "Insert Send 19",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "19",
+            "index": 19,
+            "size": 32
+          },
+          "order": 172
+        },
+        {
+          "name": "Insert Send 20",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "20",
+            "index": 20,
+            "size": 32
+          },
+          "order": 173
+        },
+        {
+          "name": "Insert Send 21",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "21",
+            "index": 21,
+            "size": 32
+          },
+          "order": 174
+        },
+        {
+          "name": "Insert Send 22",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "22",
+            "index": 22,
+            "size": 32
+          },
+          "order": 175
+        },
+        {
+          "name": "Insert Send 23",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "23",
+            "index": 23,
+            "size": 32
+          },
+          "order": 176
+        },
+        {
+          "name": "Insert Send 24",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "24",
+            "index": 24,
+            "size": 32
+          },
+          "order": 177
+        },
+        {
+          "name": "Insert Send 25",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "25",
+            "index": 25,
+            "size": 32
+          },
+          "order": 178
+        },
+        {
+          "name": "Insert Send 26",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "26",
+            "index": 26,
+            "size": 32
+          },
+          "order": 179
+        },
+        {
+          "name": "Insert Send 27",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "27",
+            "index": 27,
+            "size": 32
+          },
+          "order": 180
+        },
+        {
+          "name": "Insert Send 28",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "28",
+            "index": 28,
+            "size": 32
+          },
+          "order": 181
+        },
+        {
+          "name": "Insert Send 29",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "29",
+            "index": 29,
+            "size": 32
+          },
+          "order": 182
+        },
+        {
+          "name": "Insert Send 30",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "30",
+            "index": 30,
+            "size": 32
+          },
+          "order": 183
+        },
+        {
+          "name": "Insert Send 31",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "31",
+            "index": 31,
+            "size": 32
+          },
+          "order": 184
+        },
+        {
+          "name": "Insert Send 32",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send",
+            "member": "32",
+            "index": 32,
+            "size": 32
+          },
+          "order": 185
+        },
+        {
+          "name": "Group Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Group Out",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          },
+          "order": 186
+        },
+        {
+          "name": "Aux Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Aux Out",
+            "member": "1",
+            "index": 1,
+            "size": 6
+          },
+          "order": 187
+        },
+        {
+          "name": "Tube Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tube Out",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          },
+          "order": 188
+        },
+        {
+          "name": "Group Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Group Out",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          },
+          "order": 189
+        },
+        {
+          "name": "Aux Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Aux Out",
+            "member": "2",
+            "index": 2,
+            "size": 6
+          },
+          "order": 190
+        },
+        {
+          "name": "Tube Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tube Out",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          },
+          "order": 191
+        },
+        {
+          "name": "Group Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Group Out",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          },
+          "order": 192
+        },
+        {
+          "name": "Aux Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Aux Out",
+            "member": "3",
+            "index": 3,
+            "size": 6
+          },
+          "order": 193
+        },
+        {
+          "name": "Group Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Group Out",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          },
+          "order": 194
+        },
+        {
+          "name": "Aux Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Aux Out",
+            "member": "4",
+            "index": 4,
+            "size": 6
+          },
+          "order": 195
+        },
+        {
+          "name": "Group Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Group Out",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          },
+          "order": 196
+        },
+        {
+          "name": "Aux Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Aux Out",
+            "member": "5",
+            "index": 5,
+            "size": 6
+          },
+          "order": 197
+        },
+        {
+          "name": "Group Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Group Out",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          },
+          "order": 198
+        },
+        {
+          "name": "Aux Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Aux Out",
+            "member": "6",
+            "index": 6,
+            "size": 6
+          },
+          "order": 199
+        },
+        {
+          "name": "Group Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Group Out",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          },
+          "order": 200
+        },
+        {
+          "name": "Group Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Group Out",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          },
+          "order": 201
+        },
+        {
+          "name": "Tape Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "1",
+            "index": 1,
+            "size": 24
+          },
+          "order": 202
+        },
+        {
+          "name": "Tape Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "2",
+            "index": 2,
+            "size": 24
+          },
+          "order": 203
+        },
+        {
+          "name": "Tape Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "3",
+            "index": 3,
+            "size": 24
+          },
+          "order": 204
+        },
+        {
+          "name": "Tape Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "4",
+            "index": 4,
+            "size": 24
+          },
+          "order": 205
+        },
+        {
+          "name": "Tape Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "5",
+            "index": 5,
+            "size": 24
+          },
+          "order": 206
+        },
+        {
+          "name": "Tape Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "6",
+            "index": 6,
+            "size": 24
+          },
+          "order": 207
+        },
+        {
+          "name": "Tape Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "7",
+            "index": 7,
+            "size": 24
+          },
+          "order": 208
+        },
+        {
+          "name": "Tape Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "8",
+            "index": 8,
+            "size": 24
+          },
+          "order": 209
+        },
+        {
+          "name": "Tape Out 9",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "9",
+            "index": 9,
+            "size": 24
+          },
+          "order": 210
+        },
+        {
+          "name": "Tape Out 10",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "10",
+            "index": 10,
+            "size": 24
+          },
+          "order": 211
+        },
+        {
+          "name": "Tape Out 11",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "11",
+            "index": 11,
+            "size": 24
+          },
+          "order": 212
+        },
+        {
+          "name": "Tape Out 12",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "12",
+            "index": 12,
+            "size": 24
+          },
+          "order": 213
+        },
+        {
+          "name": "Tape Out 13",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "13",
+            "index": 13,
+            "size": 24
+          },
+          "order": 214
+        },
+        {
+          "name": "Tape Out 14",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "14",
+            "index": 14,
+            "size": 24
+          },
+          "order": 215
+        },
+        {
+          "name": "Tape Out 15",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "15",
+            "index": 15,
+            "size": 24
+          },
+          "order": 216
+        },
+        {
+          "name": "Tape Out 16",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "16",
+            "index": 16,
+            "size": 24
+          },
+          "order": 217
+        },
+        {
+          "name": "Tape Out 17",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "17",
+            "index": 17,
+            "size": 24
+          },
+          "order": 218
+        },
+        {
+          "name": "Tape Out 18",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "18",
+            "index": 18,
+            "size": 24
+          },
+          "order": 219
+        },
+        {
+          "name": "Tape Out 19",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "19",
+            "index": 19,
+            "size": 24
+          },
+          "order": 220
+        },
+        {
+          "name": "Tape Out 20",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "20",
+            "index": 20,
+            "size": 24
+          },
+          "order": 221
+        },
+        {
+          "name": "Tape Out 21",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "21",
+            "index": 21,
+            "size": 24
+          },
+          "order": 222
+        },
+        {
+          "name": "Tape Out 22",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "22",
+            "index": 22,
+            "size": 24
+          },
+          "order": 223
+        },
+        {
+          "name": "Tape Out 23",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "23",
+            "index": 23,
+            "size": 24
+          },
+          "order": 224
+        },
+        {
+          "name": "Tape Out 24",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Tape Out",
+            "member": "24",
+            "index": 24,
+            "size": 24
+          },
+          "order": 225
+        },
+        {
+          "name": "Master Out (Stereo)",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Master Out"
+          },
+          "order": 226
+        },
+        {
+          "name": "Monitor Out L",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Monitor Out",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 227
+        },
+        {
+          "name": "Monitor Out R",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Monitor Out",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 228
+        },
+        {
+          "name": "Phones Out",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Phones Out"
+          },
+          "order": 229
+        }
+      ],
+      "matrix_order": 0,
+      "visible": true,
+      "hidden": false
+    },
+    {
+      "name": "ATC SCM 11",
+      "device_type": "Speaker / Monitor",
+      "layout_group": "Monitoring",
+      "ports": [
+        {
+          "name": "Speaker Input L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "SPK",
+          "group": {
+            "name": "Speaker Input",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 0
+        },
+        {
+          "name": "Speaker Input R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "SPK",
+          "group": {
+            "name": "Speaker Input",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 1
+        }
+      ],
+      "matrix_order": 1,
+      "visible": true,
+      "hidden": false
+    },
+    {
+      "name": "Audient ASP 880",
+      "device_type": "Preamps / Channel Strip",
+      "layout_group": "Analog Front End",
+      "ports": [
+        {
+          "name": "Instrument In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TS",
+          "group": {
+            "name": "Instrument In",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          },
+          "order": 0
+        },
+        {
+          "name": "Instrument In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TS",
+          "group": {
+            "name": "Instrument In",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          },
+          "order": 1
+        },
+        {
+          "name": "Mic/Line In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "COMBO",
+          "group": {
+            "name": "Mic/Line In",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          },
+          "order": 2
+        },
+        {
+          "name": "Mic/Line In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "COMBO",
+          "group": {
+            "name": "Mic/Line In",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          },
+          "order": 3
+        },
+        {
+          "name": "Mic/Line In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "COMBO",
+          "group": {
+            "name": "Mic/Line In",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          },
+          "order": 4
+        },
+        {
+          "name": "Mic/Line In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "COMBO",
+          "group": {
+            "name": "Mic/Line In",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          },
+          "order": 5
+        },
+        {
+          "name": "Mic/Line In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "COMBO",
+          "group": {
+            "name": "Mic/Line In",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          },
+          "order": 6
+        },
+        {
+          "name": "Mic/Line In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "COMBO",
+          "group": {
+            "name": "Mic/Line In",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          },
+          "order": 7
+        },
+        {
+          "name": "Mic/Line In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "COMBO",
+          "group": {
+            "name": "Mic/Line In",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          },
+          "order": 8
+        },
+        {
+          "name": "Mic/Line In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "COMBO",
+          "group": {
+            "name": "Mic/Line In",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          },
+          "order": 9
+        },
+        {
+          "name": "Word Clock In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "CLOCK",
+          "group": {
+            "name": "Word Clock In"
+          },
+          "order": 10
+        },
+        {
+          "name": "ADC In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "ADC In",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          },
+          "order": 11
+        },
+        {
+          "name": "ADC In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "ADC In",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          },
+          "order": 12
+        },
+        {
+          "name": "ADC In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "ADC In",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          },
+          "order": 13
+        },
+        {
+          "name": "ADC In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "ADC In",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          },
+          "order": 14
+        },
+        {
+          "name": "ADC In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "ADC In",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          },
+          "order": 15
+        },
+        {
+          "name": "ADC In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "ADC In",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          },
+          "order": 16
+        },
+        {
+          "name": "ADC In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "ADC In",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          },
+          "order": 17
+        },
+        {
+          "name": "ADC In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "ADC In",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          },
+          "order": 18
+        },
+        {
+          "name": "Line Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Line Out",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          },
+          "order": 19
+        },
+        {
+          "name": "Line Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Line Out",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          },
+          "order": 20
+        },
+        {
+          "name": "Line Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Line Out",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          },
+          "order": 21
+        },
+        {
+          "name": "Line Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Line Out",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          },
+          "order": 22
+        },
+        {
+          "name": "Line Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Line Out",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          },
+          "order": 23
+        },
+        {
+          "name": "Line Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Line Out",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          },
+          "order": 24
+        },
+        {
+          "name": "Line Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Line Out",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          },
+          "order": 25
+        },
+        {
+          "name": "Line Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "DB25",
+          "group": {
+            "name": "Line Out",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          },
+          "order": 26
+        },
+        {
+          "name": "ADAT Out 1-8",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "ADAT",
+          "group": {
+            "name": "ADAT Out",
+            "member": "1-8",
+            "index": 1,
+            "size": 8
+          },
+          "order": 27
+        },
+        {
+          "name": "AES/SPDIF Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "SPDIF",
+          "group": {
+            "name": "AES/SPDIF Out"
+          },
+          "order": 28
+        }
+      ],
+      "matrix_order": 2,
+      "visible": true,
+      "hidden": false
+    },
+    {
+      "name": "Avid S1 #1",
+      "device_type": "Computer / Control",
+      "layout_group": "Computer / Control",
+      "ports": [
+        {
+          "name": "Footswitch In",
+          "direction": "in",
+          "families": [
+            "COMP"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Footswitch In"
+          },
+          "order": 0
+        },
+        {
+          "name": "Ethernet",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "CAT6",
+          "group": {
+            "name": "Ethernet"
+          },
+          "order": 1
+        },
+        {
+          "name": "USB Service",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB",
+          "group": {
+            "name": "USB Service"
+          },
+          "order": 2
+        }
+      ],
+      "matrix_order": 3,
+      "visible": true,
+      "hidden": false
+    },
+    {
+      "name": "Avid S1 #2",
+      "device_type": "Computer / Control",
+      "layout_group": "Computer / Control",
+      "ports": [
+        {
+          "name": "Footswitch In",
+          "direction": "in",
+          "families": [
+            "COMP"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Footswitch In"
+          },
+          "order": 0
+        },
+        {
+          "name": "Ethernet",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "CAT6",
+          "group": {
+            "name": "Ethernet"
+          },
+          "order": 1
+        },
+        {
+          "name": "USB Service",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB",
+          "group": {
+            "name": "USB Service"
+          },
+          "order": 2
+        }
+      ],
+      "matrix_order": 4,
+      "visible": true,
+      "hidden": false
+    },
+    {
+      "name": "Behringer A800 #1",
+      "device_type": "Amplifier / Monitor Control",
+      "layout_group": "Monitoring",
+      "ports": [
+        {
+          "name": "Input L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Input",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 0
+        },
+        {
+          "name": "Input R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Input",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 1
+        },
+        {
+          "name": "Speaker Out L",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "SPK",
+          "group": {
+            "name": "Speaker Out",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 2
+        },
+        {
+          "name": "Speaker Out R",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "SPK",
+          "group": {
+            "name": "Speaker Out",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 3
+        }
+      ],
+      "matrix_order": 5,
+      "visible": true,
+      "hidden": false
+    },
+    {
+      "name": "Behringer A800 #2",
+      "device_type": "Amplifier / Monitor Control",
+      "layout_group": "Monitoring",
+      "ports": [
+        {
+          "name": "Input L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Input",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 0
+        },
+        {
+          "name": "Input R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Input",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 1
+        },
+        {
+          "name": "Speaker Out L",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "SPK",
+          "group": {
+            "name": "Speaker Out",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 2
+        },
+        {
+          "name": "Speaker Out R",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "SPK",
+          "group": {
+            "name": "Speaker Out",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 3
+        }
+      ],
+      "matrix_order": 6,
+      "visible": true,
+      "hidden": false
+    },
+    {
+      "name": "Focusrite Platinum Voice Master",
+      "device_type": "Preamps / Channel Strip",
+      "layout_group": "Analog Front End",
+      "ports": [
+        {
+          "name": "Mic In",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Mic In"
+          },
+          "order": 0
+        },
+        {
+          "name": "Instrument In",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TS",
+          "group": {
+            "name": "Instrument In"
+          },
+          "order": 1
+        },
+        {
+          "name": "Line In",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In"
+          },
+          "order": 2
+        },
+        {
+          "name": "Insert Return",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Return"
+          },
+          "order": 3
+        },
+        {
+          "name": "Insert Send",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Insert Send"
+          },
+          "order": 4
+        },
+        {
+          "name": "Digital Out (optional)",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "SPDIF",
+          "group": {
+            "name": "Digital Out (optional)"
+          },
+          "order": 5
+        },
+        {
+          "name": "Main Out",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Main Out"
+          },
+          "order": 6
+        }
+      ],
+      "matrix_order": 7
+    },
+    {
+      "name": "Future Preamp Slots",
+      "device_type": "Preamps / Channel Strip",
+      "layout_group": "Analog Front End",
+      "ports": [
+        {
+          "name": "I/O 1",
+          "direction": "io",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "I/O",
+            "member": "1",
+            "index": 1,
+            "size": 4
+          },
+          "order": 0
+        },
+        {
+          "name": "I/O 2",
+          "direction": "io",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "I/O",
+            "member": "2",
+            "index": 2,
+            "size": 4
+          },
+          "order": 1
+        },
+        {
+          "name": "I/O 3",
+          "direction": "io",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "I/O",
+            "member": "3",
+            "index": 3,
+            "size": 4
+          },
+          "order": 2
+        },
+        {
+          "name": "I/O 4",
+          "direction": "io",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "I/O",
+            "member": "4",
+            "index": 4,
+            "size": 4
+          },
+          "order": 3
+        }
+      ],
+      "matrix_order": 8
+    },
+    {
+      "name": "Headphone Amp",
+      "device_type": "Amplifier / Monitor Control",
+      "layout_group": "Monitoring",
+      "ports": [
+        {
+          "name": "HA In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HA In",
+            "member": "1",
+            "index": 1,
+            "size": 5
+          },
+          "order": 0
+        },
+        {
+          "name": "HA In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HA In",
+            "member": "2",
+            "index": 2,
+            "size": 5
+          },
+          "order": 1
+        },
+        {
+          "name": "HA In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HA In",
+            "member": "3",
+            "index": 3,
+            "size": 5
+          },
+          "order": 2
+        },
+        {
+          "name": "HA In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HA In",
+            "member": "4",
+            "index": 4,
+            "size": 5
+          },
+          "order": 3
+        },
+        {
+          "name": "HA In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HA In",
+            "member": "5",
+            "index": 5,
+            "size": 5
+          },
+          "order": 4
+        },
+        {
+          "name": "Main In",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Main In"
+          },
+          "order": 5
+        },
+        {
+          "name": "HP Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HP Out",
+            "member": "1",
+            "index": 1,
+            "size": 6
+          },
+          "order": 6
+        },
+        {
+          "name": "HP Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HP Out",
+            "member": "2",
+            "index": 2,
+            "size": 6
+          },
+          "order": 7
+        },
+        {
+          "name": "HP Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HP Out",
+            "member": "3",
+            "index": 3,
+            "size": 6
+          },
+          "order": 8
+        },
+        {
+          "name": "HP Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HP Out",
+            "member": "4",
+            "index": 4,
+            "size": 6
+          },
+          "order": 9
+        },
+        {
+          "name": "HP Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HP Out",
+            "member": "5",
+            "index": 5,
+            "size": 6
+          },
+          "order": 10
+        },
+        {
+          "name": "HP Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HP Out",
+            "member": "6",
+            "index": 6,
+            "size": 6
+          },
+          "order": 11
+        }
+      ],
+      "matrix_order": 9
+    },
+    {
+      "name": "Mac mini",
+      "device_type": "Computer / Control",
+      "layout_group": "Computer / Control",
+      "ports": [
+        {
+          "name": "Thunderbolt Port",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "TB4",
+          "group": {
+            "name": "Thunderbolt Port"
+          },
+          "order": 0
+        },
+        {
+          "name": "Ethernet",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "CAT6",
+          "group": {
+            "name": "Ethernet"
+          },
+          "order": 1
+        },
+        {
+          "name": "HDMI Out",
+          "direction": "out",
+          "families": [
+            "COMP"
+          ],
+          "transport": "HDMI",
+          "group": {
+            "name": "HDMI Out"
+          },
+          "order": 2
+        }
+      ],
+      "matrix_order": 10
+    },
+    {
+      "name": "MAO Preamp (confirm model)",
+      "device_type": "Preamps / Channel Strip",
+      "layout_group": "Analog Front End",
+      "ports": [
+        {
+          "name": "Mic In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Mic In",
+            "member": "1",
+            "index": 1,
+            "size": 1
+          },
+          "order": 0
+        },
+        {
+          "name": "Mic In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Mic In",
+            "member": "2",
+            "index": 2,
+            "size": 1
+          },
+          "order": 1
+        },
+        {
+          "name": "Mic In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Mic In",
+            "member": "3",
+            "index": 3,
+            "size": 1
+          },
+          "order": 2
+        },
+        {
+          "name": "Mic In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Mic In",
+            "member": "4",
+            "index": 4,
+            "size": 1
+          },
+          "order": 3
+        },
+        {
+          "name": "Line Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "1",
+            "index": 1,
+            "size": 1
+          },
+          "order": 4
+        },
+        {
+          "name": "Line Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "2",
+            "index": 2,
+            "size": 1
+          },
+          "order": 5
+        },
+        {
+          "name": "Line Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "3",
+            "index": 3,
+            "size": 1
+          },
+          "order": 6
+        },
+        {
+          "name": "Line Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "4",
+            "index": 4,
+            "size": 1
+          },
+          "order": 7
+        }
+      ],
+      "matrix_order": 11
+    },
+    {
+      "name": "Netgear Unmanaged Switch",
+      "device_type": "Network",
+      "layout_group": "Computer / Control",
+      "ports": [
+        {
+          "name": "Port 1",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "CAT6",
+          "group": {
+            "name": "Port",
+            "member": "1",
+            "index": 1,
+            "size": 1
+          },
+          "order": 0
+        },
+        {
+          "name": "Port 2",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "CAT6",
+          "group": {
+            "name": "Port",
+            "member": "2",
+            "index": 2,
+            "size": 1
+          },
+          "order": 1
+        },
+        {
+          "name": "Port 3",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "CAT6",
+          "group": {
+            "name": "Port",
+            "member": "3",
+            "index": 3,
+            "size": 1
+          },
+          "order": 2
+        },
+        {
+          "name": "Port 4",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Port",
+            "member": "4",
+            "index": 4,
+            "size": 1
+          },
+          "order": 3
+        },
+        {
+          "name": "Port 5",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Port",
+            "member": "5",
+            "index": 5,
+            "size": 1
+          },
+          "order": 4
+        },
+        {
+          "name": "Port 6",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Port",
+            "member": "6",
+            "index": 6,
+            "size": 1
+          },
+          "order": 5
+        },
+        {
+          "name": "Port 7",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Port",
+            "member": "7",
+            "index": 7,
+            "size": 1
+          },
+          "order": 6
+        },
+        {
+          "name": "Port 8",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Port",
+            "member": "8",
+            "index": 8,
+            "size": 1
+          },
+          "order": 7
+        }
+      ],
+      "matrix_order": 12
+    },
+    {
+      "name": "RME UFX III",
+      "device_type": "Interface",
+      "layout_group": "Digital Core",
+      "ports": [
+        {
+          "name": "MADI In Optical",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MADI-OPT",
+          "group": {
+            "name": "MADI In Optical"
+          },
+          "order": 0
+        },
+        {
+          "name": "MADI In Coax",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MADI",
+          "group": {
+            "name": "MADI In Coax"
+          },
+          "order": 1
+        },
+        {
+          "name": "MIDI In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "",
+          "group": {
+            "name": "MIDI In"
+          },
+          "order": 2
+        },
+        {
+          "name": "Line In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "1",
+            "index": 1,
+            "size": 1
+          },
+          "order": 3
+        },
+        {
+          "name": "Line In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "2",
+            "index": 2,
+            "size": 1
+          },
+          "order": 4
+        },
+        {
+          "name": "Line In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "3",
+            "index": 3,
+            "size": 1
+          },
+          "order": 5
+        },
+        {
+          "name": "Line In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "4",
+            "index": 4,
+            "size": 1
+          },
+          "order": 6
+        },
+        {
+          "name": "Line In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "5",
+            "index": 5,
+            "size": 1
+          },
+          "order": 7
+        },
+        {
+          "name": "Line In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "6",
+            "index": 6,
+            "size": 1
+          },
+          "order": 8
+        },
+        {
+          "name": "Line In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "7",
+            "index": 7,
+            "size": 1
+          },
+          "order": 9
+        },
+        {
+          "name": "Line In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "8",
+            "index": 8,
+            "size": 1
+          },
+          "order": 10
+        },
+        {
+          "name": "Mic/Line In 9 (Combo)",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Mic/Line In",
+            "member": "1 (Combo)",
+            "index": 1,
+            "size": 4
+          },
+          "order": 11
+        },
+        {
+          "name": "Mic/Line In 10 (Combo)",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Mic/Line In 2 (Combo)"
+          },
+          "order": 12
+        },
+        {
+          "name": "Mic/Line In 11 (Combo)",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Mic/Line In 3 (Combo)"
+          },
+          "order": 13
+        },
+        {
+          "name": "Mic/Line In 12 (Combo)",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Mic/Line In 4 (Combo)"
+          },
+          "order": 14
+        },
+        {
+          "name": "AES In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES In"
+          },
+          "order": 15
+        },
+        {
+          "name": "Word Clock In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "CLOCK",
+          "group": {
+            "name": "Word Clock In"
+          },
+          "order": 16
+        },
+        {
+          "name": "OPT 1 (S/PDIF)",
+          "direction": "io",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "SPDIF",
+          "group": {
+            "name": "OPT 1 (S/PDIF)"
+          },
+          "order": 17
+        },
+        {
+          "name": "OPT 2 (ADAT)",
+          "direction": "io",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "ADAT",
+          "group": {
+            "name": "OPT 2 (ADAT)"
+          },
+          "order": 18
+        },
+        {
+          "name": "USB Host (Computer)",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB",
+          "group": {
+            "name": "USB Host (Computer)"
+          },
+          "order": 19
+        },
+        {
+          "name": "ARC USB Remote",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB",
+          "group": {
+            "name": "ARC USB Remote"
+          },
+          "order": 20
+        },
+        {
+          "name": "Line Out 1 (XLR)",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Line Out",
+            "member": "1"
+          },
+          "order": 21
+        },
+        {
+          "name": "Line Out 2 (XLR)",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Line Out",
+            "member": "2"
+          },
+          "order": 22
+        },
+        {
+          "name": "Line Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "3",
+            "index": 3,
+            "size": 1
+          },
+          "order": 23
+        },
+        {
+          "name": "Line Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "4",
+            "index": 4,
+            "size": 1
+          },
+          "order": 24
+        },
+        {
+          "name": "Line Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "5",
+            "index": 5,
+            "size": 1
+          },
+          "order": 25
+        },
+        {
+          "name": "Line Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "6",
+            "index": 6,
+            "size": 1
+          },
+          "order": 26
+        },
+        {
+          "name": "Line Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "7",
+            "index": 7,
+            "size": 1
+          },
+          "order": 27
+        },
+        {
+          "name": "Line Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "8",
+            "index": 8,
+            "size": 1
+          },
+          "order": 28
+        },
+        {
+          "name": "Headphone Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Headphone Out",
+            "member": "1",
+            "index": 1,
+            "size": 1
+          },
+          "order": 29
+        },
+        {
+          "name": "Headphone Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Headphone Out",
+            "member": "2",
+            "index": 2,
+            "size": 1
+          },
+          "order": 30
+        },
+        {
+          "name": "AES Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES Out"
+          },
+          "order": 31
+        },
+        {
+          "name": "MADI Out Optical",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MADI-OPT",
+          "group": {
+            "name": "MADI Out Optical"
+          },
+          "order": 32
+        },
+        {
+          "name": "MADI Out Coax",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MADI",
+          "group": {
+            "name": "MADI Out Coax"
+          },
+          "order": 33
+        },
+        {
+          "name": "MIDI Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "",
+          "group": {
+            "name": "MIDI Out"
+          },
+          "order": 34
+        },
+        {
+          "name": "Word Clock Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "CLOCK",
+          "group": {
+            "name": "Word Clock Out"
+          },
+          "order": 35
+        }
+      ],
+      "matrix_order": 13
+    },
+    {
+      "name": "SSL AX MADI",
+      "device_type": "Converter",
+      "layout_group": "Digital Core",
+      "ports": [
+        {
+          "name": "MADI In Optical",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MADI-OPT",
+          "group": {
+            "name": "MADI In Optical"
+          },
+          "order": 0
+        },
+        {
+          "name": "Line In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "1",
+            "index": 1,
+            "size": 24
+          },
+          "order": 1
+        },
+        {
+          "name": "Line In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "2",
+            "index": 2,
+            "size": 24
+          },
+          "order": 2
+        },
+        {
+          "name": "Line In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "3",
+            "index": 3,
+            "size": 24
+          },
+          "order": 3
+        },
+        {
+          "name": "Line In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "4",
+            "index": 4,
+            "size": 24
+          },
+          "order": 4
+        },
+        {
+          "name": "Line In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "5",
+            "index": 5,
+            "size": 24
+          },
+          "order": 5
+        },
+        {
+          "name": "Line In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "6",
+            "index": 6,
+            "size": 24
+          },
+          "order": 6
+        },
+        {
+          "name": "Line In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "7",
+            "index": 7,
+            "size": 24
+          },
+          "order": 7
+        },
+        {
+          "name": "Line In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "8",
+            "index": 8,
+            "size": 24
+          },
+          "order": 8
+        },
+        {
+          "name": "Line In 9",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "9",
+            "index": 9,
+            "size": 24
+          },
+          "order": 9
+        },
+        {
+          "name": "Line In 10",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "10",
+            "index": 10,
+            "size": 24
+          },
+          "order": 10
+        },
+        {
+          "name": "Line In 11",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "11",
+            "index": 11,
+            "size": 24
+          },
+          "order": 11
+        },
+        {
+          "name": "Line In 12",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "12",
+            "index": 12,
+            "size": 24
+          },
+          "order": 12
+        },
+        {
+          "name": "Line In 13",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "13",
+            "index": 13,
+            "size": 24
+          },
+          "order": 13
+        },
+        {
+          "name": "Line In 14",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "14",
+            "index": 14,
+            "size": 24
+          },
+          "order": 14
+        },
+        {
+          "name": "Line In 15",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "15",
+            "index": 15,
+            "size": 24
+          },
+          "order": 15
+        },
+        {
+          "name": "Line In 16",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "16",
+            "index": 16,
+            "size": 24
+          },
+          "order": 16
+        },
+        {
+          "name": "Line In 17",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "17",
+            "index": 17,
+            "size": 24
+          },
+          "order": 17
+        },
+        {
+          "name": "Line In 18",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "18",
+            "index": 18,
+            "size": 24
+          },
+          "order": 18
+        },
+        {
+          "name": "Line In 19",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "19",
+            "index": 19,
+            "size": 24
+          },
+          "order": 19
+        },
+        {
+          "name": "Line In 20",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "20",
+            "index": 20,
+            "size": 24
+          },
+          "order": 20
+        },
+        {
+          "name": "Line In 21",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "21",
+            "index": 21,
+            "size": 24
+          },
+          "order": 21
+        },
+        {
+          "name": "Line In 22",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "22",
+            "index": 22,
+            "size": 24
+          },
+          "order": 22
+        },
+        {
+          "name": "Line In 23",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "23",
+            "index": 23,
+            "size": 24
+          },
+          "order": 23
+        },
+        {
+          "name": "Line In 24",
+          "direction": "in",
+          "families": [
+            "AUDIO",
+            "DIGI"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line In",
+            "member": "24",
+            "index": 24,
+            "size": 24
+          },
+          "order": 24
+        },
+        {
+          "name": "Line Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          },
+          "order": 25
+        },
+        {
+          "name": "Line Out 1-24",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MADI",
+          "group": {
+            "name": "Line Out",
+            "member": "1-24",
+            "index": 1,
+            "size": 24
+          },
+          "order": 26
+        },
+        {
+          "name": "Line Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          },
+          "order": 27
+        },
+        {
+          "name": "Line Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "3",
+            "index": 3,
+            "size": 2
+          },
+          "order": 28
+        },
+        {
+          "name": "Line Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "4",
+            "index": 4,
+            "size": 2
+          },
+          "order": 29
+        },
+        {
+          "name": "Line Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "5",
+            "index": 5,
+            "size": 2
+          },
+          "order": 30
+        },
+        {
+          "name": "Line Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "6",
+            "index": 6,
+            "size": 2
+          },
+          "order": 31
+        },
+        {
+          "name": "Line Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "7",
+            "index": 7,
+            "size": 2
+          },
+          "order": 32
+        },
+        {
+          "name": "Line Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "8",
+            "index": 8,
+            "size": 2
+          },
+          "order": 33
+        },
+        {
+          "name": "Line Out 9",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "9",
+            "index": 9,
+            "size": 2
+          },
+          "order": 34
+        },
+        {
+          "name": "Line Out 10",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Line Out",
+            "member": "10",
+            "index": 10,
+            "size": 2
+          },
+          "order": 35
+        },
+        {
+          "name": "Line Out 11",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "11",
+            "index": 11,
+            "size": 14
+          },
+          "order": 36
+        },
+        {
+          "name": "Line Out 12",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "12",
+            "index": 12,
+            "size": 14
+          },
+          "order": 37
+        },
+        {
+          "name": "Line Out 13",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "13",
+            "index": 13,
+            "size": 14
+          },
+          "order": 38
+        },
+        {
+          "name": "Line Out 14",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "14",
+            "index": 14,
+            "size": 14
+          },
+          "order": 39
+        },
+        {
+          "name": "Line Out 15",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "15",
+            "index": 15,
+            "size": 14
+          },
+          "order": 40
+        },
+        {
+          "name": "Line Out 16",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "16",
+            "index": 16,
+            "size": 14
+          },
+          "order": 41
+        },
+        {
+          "name": "Line Out 17",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "17",
+            "index": 17,
+            "size": 14
+          },
+          "order": 42
+        },
+        {
+          "name": "Line Out 18",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "18",
+            "index": 18,
+            "size": 14
+          },
+          "order": 43
+        },
+        {
+          "name": "Line Out 19",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "19",
+            "index": 19,
+            "size": 14
+          },
+          "order": 44
+        },
+        {
+          "name": "Line Out 20",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "20",
+            "index": 20,
+            "size": 14
+          },
+          "order": 45
+        },
+        {
+          "name": "Line Out 21",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "21",
+            "index": 21,
+            "size": 14
+          },
+          "order": 46
+        },
+        {
+          "name": "Line Out 22",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "22",
+            "index": 22,
+            "size": 14
+          },
+          "order": 47
+        },
+        {
+          "name": "Line Out 23",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "23",
+            "index": 23,
+            "size": 14
+          },
+          "order": 48
+        },
+        {
+          "name": "Line Out 24",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Line Out",
+            "member": "24",
+            "index": 24,
+            "size": 14
+          },
+          "order": 49
+        },
+        {
+          "name": "MADI Out Optical",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MADI-OPT",
+          "group": {
+            "name": "MADI Out Optical"
+          },
+          "order": 50
+        }
+      ],
+      "matrix_order": 14
+    },
+    {
+      "name": "Streamdeck #1",
+      "device_type": "Computer / Control",
+      "layout_group": "Computer / Control",
+      "ports": [
+        {
+          "name": "USB-C",
+          "direction": "in",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB-C",
+          "group": {
+            "name": "USB-C"
+          },
+          "order": 0
+        }
+      ],
+      "matrix_order": 15
+    },
+    {
+      "name": "Streamdeck #2",
+      "device_type": "Computer / Control",
+      "layout_group": "Computer / Control",
+      "ports": [
+        {
+          "name": "USB-C",
+          "direction": "in",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB-C",
+          "group": {
+            "name": "USB-C"
+          },
+          "order": 0
+        }
+      ],
+      "matrix_order": 16
+    },
+    {
+      "name": "Talkback Mic",
+      "device_type": "Microphone / DI",
+      "layout_group": "Analog Front End",
+      "ports": [
+        {
+          "name": "Output",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "",
+          "group": {
+            "name": "Output"
+          },
+          "order": 0
+        }
+      ],
+      "matrix_order": 17
+    },
+    {
+      "name": "Tannoy System 10",
+      "device_type": "Speaker / Monitor",
+      "layout_group": "Monitoring",
+      "ports": [
+        {
+          "name": "Speaker Input L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "SPK",
+          "group": {
+            "name": "Speaker Input",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 0
+        },
+        {
+          "name": "Speaker Input R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "SPK",
+          "group": {
+            "name": "Speaker Input",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 1
+        }
+      ],
+      "matrix_order": 18
+    },
+    {
+      "name": "Tascam MS-16",
+      "device_type": "Tape Machine",
+      "layout_group": "Analog Front End",
+      "ports": [
+        {
+          "name": "XLR In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "1",
+            "index": 1,
+            "size": 16
+          },
+          "order": 0
+        },
+        {
+          "name": "XLR In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "2",
+            "index": 2,
+            "size": 16
+          },
+          "order": 1
+        },
+        {
+          "name": "XLR In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "3",
+            "index": 3,
+            "size": 16
+          },
+          "order": 2
+        },
+        {
+          "name": "XLR In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "4",
+            "index": 4,
+            "size": 16
+          },
+          "order": 3
+        },
+        {
+          "name": "XLR In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "5",
+            "index": 5,
+            "size": 16
+          },
+          "order": 4
+        },
+        {
+          "name": "XLR In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "6",
+            "index": 6,
+            "size": 16
+          },
+          "order": 5
+        },
+        {
+          "name": "XLR In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "7",
+            "index": 7,
+            "size": 16
+          },
+          "order": 6
+        },
+        {
+          "name": "XLR In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "8",
+            "index": 8,
+            "size": 16
+          },
+          "order": 7
+        },
+        {
+          "name": "XLR In 9",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "9",
+            "index": 9,
+            "size": 16
+          },
+          "order": 8
+        },
+        {
+          "name": "XLR In 10",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "10",
+            "index": 10,
+            "size": 16
+          },
+          "order": 9
+        },
+        {
+          "name": "XLR In 11",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "11",
+            "index": 11,
+            "size": 16
+          },
+          "order": 10
+        },
+        {
+          "name": "XLR In 12",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "12",
+            "index": 12,
+            "size": 16
+          },
+          "order": 11
+        },
+        {
+          "name": "XLR In 13",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "13",
+            "index": 13,
+            "size": 16
+          },
+          "order": 12
+        },
+        {
+          "name": "XLR In 14",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "14",
+            "index": 14,
+            "size": 16
+          },
+          "order": 13
+        },
+        {
+          "name": "XLR In 15",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "15",
+            "index": 15,
+            "size": 16
+          },
+          "order": 14
+        },
+        {
+          "name": "XLR In 16",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR In",
+            "member": "16",
+            "index": 16,
+            "size": 16
+          },
+          "order": 15
+        },
+        {
+          "name": "XLR Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "1",
+            "index": 1,
+            "size": 16
+          },
+          "order": 16
+        },
+        {
+          "name": "XLR Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "2",
+            "index": 2,
+            "size": 16
+          },
+          "order": 17
+        },
+        {
+          "name": "XLR Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "3",
+            "index": 3,
+            "size": 16
+          },
+          "order": 18
+        },
+        {
+          "name": "XLR Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "4",
+            "index": 4,
+            "size": 16
+          },
+          "order": 19
+        },
+        {
+          "name": "XLR Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "5",
+            "index": 5,
+            "size": 16
+          },
+          "order": 20
+        },
+        {
+          "name": "XLR Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "6",
+            "index": 6,
+            "size": 16
+          },
+          "order": 21
+        },
+        {
+          "name": "XLR Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "7",
+            "index": 7,
+            "size": 16
+          },
+          "order": 22
+        },
+        {
+          "name": "XLR Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "8",
+            "index": 8,
+            "size": 16
+          },
+          "order": 23
+        },
+        {
+          "name": "XLR Out 9",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "9",
+            "index": 9,
+            "size": 16
+          },
+          "order": 24
+        },
+        {
+          "name": "XLR Out 10",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "10",
+            "index": 10,
+            "size": 16
+          },
+          "order": 25
+        },
+        {
+          "name": "XLR Out 11",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "11",
+            "index": 11,
+            "size": 16
+          },
+          "order": 26
+        },
+        {
+          "name": "XLR Out 12",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "12",
+            "index": 12,
+            "size": 16
+          },
+          "order": 27
+        },
+        {
+          "name": "XLR Out 13",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "13",
+            "index": 13,
+            "size": 16
+          },
+          "order": 28
+        },
+        {
+          "name": "XLR Out 14",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "14",
+            "index": 14,
+            "size": 16
+          },
+          "order": 29
+        },
+        {
+          "name": "XLR Out 15",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "15",
+            "index": 15,
+            "size": 16
+          },
+          "order": 30
+        },
+        {
+          "name": "XLR Out 16",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "XLR Out",
+            "member": "16",
+            "index": 16,
+            "size": 16
+          },
+          "order": 31
+        }
+      ],
+      "matrix_order": 19
+    },
+    {
+      "name": "TC Electronic Clarity M Stereo",
+      "device_type": "Outboard / FX",
+      "layout_group": "Digital Core",
+      "ports": [
+        {
+          "name": "Optical In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "SPDIF",
+          "group": {
+            "name": "Optical In"
+          },
+          "order": 0
+        },
+        {
+          "name": "USB",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB",
+          "group": {
+            "name": "USB"
+          },
+          "order": 1
+        }
+      ],
+      "matrix_order": 20
+    },
+    {
+      "name": "Thunderbolt Dock",
+      "device_type": "Computer / Control",
+      "layout_group": "Computer / Control",
+      "ports": [
+        {
+          "name": "USB Port 1",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB",
+          "group": {
+            "name": "USB Port",
+            "member": "1",
+            "index": 1,
+            "size": 1
+          },
+          "order": 0
+        },
+        {
+          "name": "USB Port 2",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB",
+          "group": {
+            "name": "USB Port",
+            "member": "2",
+            "index": 2,
+            "size": 1
+          },
+          "order": 1
+        },
+        {
+          "name": "USB Port 3",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB",
+          "group": {
+            "name": "USB Port",
+            "member": "3",
+            "index": 3,
+            "size": 1
+          },
+          "order": 2
+        },
+        {
+          "name": "USB Port 4",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB",
+          "group": {
+            "name": "USB Port",
+            "member": "4",
+            "index": 4,
+            "size": 1
+          },
+          "order": 3
+        },
+        {
+          "name": "Ethernet Port (RJ45)",
+          "direction": "io",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "CAT6",
+          "group": {
+            "name": "Ethernet Port (RJ45)"
+          },
+          "order": 4
+        },
+        {
+          "name": "Host/Upstream Port",
+          "direction": "io",
+          "families": [
+            "COMP"
+          ],
+          "transport": "TB4",
+          "group": {
+            "name": "Host/Upstream Port"
+          },
+          "order": 5
+        }
+      ],
+      "matrix_order": 21
+    },
+    {
+      "name": "TV Screen",
+      "device_type": "Computer / Control",
+      "layout_group": "Computer / Control",
+      "ports": [
+        {
+          "name": "HDMI In",
+          "direction": "in",
+          "families": [
+            "COMP"
+          ],
+          "transport": "HDMI",
+          "group": {
+            "name": "HDMI In"
+          },
+          "order": 0
+        }
+      ],
+      "matrix_order": 22
+    }
+  ],
+  "ui_config": {
+    "version": 1,
+    "updated_at": "2026-03-01T21:11:37.013Z",
+    "theme": {
+      "mode": "light",
+      "explicit": true
+    },
+    "matrix": {
+      "patch_mode": "single",
+      "pair_count": 8,
+      "type_tag": "",
+      "allow_double_patching": false,
+      "override_new_links": false,
+      "sub_tab": "prototype",
+      "collapsed_source_groups": [
+        "AUDIO::source::Allen & Heath GS3000::aux out",
+        "AUDIO::source::Allen & Heath GS3000::direct out",
+        "AUDIO::source::Allen & Heath GS3000::group out",
+        "AUDIO::source::Allen & Heath GS3000::insert send",
+        "AUDIO::source::Allen & Heath GS3000::monitor out",
+        "AUDIO::source::Allen & Heath GS3000::tape out",
+        "AUDIO::source::Allen & Heath GS3000::tube out",
+        "AUDIO::source::RME UFX III::headphone out",
+        "AUDIO::source::RME UFX III::line out"
+      ],
+      "collapsed_dest_groups": [
+        "AUDIO::dest::Allen & Heath GS3000::insert return",
+        "AUDIO::dest::Allen & Heath GS3000::line in",
+        "AUDIO::dest::Allen & Heath GS3000::mic in",
+        "AUDIO::dest::Allen & Heath GS3000::monitor in",
+        "AUDIO::dest::Allen & Heath GS3000::st aux in",
+        "AUDIO::dest::Allen & Heath GS3000::tape in",
+        "AUDIO::dest::Audient ASP 880::adc in",
+        "AUDIO::dest::Audient ASP 880::instrument in",
+        "AUDIO::dest::Audient ASP 880::mic/line in",
+        "AUDIO::dest::Headphone Amp::ha in",
+        "AUDIO::dest::RME UFX III::line in"
+      ],
+      "collapsed_source_devices": [
+        "AUDIO::source::Audient ASP 880",
+        "AUDIO::source::SSL AX MADI"
+      ],
+      "collapsed_dest_devices": [],
+      "auto_collapsed_families": [
+        "AUDIO"
+      ],
+      "scale": {
+        "sourceWidth": 80,
+        "destWidth": 55,
+        "rowHeight": 27,
+        "firstRowHeight": 55,
+        "destHeaderHeight": 120
+      }
+    },
+    "editor": {
+      "selected_device_name": "RME UFX III",
+      "selected_port_tab": "in"
+    },
+    "visibility": {
+      "hidden_devices": [],
+      "device_order": [
+        "Allen & Heath GS3000",
+        "ATC SCM 11",
+        "Audient ASP 880",
+        "Avid S1 #1",
+        "Avid S1 #2",
+        "Behringer A800 #1",
+        "Behringer A800 #2",
+        "Focusrite Platinum Voice Master",
+        "Future Preamp Slots",
+        "Headphone Amp",
+        "Mac mini",
+        "MAO Preamp (confirm model)",
+        "Netgear Unmanaged Switch",
+        "RME UFX III",
+        "SSL AX MADI",
+        "Streamdeck #1",
+        "Streamdeck #2",
+        "Talkback Mic",
+        "Tannoy System 10",
+        "Tascam MS-16",
+        "TC Electronic Clarity M Stereo",
+        "Thunderbolt Dock",
+        "TV Screen"
+      ]
+    }
+  }
+}

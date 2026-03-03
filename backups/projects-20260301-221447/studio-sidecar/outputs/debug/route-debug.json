@@ -1,0 +1,378 @@
+{
+  "generated_on": "2026-03-01",
+  "title": "Studio Sidecar",
+  "rules_file": "/Users/jens/Documents/Coding/Studio_Wiring/json/routing_rules.json",
+  "rules": {
+    "version": 1,
+    "labels": {
+      "source_side": "above",
+      "destination_side": "below",
+      "font_size": 7.0,
+      "wire_gap_px": 4.0,
+      "offset_step_px": 6.0
+    },
+    "routing": {
+      "fifo_forward_turns": true,
+      "backward_out_to_in_wrap": "below",
+      "video_early_turn": true,
+      "video_vertical_rows_threshold": 6.0,
+      "forward_turn_edge_margin": 0.12
+    }
+  },
+  "layers": {
+    "Audio Analog": [
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-001",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Audient ASP 880",
+          "port": "Line Out 1",
+          "x": 300.0,
+          "y": 217.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "Line In 1",
+          "x": 680.0,
+          "y": 217.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 4,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 4
+        },
+        "anchors": {
+          "src_lead_x": 409.6,
+          "dst_lead_x": 570.4
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 217.0
+          },
+          {
+            "x": 409.6,
+            "y": 217.0
+          },
+          {
+            "x": 439.5,
+            "y": 217.0
+          },
+          {
+            "x": 439.5,
+            "y": 217.0
+          },
+          {
+            "x": 570.4,
+            "y": 217.0
+          },
+          {
+            "x": 680.0,
+            "y": 217.0
+          }
+        ],
+        "path": "M 300.0 217.0 H 409.6 H 439.5 H 570.4 H 680.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 380.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-002",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Audient ASP 880",
+          "port": "Line Out 2",
+          "x": 300.0,
+          "y": 239.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "Line In 2",
+          "x": 680.0,
+          "y": 239.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 4,
+          "source_slot_idx": 1,
+          "source_slot_total": 4,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 4
+        },
+        "anchors": {
+          "src_lead_x": 409.6,
+          "dst_lead_x": 570.4
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 239.0
+          },
+          {
+            "x": 409.6,
+            "y": 239.0
+          },
+          {
+            "x": 473.2,
+            "y": 239.0
+          },
+          {
+            "x": 473.2,
+            "y": 239.0
+          },
+          {
+            "x": 570.4,
+            "y": 239.0
+          },
+          {
+            "x": 680.0,
+            "y": 239.0
+          }
+        ],
+        "path": "M 300.0 239.0 H 409.6 H 473.2 H 570.4 H 680.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 380.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-003",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Audient ASP 880",
+          "port": "Line Out 3",
+          "x": 300.0,
+          "y": 261.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "Line In 3",
+          "x": 680.0,
+          "y": 261.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 4,
+          "source_slot_idx": 2,
+          "source_slot_total": 4,
+          "dest_slot_idx": 2,
+          "dest_slot_total": 4
+        },
+        "anchors": {
+          "src_lead_x": 409.6,
+          "dst_lead_x": 570.4
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 261.0
+          },
+          {
+            "x": 409.6,
+            "y": 261.0
+          },
+          {
+            "x": 506.8,
+            "y": 261.0
+          },
+          {
+            "x": 506.8,
+            "y": 261.0
+          },
+          {
+            "x": 570.4,
+            "y": 261.0
+          },
+          {
+            "x": 680.0,
+            "y": 261.0
+          }
+        ],
+        "path": "M 300.0 261.0 H 409.6 H 506.8 H 570.4 H 680.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 380.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-004",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Audient ASP 880",
+          "port": "Line Out 4",
+          "x": 300.0,
+          "y": 283.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "Line In 4",
+          "x": 680.0,
+          "y": 283.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 4,
+          "source_slot_idx": 3,
+          "source_slot_total": 4,
+          "dest_slot_idx": 3,
+          "dest_slot_total": 4
+        },
+        "anchors": {
+          "src_lead_x": 409.6,
+          "dst_lead_x": 570.4
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 283.0
+          },
+          {
+            "x": 409.6,
+            "y": 283.0
+          },
+          {
+            "x": 540.5,
+            "y": 283.0
+          },
+          {
+            "x": 540.5,
+            "y": 283.0
+          },
+          {
+            "x": 570.4,
+            "y": 283.0
+          },
+          {
+            "x": 680.0,
+            "y": 283.0
+          }
+        ],
+        "path": "M 300.0 283.0 H 409.6 H 540.5 H 570.4 H 680.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 380.0
+        }
+      }
+    ],
+    "All Connections": [
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-001-004",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Audient ASP 880",
+          "port": "Line Out 1+Line Out 2+Line Out 3+Line Out 4",
+          "x": 300.0,
+          "y": 250.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "Line In 1+Line In 2+Line In 3+Line In 4",
+          "x": 640.0,
+          "y": 250.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 425.8,
+          "dst_lead_x": 514.2
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 250.0
+          },
+          {
+            "x": 425.8,
+            "y": 250.0
+          },
+          {
+            "x": 514.2,
+            "y": 250.0
+          },
+          {
+            "x": 514.2,
+            "y": 250.0
+          },
+          {
+            "x": 514.2,
+            "y": 250.0
+          },
+          {
+            "x": 640.0,
+            "y": 250.0
+          }
+        ],
+        "path": "M 300.0 250.0 H 425.8 H 514.2 H 640.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 340.0
+        }
+      }
+    ]
+  }
+}

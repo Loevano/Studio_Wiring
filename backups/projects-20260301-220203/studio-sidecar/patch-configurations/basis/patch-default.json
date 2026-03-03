@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "connections": [
+    {
+      "cable_id": "AUDIO-027",
+      "family": "AUDIO",
+      "source_device": "Talkback Mic",
+      "source_port": "Output",
+      "dest_device": "RME UFX III",
+      "dest_port": "Mic/Line In 9 (Combo)",
+      "connection_type": "MONO",
+      "status": "Connected",
+      "notes": "",
+      "override_1to1": false
+    }
+  ]
+}

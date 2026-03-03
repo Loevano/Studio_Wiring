@@ -1,0 +1,15 @@
+/* Shared design tokens used by the shell and tab host pages. */
+:root {
+  /* Light theme surface and text colors for the shell container UI. */
+  --shell-bg: #eef3fb;
+  --shell-panel: #ffffff;
+  --shell-border: #c8d6ea;
+  --shell-ink: #1f2f49;
+  --shell-muted: #5e7393;
+  --shell-accent: #285a9e;
+  --shell-accent-soft: #dce9fa;
+
+  /* Reusable layout sizing tokens for spacing and rounded corners. */
+  --shell-radius: 10px;
+  --shell-gap: 10px;
+}

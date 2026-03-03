@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "name": "NO&B",
+  "description": "Template project",
+  "paths": {
+    "device_model": "device-configurations/Aparaten-Ruimte.json",
+    "default_patch": "patch-configurations/studio-model/patch-default.json",
+    "patch_directory": "patch-configurations",
+    "output_html_directory": "outputs/html",
+    "output_svg_directory": "outputs/svgs",
+    "output_debug_directory": "outputs/debug"
+  },
+  "device_patch_map": {
+    "device-configurations/Aparaten-Ruimte.json": [
+      "patch-configurations/studio-model/patch-default.json"
+    ]
+  }
+}

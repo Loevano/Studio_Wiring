@@ -1,0 +1,5296 @@
+{
+  "generated_on": "2026-03-01",
+  "title": "Studio Sidecar",
+  "rules_file": "/Users/jens/Documents/Coding/Studio_Wiring/json/routing_rules.json",
+  "rules": {
+    "version": 1,
+    "labels": {
+      "source_side": "above",
+      "destination_side": "below",
+      "font_size": 7.0,
+      "wire_gap_px": 4.0,
+      "offset_step_px": 6.0
+    },
+    "routing": {
+      "fifo_forward_turns": true,
+      "backward_out_to_in_wrap": "below",
+      "video_early_turn": true,
+      "video_vertical_rows_threshold": 6.0,
+      "forward_turn_edge_margin": 0.12
+    }
+  },
+  "layers": {
+    "Audio Analog": [
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-001",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 1",
+          "x": 894.4,
+          "y": 2475.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 1",
+          "x": 1194.4,
+          "y": 605.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 24,
+          "source_slot_idx": 0,
+          "source_slot_total": 24,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2475.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2475.0
+          },
+          {
+            "x": 1009.3,
+            "y": 2475.0
+          },
+          {
+            "x": 1009.3,
+            "y": 605.0
+          },
+          {
+            "x": 1084.8,
+            "y": 605.0
+          },
+          {
+            "x": 1194.4,
+            "y": 605.0
+          }
+        ],
+        "path": "M 894.4 2475.0 H 1004.0 H 1009.3 V 605.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-002",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 2",
+          "x": 894.4,
+          "y": 2497.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 2",
+          "x": 1194.4,
+          "y": 627.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 24,
+          "source_slot_idx": 1,
+          "source_slot_total": 24,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2497.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2497.0
+          },
+          {
+            "x": 1012.4,
+            "y": 2497.0
+          },
+          {
+            "x": 1012.4,
+            "y": 627.0
+          },
+          {
+            "x": 1084.8,
+            "y": 627.0
+          },
+          {
+            "x": 1194.4,
+            "y": 627.0
+          }
+        ],
+        "path": "M 894.4 2497.0 H 1004.0 H 1012.4 V 627.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-003",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 3",
+          "x": 894.4,
+          "y": 2519.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 3",
+          "x": 1194.4,
+          "y": 649.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 24,
+          "source_slot_idx": 2,
+          "source_slot_total": 24,
+          "dest_slot_idx": 2,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2519.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2519.0
+          },
+          {
+            "x": 1015.4,
+            "y": 2519.0
+          },
+          {
+            "x": 1015.4,
+            "y": 649.0
+          },
+          {
+            "x": 1084.8,
+            "y": 649.0
+          },
+          {
+            "x": 1194.4,
+            "y": 649.0
+          }
+        ],
+        "path": "M 894.4 2519.0 H 1004.0 H 1015.4 V 649.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-004",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 4",
+          "x": 894.4,
+          "y": 2541.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 4",
+          "x": 1194.4,
+          "y": 671.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 24,
+          "source_slot_idx": 3,
+          "source_slot_total": 24,
+          "dest_slot_idx": 3,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2541.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2541.0
+          },
+          {
+            "x": 1018.5,
+            "y": 2541.0
+          },
+          {
+            "x": 1018.5,
+            "y": 671.0
+          },
+          {
+            "x": 1084.8,
+            "y": 671.0
+          },
+          {
+            "x": 1194.4,
+            "y": 671.0
+          }
+        ],
+        "path": "M 894.4 2541.0 H 1004.0 H 1018.5 V 671.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-005",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 5",
+          "x": 894.4,
+          "y": 2563.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 5",
+          "x": 1194.4,
+          "y": 693.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 4,
+          "route_total": 24,
+          "source_slot_idx": 4,
+          "source_slot_total": 24,
+          "dest_slot_idx": 4,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2563.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2563.0
+          },
+          {
+            "x": 1021.5,
+            "y": 2563.0
+          },
+          {
+            "x": 1021.5,
+            "y": 693.0
+          },
+          {
+            "x": 1084.8,
+            "y": 693.0
+          },
+          {
+            "x": 1194.4,
+            "y": 693.0
+          }
+        ],
+        "path": "M 894.4 2563.0 H 1004.0 H 1021.5 V 693.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-006",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 6",
+          "x": 894.4,
+          "y": 2585.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 6",
+          "x": 1194.4,
+          "y": 715.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 5,
+          "route_total": 24,
+          "source_slot_idx": 5,
+          "source_slot_total": 24,
+          "dest_slot_idx": 5,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2585.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2585.0
+          },
+          {
+            "x": 1024.6,
+            "y": 2585.0
+          },
+          {
+            "x": 1024.6,
+            "y": 715.0
+          },
+          {
+            "x": 1084.8,
+            "y": 715.0
+          },
+          {
+            "x": 1194.4,
+            "y": 715.0
+          }
+        ],
+        "path": "M 894.4 2585.0 H 1004.0 H 1024.6 V 715.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-007",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 7",
+          "x": 894.4,
+          "y": 2607.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 7",
+          "x": 1194.4,
+          "y": 737.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 6,
+          "route_total": 24,
+          "source_slot_idx": 6,
+          "source_slot_total": 24,
+          "dest_slot_idx": 6,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2607.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2607.0
+          },
+          {
+            "x": 1027.6,
+            "y": 2607.0
+          },
+          {
+            "x": 1027.6,
+            "y": 737.0
+          },
+          {
+            "x": 1084.8,
+            "y": 737.0
+          },
+          {
+            "x": 1194.4,
+            "y": 737.0
+          }
+        ],
+        "path": "M 894.4 2607.0 H 1004.0 H 1027.6 V 737.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-008",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 8",
+          "x": 894.4,
+          "y": 2629.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 8",
+          "x": 1194.4,
+          "y": 759.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 7,
+          "route_total": 24,
+          "source_slot_idx": 7,
+          "source_slot_total": 24,
+          "dest_slot_idx": 7,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2629.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2629.0
+          },
+          {
+            "x": 1030.7,
+            "y": 2629.0
+          },
+          {
+            "x": 1030.7,
+            "y": 759.0
+          },
+          {
+            "x": 1084.8,
+            "y": 759.0
+          },
+          {
+            "x": 1194.4,
+            "y": 759.0
+          }
+        ],
+        "path": "M 894.4 2629.0 H 1004.0 H 1030.7 V 759.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-009",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 9",
+          "x": 894.4,
+          "y": 2651.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 9",
+          "x": 1194.4,
+          "y": 781.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 8,
+          "route_total": 24,
+          "source_slot_idx": 8,
+          "source_slot_total": 24,
+          "dest_slot_idx": 8,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2651.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2651.0
+          },
+          {
+            "x": 1033.7,
+            "y": 2651.0
+          },
+          {
+            "x": 1033.7,
+            "y": 781.0
+          },
+          {
+            "x": 1084.8,
+            "y": 781.0
+          },
+          {
+            "x": 1194.4,
+            "y": 781.0
+          }
+        ],
+        "path": "M 894.4 2651.0 H 1004.0 H 1033.7 V 781.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-010",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 10",
+          "x": 894.4,
+          "y": 2673.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 10",
+          "x": 1194.4,
+          "y": 803.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 9,
+          "route_total": 24,
+          "source_slot_idx": 9,
+          "source_slot_total": 24,
+          "dest_slot_idx": 9,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2673.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2673.0
+          },
+          {
+            "x": 1036.8,
+            "y": 2673.0
+          },
+          {
+            "x": 1036.8,
+            "y": 803.0
+          },
+          {
+            "x": 1084.8,
+            "y": 803.0
+          },
+          {
+            "x": 1194.4,
+            "y": 803.0
+          }
+        ],
+        "path": "M 894.4 2673.0 H 1004.0 H 1036.8 V 803.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-011",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 11",
+          "x": 894.4,
+          "y": 2695.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 11",
+          "x": 1194.4,
+          "y": 825.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 10,
+          "route_total": 24,
+          "source_slot_idx": 10,
+          "source_slot_total": 24,
+          "dest_slot_idx": 10,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2695.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2695.0
+          },
+          {
+            "x": 1039.8,
+            "y": 2695.0
+          },
+          {
+            "x": 1039.8,
+            "y": 825.0
+          },
+          {
+            "x": 1084.8,
+            "y": 825.0
+          },
+          {
+            "x": 1194.4,
+            "y": 825.0
+          }
+        ],
+        "path": "M 894.4 2695.0 H 1004.0 H 1039.8 V 825.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-012",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 12",
+          "x": 894.4,
+          "y": 2717.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 12",
+          "x": 1194.4,
+          "y": 847.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 11,
+          "route_total": 24,
+          "source_slot_idx": 11,
+          "source_slot_total": 24,
+          "dest_slot_idx": 11,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2717.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2717.0
+          },
+          {
+            "x": 1042.9,
+            "y": 2717.0
+          },
+          {
+            "x": 1042.9,
+            "y": 847.0
+          },
+          {
+            "x": 1084.8,
+            "y": 847.0
+          },
+          {
+            "x": 1194.4,
+            "y": 847.0
+          }
+        ],
+        "path": "M 894.4 2717.0 H 1004.0 H 1042.9 V 847.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-013",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 13",
+          "x": 894.4,
+          "y": 2739.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 13",
+          "x": 1194.4,
+          "y": 869.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 12,
+          "route_total": 24,
+          "source_slot_idx": 12,
+          "source_slot_total": 24,
+          "dest_slot_idx": 12,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2739.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2739.0
+          },
+          {
+            "x": 1045.9,
+            "y": 2739.0
+          },
+          {
+            "x": 1045.9,
+            "y": 869.0
+          },
+          {
+            "x": 1084.8,
+            "y": 869.0
+          },
+          {
+            "x": 1194.4,
+            "y": 869.0
+          }
+        ],
+        "path": "M 894.4 2739.0 H 1004.0 H 1045.9 V 869.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-014",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 14",
+          "x": 894.4,
+          "y": 2761.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 14",
+          "x": 1194.4,
+          "y": 891.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 13,
+          "route_total": 24,
+          "source_slot_idx": 13,
+          "source_slot_total": 24,
+          "dest_slot_idx": 13,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2761.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2761.0
+          },
+          {
+            "x": 1049.0,
+            "y": 2761.0
+          },
+          {
+            "x": 1049.0,
+            "y": 891.0
+          },
+          {
+            "x": 1084.8,
+            "y": 891.0
+          },
+          {
+            "x": 1194.4,
+            "y": 891.0
+          }
+        ],
+        "path": "M 894.4 2761.0 H 1004.0 H 1049.0 V 891.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-015",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 15",
+          "x": 894.4,
+          "y": 2783.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 15",
+          "x": 1194.4,
+          "y": 913.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 14,
+          "route_total": 24,
+          "source_slot_idx": 14,
+          "source_slot_total": 24,
+          "dest_slot_idx": 14,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2783.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2783.0
+          },
+          {
+            "x": 1052.0,
+            "y": 2783.0
+          },
+          {
+            "x": 1052.0,
+            "y": 913.0
+          },
+          {
+            "x": 1084.8,
+            "y": 913.0
+          },
+          {
+            "x": 1194.4,
+            "y": 913.0
+          }
+        ],
+        "path": "M 894.4 2783.0 H 1004.0 H 1052.0 V 913.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-016",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 16",
+          "x": 894.4,
+          "y": 2805.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 16",
+          "x": 1194.4,
+          "y": 935.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 15,
+          "route_total": 24,
+          "source_slot_idx": 15,
+          "source_slot_total": 24,
+          "dest_slot_idx": 15,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2805.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2805.0
+          },
+          {
+            "x": 1055.1,
+            "y": 2805.0
+          },
+          {
+            "x": 1055.1,
+            "y": 935.0
+          },
+          {
+            "x": 1084.8,
+            "y": 935.0
+          },
+          {
+            "x": 1194.4,
+            "y": 935.0
+          }
+        ],
+        "path": "M 894.4 2805.0 H 1004.0 H 1055.1 V 935.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-017",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 17",
+          "x": 894.4,
+          "y": 2827.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 17",
+          "x": 1194.4,
+          "y": 957.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 16,
+          "route_total": 24,
+          "source_slot_idx": 16,
+          "source_slot_total": 24,
+          "dest_slot_idx": 16,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2827.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2827.0
+          },
+          {
+            "x": 1058.1,
+            "y": 2827.0
+          },
+          {
+            "x": 1058.1,
+            "y": 957.0
+          },
+          {
+            "x": 1084.8,
+            "y": 957.0
+          },
+          {
+            "x": 1194.4,
+            "y": 957.0
+          }
+        ],
+        "path": "M 894.4 2827.0 H 1004.0 H 1058.1 V 957.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-018",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 18",
+          "x": 894.4,
+          "y": 2849.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 18",
+          "x": 1194.4,
+          "y": 979.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 17,
+          "route_total": 24,
+          "source_slot_idx": 17,
+          "source_slot_total": 24,
+          "dest_slot_idx": 17,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2849.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2849.0
+          },
+          {
+            "x": 1061.2,
+            "y": 2849.0
+          },
+          {
+            "x": 1061.2,
+            "y": 979.0
+          },
+          {
+            "x": 1084.8,
+            "y": 979.0
+          },
+          {
+            "x": 1194.4,
+            "y": 979.0
+          }
+        ],
+        "path": "M 894.4 2849.0 H 1004.0 H 1061.2 V 979.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-019",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 19",
+          "x": 894.4,
+          "y": 2871.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 19",
+          "x": 1194.4,
+          "y": 1001.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 18,
+          "route_total": 24,
+          "source_slot_idx": 18,
+          "source_slot_total": 24,
+          "dest_slot_idx": 18,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2871.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2871.0
+          },
+          {
+            "x": 1064.2,
+            "y": 2871.0
+          },
+          {
+            "x": 1064.2,
+            "y": 1001.0
+          },
+          {
+            "x": 1084.8,
+            "y": 1001.0
+          },
+          {
+            "x": 1194.4,
+            "y": 1001.0
+          }
+        ],
+        "path": "M 894.4 2871.0 H 1004.0 H 1064.2 V 1001.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-020",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 20",
+          "x": 894.4,
+          "y": 2893.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 20",
+          "x": 1194.4,
+          "y": 1023.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 19,
+          "route_total": 24,
+          "source_slot_idx": 19,
+          "source_slot_total": 24,
+          "dest_slot_idx": 19,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2893.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2893.0
+          },
+          {
+            "x": 1067.3,
+            "y": 2893.0
+          },
+          {
+            "x": 1067.3,
+            "y": 1023.0
+          },
+          {
+            "x": 1084.8,
+            "y": 1023.0
+          },
+          {
+            "x": 1194.4,
+            "y": 1023.0
+          }
+        ],
+        "path": "M 894.4 2893.0 H 1004.0 H 1067.3 V 1023.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-021",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 21",
+          "x": 894.4,
+          "y": 2915.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 21",
+          "x": 1194.4,
+          "y": 1045.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 20,
+          "route_total": 24,
+          "source_slot_idx": 20,
+          "source_slot_total": 24,
+          "dest_slot_idx": 20,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2915.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2915.0
+          },
+          {
+            "x": 1070.3,
+            "y": 2915.0
+          },
+          {
+            "x": 1070.3,
+            "y": 1045.0
+          },
+          {
+            "x": 1084.8,
+            "y": 1045.0
+          },
+          {
+            "x": 1194.4,
+            "y": 1045.0
+          }
+        ],
+        "path": "M 894.4 2915.0 H 1004.0 H 1070.3 V 1045.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-022",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 22",
+          "x": 894.4,
+          "y": 2937.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 22",
+          "x": 1194.4,
+          "y": 1067.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 21,
+          "route_total": 24,
+          "source_slot_idx": 21,
+          "source_slot_total": 24,
+          "dest_slot_idx": 21,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2937.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2937.0
+          },
+          {
+            "x": 1073.4,
+            "y": 2937.0
+          },
+          {
+            "x": 1073.4,
+            "y": 1067.0
+          },
+          {
+            "x": 1084.8,
+            "y": 1067.0
+          },
+          {
+            "x": 1194.4,
+            "y": 1067.0
+          }
+        ],
+        "path": "M 894.4 2937.0 H 1004.0 H 1073.4 V 1067.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0000000000005
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-023",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 23",
+          "x": 894.4,
+          "y": 2959.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 23",
+          "x": 1194.4,
+          "y": 1089.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 22,
+          "route_total": 24,
+          "source_slot_idx": 22,
+          "source_slot_total": 24,
+          "dest_slot_idx": 22,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2959.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2959.0
+          },
+          {
+            "x": 1076.4,
+            "y": 2959.0
+          },
+          {
+            "x": 1076.4,
+            "y": 1089.0
+          },
+          {
+            "x": 1084.8,
+            "y": 1089.0
+          },
+          {
+            "x": 1194.4,
+            "y": 1089.0
+          }
+        ],
+        "path": "M 894.4 2959.0 H 1004.0 H 1076.4 V 1089.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2169.9999999999995
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-024",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 24",
+          "x": 894.4,
+          "y": 2981.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 24",
+          "x": 1194.4,
+          "y": 1111.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 23,
+          "route_total": 24,
+          "source_slot_idx": 23,
+          "source_slot_total": 24,
+          "dest_slot_idx": 23,
+          "dest_slot_total": 24
+        },
+        "anchors": {
+          "src_lead_x": 1004.0,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 894.4,
+            "y": 2981.0
+          },
+          {
+            "x": 1004.0,
+            "y": 2981.0
+          },
+          {
+            "x": 1079.5,
+            "y": 2981.0
+          },
+          {
+            "x": 1079.5,
+            "y": 1111.0
+          },
+          {
+            "x": 1084.8,
+            "y": 1111.0
+          },
+          {
+            "x": 1194.4,
+            "y": 1111.0
+          }
+        ],
+        "path": "M 894.4 2981.0 H 1004.0 H 1079.5 V 1111.0 H 1084.8 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 2170.0000000000005
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-029",
+        "family": "Analog Audio",
+        "source": {
+          "device": "RME UFX III",
+          "port": "Line Out 1 (XLR)",
+          "x": 1526.0,
+          "y": 231.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Behringer A800 #1",
+          "port": "Input L",
+          "x": 1826.0,
+          "y": 231.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 9,
+          "source_slot_idx": 0,
+          "source_slot_total": 4,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 1635.6,
+          "dst_lead_x": 1716.4
+        },
+        "points": [
+          {
+            "x": 1526.0,
+            "y": 231.0
+          },
+          {
+            "x": 1635.6,
+            "y": 231.0
+          },
+          {
+            "x": 1655.9,
+            "y": 231.0
+          },
+          {
+            "x": 1655.9,
+            "y": 231.0
+          },
+          {
+            "x": 1716.4,
+            "y": 231.0
+          },
+          {
+            "x": 1826.0,
+            "y": 231.0
+          }
+        ],
+        "path": "M 1526.0 231.0 H 1635.6 H 1655.9 H 1716.4 H 1826.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 300.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-030",
+        "family": "Analog Audio",
+        "source": {
+          "device": "RME UFX III",
+          "port": "Line Out 2 (XLR)",
+          "x": 1526.0,
+          "y": 253.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Behringer A800 #1",
+          "port": "Input R",
+          "x": 1826.0,
+          "y": 253.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 9,
+          "source_slot_idx": 1,
+          "source_slot_total": 4,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 1635.6,
+          "dst_lead_x": 1716.4
+        },
+        "points": [
+          {
+            "x": 1526.0,
+            "y": 253.0
+          },
+          {
+            "x": 1635.6,
+            "y": 253.0
+          },
+          {
+            "x": 1669.3,
+            "y": 253.0
+          },
+          {
+            "x": 1669.3,
+            "y": 253.0
+          },
+          {
+            "x": 1716.4,
+            "y": 253.0
+          },
+          {
+            "x": 1826.0,
+            "y": 253.0
+          }
+        ],
+        "path": "M 1526.0 253.0 H 1635.6 H 1669.3 H 1716.4 H 1826.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 300.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-031",
+        "family": "Analog Audio",
+        "source": {
+          "device": "RME UFX III",
+          "port": "Line Out 3",
+          "x": 1526.0,
+          "y": 275.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Behringer A800 #2",
+          "port": "Input L",
+          "x": 1826.0,
+          "y": 347.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 9,
+          "source_slot_idx": 2,
+          "source_slot_total": 4,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 1635.6,
+          "dst_lead_x": 1716.4
+        },
+        "points": [
+          {
+            "x": 1526.0,
+            "y": 275.0
+          },
+          {
+            "x": 1635.6,
+            "y": 275.0
+          },
+          {
+            "x": 1682.7,
+            "y": 275.0
+          },
+          {
+            "x": 1682.7,
+            "y": 347.0
+          },
+          {
+            "x": 1716.4,
+            "y": 347.0
+          },
+          {
+            "x": 1826.0,
+            "y": 347.0
+          }
+        ],
+        "path": "M 1526.0 275.0 H 1635.6 H 1682.7 V 347.0 H 1716.4 H 1826.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 372.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-032",
+        "family": "Analog Audio",
+        "source": {
+          "device": "RME UFX III",
+          "port": "Line Out 4",
+          "x": 1526.0,
+          "y": 297.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Behringer A800 #2",
+          "port": "Input R",
+          "x": 1826.0,
+          "y": 369.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 9,
+          "source_slot_idx": 3,
+          "source_slot_total": 4,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 1635.6,
+          "dst_lead_x": 1716.4
+        },
+        "points": [
+          {
+            "x": 1526.0,
+            "y": 297.0
+          },
+          {
+            "x": 1635.6,
+            "y": 297.0
+          },
+          {
+            "x": 1696.1,
+            "y": 297.0
+          },
+          {
+            "x": 1696.1,
+            "y": 369.0
+          },
+          {
+            "x": 1716.4,
+            "y": 369.0
+          },
+          {
+            "x": 1826.0,
+            "y": 369.0
+          }
+        ],
+        "path": "M 1526.0 297.0 H 1635.6 H 1696.1 V 369.0 H 1716.4 H 1826.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 372.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-033",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 1+Line Out 2",
+          "x": 1526.0,
+          "y": 616.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Headphone Amp",
+          "port": "HA In 1",
+          "x": 1826.0,
+          "y": 463.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 4,
+          "route_total": 9,
+          "source_slot_idx": 0,
+          "source_slot_total": 5,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 1634.0,
+          "dst_lead_x": 1718.0
+        },
+        "points": [
+          {
+            "x": 1526.0,
+            "y": 616.0
+          },
+          {
+            "x": 1634.0,
+            "y": 616.0
+          },
+          {
+            "x": 1654.3,
+            "y": 616.0
+          },
+          {
+            "x": 1654.3,
+            "y": 463.0
+          },
+          {
+            "x": 1718.0,
+            "y": 463.0
+          },
+          {
+            "x": 1826.0,
+            "y": 463.0
+          }
+        ],
+        "path": "M 1526.0 616.0 H 1634.0 H 1654.3 V 463.0 H 1718.0 H 1826.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 453.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-035",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 3+Line Out 4",
+          "x": 1526.0,
+          "y": 660.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Headphone Amp",
+          "port": "HA In 2",
+          "x": 1826.0,
+          "y": 485.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 5,
+          "route_total": 9,
+          "source_slot_idx": 1,
+          "source_slot_total": 5,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 1634.0,
+          "dst_lead_x": 1718.0
+        },
+        "points": [
+          {
+            "x": 1526.0,
+            "y": 660.0
+          },
+          {
+            "x": 1634.0,
+            "y": 660.0
+          },
+          {
+            "x": 1665.2,
+            "y": 660.0
+          },
+          {
+            "x": 1665.2,
+            "y": 485.0
+          },
+          {
+            "x": 1718.0,
+            "y": 485.0
+          },
+          {
+            "x": 1826.0,
+            "y": 485.0
+          }
+        ],
+        "path": "M 1526.0 660.0 H 1634.0 H 1665.2 V 485.0 H 1718.0 H 1826.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 475.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-037",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 5+Line Out 6",
+          "x": 1526.0,
+          "y": 704.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Headphone Amp",
+          "port": "HA In 3",
+          "x": 1826.0,
+          "y": 507.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 6,
+          "route_total": 9,
+          "source_slot_idx": 2,
+          "source_slot_total": 5,
+          "dest_slot_idx": 2,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 1634.0,
+          "dst_lead_x": 1718.0
+        },
+        "points": [
+          {
+            "x": 1526.0,
+            "y": 704.0
+          },
+          {
+            "x": 1634.0,
+            "y": 704.0
+          },
+          {
+            "x": 1676.0,
+            "y": 704.0
+          },
+          {
+            "x": 1676.0,
+            "y": 507.0
+          },
+          {
+            "x": 1718.0,
+            "y": 507.0
+          },
+          {
+            "x": 1826.0,
+            "y": 507.0
+          }
+        ],
+        "path": "M 1526.0 704.0 H 1634.0 H 1676.0 V 507.0 H 1718.0 H 1826.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 497.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-039",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 7+Line Out 8",
+          "x": 1526.0,
+          "y": 748.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Headphone Amp",
+          "port": "HA In 4",
+          "x": 1826.0,
+          "y": 529.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 7,
+          "route_total": 9,
+          "source_slot_idx": 3,
+          "source_slot_total": 5,
+          "dest_slot_idx": 3,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 1634.0,
+          "dst_lead_x": 1718.0
+        },
+        "points": [
+          {
+            "x": 1526.0,
+            "y": 748.0
+          },
+          {
+            "x": 1634.0,
+            "y": 748.0
+          },
+          {
+            "x": 1686.8,
+            "y": 748.0
+          },
+          {
+            "x": 1686.8,
+            "y": 529.0
+          },
+          {
+            "x": 1718.0,
+            "y": 529.0
+          },
+          {
+            "x": 1826.0,
+            "y": 529.0
+          }
+        ],
+        "path": "M 1526.0 748.0 H 1634.0 H 1686.8 V 529.0 H 1718.0 H 1826.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 519.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-041",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 9+Line Out 10",
+          "x": 1526.0,
+          "y": 792.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Headphone Amp",
+          "port": "HA In 5",
+          "x": 1826.0,
+          "y": 551.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 8,
+          "route_total": 9,
+          "source_slot_idx": 4,
+          "source_slot_total": 5,
+          "dest_slot_idx": 4,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 1634.0,
+          "dst_lead_x": 1718.0
+        },
+        "points": [
+          {
+            "x": 1526.0,
+            "y": 792.0
+          },
+          {
+            "x": 1634.0,
+            "y": 792.0
+          },
+          {
+            "x": 1697.7,
+            "y": 792.0
+          },
+          {
+            "x": 1697.7,
+            "y": 551.0
+          },
+          {
+            "x": 1718.0,
+            "y": 551.0
+          },
+          {
+            "x": 1826.0,
+            "y": 551.0
+          }
+        ],
+        "path": "M 1526.0 792.0 H 1634.0 H 1697.7 V 551.0 H 1718.0 H 1826.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 541.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-025",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #1",
+          "port": "Speaker Out L",
+          "x": 2096.0,
+          "y": 231.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "Tannoy System 10",
+          "port": "Speaker Input L",
+          "x": 2396.0,
+          "y": 231.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 2205.6,
+          "dst_lead_x": 2286.4
+        },
+        "points": [
+          {
+            "x": 2096.0,
+            "y": 231.0
+          },
+          {
+            "x": 2205.6,
+            "y": 231.0
+          },
+          {
+            "x": 2219.6,
+            "y": 231.0
+          },
+          {
+            "x": 2219.6,
+            "y": 231.0
+          },
+          {
+            "x": 2286.4,
+            "y": 231.0
+          },
+          {
+            "x": 2396.0,
+            "y": 231.0
+          }
+        ],
+        "path": "M 2096.0 231.0 H 2205.6 H 2219.6 H 2286.4 H 2396.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 300.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-026",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #1",
+          "port": "Speaker Out R",
+          "x": 2096.0,
+          "y": 253.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "Tannoy System 10",
+          "port": "Speaker Input R",
+          "x": 2396.0,
+          "y": 253.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 4,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 2205.6,
+          "dst_lead_x": 2286.4
+        },
+        "points": [
+          {
+            "x": 2096.0,
+            "y": 253.0
+          },
+          {
+            "x": 2205.6,
+            "y": 253.0
+          },
+          {
+            "x": 2272.4,
+            "y": 253.0
+          },
+          {
+            "x": 2272.4,
+            "y": 253.0
+          },
+          {
+            "x": 2286.4,
+            "y": 253.0
+          },
+          {
+            "x": 2396.0,
+            "y": 253.0
+          }
+        ],
+        "path": "M 2096.0 253.0 H 2205.6 H 2272.4 H 2286.4 H 2396.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 300.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-027",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #2",
+          "port": "Speaker Out L",
+          "x": 2096.0,
+          "y": 347.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "ATC SCM 11",
+          "port": "Speaker Input L",
+          "x": 2396.0,
+          "y": 347.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 2205.6,
+          "dst_lead_x": 2286.4
+        },
+        "points": [
+          {
+            "x": 2096.0,
+            "y": 347.0
+          },
+          {
+            "x": 2205.6,
+            "y": 347.0
+          },
+          {
+            "x": 2219.6,
+            "y": 347.0
+          },
+          {
+            "x": 2219.6,
+            "y": 347.0
+          },
+          {
+            "x": 2286.4,
+            "y": 347.0
+          },
+          {
+            "x": 2396.0,
+            "y": 347.0
+          }
+        ],
+        "path": "M 2096.0 347.0 H 2205.6 H 2219.6 H 2286.4 H 2396.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 300.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-028",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #2",
+          "port": "Speaker Out R",
+          "x": 2096.0,
+          "y": 369.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "ATC SCM 11",
+          "port": "Speaker Input R",
+          "x": 2396.0,
+          "y": 369.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 4,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 2205.6,
+          "dst_lead_x": 2286.4
+        },
+        "points": [
+          {
+            "x": 2096.0,
+            "y": 369.0
+          },
+          {
+            "x": 2205.6,
+            "y": 369.0
+          },
+          {
+            "x": 2272.4,
+            "y": 369.0
+          },
+          {
+            "x": 2272.4,
+            "y": 369.0
+          },
+          {
+            "x": 2286.4,
+            "y": 369.0
+          },
+          {
+            "x": 2396.0,
+            "y": 369.0
+          }
+        ],
+        "path": "M 2096.0 369.0 H 2205.6 H 2272.4 H 2286.4 H 2396.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 300.0
+        }
+      },
+      {
+        "layer": "Audio Analog",
+        "overview_mode": false,
+        "cable_id": "AUDIO-043",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Talkback Mic",
+          "port": "Output",
+          "x": 300.0,
+          "y": 231.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "Mic/Line In 9 (Combo)",
+          "x": 1194.4,
+          "y": 407.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 409.6,
+          "dst_lead_x": 1084.8
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 231.0
+          },
+          {
+            "x": 409.6,
+            "y": 231.0
+          },
+          {
+            "x": 409.6,
+            "y": 170.0
+          },
+          {
+            "x": 1084.8,
+            "y": 170.0
+          },
+          {
+            "x": 1084.8,
+            "y": 407.0
+          },
+          {
+            "x": 1194.4,
+            "y": 407.0
+          }
+        ],
+        "path": "M 300.0 231.0 H 409.6 V 170.0 H 1084.8 V 407.0 H 1194.4",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 61.0,
+          "bend_count": 4,
+          "manhattan_length": 1192.4
+        }
+      }
+    ],
+    "Computer/Data": [
+      {
+        "layer": "Computer/Data",
+        "overview_mode": false,
+        "cable_id": "COMP-002",
+        "family": "Computer/Data",
+        "source": {
+          "device": "Mac mini",
+          "port": "Thunderbolt Port",
+          "x": 300.0,
+          "y": 231.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "Thunderbolt Dock",
+          "port": "Host/Upstream Port",
+          "x": 640.0,
+          "y": 319.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 407.2,
+          "dst_lead_x": 532.0
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 231.0
+          },
+          {
+            "x": 407.2,
+            "y": 231.0
+          },
+          {
+            "x": 469.6,
+            "y": 231.0
+          },
+          {
+            "x": 469.6,
+            "y": 319.0
+          },
+          {
+            "x": 532.0,
+            "y": 319.0
+          },
+          {
+            "x": 640.0,
+            "y": 319.0
+          }
+        ],
+        "path": "M 300.0 231.0 H 407.2 H 469.6 V 319.0 H 532.0 H 640.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 428.0
+        }
+      },
+      {
+        "layer": "Computer/Data",
+        "overview_mode": false,
+        "cable_id": "COMP-004",
+        "family": "Computer/Data",
+        "source": {
+          "device": "Thunderbolt Dock",
+          "port": "USB Port 2",
+          "x": 922.0,
+          "y": 253.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Streamdeck #1",
+          "port": "USB-C",
+          "x": 1262.0,
+          "y": 231.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 3,
+          "source_slot_idx": 1,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1030.0,
+          "dst_lead_x": 1154.0
+        },
+        "points": [
+          {
+            "x": 922.0,
+            "y": 253.0
+          },
+          {
+            "x": 1030.0,
+            "y": 253.0
+          },
+          {
+            "x": 1154.0,
+            "y": 253.0
+          },
+          {
+            "x": 1154.0,
+            "y": 231.0
+          },
+          {
+            "x": 1154.0,
+            "y": 231.0
+          },
+          {
+            "x": 1262.0,
+            "y": 231.0
+          }
+        ],
+        "path": "M 922.0 253.0 H 1030.0 H 1154.0 V 231.0 H 1262.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 1,
+          "manhattan_length": 362.0
+        }
+      },
+      {
+        "layer": "Computer/Data",
+        "overview_mode": false,
+        "cable_id": "COMP-005",
+        "family": "Computer/Data",
+        "source": {
+          "device": "Thunderbolt Dock",
+          "port": "USB Port 3",
+          "x": 922.0,
+          "y": 275.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Streamdeck #2",
+          "port": "USB-C",
+          "x": 1262.0,
+          "y": 325.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 3,
+          "source_slot_idx": 2,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1030.0,
+          "dst_lead_x": 1154.0
+        },
+        "points": [
+          {
+            "x": 922.0,
+            "y": 275.0
+          },
+          {
+            "x": 1030.0,
+            "y": 275.0
+          },
+          {
+            "x": 1128.5,
+            "y": 275.0
+          },
+          {
+            "x": 1128.5,
+            "y": 325.0
+          },
+          {
+            "x": 1154.0,
+            "y": 325.0
+          },
+          {
+            "x": 1262.0,
+            "y": 325.0
+          }
+        ],
+        "path": "M 922.0 275.0 H 1030.0 H 1128.5 V 325.0 H 1154.0 H 1262.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 390.0
+        }
+      },
+      {
+        "layer": "Computer/Data",
+        "overview_mode": false,
+        "cable_id": "COMP-003",
+        "family": "Computer/Data",
+        "source": {
+          "device": "Thunderbolt Dock",
+          "port": "USB Port 1",
+          "x": 922.0,
+          "y": 231.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "USB Host (Computer)",
+          "x": 1262.0,
+          "y": 573.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 3,
+          "source_slot_idx": 0,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1030.0,
+          "dst_lead_x": 1154.0
+        },
+        "points": [
+          {
+            "x": 922.0,
+            "y": 231.0
+          },
+          {
+            "x": 1030.0,
+            "y": 231.0
+          },
+          {
+            "x": 1138.5,
+            "y": 231.0
+          },
+          {
+            "x": 1138.5,
+            "y": 573.0
+          },
+          {
+            "x": 1154.0,
+            "y": 573.0
+          },
+          {
+            "x": 1262.0,
+            "y": 573.0
+          }
+        ],
+        "path": "M 922.0 231.0 H 1030.0 H 1138.5 V 573.0 H 1154.0 H 1262.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 682.0
+        }
+      },
+      {
+        "layer": "Computer/Data",
+        "overview_mode": false,
+        "cable_id": "COMP-001",
+        "family": "Video",
+        "source": {
+          "device": "Mac mini",
+          "port": "HDMI Out",
+          "x": 300.0,
+          "y": 253.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "TV Screen",
+          "port": "HDMI In",
+          "x": 1262.0,
+          "y": 419.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 408.8,
+          "dst_lead_x": 1154.0
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 253.0
+          },
+          {
+            "x": 408.8,
+            "y": 253.0
+          },
+          {
+            "x": 408.8,
+            "y": 253.0
+          },
+          {
+            "x": 408.8,
+            "y": 419.0
+          },
+          {
+            "x": 1154.0,
+            "y": 419.0
+          },
+          {
+            "x": 1262.0,
+            "y": 419.0
+          }
+        ],
+        "path": "M 300.0 253.0 H 408.8 V 419.0 H 1154.0 H 1262.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 1,
+          "manhattan_length": 1128.0
+        }
+      }
+    ],
+    "Digital Audio": [
+      {
+        "layer": "Digital Audio",
+        "overview_mode": false,
+        "cable_id": "DIGI-003",
+        "family": "MADI",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "MADI Out Optical",
+          "x": 959.0,
+          "y": 363.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "MADI In Optical",
+          "x": 30,
+          "y": 319.0,
+          "column": 0
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1049.0,
+          "dst_lead_x": 12.0
+        },
+        "points": [
+          {
+            "x": 959.0,
+            "y": 363.0
+          },
+          {
+            "x": 1049.0,
+            "y": 363.0
+          },
+          {
+            "x": 1049.0,
+            "y": 430.0
+          },
+          {
+            "x": 12.0,
+            "y": 430.0
+          },
+          {
+            "x": 12.0,
+            "y": 319.0
+          },
+          {
+            "x": 12.0,
+            "y": 319.0
+          },
+          {
+            "x": 30,
+            "y": 319.0
+          }
+        ],
+        "path": "M 959.0 363.0 H 1049.0 V 430.0 H 12.0 V 319.0 H 30.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 67.0,
+          "bend_count": 3,
+          "manhattan_length": 1323.0
+        }
+      },
+      {
+        "layer": "Digital Audio",
+        "overview_mode": false,
+        "cable_id": "DIGI-001",
+        "family": "Digital Audio",
+        "source": {
+          "device": "RME UFX III",
+          "port": "OPT 1 (S/PDIF)",
+          "x": 300.0,
+          "y": 231.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "TC Electronic Clarity M Stereo",
+          "port": "Optical In",
+          "x": 680.0,
+          "y": 231.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 2,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 420.4,
+          "dst_lead_x": 559.6
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 231.0
+          },
+          {
+            "x": 420.4,
+            "y": 231.0
+          },
+          {
+            "x": 434.4,
+            "y": 231.0
+          },
+          {
+            "x": 434.4,
+            "y": 231.0
+          },
+          {
+            "x": 559.6,
+            "y": 231.0
+          },
+          {
+            "x": 680.0,
+            "y": 231.0
+          }
+        ],
+        "path": "M 300.0 231.0 H 420.4 H 434.4 H 559.6 H 680.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 380.0
+        }
+      },
+      {
+        "layer": "Digital Audio",
+        "overview_mode": false,
+        "cable_id": "DIGI-002",
+        "family": "MADI",
+        "source": {
+          "device": "RME UFX III",
+          "port": "MADI Out Optical",
+          "x": 300.0,
+          "y": 319.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "MADI In Optical",
+          "x": 680.0,
+          "y": 363.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 2,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 420.4,
+          "dst_lead_x": 559.6
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 319.0
+          },
+          {
+            "x": 420.4,
+            "y": 319.0
+          },
+          {
+            "x": 545.6,
+            "y": 319.0
+          },
+          {
+            "x": 545.6,
+            "y": 363.0
+          },
+          {
+            "x": 559.6,
+            "y": 363.0
+          },
+          {
+            "x": 680.0,
+            "y": 363.0
+          }
+        ],
+        "path": "M 300.0 319.0 H 420.4 H 545.6 V 363.0 H 559.6 H 680.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 424.0
+        }
+      }
+    ],
+    "Network": [
+      {
+        "layer": "Network",
+        "overview_mode": false,
+        "cable_id": "NETWORK-001",
+        "family": "Network",
+        "source": {
+          "device": "Avid S1 #1",
+          "port": "Ethernet",
+          "x": 336.8,
+          "y": 217.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "Netgear Unmanaged Switch",
+          "port": "Port 1",
+          "x": 716.8,
+          "y": 217.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 3,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 3
+        },
+        "anchors": {
+          "src_lead_x": 457.2,
+          "dst_lead_x": 609.2
+        },
+        "points": [
+          {
+            "x": 336.8,
+            "y": 217.0
+          },
+          {
+            "x": 457.2,
+            "y": 217.0
+          },
+          {
+            "x": 609.2,
+            "y": 217.0
+          },
+          {
+            "x": 609.2,
+            "y": 217.0
+          },
+          {
+            "x": 609.2,
+            "y": 217.0
+          },
+          {
+            "x": 716.8,
+            "y": 217.0
+          }
+        ],
+        "path": "M 336.8 217.0 H 457.2 H 609.2 H 716.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 379.99999999999994
+        }
+      },
+      {
+        "layer": "Network",
+        "overview_mode": false,
+        "cable_id": "NETWORK-002",
+        "family": "Network",
+        "source": {
+          "device": "Avid S1 #2",
+          "port": "Ethernet",
+          "x": 336.8,
+          "y": 311.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "Netgear Unmanaged Switch",
+          "port": "Port 2",
+          "x": 716.8,
+          "y": 239.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 3,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 3
+        },
+        "anchors": {
+          "src_lead_x": 457.2,
+          "dst_lead_x": 596.4
+        },
+        "points": [
+          {
+            "x": 336.8,
+            "y": 311.0
+          },
+          {
+            "x": 457.2,
+            "y": 311.0
+          },
+          {
+            "x": 526.8,
+            "y": 311.0
+          },
+          {
+            "x": 526.8,
+            "y": 239.0
+          },
+          {
+            "x": 596.4,
+            "y": 239.0
+          },
+          {
+            "x": 716.8,
+            "y": 239.0
+          }
+        ],
+        "path": "M 336.8 311.0 H 457.2 H 526.8 V 239.0 H 596.4 H 716.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 451.99999999999994
+        }
+      },
+      {
+        "layer": "Network",
+        "overview_mode": false,
+        "cable_id": "NETWORK-003",
+        "family": "Network",
+        "source": {
+          "device": "Thunderbolt Dock",
+          "port": "Ethernet Port (RJ45)",
+          "x": 336.8,
+          "y": 405.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "Netgear Unmanaged Switch",
+          "port": "Port 3",
+          "x": 716.8,
+          "y": 261.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 3,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 2,
+          "dest_slot_total": 3
+        },
+        "anchors": {
+          "src_lead_x": 457.2,
+          "dst_lead_x": 583.6
+        },
+        "points": [
+          {
+            "x": 336.8,
+            "y": 405.0
+          },
+          {
+            "x": 457.2,
+            "y": 405.0
+          },
+          {
+            "x": 543.2,
+            "y": 405.0
+          },
+          {
+            "x": 543.2,
+            "y": 261.0
+          },
+          {
+            "x": 583.6,
+            "y": 261.0
+          },
+          {
+            "x": 716.8,
+            "y": 261.0
+          }
+        ],
+        "path": "M 336.8 405.0 H 457.2 H 543.2 V 261.0 H 583.6 H 716.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 524.0
+        }
+      }
+    ],
+    "All Connections": [
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "DIGI-003",
+        "family": "MADI",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "MADI Out Optical",
+          "x": 2699.8,
+          "y": 675.0,
+          "column": 4
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "MADI In Optical",
+          "x": 1776.8,
+          "y": 411.0,
+          "column": 3
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 2787.3,
+          "dst_lead_x": 1697.0
+        },
+        "points": [
+          {
+            "x": 2699.8,
+            "y": 675.0
+          },
+          {
+            "x": 2787.3,
+            "y": 675.0
+          },
+          {
+            "x": 2787.3,
+            "y": 1006.0
+          },
+          {
+            "x": 1677.0,
+            "y": 1006.0
+          },
+          {
+            "x": 1677.0,
+            "y": 411.0
+          },
+          {
+            "x": 1697.0,
+            "y": 411.0
+          },
+          {
+            "x": 1776.8,
+            "y": 411.0
+          }
+        ],
+        "path": "M 2699.8 675.0 H 2787.3 V 1006.0 H 1677.0 V 411.0 H 1697.0 H 1776.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 331.0,
+          "bend_count": 4,
+          "manhattan_length": 2223.6000000000004
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "COMP-002",
+        "family": "Computer/Data",
+        "source": {
+          "device": "Mac mini",
+          "port": "Thunderbolt Port",
+          "x": 906.8,
+          "y": 483.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Thunderbolt Dock",
+          "port": "Host/Upstream Port",
+          "x": 600.0,
+          "y": 389.0,
+          "column": 1
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 987.7,
+          "dst_lead_x": 518.0
+        },
+        "points": [
+          {
+            "x": 906.8,
+            "y": 483.0
+          },
+          {
+            "x": 987.7,
+            "y": 483.0
+          },
+          {
+            "x": 987.7,
+            "y": 540.0
+          },
+          {
+            "x": 498.0,
+            "y": 540.0
+          },
+          {
+            "x": 498.0,
+            "y": 389.0
+          },
+          {
+            "x": 518.0,
+            "y": 389.0
+          },
+          {
+            "x": 600.0,
+            "y": 389.0
+          }
+        ],
+        "path": "M 906.8 483.0 H 987.7 V 540.0 H 498.0 V 389.0 H 518.0 H 600.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 57.0,
+          "bend_count": 4,
+          "manhattan_length": 880.5999999999999
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "COMP-004",
+        "family": "Computer/Data",
+        "source": {
+          "device": "Thunderbolt Dock",
+          "port": "USB Port 2",
+          "x": 906.8,
+          "y": 323.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Streamdeck #1",
+          "port": "USB-C",
+          "x": 1206.8,
+          "y": 301.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 6,
+          "source_slot_idx": 0,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1026.3,
+          "dst_lead_x": 1087.3
+        },
+        "points": [
+          {
+            "x": 906.8,
+            "y": 323.0
+          },
+          {
+            "x": 1026.3,
+            "y": 323.0
+          },
+          {
+            "x": 1038.2,
+            "y": 323.0
+          },
+          {
+            "x": 1038.2,
+            "y": 301.0
+          },
+          {
+            "x": 1087.3,
+            "y": 301.0
+          },
+          {
+            "x": 1206.8,
+            "y": 301.0
+          }
+        ],
+        "path": "M 906.8 323.0 H 1026.3 H 1038.2 V 301.0 H 1087.3 H 1206.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 322.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "COMP-005",
+        "family": "Computer/Data",
+        "source": {
+          "device": "Thunderbolt Dock",
+          "port": "USB Port 3",
+          "x": 906.8,
+          "y": 345.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Streamdeck #2",
+          "port": "USB-C",
+          "x": 1206.8,
+          "y": 395.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 6,
+          "source_slot_idx": 1,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1026.3,
+          "dst_lead_x": 1087.3
+        },
+        "points": [
+          {
+            "x": 906.8,
+            "y": 345.0
+          },
+          {
+            "x": 1026.3,
+            "y": 345.0
+          },
+          {
+            "x": 1056.8,
+            "y": 345.0
+          },
+          {
+            "x": 1056.8,
+            "y": 395.0
+          },
+          {
+            "x": 1087.3,
+            "y": 395.0
+          },
+          {
+            "x": 1206.8,
+            "y": 395.0
+          }
+        ],
+        "path": "M 906.8 345.0 H 1026.3 H 1056.8 V 395.0 H 1087.3 H 1206.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 350.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "COMP-001",
+        "family": "Video",
+        "source": {
+          "device": "Mac mini",
+          "port": "HDMI Out",
+          "x": 906.8,
+          "y": 505.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "TV Screen",
+          "port": "HDMI In",
+          "x": 1206.8,
+          "y": 489.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 6,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1015.9,
+          "dst_lead_x": 1098.8
+        },
+        "points": [
+          {
+            "x": 906.8,
+            "y": 505.0
+          },
+          {
+            "x": 1015.9,
+            "y": 505.0
+          },
+          {
+            "x": 1015.9,
+            "y": 505.0
+          },
+          {
+            "x": 1015.9,
+            "y": 489.0
+          },
+          {
+            "x": 1098.8,
+            "y": 489.0
+          },
+          {
+            "x": 1206.8,
+            "y": 489.0
+          }
+        ],
+        "path": "M 906.8 505.0 H 1015.9 V 489.0 H 1098.8 H 1206.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 1,
+          "manhattan_length": 316.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "NETWORK-003",
+        "family": "Network",
+        "source": {
+          "device": "Thunderbolt Dock",
+          "port": "Ethernet Port (RJ45)",
+          "x": 906.8,
+          "y": 367.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Netgear Unmanaged Switch",
+          "port": "Port 3",
+          "x": 1206.8,
+          "y": 665.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 6,
+          "source_slot_idx": 2,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 3
+        },
+        "anchors": {
+          "src_lead_x": 1026.3,
+          "dst_lead_x": 1087.3
+        },
+        "points": [
+          {
+            "x": 906.8,
+            "y": 367.0
+          },
+          {
+            "x": 1026.3,
+            "y": 367.0
+          },
+          {
+            "x": 1075.4,
+            "y": 367.0
+          },
+          {
+            "x": 1075.4,
+            "y": 665.0
+          },
+          {
+            "x": 1087.3,
+            "y": 665.0
+          },
+          {
+            "x": 1206.8,
+            "y": 665.0
+          }
+        ],
+        "path": "M 906.8 367.0 H 1026.3 H 1075.4 V 665.0 H 1087.3 H 1206.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 598.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "NETWORK-001",
+        "family": "Network",
+        "source": {
+          "device": "Avid S1 #1",
+          "port": "Ethernet",
+          "x": 906.8,
+          "y": 599.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Netgear Unmanaged Switch",
+          "port": "Port 1",
+          "x": 1206.8,
+          "y": 621.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 4,
+          "route_total": 6,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 3
+        },
+        "anchors": {
+          "src_lead_x": 1026.3,
+          "dst_lead_x": 1089.5
+        },
+        "points": [
+          {
+            "x": 906.8,
+            "y": 599.0
+          },
+          {
+            "x": 1026.3,
+            "y": 599.0
+          },
+          {
+            "x": 1026.3,
+            "y": 599.0
+          },
+          {
+            "x": 1026.3,
+            "y": 621.0
+          },
+          {
+            "x": 1089.5,
+            "y": 621.0
+          },
+          {
+            "x": 1206.8,
+            "y": 621.0
+          }
+        ],
+        "path": "M 906.8 599.0 H 1026.3 V 621.0 H 1089.5 H 1206.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 1,
+          "manhattan_length": 322.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "NETWORK-002",
+        "family": "Network",
+        "source": {
+          "device": "Avid S1 #2",
+          "port": "Ethernet",
+          "x": 906.8,
+          "y": 693.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Netgear Unmanaged Switch",
+          "port": "Port 2",
+          "x": 1206.8,
+          "y": 643.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 5,
+          "route_total": 6,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 2,
+          "dest_slot_total": 3
+        },
+        "anchors": {
+          "src_lead_x": 1026.3,
+          "dst_lead_x": 1085.3
+        },
+        "points": [
+          {
+            "x": 906.8,
+            "y": 693.0
+          },
+          {
+            "x": 1026.3,
+            "y": 693.0
+          },
+          {
+            "x": 1038.3,
+            "y": 693.0
+          },
+          {
+            "x": 1038.3,
+            "y": 643.0
+          },
+          {
+            "x": 1085.3,
+            "y": 643.0
+          },
+          {
+            "x": 1206.8,
+            "y": 643.0
+          }
+        ],
+        "path": "M 906.8 693.0 H 1026.3 H 1038.3 V 643.0 H 1085.3 H 1206.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 350.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "DIGI-001",
+        "family": "Digital Audio",
+        "source": {
+          "device": "RME UFX III",
+          "port": "OPT 1 (S/PDIF)",
+          "x": 2120.8,
+          "y": 389.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "TC Electronic Clarity M Stereo",
+          "port": "Optical In",
+          "x": 2420.8,
+          "y": 301.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 2,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 2241.2,
+          "dst_lead_x": 2300.4
+        },
+        "points": [
+          {
+            "x": 2120.8,
+            "y": 389.0
+          },
+          {
+            "x": 2241.2,
+            "y": 389.0
+          },
+          {
+            "x": 2247.2,
+            "y": 389.0
+          },
+          {
+            "x": 2247.2,
+            "y": 301.0
+          },
+          {
+            "x": 2300.4,
+            "y": 301.0
+          },
+          {
+            "x": 2420.8,
+            "y": 301.0
+          }
+        ],
+        "path": "M 2120.8 389.0 H 2241.2 H 2247.2 V 301.0 H 2300.4 H 2420.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 388.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "DIGI-002",
+        "family": "MADI",
+        "source": {
+          "device": "RME UFX III",
+          "port": "MADI Out Optical",
+          "x": 2120.8,
+          "y": 411.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "MADI In Optical",
+          "x": 2420.8,
+          "y": 433.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 2,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 2241.2,
+          "dst_lead_x": 2300.4
+        },
+        "points": [
+          {
+            "x": 2120.8,
+            "y": 411.0
+          },
+          {
+            "x": 2241.2,
+            "y": 411.0
+          },
+          {
+            "x": 2294.4,
+            "y": 411.0
+          },
+          {
+            "x": 2294.4,
+            "y": 433.0
+          },
+          {
+            "x": 2300.4,
+            "y": 433.0
+          },
+          {
+            "x": 2420.8,
+            "y": 433.0
+          }
+        ],
+        "path": "M 2120.8 411.0 H 2241.2 H 2294.4 V 433.0 H 2300.4 H 2420.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 322.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-033",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 1+Line Out 2",
+          "x": 2699.8,
+          "y": 466.0,
+          "column": 4
+        },
+        "destination": {
+          "device": "Headphone Amp",
+          "port": "HA In 1",
+          "x": 2999.8,
+          "y": 533.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 5,
+          "source_slot_idx": 0,
+          "source_slot_total": 5,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 2807.8,
+          "dst_lead_x": 2891.8
+        },
+        "points": [
+          {
+            "x": 2699.8,
+            "y": 466.0
+          },
+          {
+            "x": 2807.8,
+            "y": 466.0
+          },
+          {
+            "x": 2828.1,
+            "y": 466.0
+          },
+          {
+            "x": 2828.1,
+            "y": 533.0
+          },
+          {
+            "x": 2891.8,
+            "y": 533.0
+          },
+          {
+            "x": 2999.8,
+            "y": 533.0
+          }
+        ],
+        "path": "M 2699.8 466.0 H 2807.8 H 2828.1 V 533.0 H 2891.8 H 2999.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 367.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-035",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 3+Line Out 4",
+          "x": 2699.8,
+          "y": 510.0,
+          "column": 4
+        },
+        "destination": {
+          "device": "Headphone Amp",
+          "port": "HA In 2",
+          "x": 2999.8,
+          "y": 555.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 5,
+          "source_slot_idx": 1,
+          "source_slot_total": 5,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 2807.8,
+          "dst_lead_x": 2891.8
+        },
+        "points": [
+          {
+            "x": 2699.8,
+            "y": 510.0
+          },
+          {
+            "x": 2807.8,
+            "y": 510.0
+          },
+          {
+            "x": 2839.0,
+            "y": 510.0
+          },
+          {
+            "x": 2839.0,
+            "y": 555.0
+          },
+          {
+            "x": 2891.8,
+            "y": 555.0
+          },
+          {
+            "x": 2999.8,
+            "y": 555.0
+          }
+        ],
+        "path": "M 2699.8 510.0 H 2807.8 H 2839.0 V 555.0 H 2891.8 H 2999.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 345.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-037",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 5+Line Out 6",
+          "x": 2699.8,
+          "y": 554.0,
+          "column": 4
+        },
+        "destination": {
+          "device": "Headphone Amp",
+          "port": "HA In 3",
+          "x": 2999.8,
+          "y": 577.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 5,
+          "source_slot_idx": 2,
+          "source_slot_total": 5,
+          "dest_slot_idx": 2,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 2807.8,
+          "dst_lead_x": 2891.8
+        },
+        "points": [
+          {
+            "x": 2699.8,
+            "y": 554.0
+          },
+          {
+            "x": 2807.8,
+            "y": 554.0
+          },
+          {
+            "x": 2849.8,
+            "y": 554.0
+          },
+          {
+            "x": 2849.8,
+            "y": 577.0
+          },
+          {
+            "x": 2891.8,
+            "y": 577.0
+          },
+          {
+            "x": 2999.8,
+            "y": 577.0
+          }
+        ],
+        "path": "M 2699.8 554.0 H 2807.8 H 2849.8 V 577.0 H 2891.8 H 2999.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 323.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-039",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 7+Line Out 8",
+          "x": 2699.8,
+          "y": 598.0,
+          "column": 4
+        },
+        "destination": {
+          "device": "Headphone Amp",
+          "port": "HA In 4",
+          "x": 2999.8,
+          "y": 599.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 5,
+          "source_slot_idx": 3,
+          "source_slot_total": 5,
+          "dest_slot_idx": 3,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 2807.8,
+          "dst_lead_x": 2891.8
+        },
+        "points": [
+          {
+            "x": 2699.8,
+            "y": 598.0
+          },
+          {
+            "x": 2807.8,
+            "y": 598.0
+          },
+          {
+            "x": 2860.6,
+            "y": 598.0
+          },
+          {
+            "x": 2860.6,
+            "y": 599.0
+          },
+          {
+            "x": 2891.8,
+            "y": 599.0
+          },
+          {
+            "x": 2999.8,
+            "y": 599.0
+          }
+        ],
+        "path": "M 2699.8 598.0 H 2807.8 H 2860.6 V 599.0 H 2891.8 H 2999.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 301.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-041",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 9+Line Out 10",
+          "x": 2699.8,
+          "y": 642.0,
+          "column": 4
+        },
+        "destination": {
+          "device": "Headphone Amp",
+          "port": "HA In 5",
+          "x": 2999.8,
+          "y": 621.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 4,
+          "route_total": 5,
+          "source_slot_idx": 4,
+          "source_slot_total": 5,
+          "dest_slot_idx": 4,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 2807.8,
+          "dst_lead_x": 2891.8
+        },
+        "points": [
+          {
+            "x": 2699.8,
+            "y": 642.0
+          },
+          {
+            "x": 2807.8,
+            "y": 642.0
+          },
+          {
+            "x": 2871.5,
+            "y": 642.0
+          },
+          {
+            "x": 2871.5,
+            "y": 621.0
+          },
+          {
+            "x": 2891.8,
+            "y": 621.0
+          },
+          {
+            "x": 2999.8,
+            "y": 621.0
+          }
+        ],
+        "path": "M 2699.8 642.0 H 2807.8 H 2871.5 V 621.0 H 2891.8 H 2999.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 321.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-025",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #1",
+          "port": "Speaker Out L",
+          "x": 3269.8,
+          "y": 301.0,
+          "column": 5
+        },
+        "destination": {
+          "device": "Tannoy System 10",
+          "port": "Speaker Input L",
+          "x": 3569.8,
+          "y": 301.0,
+          "column": 6
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 3379.4,
+          "dst_lead_x": 3460.2
+        },
+        "points": [
+          {
+            "x": 3269.8,
+            "y": 301.0
+          },
+          {
+            "x": 3379.4,
+            "y": 301.0
+          },
+          {
+            "x": 3393.4,
+            "y": 301.0
+          },
+          {
+            "x": 3393.4,
+            "y": 301.0
+          },
+          {
+            "x": 3460.2,
+            "y": 301.0
+          },
+          {
+            "x": 3569.8,
+            "y": 301.0
+          }
+        ],
+        "path": "M 3269.8 301.0 H 3379.4 H 3393.4 H 3460.2 H 3569.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 300.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-026",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #1",
+          "port": "Speaker Out R",
+          "x": 3269.8,
+          "y": 323.0,
+          "column": 5
+        },
+        "destination": {
+          "device": "Tannoy System 10",
+          "port": "Speaker Input R",
+          "x": 3569.8,
+          "y": 323.0,
+          "column": 6
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 4,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 3379.4,
+          "dst_lead_x": 3460.2
+        },
+        "points": [
+          {
+            "x": 3269.8,
+            "y": 323.0
+          },
+          {
+            "x": 3379.4,
+            "y": 323.0
+          },
+          {
+            "x": 3446.2,
+            "y": 323.0
+          },
+          {
+            "x": 3446.2,
+            "y": 323.0
+          },
+          {
+            "x": 3460.2,
+            "y": 323.0
+          },
+          {
+            "x": 3569.8,
+            "y": 323.0
+          }
+        ],
+        "path": "M 3269.8 323.0 H 3379.4 H 3446.2 H 3460.2 H 3569.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 300.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-027",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #2",
+          "port": "Speaker Out L",
+          "x": 3269.8,
+          "y": 417.0,
+          "column": 5
+        },
+        "destination": {
+          "device": "ATC SCM 11",
+          "port": "Speaker Input L",
+          "x": 3569.8,
+          "y": 417.0,
+          "column": 6
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 3379.4,
+          "dst_lead_x": 3460.2
+        },
+        "points": [
+          {
+            "x": 3269.8,
+            "y": 417.0
+          },
+          {
+            "x": 3379.4,
+            "y": 417.0
+          },
+          {
+            "x": 3393.4,
+            "y": 417.0
+          },
+          {
+            "x": 3393.4,
+            "y": 417.0
+          },
+          {
+            "x": 3460.2,
+            "y": 417.0
+          },
+          {
+            "x": 3569.8,
+            "y": 417.0
+          }
+        ],
+        "path": "M 3269.8 417.0 H 3379.4 H 3393.4 H 3460.2 H 3569.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 300.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-028",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #2",
+          "port": "Speaker Out R",
+          "x": 3269.8,
+          "y": 439.0,
+          "column": 5
+        },
+        "destination": {
+          "device": "ATC SCM 11",
+          "port": "Speaker Input R",
+          "x": 3569.8,
+          "y": 439.0,
+          "column": 6
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 4,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 3379.4,
+          "dst_lead_x": 3460.2
+        },
+        "points": [
+          {
+            "x": 3269.8,
+            "y": 439.0
+          },
+          {
+            "x": 3379.4,
+            "y": 439.0
+          },
+          {
+            "x": 3446.2,
+            "y": 439.0
+          },
+          {
+            "x": 3446.2,
+            "y": 439.0
+          },
+          {
+            "x": 3460.2,
+            "y": 439.0
+          },
+          {
+            "x": 3569.8,
+            "y": 439.0
+          }
+        ],
+        "path": "M 3269.8 439.0 H 3379.4 H 3446.2 H 3460.2 H 3569.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 300.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "COMP-003",
+        "family": "Computer/Data",
+        "source": {
+          "device": "Thunderbolt Dock",
+          "port": "USB Port 1",
+          "x": 906.8,
+          "y": 301.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "USB Host (Computer)",
+          "x": 1776.8,
+          "y": 455.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1011.5,
+          "dst_lead_x": 1666.6
+        },
+        "points": [
+          {
+            "x": 906.8,
+            "y": 301.0
+          },
+          {
+            "x": 1011.5,
+            "y": 301.0
+          },
+          {
+            "x": 1011.5,
+            "y": 252.0
+          },
+          {
+            "x": 1666.6,
+            "y": 252.0
+          },
+          {
+            "x": 1666.6,
+            "y": 455.0
+          },
+          {
+            "x": 1776.8,
+            "y": 455.0
+          }
+        ],
+        "path": "M 906.8 301.0 H 1011.5 V 252.0 H 1666.6 V 455.0 H 1776.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 49.0,
+          "bend_count": 4,
+          "manhattan_length": 1122.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-029",
+        "family": "Analog Audio",
+        "source": {
+          "device": "RME UFX III",
+          "port": "Line Out 1 (XLR)",
+          "x": 2120.8,
+          "y": 301.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "Behringer A800 #1",
+          "port": "Input L",
+          "x": 2999.8,
+          "y": 301.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 4,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 2207.2,
+          "dst_lead_x": 2897.2
+        },
+        "points": [
+          {
+            "x": 2120.8,
+            "y": 301.0
+          },
+          {
+            "x": 2207.2,
+            "y": 301.0
+          },
+          {
+            "x": 2207.2,
+            "y": 252.0
+          },
+          {
+            "x": 2897.2,
+            "y": 252.0
+          },
+          {
+            "x": 2897.2,
+            "y": 301.0
+          },
+          {
+            "x": 2999.8,
+            "y": 301.0
+          }
+        ],
+        "path": "M 2120.8 301.0 H 2207.2 V 252.0 H 2897.2 V 301.0 H 2999.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 49.0,
+          "bend_count": 4,
+          "manhattan_length": 977.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-030",
+        "family": "Analog Audio",
+        "source": {
+          "device": "RME UFX III",
+          "port": "Line Out 2 (XLR)",
+          "x": 2120.8,
+          "y": 323.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "Behringer A800 #1",
+          "port": "Input R",
+          "x": 2999.8,
+          "y": 323.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 4,
+          "source_slot_idx": 1,
+          "source_slot_total": 4,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 2221.2,
+          "dst_lead_x": 2883.2
+        },
+        "points": [
+          {
+            "x": 2120.8,
+            "y": 323.0
+          },
+          {
+            "x": 2221.2,
+            "y": 323.0
+          },
+          {
+            "x": 2417.8,
+            "y": 323.0
+          },
+          {
+            "x": 2417.8,
+            "y": 323.0
+          },
+          {
+            "x": 2883.2,
+            "y": 323.0
+          },
+          {
+            "x": 2999.8,
+            "y": 323.0
+          }
+        ],
+        "path": "M 2120.8 323.0 H 2221.2 H 2417.8 H 2883.2 H 2999.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 0,
+          "manhattan_length": 879.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-031",
+        "family": "Analog Audio",
+        "source": {
+          "device": "RME UFX III",
+          "port": "Line Out 3",
+          "x": 2120.8,
+          "y": 345.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "Behringer A800 #2",
+          "port": "Input L",
+          "x": 2999.8,
+          "y": 417.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 4,
+          "source_slot_idx": 2,
+          "source_slot_total": 4,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 2233.6,
+          "dst_lead_x": 2898.8
+        },
+        "points": [
+          {
+            "x": 2120.8,
+            "y": 345.0
+          },
+          {
+            "x": 2233.6,
+            "y": 345.0
+          },
+          {
+            "x": 2702.8,
+            "y": 345.0
+          },
+          {
+            "x": 2702.8,
+            "y": 417.0
+          },
+          {
+            "x": 2898.8,
+            "y": 417.0
+          },
+          {
+            "x": 2999.8,
+            "y": 417.0
+          }
+        ],
+        "path": "M 2120.8 345.0 H 2233.6 H 2702.8 V 417.0 H 2898.8 H 2999.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 951.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-032",
+        "family": "Analog Audio",
+        "source": {
+          "device": "RME UFX III",
+          "port": "Line Out 4",
+          "x": 2120.8,
+          "y": 367.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "Behringer A800 #2",
+          "port": "Input R",
+          "x": 2999.8,
+          "y": 439.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 4,
+          "source_slot_idx": 3,
+          "source_slot_total": 4,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 2247.6,
+          "dst_lead_x": 2884.8
+        },
+        "points": [
+          {
+            "x": 2120.8,
+            "y": 367.0
+          },
+          {
+            "x": 2247.6,
+            "y": 367.0
+          },
+          {
+            "x": 2718.8,
+            "y": 367.0
+          },
+          {
+            "x": 2718.8,
+            "y": 439.0
+          },
+          {
+            "x": 2884.8,
+            "y": 439.0
+          },
+          {
+            "x": 2999.8,
+            "y": 439.0
+          }
+        ],
+        "path": "M 2120.8 367.0 H 2247.6 H 2718.8 V 439.0 H 2884.8 H 2999.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 951.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-043",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Talkback Mic",
+          "port": "Output",
+          "x": 300.0,
+          "y": 939.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "Mic/Line In 9 (Combo)",
+          "x": 1776.8,
+          "y": 433.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 409.6,
+          "dst_lead_x": 1667.2
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 939.0
+          },
+          {
+            "x": 409.6,
+            "y": 939.0
+          },
+          {
+            "x": 1027.8,
+            "y": 939.0
+          },
+          {
+            "x": 1027.8,
+            "y": 433.0
+          },
+          {
+            "x": 1667.2,
+            "y": 433.0
+          },
+          {
+            "x": 1776.8,
+            "y": 433.0
+          }
+        ],
+        "path": "M 300.0 939.0 H 409.6 H 1027.8 V 433.0 H 1667.2 H 1776.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 1982.8
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-001-024",
+        "family": "Analog Audio",
+        "source": {
+          "device": "Allen & Heath GS3000",
+          "port": "Tape Out 1+Tape Out 2+Tape Out 3+Tape Out 4+Tape Out 5+Tape Out 6+Tape Out 7+Tape Out 8+Tape Out 9+Tape Out 10+Tape Out 11+Tape Out 12+Tape Out 13+Tape Out 14+Tape Out 15+Tape Out 16+Tape Out 17+Tape Out 18+Tape Out 19+Tape Out 20+Tape Out 21+Tape Out 22+Tape Out 23+Tape Out 24",
+          "x": 300.0,
+          "y": 554.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "Line In 1+Line In 2+Line In 3+Line In 4+Line In 5+Line In 6+Line In 7+Line In 8+Line In 9+Line In 10+Line In 11+Line In 12+Line In 13+Line In 14+Line In 15+Line In 16+Line In 17+Line In 18+Line In 19+Line In 20+Line In 21+Line In 22+Line In 23+Line In 24",
+          "x": 2420.8,
+          "y": 708.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 431.2,
+          "dst_lead_x": 2288.5
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 554.0
+          },
+          {
+            "x": 431.2,
+            "y": 554.0
+          },
+          {
+            "x": 431.2,
+            "y": 990.0
+          },
+          {
+            "x": 2288.5,
+            "y": 990.0
+          },
+          {
+            "x": 2288.5,
+            "y": 708.0
+          },
+          {
+            "x": 2420.8,
+            "y": 708.0
+          }
+        ],
+        "path": "M 300.0 554.0 H 431.2 V 990.0 H 2288.5 V 708.0 H 2420.8",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 282.0,
+          "bend_count": 4,
+          "manhattan_length": 2838.8
+        }
+      }
+    ]
+  }
+}
