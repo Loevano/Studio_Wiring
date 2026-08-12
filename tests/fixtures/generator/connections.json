@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "connections": [
+    {
+      "cable_id": "AUDIO-001",
+      "family": "AUDIO",
+      "source_device": "Fixture Source",
+      "source_port": "Line Out 1",
+      "dest_device": "Fixture Destination",
+      "dest_port": "Line In 1",
+      "connection_type": "TRS",
+      "status": "Connected",
+      "notes": "Stable generator fixture",
+      "override_1to1": false
+    },
+    {
+      "cable_id": "NETWORK-001",
+      "family": "NETWORK",
+      "source_device": "Fixture Source",
+      "source_port": "Ethernet Out",
+      "dest_device": "Fixture Destination",
+      "dest_port": "Ethernet In",
+      "connection_type": "CAT6",
+      "status": "Connected",
+      "notes": "Stable generator fixture",
+      "override_1to1": false
+    }
+  ]
+}

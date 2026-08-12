@@ -221,13 +221,15 @@ OVERVIEW_FUNCTIONAL_GROUPS: list[tuple[str, list[str]]] = [
         [
             "RME UFX III",
             "SSL AX MADI",
+            "TC Electronic Finalizer 48K",
+            "Sony DPS-R7 Reverb",
             "TC Electronic Clarity M Stereo",
         ],
     ),
     (
         "Monitoring",
         [
-            "Headphone Amp",
+            "IMG STAGELINE PPA-100/SW",
             "Behringer A800 #1",
             "Behringer A800 #2",
             "Tannoy System 10",
@@ -480,10 +482,10 @@ def classify_device_type(device: str) -> str:
     name = device.lower()
     if any(token in name for token in ("streamdeck", "avid s1", "dock", "mac mini", "computer", "tv screen")):
         return "Computer / Control"
-    if "switch" in name or "router" in name or "ethernet" in name:
-        return "Network"
     if "patchbay" in name or "desk patch" in name or "patch" in name:
         return "Patchbay"
+    if "switch" in name or "router" in name or "ethernet" in name:
+        return "Network"
     if any(token in name for token in ("gs3000", "allen & heath", "mixer", "console")):
         return "Console / Mixer"
     if any(token in name for token in ("ms-16", "tascam")):
@@ -810,7 +812,7 @@ def collapse_stereo_headphone_connections_for_render(
     passthrough: list[tuple[int, Connection]] = []
 
     for idx, connection in enumerate(connections):
-        if connection.dest_device != "Headphone Amp":
+        if connection.dest_device != "IMG STAGELINE PPA-100/SW":
             passthrough.append((idx, connection))
             continue
         if not re.match(r"^HA In\s+\d+$", connection.dest_jack.strip(), flags=re.IGNORECASE):
@@ -2384,7 +2386,7 @@ def apply_layer_column_overrides(layer: str, columns: list[list[str]]) -> list[l
             move_device(updated, converter, 4)
 
         for amp in [
-            "Headphone Amp",
+            "IMG STAGELINE PPA-100/SW",
             "Behringer A800 #1",
             "Behringer A800 #2",
         ]:
@@ -2413,7 +2415,7 @@ def apply_layer_column_overrides(layer: str, columns: list[list[str]]) -> list[l
         # Col 3: amps (power amps first, then headphone amp)
         "Behringer A800 #1": 30,
         "Behringer A800 #2": 31,
-        "Headphone Amp": 32,
+        "IMG STAGELINE PPA-100/SW": 32,
         # Col 4: speakers/monitors
         "Tannoy System 10": 40,
         "ATC SCM 11": 41,
@@ -2437,7 +2439,7 @@ def apply_layer_column_overrides(layer: str, columns: list[list[str]]) -> list[l
         "RME UFX III": 14,
         "SSL AX MADI": 15,
         "TC Electronic Clarity M Stereo": 16,
-        "Headphone Amp": 17,
+        "IMG STAGELINE PPA-100/SW": 17,
         "Behringer A800 #1": 18,
         "Behringer A800 #2": 19,
         "Tannoy System 10": 20,
@@ -5344,6 +5346,16 @@ def build_routing_matrix_html(
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>__TITLE__ | Routing Matrix</title>
+  <script>
+    (function applyInitialShellRoute() {
+      const parameters = new URLSearchParams(window.location.search || "");
+      const requestedPanel = String(parameters.get("tab") || "matrix").trim().toLowerCase();
+      if (parameters.get("embedded") === "1") {
+        document.documentElement.classList.add("embedded-mode");
+      }
+      document.documentElement.dataset.activeShellPanel = requestedPanel;
+    })();
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -5535,6 +5547,113 @@ def build_routing_matrix_html(
       min-width: 124px;
       font-weight: 600;
     }
+    .config-manager-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .config-manager-actions button {
+      min-height: 28px;
+      padding: 3px 7px;
+      font-size: 0.75rem;
+    }
+    .config-dialog {
+      width: min(520px, calc(100vw - 32px));
+      max-height: calc(100vh - 32px);
+      padding: 0;
+      color: var(--ink);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.32);
+    }
+    .config-dialog::backdrop {
+      background: rgba(15, 23, 42, 0.58);
+    }
+    .config-dialog-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 20px;
+    }
+    .config-dialog-title {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+    .config-dialog-description,
+    .config-dialog-consequence {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+    .config-dialog-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .config-dialog-field input[type="text"] {
+      width: 100%;
+      min-height: 36px;
+      box-sizing: border-box;
+    }
+    .config-dialog-path-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #f8fafc;
+    }
+    .config-dialog-path-label {
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .config-dialog-path {
+      overflow-wrap: anywhere;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+    }
+    .config-dialog-error {
+      min-height: 1.2em;
+      margin: 0;
+      color: #b91c1c;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .config-dialog-overwrite {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px;
+      color: #92400e;
+      background: var(--warn);
+      border: 1px solid var(--warn-border);
+      border-radius: 8px;
+      font-size: 0.8rem;
+      line-height: 1.35;
+    }
+    .config-dialog-overwrite.hidden {
+      display: none;
+    }
+    .config-dialog-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    body.theme-dark .config-dialog-path-wrap {
+      background: #0b1220;
+    }
+    body.theme-dark .config-dialog-error {
+      color: #fca5a5;
+    }
     .tab-btn {
       border: 1px solid var(--border);
       background: #ffffff;
@@ -5554,6 +5673,26 @@ def build_routing_matrix_html(
     }
     .tab-panel {
       min-width: 0;
+    }
+    html.embedded-mode body .wrap {
+      padding: 0;
+      gap: 0;
+    }
+    html.embedded-mode body .app-title-panel,
+    html.embedded-mode body .tab-bar {
+      display: none !important;
+    }
+    html.embedded-mode body .tab-panel {
+      margin: 0;
+    }
+    html.embedded-mode body.connection-overview-mode #panelMatrix > :not(#connectionList) {
+      display: none !important;
+    }
+    html.embedded-mode body.connection-overview-mode #connectionList {
+      display: block !important;
+      height: calc(100dvh - 2px);
+      min-height: 0;
+      border-radius: 0;
     }
     .hidden {
       display: none !important;
@@ -6115,38 +6254,6 @@ def build_routing_matrix_html(
       border: 1px solid var(--border);
       border-radius: 8px;
     }
-    .prototype-matrix-host {
-      width: 100%;
-      max-width: 100%;
-      height: var(--matrix-viewport-height, calc(100dvh - 170px));
-      min-height: 420px;
-      max-height: none;
-      overflow: hidden;
-      overscroll-behavior: contain;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0;
-      background: #fff;
-    }
-    .prototype-matrix-frame {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      background: #fff;
-    }
-    body.main-prototype-mode #panelMatrix .matrix-controls-panel,
-    body.main-prototype-mode #panelMatrix #status,
-    body.main-prototype-mode #panelMatrix .debug-tools,
-    body.main-prototype-mode #panelMatrix .matrix-subtabs,
-    body.main-prototype-mode #panelMatrix #matrixXScroll,
-    body.main-prototype-mode #panelMatrix #matrixContainer,
-    body.main-prototype-mode #panelMatrix #connectionList {
-      display: none !important;
-    }
-    body.main-prototype-mode #panelMatrix #prototypeMatrixHost {
-      display: block !important;
-    }
     .conn-list table {
       width: 100%;
       min-width: 0;
@@ -6368,10 +6475,175 @@ def build_routing_matrix_html(
     }
     .editor-head {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(120px, 0.6fr) minmax(90px, 0.35fr) auto auto;
       gap: 8px;
       align-items: end;
       margin-bottom: 10px;
+    }
+    .rack-editor-controls {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(120px, 1fr)) auto auto;
+      gap: 8px;
+      align-items: end;
+    }
+    .rack-editor-controls label {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .rack-capability-field {
+      flex-direction: row !important;
+      align-items: center;
+      align-self: end;
+      gap: 6px !important;
+      min-height: 30px;
+      white-space: nowrap;
+    }
+    .rack-capability-field input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      min-height: 0;
+      margin: 0;
+    }
+    .rack-editor-status {
+      margin-top: 8px;
+    }
+    .rack-editor-lists {
+      display: block;
+    }
+    .rack-device-list {
+      margin: 6px 0 0;
+      padding-left: 22px;
+      max-height: 180px;
+      overflow: auto;
+    }
+    .rack-device-list button {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      padding: 4px 2px;
+      text-align: left;
+      color: inherit;
+    }
+    .rack-device-list button[draggable="true"],
+    .rack-device-block[draggable="true"] {
+      cursor: grab;
+    }
+    .rack-device-list button[draggable="true"]:active,
+    .rack-device-block[draggable="true"]:active {
+      cursor: grabbing;
+    }
+    .rack-device-list button:hover,
+    .rack-device-list button:focus-visible {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .rack-drag-affordance {
+      display: inline-block;
+      margin-right: 5px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: -0.12em;
+    }
+    .racks-layout {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .rack-card {
+      min-width: 0;
+    }
+    .rack-card h3 {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 0 0 6px;
+      font-size: 0.95rem;
+    }
+    .rack-grid {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      grid-template-rows: repeat(16, minmax(30px, 1fr));
+      position: relative;
+      min-height: 480px;
+      border: 2px solid #475569;
+      border-radius: 5px;
+      overflow: hidden;
+      background: #f8fafc;
+    }
+    .rack-grid.rack-drop-target {
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+    }
+    .rack-grid.rack-drop-valid {
+      border-color: #16a34a;
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.28);
+    }
+    .rack-grid.rack-drop-invalid {
+      border-color: #dc2626;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.24);
+    }
+    .rack-unit-label,
+    .rack-unit-slot {
+      border-bottom: 1px solid #cbd5e1;
+      box-sizing: border-box;
+      min-height: 30px;
+    }
+    .rack-unit-label {
+      grid-column: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #94a3b8;
+      color: var(--muted);
+      background: #e2e8f0;
+      font: 700 0.7rem ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .rack-unit-slot {
+      grid-column: 2;
+      background: #fff;
+    }
+    .rack-device-block {
+      grid-column: 2;
+      z-index: 2;
+      margin: 2px 3px;
+      border: 1px solid #0f766e;
+      border-radius: 5px;
+      background: #ccfbf1;
+      color: #134e4a;
+      padding: 4px 6px;
+      overflow: hidden;
+      text-align: left;
+      font-size: 0.74rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .rack-device-block.active {
+      outline: 3px solid #2563eb;
+      outline-offset: -2px;
+    }
+    [data-rack-drag-device].rack-dragging {
+      opacity: 0.48;
+    }
+    .rack-device-block span {
+      display: block;
+      font-size: 0.66rem;
+      font-weight: 500;
+    }
+    .rack-device-block .rack-drag-affordance {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
     .editor-card {
       border: 1px solid var(--border);
@@ -6487,8 +6759,8 @@ def build_routing_matrix_html(
     body.theme-dark .visibility-list-wrap,
     body.theme-dark .editor-card,
     body.theme-dark .results-block,
-    body.theme-dark .conn-list,
-    body.theme-dark .prototype-matrix-host {
+    body.theme-dark .rack-grid,
+    body.theme-dark .conn-list {
       background: #0f172a;
       border-color: #334155;
     }
@@ -6642,6 +6914,19 @@ def build_routing_matrix_html(
       border-color: #60a5fa;
       background: #172554;
     }
+    body.theme-dark .rack-unit-label {
+      background: #1e293b;
+      border-color: #475569;
+    }
+    body.theme-dark .rack-unit-slot {
+      background: #0f172a;
+      border-color: #334155;
+    }
+    body.theme-dark .rack-device-block {
+      background: #134e4a;
+      border-color: #2dd4bf;
+      color: #ccfbf1;
+    }
     body.theme-dark .preview-card {
       border-color: #334155;
       background: #0b1220;
@@ -6681,6 +6966,12 @@ def build_routing_matrix_html(
       .editor-layout {
         grid-template-columns: 1fr;
       }
+      .racks-layout {
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+      }
+      .rack-editor-controls {
+        grid-template-columns: repeat(3, minmax(120px, 1fr));
+      }
       .port-add-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -6714,18 +7005,25 @@ def build_routing_matrix_html(
       .matrix-control-group input[type="number"] {
         width: 100%;
       }
+      .racks-layout,
+      .rack-editor-lists,
+      .rack-editor-controls,
+      .editor-head {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="panel">
+    <div id="appTitlePanel" class="panel app-title-panel">
       <h1>__TITLE__ | Routing Matrix</h1>
       <div class="meta">Generated: __DATE__ | Click a cell to connect/disconnect.</div>
     </div>
-    <div class="panel tab-bar">
+    <div id="internalAppTabBar" class="panel tab-bar">
       <button id="mainTabMatrix" class="tab-btn active" type="button">Routing Matrix</button>
       <button id="mainTabDevices" class="tab-btn" type="button">Devices & Ports</button>
+      <button id="mainTabRack" class="tab-btn" type="button">Rack Editor</button>
       <button id="mainTabVisibility" class="tab-btn" type="button">Visibility</button>
       <button id="mainTabVisuals" class="tab-btn" type="button">Visuals</button>
       <div class="header-tools">
@@ -6739,6 +7037,11 @@ def build_routing_matrix_html(
           <label class="project-tool"><span>Patch Config</span>
             <select id="patchConfigSelect"></select>
           </label>
+          <div class="config-manager-actions" aria-label="Configuration manager">
+            <button id="createProjectBtn" type="button">New Project</button>
+            <button id="createDeviceConfigBtn" type="button">New Device Config</button>
+            <button id="createPatchConfigBtn" type="button">New Patch Config</button>
+          </div>
         </div>
         <div class="theme-tools">
           <button id="themeToggleBtn" class="theme-toggle-btn" type="button">Dark Mode: Off</button>
@@ -6746,7 +7049,7 @@ def build_routing_matrix_html(
       </div>
     </div>
 
-    <div id="panelMatrix" class="tab-panel">
+    <div id="panelMatrix" class="tab-panel hidden">
       <div class="panel controls matrix-controls-panel">
         <div class="matrix-controls-grid">
           <div class="matrix-control-group">
@@ -6824,19 +7127,10 @@ def build_routing_matrix_html(
       <div class="mini-tabs matrix-subtabs">
         <button id="matrixSubTabPatch" class="mini-tab-btn active" type="button">Patch Matrix</button>
         <button id="matrixSubTabConnections" class="mini-tab-btn" type="button">Connections Table</button>
-        <button id="matrixSubTabPrototype" class="mini-tab-btn" type="button">Prototype Matrix</button>
       </div>
       <div class="panel matrix-x-scroll" id="matrixXScroll"><div id="matrixXScrollInner" class="inner"></div></div>
       <div class="panel matrix-wrap" id="matrixContainer"></div>
       <div class="panel conn-list hidden" id="connectionList"></div>
-      <div class="panel prototype-matrix-host" id="prototypeMatrixHost">
-        <iframe
-          id="prototypeMatrixFrame"
-          class="prototype-matrix-frame"
-          title="Prototype Routing Matrix"
-          loading="lazy"
-        ></iframe>
-      </div>
     </div>
     <div id="matrixHoverTooltip" class="matrix-hover-tooltip hidden"></div>
 
@@ -6847,6 +7141,18 @@ def build_routing_matrix_html(
         </label>
         <label>Device Type
           <input id="newDeviceType" type="text" placeholder="Interface / Converter" />
+        </label>
+        <label>Location
+          <select id="newDeviceLocation">
+            <option value="Desk">Desk</option>
+            <option value="Rack">Rack</option>
+          </select>
+        </label>
+        <label>Height (U/HE)
+          <input id="newDeviceRackUnits" type="number" min="1" max="16" step="1" value="1" />
+        </label>
+        <label class="rack-capability-field">
+          <input id="newDeviceRackMountable" type="checkbox" /> Rack mountable
         </label>
         <button id="addDeviceBtn" type="button">Add Device</button>
         <button id="downloadModelBtn" type="button">Download Model JSON</button>
@@ -6863,6 +7169,18 @@ def build_routing_matrix_html(
             <label>Device Type
               <input id="deviceTypeInput" type="text" placeholder="Device type" />
             </label>
+            <label>Location
+              <select id="deviceLocationInput">
+                <option value="Desk">Desk</option>
+                <option value="Rack">Rack</option>
+              </select>
+            </label>
+            <label>Height (U/HE)
+              <input id="deviceRackUnitsInput" type="number" min="1" max="16" step="1" value="1" />
+            </label>
+            <label class="rack-capability-field">
+              <input id="deviceRackMountableInput" type="checkbox" /> Rack mountable
+            </label>
             <button id="saveDeviceMetaBtn" type="button">Save Device</button>
           </div>
           <div class="mini-tabs">
@@ -6872,6 +7190,48 @@ def build_routing_matrix_html(
           <div id="deviceEditorPanel"></div>
         </div>
       </div>
+    </div>
+
+    <div id="panelRack" class="tab-panel hidden">
+      <section class="panel" aria-labelledby="rackEditorHeading">
+        <h2 id="rackEditorHeading">Rack Editor</h2>
+        <p class="muted-note">Place Rack devices in one of four 16U racks. Start U is the lowest unit occupied by the device.</p>
+        <div class="rack-editor-controls">
+          <label>Device
+            <select id="rackEditorDeviceSelect"></select>
+          </label>
+          <label>Location
+            <select id="rackEditorLocationSelect">
+              <option value="Desk">Desk</option>
+              <option value="Rack">Rack</option>
+            </select>
+          </label>
+          <label>Height (U/HE)
+            <input id="rackEditorUnitsInput" type="number" min="1" max="16" step="1" value="1" />
+          </label>
+          <label>Rack
+            <select id="rackEditorRackSelect">
+              <option value="1">Rack 1</option>
+              <option value="2">Rack 2</option>
+              <option value="3">Rack 3</option>
+              <option value="4">Rack 4</option>
+            </select>
+          </label>
+          <label>Start U (lowest)
+            <select id="rackEditorStartUSelect"></select>
+          </label>
+          <button id="applyRackPlacementBtn" type="button">Apply Placement</button>
+          <button id="removeRackPlacementBtn" type="button">Remove from Rack</button>
+        </div>
+        <div id="rackEditorStatus" class="status rack-editor-status" role="status" aria-live="polite"></div>
+      </section>
+      <div class="rack-editor-lists">
+        <section class="panel" aria-labelledby="rackUnplacedHeading">
+          <h3 id="rackUnplacedHeading">Unplaced Rack Devices</h3>
+          <ul id="rackUnplacedList" class="rack-device-list"></ul>
+        </section>
+      </div>
+      <div id="rackEditorRacks" class="racks-layout" aria-label="Four 16U equipment racks"></div>
     </div>
 
     <div id="panelVisibility" class="tab-panel hidden">
@@ -6940,6 +7300,29 @@ def build_routing_matrix_html(
         </div>
       </div>
     </div>
+    <dialog id="configDialog" class="config-dialog" aria-labelledby="configDialogTitle" aria-describedby="configDialogDescription">
+      <form id="configDialogForm" class="config-dialog-form" method="dialog" novalidate>
+        <h2 id="configDialogTitle" class="config-dialog-title">Configuration</h2>
+        <p id="configDialogDescription" class="config-dialog-description"></p>
+        <label class="config-dialog-field"><span id="configDialogInputLabel">Name</span>
+          <input id="configDialogInput" type="text" autocomplete="off" aria-describedby="configDialogError configDialogTarget" />
+        </label>
+        <div class="config-dialog-path-wrap">
+          <span class="config-dialog-path-label">Target path</span>
+          <output id="configDialogTarget" class="config-dialog-path"></output>
+        </div>
+        <p id="configDialogConsequence" class="config-dialog-consequence"></p>
+        <label id="configDialogOverwrite" class="config-dialog-overwrite hidden">
+          <input id="configDialogOverwriteCheck" type="checkbox" />
+          <span id="configDialogOverwriteText">Replace the existing file at this exact path.</span>
+        </label>
+        <p id="configDialogError" class="config-dialog-error" role="alert" aria-live="polite"></p>
+        <div class="config-dialog-actions">
+          <button id="configDialogCancel" type="button">Cancel</button>
+          <button id="configDialogSubmit" type="submit">Continue</button>
+        </div>
+      </form>
+    </dialog>
   </div>
   <script>
     const EMBEDDED_MODEL = __MODEL_JSON__;
@@ -6947,8 +7330,6 @@ def build_routing_matrix_html(
     const EMBEDDED_MATRIX = __MATRIX_JSON__;
     const FAMILY_ALL = "ALL";
     const FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK"];
-    const PROTOTYPE_MATRIX_PATH = "prototypes/routing_matrix_prototype_compact.html";
-    const USE_PROTOTYPE_MATRIX_MAIN = true;
 
     const familySelect = document.getElementById("familySelect");
     const sourceFilterInput = document.getElementById("sourceFilterInput");
@@ -6972,8 +7353,6 @@ def build_routing_matrix_html(
     const matrixContainer = document.getElementById("matrixContainer");
     const matrixHoverTooltip = document.getElementById("matrixHoverTooltip");
     const connectionList = document.getElementById("connectionList");
-    const prototypeMatrixHost = document.getElementById("prototypeMatrixHost");
-    const prototypeMatrixFrame = document.getElementById("prototypeMatrixFrame");
     const statusEl = document.getElementById("status");
     const copyDebugReportBtn = document.getElementById("copyDebugReportBtn");
     const toggleDebugPanelBtn = document.getElementById("toggleDebugPanelBtn");
@@ -6982,23 +7361,30 @@ def build_routing_matrix_html(
     const importConnectionsFile = document.getElementById("importConnectionsFile");
     const mainTabMatrix = document.getElementById("mainTabMatrix");
     const mainTabDevices = document.getElementById("mainTabDevices");
+    const mainTabRack = document.getElementById("mainTabRack");
     const mainTabVisibility = document.getElementById("mainTabVisibility");
     const mainTabVisuals = document.getElementById("mainTabVisuals");
     const matrixSubTabPatch = document.getElementById("matrixSubTabPatch");
     const matrixSubTabConnections = document.getElementById("matrixSubTabConnections");
-    const matrixSubTabPrototype = document.getElementById("matrixSubTabPrototype");
     const panelMatrix = document.getElementById("panelMatrix");
     const panelDevices = document.getElementById("panelDevices");
+    const panelRack = document.getElementById("panelRack");
     const panelVisibility = document.getElementById("panelVisibility");
     const panelVisuals = document.getElementById("panelVisuals");
     const newDeviceName = document.getElementById("newDeviceName");
     const newDeviceType = document.getElementById("newDeviceType");
+    const newDeviceLocation = document.getElementById("newDeviceLocation");
+    const newDeviceRackUnits = document.getElementById("newDeviceRackUnits");
+    const newDeviceRackMountable = document.getElementById("newDeviceRackMountable");
     const addDeviceBtn = document.getElementById("addDeviceBtn");
     const downloadModelBtn = document.getElementById("downloadModelBtn");
     const deviceListPanel = document.getElementById("deviceListPanel");
     const deviceEditorPanel = document.getElementById("deviceEditorPanel");
     const deviceNameInput = document.getElementById("deviceNameInput");
     const deviceTypeInput = document.getElementById("deviceTypeInput");
+    const deviceLocationInput = document.getElementById("deviceLocationInput");
+    const deviceRackUnitsInput = document.getElementById("deviceRackUnitsInput");
+    const deviceRackMountableInput = document.getElementById("deviceRackMountableInput");
     const saveDeviceMetaBtn = document.getElementById("saveDeviceMetaBtn");
     const portTabInputs = document.getElementById("portTabInputs");
     const portTabOutputs = document.getElementById("portTabOutputs");
@@ -7007,6 +7393,16 @@ def build_routing_matrix_html(
     const showAllDevicesBtn = document.getElementById("showAllDevicesBtn");
     const hideAllDevicesBtn = document.getElementById("hideAllDevicesBtn");
     const invertVisibleDevicesBtn = document.getElementById("invertVisibleDevicesBtn");
+    const rackEditorDeviceSelect = document.getElementById("rackEditorDeviceSelect");
+    const rackEditorLocationSelect = document.getElementById("rackEditorLocationSelect");
+    const rackEditorUnitsInput = document.getElementById("rackEditorUnitsInput");
+    const rackEditorRackSelect = document.getElementById("rackEditorRackSelect");
+    const rackEditorStartUSelect = document.getElementById("rackEditorStartUSelect");
+    const applyRackPlacementBtn = document.getElementById("applyRackPlacementBtn");
+    const removeRackPlacementBtn = document.getElementById("removeRackPlacementBtn");
+    const rackEditorStatus = document.getElementById("rackEditorStatus");
+    const rackUnplacedList = document.getElementById("rackUnplacedList");
+    const rackEditorRacks = document.getElementById("rackEditorRacks");
     const previewStatus = document.getElementById("previewStatus");
     const regeneratePreviewsBtn = document.getElementById("regeneratePreviewsBtn");
     const downloadSvgsBtn = document.getElementById("downloadSvgsBtn");
@@ -7027,6 +7423,23 @@ def build_routing_matrix_html(
     const projectSelect = document.getElementById("projectSelect");
     const deviceConfigSelect = document.getElementById("deviceConfigSelect");
     const patchConfigSelect = document.getElementById("patchConfigSelect");
+    const createProjectBtn = document.getElementById("createProjectBtn");
+    const createDeviceConfigBtn = document.getElementById("createDeviceConfigBtn");
+    const createPatchConfigBtn = document.getElementById("createPatchConfigBtn");
+    const configDialog = document.getElementById("configDialog");
+    const configDialogForm = document.getElementById("configDialogForm");
+    const configDialogTitle = document.getElementById("configDialogTitle");
+    const configDialogDescription = document.getElementById("configDialogDescription");
+    const configDialogInputLabel = document.getElementById("configDialogInputLabel");
+    const configDialogInput = document.getElementById("configDialogInput");
+    const configDialogTarget = document.getElementById("configDialogTarget");
+    const configDialogConsequence = document.getElementById("configDialogConsequence");
+    const configDialogOverwrite = document.getElementById("configDialogOverwrite");
+    const configDialogOverwriteCheck = document.getElementById("configDialogOverwriteCheck");
+    const configDialogOverwriteText = document.getElementById("configDialogOverwriteText");
+    const configDialogError = document.getElementById("configDialogError");
+    const configDialogCancel = document.getElementById("configDialogCancel");
+    const configDialogSubmit = document.getElementById("configDialogSubmit");
     const PREVIEW_DOM = {
       audioAnalog: { img: previewAudioAnalog, link: previewLinkAudioAnalog },
       computerData: { img: previewComputerData, link: previewLinkComputerData },
@@ -7056,9 +7469,10 @@ def build_routing_matrix_html(
       const modelObject = (modelInput && typeof modelInput === "object") ? modelInput : {};
       const matrixObject = normalizeMatrixPayload(matrixInput);
 
+      // Preserve patchbays in the model so Devices & Ports and Rack Manager can
+      // manage them. Only their routing rows are hidden from the matrix view.
       const filteredModel = { ...modelObject };
-      const modelDevices = Array.isArray(modelObject.devices) ? modelObject.devices : [];
-      filteredModel.devices = modelDevices.filter((device) => !isPatchbayDeviceName(String(device?.name || "")));
+      filteredModel.devices = Array.isArray(modelObject.devices) ? modelObject.devices : [];
 
       const filteredMatrix = { ...matrixObject };
       const rows = Array.isArray(matrixObject.connections) ? matrixObject.connections : [];
@@ -7134,6 +7548,7 @@ def build_routing_matrix_html(
     const MATRIX_SCALE_STORAGE_KEY = "studioWiringMatrixScaleV1";
     const AUTO_SAVE_STORAGE_KEY = "studioWiringAutoSaveToDiskV1";
     const THEME_STORAGE_KEY = "studioWiringThemeModeV1";
+    const PROJECT_SELECTION_STORAGE_KEY = "studioWiringProjectSelectionV1";
     const SAVE_DEBOUNCE_MS = 650;
     const DEFAULT_PREVIEW_PATHS = {
       audioAnalog: "../svgs/audio-analog.svg",
@@ -7169,7 +7584,9 @@ def build_routing_matrix_html(
       : null;
 
     let selectedDeviceName = "";
+    let rackDragState = null;
     let devicePortTab = "in";
+    let deviceEditorCommitInProgress = false;
     let saveApiEnabled = false;
     let saveApiConfig = null;
     let autoSaveEnabled = false;
@@ -7178,13 +7595,15 @@ def build_routing_matrix_html(
     let pendingSaveReason = "";
     let lastSavedConnectionsHash = "";
     let lastSavedModelHash = "";
+    let loadedModelVersionHash = "";
+    let loadedConnectionsVersionHash = "";
     let pendingModelEditSave = false;
     let regenerateApiEnabled = false;
     let previewPaths = { ...DEFAULT_PREVIEW_PATHS };
     let routeDebugPath = DEFAULT_ROUTE_DEBUG_PATH;
     let selectedThemeMode = "light";
     let hasExplicitThemePreference = false;
-    let selectedMatrixSubTab = USE_PROTOTYPE_MATRIX_MAIN ? "prototype" : "patch";
+    let selectedMatrixSubTab = "patch";
     let selectedPatchMode = DEFAULT_PATCH_MODE;
     let pairCount = DEFAULT_PAIR_COUNT;
     let rangeSelectionAnchor = null;
@@ -7221,44 +7640,7 @@ def build_routing_matrix_html(
     function normalizeMatrixSubTab(tabName) {
       const token = String(tabName || "patch").trim().toLowerCase();
       if (token === "connections") return "connections";
-      if (token === "prototype") return "prototype";
       return "patch";
-    }
-
-    function buildPrototypeMatrixUrl() {
-      const modelPath = String(selectedModelPath || "").trim();
-      const patchPath = String(selectedConnectionsPath || "").trim();
-      try {
-        const url = new URL(PROTOTYPE_MATRIX_PATH, window.location.href);
-        if (modelPath) url.searchParams.set("model", modelPath);
-        if (patchPath) url.searchParams.set("connections", patchPath);
-        if (saveApiEnabled) {
-          url.searchParams.set("use_save_api", "1");
-          url.searchParams.set("save_connections_api", "/api/save-connections");
-        }
-        return url.toString();
-      } catch (_error) {
-        const params = new URLSearchParams();
-        if (modelPath) params.set("model", modelPath);
-        if (patchPath) params.set("connections", patchPath);
-        if (saveApiEnabled) {
-          params.set("use_save_api", "1");
-          params.set("save_connections_api", "/api/save-connections");
-        }
-        const query = params.toString();
-        return query ? `${PROTOTYPE_MATRIX_PATH}?${query}` : PROTOTYPE_MATRIX_PATH;
-      }
-    }
-
-    function updatePrototypeMatrixFrame(forceReload = false) {
-      if (!(prototypeMatrixFrame instanceof HTMLIFrameElement)) return;
-      const nextSrc = buildPrototypeMatrixUrl();
-      if (!nextSrc) return;
-      const currentSrc = String(prototypeMatrixFrame.getAttribute("src") || "").trim();
-      const shouldApply = forceReload || selectedMatrixSubTab === "prototype" || Boolean(currentSrc);
-      if (!shouldApply) return;
-      if (!forceReload && currentSrc === nextSrc) return;
-      prototypeMatrixFrame.setAttribute("src", nextSrc);
     }
 
     function pushDebugHistory(list, entry, limit = DEBUG_HISTORY_LIMIT) {
@@ -7788,9 +8170,7 @@ def build_routing_matrix_html(
       // Keep matrix/table viewport filling remaining screen height from their current top edge.
       const reference = (matrixContainer && !matrixContainer.classList.contains("hidden"))
         ? matrixContainer
-        : ((connectionList && !connectionList.classList.contains("hidden"))
-          ? connectionList
-          : ((prototypeMatrixHost && !prototypeMatrixHost.classList.contains("hidden")) ? prototypeMatrixHost : null));
+        : ((connectionList && !connectionList.classList.contains("hidden")) ? connectionList : null);
       if (!(reference instanceof HTMLElement)) return;
       if (!reference.offsetParent) return;
       const viewportHeight = Number(window.innerHeight || document.documentElement.clientHeight || 0);
@@ -8179,6 +8559,25 @@ def build_routing_matrix_html(
       return { modelHash, connHash };
     }
 
+    function canonicalizeJsonForHash(value) {
+      if (Array.isArray(value)) return value.map((item) => canonicalizeJsonForHash(item));
+      if (value && typeof value === "object") {
+        const out = {};
+        for (const key of Object.keys(value).sort()) out[key] = canonicalizeJsonForHash(value[key]);
+        return out;
+      }
+      return value;
+    }
+
+    async function computeJsonPayloadHash(payload) {
+      const text = JSON.stringify(canonicalizeJsonForHash(payload));
+      if (!(window.crypto && window.crypto.subtle && typeof TextEncoder !== "undefined")) return "";
+      const digest = await window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+      return Array.from(new Uint8Array(digest))
+        .map((value) => value.toString(16).padStart(2, "0"))
+        .join("");
+    }
+
     async function parseApiError(response, fallbackMessage) {
       const fallback = String(fallbackMessage || `HTTP ${response?.status ?? "?"}`);
       if (!response) return fallback;
@@ -8308,7 +8707,6 @@ def build_routing_matrix_html(
       deviceConfigSelect.disabled = !saveApiEnabled;
       patchConfigSelect.disabled = !saveApiEnabled;
       projectTools.classList.remove("hidden");
-      updatePrototypeMatrixFrame(false);
     }
 
     function findProjectByKey(projectKey) {
@@ -8414,6 +8812,133 @@ def build_routing_matrix_html(
       return `${stem}.json`;
     }
 
+    let activeConfigDialogRequest = null;
+    let configDialogReturnFocus = null;
+
+    function clientProjectSlug(value) {
+      const base = String(value || "")
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+      if (!base) return "project";
+      const used = new Set(projectCatalog.map((project) => String(project?.key || "").trim()));
+      if (!used.has(base)) return base;
+      let index = 2;
+      while (used.has(`${base}-${String(index).padStart(2, "0")}`)) index += 1;
+      return `${base}-${String(index).padStart(2, "0")}`;
+    }
+
+    function configDialogFocusableElements() {
+      if (!(configDialog instanceof HTMLDialogElement)) return [];
+      return Array.from(configDialog.querySelectorAll(
+        'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      )).filter((node) => node instanceof HTMLElement && !node.closest(".hidden"));
+    }
+
+    function closeConfigurationDialog(result) {
+      const request = activeConfigDialogRequest;
+      activeConfigDialogRequest = null;
+      if (configDialog instanceof HTMLDialogElement && configDialog.open) configDialog.close();
+      if (request) request.resolve(result);
+      const focusTarget = configDialogReturnFocus;
+      configDialogReturnFocus = null;
+      window.setTimeout(() => {
+        if (focusTarget instanceof HTMLElement && focusTarget.isConnected) focusTarget.focus();
+      }, 0);
+    }
+
+    function updateConfigurationDialog() {
+      const request = activeConfigDialogRequest;
+      if (!request || !(configDialogInput instanceof HTMLInputElement)) return;
+      const rawValue = configDialogInput.value;
+      const details = request.options.resolve(rawValue);
+      request.details = details;
+      const target = String(details?.target || "").trim();
+      const error = String(details?.error || "").trim();
+      const exists = Boolean(details?.exists);
+      configDialogTarget.textContent = target || "Target will appear after entering a valid name.";
+      configDialogError.textContent = error;
+      configDialogInput.setAttribute("aria-invalid", error ? "true" : "false");
+      configDialogOverwrite.classList.toggle("hidden", !exists);
+      configDialogOverwriteCheck.checked = false;
+      configDialogOverwriteText.textContent = exists
+        ? `Replace the existing file at ${target}. The previous contents will be overwritten.`
+        : "";
+      configDialogSubmit.disabled = Boolean(error) || !target || exists;
+    }
+
+    function requestConfiguration(options) {
+      if (!(configDialog instanceof HTMLDialogElement)) {
+        setStatus("Configuration dialog is unavailable in this browser.", true);
+        return Promise.resolve(null);
+      }
+      if (activeConfigDialogRequest) closeConfigurationDialog(null);
+      configDialogReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      configDialogTitle.textContent = String(options?.title || "Configuration");
+      configDialogDescription.textContent = String(options?.description || "");
+      configDialogInputLabel.textContent = String(options?.inputLabel || "Name");
+      configDialogConsequence.textContent = String(options?.consequence || "");
+      configDialogSubmit.textContent = String(options?.submitLabel || "Continue");
+      configDialogInput.value = String(options?.initialValue || "");
+      configDialogOverwrite.classList.add("hidden");
+      configDialogOverwriteCheck.checked = false;
+      configDialogError.textContent = "";
+      return new Promise((resolve) => {
+        activeConfigDialogRequest = { options, resolve, details: null };
+        updateConfigurationDialog();
+        configDialog.showModal();
+        window.setTimeout(() => {
+          configDialogInput.focus();
+          configDialogInput.select();
+        }, 0);
+      });
+    }
+
+    if (configDialogInput) configDialogInput.addEventListener("input", updateConfigurationDialog);
+    if (configDialogOverwriteCheck) configDialogOverwriteCheck.addEventListener("change", () => {
+      const details = activeConfigDialogRequest?.details;
+      configDialogSubmit.disabled = Boolean(details?.error)
+        || !String(details?.target || "").trim()
+        || (Boolean(details?.exists) && !configDialogOverwriteCheck.checked);
+    });
+    if (configDialogCancel) configDialogCancel.addEventListener("click", () => closeConfigurationDialog(null));
+    if (configDialog) configDialog.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closeConfigurationDialog(null);
+    });
+    if (configDialog) configDialog.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab") return;
+      const focusable = configDialogFocusableElements();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+    if (configDialogForm) configDialogForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const request = activeConfigDialogRequest;
+      const details = request?.details;
+      if (!request || !details) return;
+      if (details.error || !String(details.target || "").trim()) {
+        updateConfigurationDialog();
+        configDialogInput.focus();
+        return;
+      }
+      if (details.exists && !configDialogOverwriteCheck.checked) {
+        configDialogError.textContent = "Confirm that the existing file may be replaced.";
+        configDialogOverwriteCheck.focus();
+        return;
+      }
+      closeConfigurationDialog({ ...details, input: configDialogInput.value.trim() });
+    });
+
     function suggestIncrementedName(currentPathValue, existingPaths, fallbackStem) {
       const existingStems = Array.from(
         new Set(
@@ -8456,6 +8981,35 @@ def build_routing_matrix_html(
       return `${prefix}${separator}${String(nextNumber).padStart(nextWidth, "0")}`;
     }
 
+    function requestJsonConfigTarget(options) {
+      const existingPaths = Array.isArray(options?.existingPaths) ? options.existingPaths : [];
+      const baseDir = String(options?.baseDir || "").trim();
+      const fallbackStem = String(options?.fallbackStem || "config").trim() || "config";
+      return requestConfiguration({
+        title: options?.title,
+        description: options?.description,
+        consequence: options?.consequence,
+        inputLabel: "Filename",
+        initialValue: `${fallbackStem}.json`,
+        submitLabel: options?.submitLabel || "Save",
+        resolve(rawValue) {
+          const value = String(rawValue || "").trim();
+          let error = "";
+          if (!value) error = "Enter a filename.";
+          else if (value.includes("/") || value.includes("\\\\")) error = "Enter a filename only, without folders.";
+          else if (value === "." || value === "..") error = "Choose a different filename.";
+          const fileName = error ? "" : sanitizeJsonFileName(value, fallbackStem);
+          const target = fileName ? joinPathParts(baseDir, fileName) : "";
+          return {
+            value: fileName,
+            target,
+            exists: Boolean(target && fileExistsInList(target, existingPaths)),
+            error,
+          };
+        },
+      });
+    }
+
     function projectOutputPath(baseDir, filename) {
       const dir = String(baseDir || "").trim().replace(/\/+$/, "");
       const file = String(filename || "").trim().replace(/^\/+/, "");
@@ -8463,16 +9017,56 @@ def build_routing_matrix_html(
       return `${dir}/${file}`;
     }
 
+    function loadProjectSelectionPreference() {
+      try {
+        const payload = JSON.parse(window.localStorage.getItem(PROJECT_SELECTION_STORAGE_KEY) || "null");
+        if (!payload || typeof payload !== "object" || Array.isArray(payload)) return {};
+        return {
+          project_key: String(payload.project_key || "").trim(),
+          model_path: String(payload.model_path || "").trim(),
+          connections_path: String(payload.connections_path || "").trim(),
+        };
+      } catch (_error) {
+        return {};
+      }
+    }
+
+    function persistProjectSelectionPreference(projectKey, modelPath, connectionsPath) {
+      const payload = {
+        project_key: String(projectKey || "").trim(),
+        model_path: String(modelPath || "").trim(),
+        connections_path: String(connectionsPath || "").trim(),
+      };
+      if (!payload.project_key) return;
+      try {
+        window.localStorage.setItem(PROJECT_SELECTION_STORAGE_KEY, JSON.stringify(payload));
+      } catch (_error) {
+        // Selection remains active for this page when storage is unavailable.
+      }
+    }
+
     function updateProjectSelectorsFromConfig(configPayload) {
       const payload = (configPayload && typeof configPayload === "object") ? configPayload : {};
       projectCatalog = Array.isArray(payload.projects) ? payload.projects : [];
-      selectedModelPath = String(payload.model_path || selectedModelPath || "").trim();
-      selectedConnectionsPath = String(payload.connections_path || selectedConnectionsPath || "").trim();
+      const storedSelection = loadProjectSelectionPreference();
       const configuredProjectKey = String(payload.active_project_key || "").trim();
-      selectedProjectKey = configuredProjectKey
-        || inferProjectKeyFromPaths(selectedModelPath, selectedConnectionsPath)
+      selectedProjectKey = String(selectedProjectKey || storedSelection.project_key || configuredProjectKey).trim()
+        || inferProjectKeyFromPaths(storedSelection.model_path, storedSelection.connections_path)
         || (projectCatalog[0] && String(projectCatalog[0].key || "").trim())
         || "";
+      const storedMatchesProject = String(storedSelection.project_key || "").trim() === selectedProjectKey;
+      selectedModelPath = String(
+        selectedModelPath
+        || (storedMatchesProject ? storedSelection.model_path : "")
+        || payload.model_path
+        || ""
+      ).trim();
+      selectedConnectionsPath = String(
+        selectedConnectionsPath
+        || (storedMatchesProject ? storedSelection.connections_path : "")
+        || payload.connections_path
+        || ""
+      ).trim();
 
       if (!(projectTools instanceof HTMLElement)) return;
       if (!(projectSelect instanceof HTMLSelectElement)
@@ -8512,7 +9106,7 @@ def build_routing_matrix_html(
 
       projectTools.classList.remove("hidden");
       applyingProjectSelectors = false;
-      updatePrototypeMatrixFrame(false);
+      persistProjectSelectionPreference(selectedProjectKey, selectedModelPath, selectedConnectionsPath);
     }
 
     function buildProjectTargetPayload(project, modelPathValue, patchPathValue) {
@@ -8522,13 +9116,38 @@ def build_routing_matrix_html(
       if (modelPath) payload.model_path = modelPath;
       if (patchPath) payload.connections_path = patchPath;
 
-      const previewSvgDir = String(project?.output_svg_directory || "").trim();
-      const previewDebugDir = String(project?.output_debug_directory || "").trim();
-      const previewHtmlDir = String(project?.output_html_directory || "").trim();
-      if (previewSvgDir) payload.preview_svg_dir = previewSvgDir;
-      if (previewDebugDir) payload.route_debug_path = projectOutputPath(previewDebugDir, "route-debug.json");
-      if (previewHtmlDir) payload.preview_html = projectOutputPath(previewHtmlDir, "studio_wiring_point_to_point.html");
+      const projectBase = String(project?.base_path || "").trim();
+      const previewSvgDir = String(project?.output_svg_directory || "").trim()
+        || joinPathParts(projectBase, "outputs/svgs");
+      const previewDebugDir = String(project?.output_debug_directory || "").trim()
+        || joinPathParts(projectBase, "outputs/debug");
+      const previewHtmlDir = String(project?.output_html_directory || "").trim()
+        || joinPathParts(projectBase, "outputs/html");
+      payload.preview_svg_dir = previewSvgDir;
+      payload.route_debug_path = projectOutputPath(previewDebugDir, "route-debug.json");
+      payload.preview_html = projectOutputPath(previewHtmlDir, "studio_wiring_point_to_point.html");
+      payload.routing_rules_path = String(saveApiConfig?.routing_rules_path || "").trim();
       return payload;
+    }
+
+    function buildSaveTransactionPayload(project, modelPathValue, patchPathValue, options = {}) {
+      const targets = buildProjectTargetPayload(project, modelPathValue, patchPathValue);
+      return {
+        project_key: String(project?.key || selectedProjectKey || "").trim(),
+        targets,
+        changes: {
+          ...(Object.prototype.hasOwnProperty.call(options, "model") ? { model: options.model } : {}),
+          ...(Object.prototype.hasOwnProperty.call(options, "connections") ? { connections: options.connections } : {}),
+        },
+        expected_hashes: {
+          ...(Object.prototype.hasOwnProperty.call(options, "model")
+            ? { model: String(options.expectedModelHash || "").trim() } : {}),
+          ...(Object.prototype.hasOwnProperty.call(options, "connections")
+            ? { connections: String(options.expectedConnectionsHash || "").trim() } : {}),
+        },
+        reason: String(options.reason || "save"),
+        regenerate: options.regenerate !== false,
+      };
     }
 
     async function loadModelAndConnectionsFromSelection(reason = "selection") {
@@ -8576,12 +9195,15 @@ def build_routing_matrix_html(
         setDevicePortTab(devicePortTab);
         renderDeviceList();
         renderDeviceEditor();
+        renderRackEditor();
         renderVisibilityPanel();
         showMatrixSubTab(selectedMatrixSubTab);
         renderMatrix();
         const hashes = computeSaveHashes();
         lastSavedModelHash = hashes.modelHash;
         lastSavedConnectionsHash = hashes.connHash;
+        loadedModelVersionHash = await computeJsonPayloadHash(modelPayload);
+        loadedConnectionsVersionHash = await computeJsonPayloadHash(matrixPayloadRaw);
         pendingModelEditSave = false;
 
         const removedSuffix = removed > 0 ? ` (${removed} invalid connection(s) removed)` : "";
@@ -8605,31 +9227,14 @@ def build_routing_matrix_html(
         setStatus("Select both a device config and patch config.", true);
         return false;
       }
-      const project = findProjectByKey(projectKey);
-      const payload = buildProjectTargetPayload(project, modelPath, patchPath);
       try {
-        const response = await fetch("/api/set-targets", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-        if (!response.ok) {
-          const details = await parseApiError(response, `HTTP ${response.status}`);
-          throw new Error(details);
-        }
-        const configPayload = await response.json();
-        if (!configPayload || configPayload.ok !== true) {
-          throw new Error(String(configPayload?.error || "set-targets failed"));
-        }
-        saveApiConfig = configPayload;
-        regenerateApiEnabled = Boolean(configPayload?.regenerate_available);
-        mergePreviewPathsFromConfig(configPayload);
-        mergeRouteDebugPathFromConfig(configPayload);
-        updateProjectSelectorsFromConfig(configPayload);
-        applySaveControlsState();
+        selectedProjectKey = projectKey;
+        selectedModelPath = modelPath;
+        selectedConnectionsPath = patchPath;
+        persistProjectSelectionPreference(selectedProjectKey, selectedModelPath, selectedConnectionsPath);
         return await loadModelAndConnectionsFromSelection(reason);
       } catch (error) {
-        setStatus(`Target switch failed: ${String(error)}`, true);
+        setStatus(`Selection load failed: ${String(error)}`, true);
         return false;
       }
     }
@@ -8693,6 +9298,203 @@ def build_routing_matrix_html(
       return false;
     }
 
+    async function expectedHashForTarget(pathValue, pathList) {
+      if (!fileExistsInList(pathValue, pathList)) return "";
+      return await computeJsonPayloadHash(await fetchJsonAtPath(pathValue));
+    }
+
+    function buildEmptyModelPayload(project) {
+      const payload = cloneJson(EMPTY_MODEL_TEMPLATE) || {};
+      payload.version = Number.isFinite(Number(payload?.version)) ? Number(payload.version) : 1;
+      payload.title = String(project?.name || payload?.title || "Studio").trim() || "Studio";
+      if (!Array.isArray(payload.devices)) payload.devices = [];
+      return payload;
+    }
+
+    function buildEmptyPatchPayload() {
+      return { version: 1, generated_on: new Date().toISOString(), connections: [] };
+    }
+
+    async function createNewProject() {
+      if (!saveApiEnabled) {
+        setStatus("Create project unavailable. Start routing_matrix_server.py.", true);
+        return false;
+      }
+      const choice = await requestConfiguration({
+        title: "Create Project",
+        description: "Create a new project from the standard empty project template.",
+        consequence: "A new project folder, device configuration, and patch configuration will be created. Existing projects are not changed.",
+        inputLabel: "Project name",
+        initialValue: "New Project",
+        submitLabel: "Create Project",
+        resolve(rawValue) {
+          const value = String(rawValue || "").trim();
+          const error = !value
+            ? "Enter a project name."
+            : (value.length > 100 ? "Project names must be 100 characters or fewer." : "");
+          const key = value ? clientProjectSlug(value) : "";
+          return {
+            value,
+            target: key ? `projects/${key}/` : "",
+            exists: false,
+            error,
+          };
+        },
+      });
+      if (!choice) return false;
+      try {
+        const payload = await postJsonApi("/api/create-project", { name: choice.value });
+        saveApiConfig = payload;
+        regenerateApiEnabled = Boolean(payload?.regenerate_available);
+        mergePreviewPathsFromConfig(payload);
+        mergeRouteDebugPathFromConfig(payload);
+        selectedProjectKey = String(payload?.created_project_key || payload?.active_project_key || "").trim();
+        selectedModelPath = String(payload?.model_path || "").trim();
+        selectedConnectionsPath = String(payload?.connections_path || "").trim();
+        updateProjectSelectorsFromConfig(payload);
+        if (selectedModelPath && selectedConnectionsPath) {
+          await applySelectorTargets({
+            projectKey: selectedProjectKey,
+            modelPath: selectedModelPath,
+            patchPath: selectedConnectionsPath,
+            reason: "create-project",
+          });
+        }
+        setStatus(`Created project: ${choice.value}`);
+        return true;
+      } catch (error) {
+        setStatus(`Create project failed: ${String(error)}`, true);
+        return false;
+      }
+    }
+
+    async function createNewDeviceConfig() {
+      if (!saveApiEnabled) {
+        setStatus("Create device config unavailable. Start routing_matrix_server.py.", true);
+        return false;
+      }
+      const project = resolveProjectForSelection();
+      if (!project) {
+        setStatus("Select a project first.", true);
+        return false;
+      }
+      const existingPaths = Array.isArray(project?.device_configs) ? project.device_configs : [];
+      const baseDir = parentDirectory(project?.default_device_config)
+        || joinPathParts(String(project?.base_path || "").trim(), "device-configurations");
+      const suggestionStem = suggestIncrementedName("", existingPaths, "device-config");
+      const choice = await requestJsonConfigTarget({
+        title: "Create Device Configuration",
+        description: "Create an empty device-and-port configuration in the selected project.",
+        consequence: "The new configuration becomes selected. Your current in-memory devices are not copied; use Save Device Config As for that.",
+        submitLabel: "Create Device Config",
+        fallbackStem: suggestionStem,
+        baseDir,
+        existingPaths,
+      });
+      if (!choice) return false;
+      const patchTarget = selectedConnectionsPath || String(project?.default_patch_config || "").trim();
+      if (!patchTarget) {
+        setStatus("Create a patch configuration for this project first.", true);
+        return false;
+      }
+      try {
+        const response = await postJsonApi("/api/save-transaction", buildSaveTransactionPayload(
+          project,
+          choice.target,
+          patchTarget,
+          {
+            model: buildEmptyModelPayload(project),
+            expectedModelHash: await expectedHashForTarget(choice.target, existingPaths),
+            reason: "create-device-config",
+          },
+        ));
+        loadedModelVersionHash = String(response?.saved?.hashes?.model || "").trim();
+        const configPayload = await fetchApiConfigOnce();
+        saveApiConfig = configPayload;
+        selectedModelPath = choice.target;
+        selectedConnectionsPath = patchTarget;
+        updateProjectSelectorsFromConfig({
+          ...configPayload,
+          active_project_key: selectedProjectKey,
+          model_path: choice.target,
+          connections_path: patchTarget,
+        });
+        await applySelectorTargets({
+          projectKey: selectedProjectKey,
+          modelPath: choice.target,
+          patchPath: patchTarget,
+          reason: "create-device-config",
+        });
+        setStatus(`Created device config: ${choice.target}`);
+        return true;
+      } catch (error) {
+        setStatus(`Create device config failed: ${String(error)}`, true);
+        return false;
+      }
+    }
+
+    async function createNewPatchConfig() {
+      if (!saveApiEnabled) {
+        setStatus("Create patch config unavailable. Start routing_matrix_server.py.", true);
+        return false;
+      }
+      const project = resolveProjectForSelection();
+      if (!project || !selectedModelPath) {
+        setStatus("Select a project and device config first.", true);
+        return false;
+      }
+      const existingPaths = Array.isArray(project?.patch_configs) ? project.patch_configs : [];
+      const modelStem = stripJsonExtension(labelFromPath(selectedModelPath)) || "studio-model";
+      const baseDir = joinPathParts(
+        joinPathParts(String(project?.base_path || "").trim(), "patch-configurations"),
+        modelStem,
+      );
+      const suggestionStem = suggestIncrementedName(selectedConnectionsPath, existingPaths, "patch-config");
+      const choice = await requestJsonConfigTarget({
+        title: "Create Patch Configuration",
+        description: `Create an empty patch configuration for ${labelFromPath(selectedModelPath)}.`,
+        consequence: "The new patch becomes selected with no connections. The device configuration is not changed.",
+        submitLabel: "Create Patch Config",
+        fallbackStem: suggestionStem,
+        baseDir,
+        existingPaths,
+      });
+      if (!choice) return false;
+      try {
+        const response = await postJsonApi("/api/save-transaction", buildSaveTransactionPayload(
+          project,
+          selectedModelPath,
+          choice.target,
+          {
+            connections: buildEmptyPatchPayload(),
+            expectedConnectionsHash: await expectedHashForTarget(choice.target, existingPaths),
+            reason: "create-patch-config",
+          },
+        ));
+        loadedConnectionsVersionHash = String(response?.saved?.hashes?.connections || "").trim();
+        const configPayload = await fetchApiConfigOnce();
+        saveApiConfig = configPayload;
+        selectedConnectionsPath = choice.target;
+        updateProjectSelectorsFromConfig({
+          ...configPayload,
+          active_project_key: selectedProjectKey,
+          model_path: selectedModelPath,
+          connections_path: choice.target,
+        });
+        await applySelectorTargets({
+          projectKey: selectedProjectKey,
+          modelPath: selectedModelPath,
+          patchPath: choice.target,
+          reason: "create-patch-config",
+        });
+        setStatus(`Created patch config: ${choice.target}`);
+        return true;
+      } catch (error) {
+        setStatus(`Create patch config failed: ${String(error)}`, true);
+        return false;
+      }
+    }
+
     async function saveCurrentModelAs() {
       if (!saveApiEnabled) {
         setStatus("Save API unavailable. Start routing_matrix_server.py.", true);
@@ -8705,25 +9507,33 @@ def build_routing_matrix_html(
         || parentDirectory(project?.default_device_config)
         || joinPathParts(String(project?.base_path || "").trim(), "device-configurations");
       const suggestionStem = suggestIncrementedName(selectedModelPath, existingPaths, "device-config");
-      const answer = window.prompt("Save device config as (.json):", `${suggestionStem}.json`);
-      if (answer == null) return false;
-      const fileName = sanitizeJsonFileName(answer, suggestionStem);
-      const nextPath = joinPathParts(baseDir, fileName);
-      if (!nextPath) {
-        setStatus("Could not resolve target path for device config save.", true);
-        return false;
-      }
-      if (fileExistsInList(nextPath, existingPaths) && toRelativeProjectPath(nextPath) !== toRelativeProjectPath(selectedModelPath)) {
-        const ok = window.confirm(`Overwrite existing device config '${labelFromPath(nextPath)}'?`);
-        if (!ok) return false;
-      }
+      const choice = await requestJsonConfigTarget({
+        title: "Save Device Configuration As",
+        description: "Save the current devices, ports, visibility, and matrix UI settings under a new filename.",
+        consequence: "This creates a copy at the displayed path. Your currently selected device and patch configurations remain active.",
+        submitLabel: "Save Device Config",
+        fallbackStem: suggestionStem,
+        baseDir,
+        existingPaths,
+      });
+      if (!choice) return false;
+      const nextPath = choice.target;
 
       try {
-        const targetPayload = buildProjectTargetPayload(project, nextPath, selectedConnectionsPath);
-        const setTargetsPayload = await postJsonApi("/api/set-targets", targetPayload);
         const modelPayload = cloneJson(MODEL) || {};
-        await postJsonApi("/api/save-model", modelPayload);
-        const cfg = await fetchApiConfigOnce().catch(() => setTargetsPayload);
+        const transactionPayload = buildSaveTransactionPayload(
+          project,
+          nextPath,
+          selectedConnectionsPath,
+          {
+            model: modelPayload,
+            expectedModelHash: await expectedHashForTarget(nextPath, existingPaths),
+            reason: "save-model-as",
+          },
+        );
+        const transactionResponse = await postJsonApi("/api/save-transaction", transactionPayload);
+        loadedModelVersionHash = String(transactionResponse?.saved?.hashes?.model || "").trim();
+        const cfg = await fetchApiConfigOnce().catch(() => saveApiConfig);
         saveApiConfig = cfg;
         regenerateApiEnabled = Boolean(cfg?.regenerate_available);
         mergePreviewPathsFromConfig(cfg);
@@ -8751,25 +9561,33 @@ def build_routing_matrix_html(
         || parentDirectory(project?.default_patch_config)
         || joinPathParts(String(project?.base_path || "").trim(), "patch-configurations");
       const suggestionStem = suggestIncrementedName(selectedConnectionsPath, existingPaths, "patch-config");
-      const answer = window.prompt("Save patch config as (.json):", `${suggestionStem}.json`);
-      if (answer == null) return false;
-      const fileName = sanitizeJsonFileName(answer, suggestionStem);
-      const nextPath = joinPathParts(baseDir, fileName);
-      if (!nextPath) {
-        setStatus("Could not resolve target path for patch config save.", true);
-        return false;
-      }
-      if (fileExistsInList(nextPath, existingPaths) && toRelativeProjectPath(nextPath) !== toRelativeProjectPath(selectedConnectionsPath)) {
-        const ok = window.confirm(`Overwrite existing patch config '${labelFromPath(nextPath)}'?`);
-        if (!ok) return false;
-      }
+      const choice = await requestJsonConfigTarget({
+        title: "Save Patch Configuration As",
+        description: "Save the current routing connections under a new filename.",
+        consequence: "This creates a copy at the displayed path. Your currently selected device and patch configurations remain active.",
+        submitLabel: "Save Patch Config",
+        fallbackStem: suggestionStem,
+        baseDir,
+        existingPaths,
+      });
+      if (!choice) return false;
+      const nextPath = choice.target;
 
       try {
-        const targetPayload = buildProjectTargetPayload(project, selectedModelPath, nextPath);
-        const setTargetsPayload = await postJsonApi("/api/set-targets", targetPayload);
         const connectionsPayload = buildConnectionsPayload(true);
-        await postJsonApi("/api/save-connections", connectionsPayload);
-        const cfg = await fetchApiConfigOnce().catch(() => setTargetsPayload);
+        const transactionPayload = buildSaveTransactionPayload(
+          project,
+          selectedModelPath,
+          nextPath,
+          {
+            connections: connectionsPayload,
+            expectedConnectionsHash: await expectedHashForTarget(nextPath, existingPaths),
+            reason: "save-patch-as",
+          },
+        );
+        const transactionResponse = await postJsonApi("/api/save-transaction", transactionPayload);
+        loadedConnectionsVersionHash = String(transactionResponse?.saved?.hashes?.connections || "").trim();
+        const cfg = await fetchApiConfigOnce().catch(() => saveApiConfig);
         saveApiConfig = cfg;
         regenerateApiEnabled = Boolean(cfg?.regenerate_available);
         mergePreviewPathsFromConfig(cfg);
@@ -8799,6 +9617,7 @@ def build_routing_matrix_html(
         mergePreviewPathsFromConfig(payload);
         mergeRouteDebugPathFromConfig(payload);
         updateProjectSelectorsFromConfig(payload);
+        await loadModelAndConnectionsFromSelection("saved-selection-restore");
       } catch (error) {
         saveApiEnabled = false;
         saveApiConfig = null;
@@ -8808,7 +9627,6 @@ def build_routing_matrix_html(
         apiDetectInFlight = false;
       }
       applySaveControlsState();
-      updatePrototypeMatrixFrame(false);
       refreshVisualPreviews("api-config");
       if (saveApiEnabled) {
         setStatus("Ready. Embedded snapshot loaded + Save API linked. Click matrix cells to create/remove links.");
@@ -9018,9 +9836,7 @@ def build_routing_matrix_html(
       if (typeTagInput) typeTagInput.value = String(matrixCfg.type_tag || "");
       if (overrideToggle) overrideToggle.checked = Boolean(matrixCfg.allow_double_patching);
 
-      selectedMatrixSubTab = USE_PROTOTYPE_MATRIX_MAIN
-        ? "prototype"
-        : normalizeMatrixSubTab(matrixCfg.sub_tab || "patch");
+      selectedMatrixSubTab = normalizeMatrixSubTab(matrixCfg.sub_tab || "patch");
 
       collapsedSourceGroups.clear();
       collapsedDestGroups.clear();
@@ -9315,6 +10131,7 @@ def build_routing_matrix_html(
         if (!isDeviceVisible(device)) continue;
         const deviceName = String(device?.name || "").trim();
         if (!deviceName) continue;
+        if (isPatchbayDeviceName(deviceName)) continue;
         const ports = portsByDevice.get(deviceName) || [];
         const selected = [];
         for (const port of ports) {
@@ -9995,6 +10812,252 @@ def build_routing_matrix_html(
       return token === "out" || token === "io";
     }
 
+    function normalizeDeviceLocation(value) {
+      return String(value || "").trim() === "Rack" ? "Rack" : "Desk";
+    }
+
+    function isRackMountableDevice(device) {
+      return Boolean(device && device.rack_mountable === true);
+    }
+
+    function normalizeRackUnits(value) {
+      const units = Number(value);
+      return Number.isInteger(units) && units >= 1 && units <= 16 ? units : 1;
+    }
+
+    function normalizeRackPosition(value) {
+      if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+      const rack = Number(value.rack);
+      const startU = Number(value.start_u);
+      if (!Number.isInteger(rack) || rack < 1 || rack > 4) return null;
+      if (!Number.isInteger(startU) || startU < 1 || startU > 16) return null;
+      return { rack, start_u: startU };
+    }
+
+    function rackPlacementForDevice(device) {
+      if (!isRackMountableDevice(device) || normalizeDeviceLocation(device.location) !== "Rack") return null;
+      const position = normalizeRackPosition(device.rack_position);
+      if (!position) return null;
+      const units = normalizeRackUnits(device.rack_units);
+      if ((position.start_u + units - 1) > 16) return null;
+      return { ...position, units };
+    }
+
+    function canPlaceRackDevice(deviceName, rackValue, startUValue, unitsValue, options = null) {
+      const device = getDeviceByName(deviceName);
+      const mountable = isRackMountableDevice(device) || options?.rackMountable === true;
+      if (!mountable) {
+        return { ok: false, message: `${String(deviceName || "Device")} is not marked as rack mountable.` };
+      }
+      const rack = Number(rackValue);
+      const startU = Number(startUValue);
+      const units = Number(unitsValue);
+      if (!Number.isInteger(rack) || rack < 1 || rack > 4) {
+        return { ok: false, message: "Choose Rack 1, 2, 3, or 4." };
+      }
+      if (!Number.isInteger(startU) || startU < 1 || startU > 16) {
+        return { ok: false, message: "Start U must be between U1 and U16." };
+      }
+      if (!Number.isInteger(units) || units < 1 || units > 16) {
+        return { ok: false, message: "Height must be a whole number from 1 to 16 U/HE." };
+      }
+      const rackUnits = normalizeRackUnits(units);
+      const endU = startU + rackUnits - 1;
+      if (endU > 16) {
+        return { ok: false, message: `${units}U at U${startU} extends beyond U16.` };
+      }
+      for (const other of ensureModelDeviceArray()) {
+        const otherName = String(other?.name || "").trim();
+        if (!otherName || otherName === String(deviceName || "").trim()) continue;
+        const placement = rackPlacementForDevice(other);
+        if (!placement || placement.rack !== rack) continue;
+        const otherEndU = placement.start_u + placement.units - 1;
+        if (startU <= otherEndU && endU >= placement.start_u) {
+          return {
+            ok: false,
+            message: `${String(deviceName || "Device")} overlaps ${otherName} in Rack ${rack} (U${placement.start_u}-U${otherEndU}).`,
+          };
+        }
+      }
+      return { ok: true, message: `Rack ${rack}, U${startU}-U${endU}` };
+    }
+
+    function setRackEditorStatus(message, warn = false) {
+      if (!rackEditorStatus) return;
+      rackEditorStatus.textContent = String(message || "");
+      rackEditorStatus.classList.toggle("warn", Boolean(warn));
+    }
+
+    function rackDeviceListHtml(devices, emptyText) {
+      if (!devices.length) return `<li class="muted-note">${esc(emptyText)}</li>`;
+      return devices.map((device) => {
+        const name = String(device?.name || "").trim();
+        const units = normalizeRackUnits(device?.rack_units);
+        return `<li><button type="button" draggable="true" data-rack-drag-device="${esc(name)}" data-rack-select-device="${esc(name)}" aria-label="Drag ${esc(name)}, ${units} U, to a rack"><span class="rack-drag-affordance" aria-hidden="true">⠿</span>${esc(name)} <span class="muted-note">(${units}U)</span></button></li>`;
+      }).join("");
+    }
+
+    function syncRackEditorControlsFromDevice(device) {
+      if (!device) return;
+      const location = normalizeDeviceLocation(device.location);
+      const units = normalizeRackUnits(device.rack_units);
+      const position = normalizeRackPosition(device.rack_position);
+      if (rackEditorLocationSelect) rackEditorLocationSelect.value = location;
+      if (rackEditorUnitsInput) rackEditorUnitsInput.value = String(units);
+      if (rackEditorRackSelect) rackEditorRackSelect.value = String(position?.rack || 1);
+      if (rackEditorStartUSelect) rackEditorStartUSelect.value = String(position?.start_u || 1);
+      const rackFieldsDisabled = location !== "Rack";
+      if (rackEditorRackSelect) rackEditorRackSelect.disabled = rackFieldsDisabled;
+      if (rackEditorStartUSelect) rackEditorStartUSelect.disabled = rackFieldsDisabled;
+      if (removeRackPlacementBtn) removeRackPlacementBtn.disabled = !position || location !== "Rack";
+    }
+
+    function renderRackEditor(options) {
+      if (!rackEditorDeviceSelect || !rackEditorRacks) return;
+      const rackDevices = sortedDevicesForEditor().filter(
+        (device) => isRackMountableDevice(device)
+      );
+      const previousSelection = String(options?.deviceName || rackEditorDeviceSelect.value || selectedDeviceName || "").trim();
+      const selected = rackDevices.find((device) => String(device?.name || "").trim() === previousSelection) || rackDevices[0] || null;
+      const selectedName = String(selected?.name || "").trim();
+
+      rackEditorDeviceSelect.innerHTML = rackDevices.length
+        ? rackDevices.map((device) => {
+          const name = String(device?.name || "").trim();
+          return `<option value="${esc(name)}"${name === selectedName ? " selected" : ""}>${esc(name)}</option>`;
+        }).join("")
+        : '<option value="">No Rack devices</option>';
+      rackEditorDeviceSelect.disabled = !rackDevices.length;
+      if (applyRackPlacementBtn) applyRackPlacementBtn.disabled = !rackDevices.length;
+      if (removeRackPlacementBtn) removeRackPlacementBtn.disabled = !rackDevices.length;
+
+      if (rackEditorStartUSelect && !rackEditorStartUSelect.options.length) {
+        rackEditorStartUSelect.innerHTML = Array.from({ length: 16 }, (_, index) => {
+          const unit = index + 1;
+          return `<option value="${unit}">U${unit}</option>`;
+        }).join("");
+      }
+      if (selected) syncRackEditorControlsFromDevice(selected);
+
+      const unplacedDevices = rackDevices.filter((device) => !rackPlacementForDevice(device));
+      if (rackUnplacedList) rackUnplacedList.innerHTML = rackDeviceListHtml(unplacedDevices, "No unplaced Rack devices.");
+
+      rackEditorRacks.innerHTML = Array.from({ length: 4 }, (_, rackIndex) => {
+        const rack = rackIndex + 1;
+        const placed = rackDevices
+          .map((device) => ({ device, placement: rackPlacementForDevice(device) }))
+          .filter((entry) => entry.placement?.rack === rack)
+          .sort((a, b) => b.placement.start_u - a.placement.start_u);
+        const unitRows = Array.from({ length: 16 }, (_, rowIndex) => {
+          const unit = 16 - rowIndex;
+          const gridRow = rowIndex + 1;
+          return `<span class="rack-unit-label" style="grid-row:${gridRow}" aria-hidden="true">U${unit}</span><span class="rack-unit-slot" data-rack-drop-unit="${unit}" style="grid-row:${gridRow}" aria-hidden="true"></span>`;
+        }).join("");
+        const deviceBlocks = placed.map(({ device, placement }) => {
+          const name = String(device?.name || "").trim();
+          const endU = placement.start_u + placement.units - 1;
+          const firstRow = 17 - endU;
+          const lastRowExclusive = firstRow + placement.units;
+          const active = name === selectedName ? " active" : "";
+          const range = placement.units === 1 ? `U${placement.start_u}` : `U${placement.start_u}-U${endU}`;
+          return `<button type="button" draggable="true" class="rack-device-block${active}" data-rack-drag-device="${esc(name)}" data-rack-select-device="${esc(name)}" style="grid-row:${firstRow} / ${lastRowExclusive}" aria-label="Drag ${esc(name)}, Rack ${rack}, ${range}, ${placement.units} U"><span class="rack-drag-affordance" aria-hidden="true">⠿</span>${esc(name)}<span>${range} · ${placement.units}U</span></button>`;
+        }).join("");
+        const usedUnits = placed.reduce((sum, entry) => sum + entry.placement.units, 0);
+        return `<section class="panel rack-card" aria-labelledby="rack${rack}Heading"><h3 id="rack${rack}Heading"><span>Rack ${rack}</span><span class="muted-note">${usedUnits}/16U</span></h3><div class="rack-grid" data-rack-drop-rack="${rack}" aria-label="Rack ${rack}, 16 units, U16 at top through U1 at bottom">${unitRows}${deviceBlocks}</div></section>`;
+      }).join("");
+
+      if (!rackDevices.length) setRackEditorStatus("No rack-mountable devices. Mark eligible gear as Rack mountable in Devices & Ports.", true);
+    }
+
+    function rackDropPlacementFromPointer(grid, clientY, unitsValue, grabOffsetU = 0) {
+      if (!(grid instanceof HTMLElement)) return null;
+      const rect = grid.getBoundingClientRect();
+      if (!Number.isFinite(rect.height) || rect.height <= 0 || !Number.isFinite(Number(clientY))) return null;
+      const units = normalizeRackUnits(unitsValue);
+      const offset = Number.isInteger(Number(grabOffsetU)) ? Number(grabOffsetU) : 0;
+      const relativeY = Math.max(0, Math.min(rect.height - 0.001, Number(clientY) - rect.top));
+      const rowIndex = Math.max(0, Math.min(15, Math.floor((relativeY / rect.height) * 16)));
+      const pointerU = 16 - rowIndex;
+      return { pointer_u: pointerU, start_u: pointerU - offset, units };
+    }
+
+    function moveRackDeviceToPosition(deviceName, rackValue, startUValue) {
+      const name = String(deviceName || "").trim();
+      const device = getDeviceByName(name);
+      if (!isRackMountableDevice(device)) {
+        setRackEditorStatus("Only rack-mountable devices can be placed in a rack.", true);
+        return false;
+      }
+      const rack = Number(rackValue);
+      const startU = Number(startUValue);
+      const units = normalizeRackUnits(device.rack_units);
+      const check = canPlaceRackDevice(name, rack, startU, units);
+      if (!check.ok) {
+        setRackEditorStatus(check.message, true);
+        return false;
+      }
+      device.location = "Rack";
+      device.rack_position = { rack, start_u: startU };
+      selectedDeviceName = name;
+      refreshFromModelEdit(`Moved ${name} to Rack ${rack}`);
+      renderRackEditor({ deviceName: name });
+      setRackEditorStatus(`${name}: ${check.message} (${units}U/HE).`);
+      return true;
+    }
+
+    function clearRackDragIndicators() {
+      if (!panelRack) return;
+      for (const element of Array.from(panelRack.querySelectorAll(".rack-dragging, .rack-drop-target, .rack-drop-valid, .rack-drop-invalid"))) {
+        element.classList.remove("rack-dragging", "rack-drop-target", "rack-drop-valid", "rack-drop-invalid");
+      }
+    }
+
+    function finishRackDrag(cancelled = false) {
+      clearRackDragIndicators();
+      const draggedName = String(rackDragState?.deviceName || "");
+      rackDragState = null;
+      if (cancelled && draggedName) setRackEditorStatus(`Placement unchanged for ${draggedName}.`);
+    }
+
+    function applyRackEditorPlacement() {
+      const name = String(rackEditorDeviceSelect?.value || "").trim();
+      const device = getDeviceByName(name);
+      if (!isRackMountableDevice(device)) {
+        setRackEditorStatus("Choose gear marked as Rack mountable.", true);
+        return false;
+      }
+      const units = Number(rackEditorUnitsInput?.value);
+      if (!Number.isInteger(units) || units < 1 || units > 16) {
+        setRackEditorStatus("Height must be a whole number from 1 to 16 U/HE.", true);
+        return false;
+      }
+      const location = normalizeDeviceLocation(rackEditorLocationSelect?.value);
+      if (location === "Desk") {
+        device.location = "Desk";
+        device.rack_units = units;
+        delete device.rack_position;
+        refreshFromModelEdit(`Moved ${name} to Desk`);
+        renderRackEditor({ deviceName: name });
+        setRackEditorStatus(`${name} is on Desk (${units}U/HE).`);
+        return true;
+      }
+
+      const rack = Number(rackEditorRackSelect?.value);
+      const startU = Number(rackEditorStartUSelect?.value);
+      const check = canPlaceRackDevice(name, rack, startU, units);
+      if (!check.ok) {
+        setRackEditorStatus(check.message, true);
+        return false;
+      }
+      device.location = "Rack";
+      device.rack_units = units;
+      device.rack_position = { rack, start_u: startU };
+      refreshFromModelEdit(`Placed ${name} in Rack ${rack}`);
+      renderRackEditor({ deviceName: name });
+      setRackEditorStatus(`${name}: ${check.message} (${units}U/HE).`);
+      return true;
+    }
+
     function sortedDevicesForEditor() {
       const devices = ensureModelDeviceArray().slice();
       devices.sort((a, b) => String(a?.name || "").localeCompare(String(b?.name || ""), undefined, { numeric: true }));
@@ -10026,6 +11089,7 @@ def build_routing_matrix_html(
       initFamilySelect(previousFamily);
       renderDeviceList();
       renderDeviceEditor();
+      renderRackEditor();
       restoreDeviceEditorViewState(editorViewState);
       renderVisibilityPanel();
       renderMatrix();
@@ -10077,11 +11141,18 @@ def build_routing_matrix_html(
         const inCount = ports.filter((port) => tabMatchesDirection(port?.direction, "in")).length;
         const outCount = ports.filter((port) => tabMatchesDirection(port?.direction, "out")).length;
         const activeClass = selected && String(selected.name || "") === name ? " active" : "";
+        const location = normalizeDeviceLocation(device?.location);
+        const rackUnits = normalizeRackUnits(device?.rack_units);
+        const placement = rackPlacementForDevice(device);
+        const rackCapability = isRackMountableDevice(device) ? "Rack mountable" : "Not rack mountable";
+        const placeLabel = location === "Rack"
+          ? (placement ? `Rack ${placement.rack}, U${placement.start_u}` : "Rack, unplaced")
+          : "Desk";
         return `
           <div class="device-item${activeClass}">
             <button type="button" class="device-title" data-select-device="${esc(name)}">${esc(name)}</button>
             <button type="button" class="device-action-btn" data-remove-device="${esc(name)}">Remove</button>
-            <div class="device-sub">${esc(String(device?.device_type || "Other"))} | IN ${inCount} / OUT ${outCount}</div>
+            <div class="device-sub">${esc(String(device?.device_type || "Other"))} | ${esc(rackCapability)} | ${esc(placeLabel)} | ${rackUnits}U | IN ${inCount} / OUT ${outCount}</div>
             <div></div>
           </div>
         `;
@@ -10151,12 +11222,18 @@ def build_routing_matrix_html(
       if (!device) {
         deviceNameInput.value = "";
         deviceTypeInput.value = "";
+        if (deviceLocationInput) deviceLocationInput.value = "Desk";
+        if (deviceRackUnitsInput) deviceRackUnitsInput.value = "1";
+        if (deviceRackMountableInput) deviceRackMountableInput.checked = false;
         deviceEditorPanel.innerHTML = `<div class="muted-note">Add a device to start editing ports.</div>`;
         return;
       }
 
       deviceNameInput.value = String(device?.name || "");
       deviceTypeInput.value = String(device?.device_type || "");
+      if (deviceLocationInput) deviceLocationInput.value = normalizeDeviceLocation(device?.location);
+      if (deviceRackUnitsInput) deviceRackUnitsInput.value = String(normalizeRackUnits(device?.rack_units));
+      if (deviceRackMountableInput) deviceRackMountableInput.checked = isRackMountableDevice(device);
 
       const ports = Array.isArray(device?.ports) ? device.ports : [];
       const indexed = ports
@@ -10232,6 +11309,201 @@ def build_routing_matrix_html(
       `;
     }
 
+    function commitPendingDeviceEditorEdits(reason = "Saved device") {
+      if (deviceEditorCommitInProgress) return true;
+      const device = ensureSelectedDevice();
+      if (!device) return true;
+
+      deviceEditorCommitInProgress = true;
+      try {
+        const oldName = String(device?.name || "").trim();
+        const nextName = String(deviceNameInput?.value || "").trim();
+        const currentType = String(device?.device_type || "").trim() || "Other";
+        const nextType = String(deviceTypeInput?.value || "").trim() || "Other";
+        const currentLocation = normalizeDeviceLocation(device?.location);
+        const nextLocation = normalizeDeviceLocation(deviceLocationInput?.value);
+        const currentRackUnits = normalizeRackUnits(device?.rack_units);
+        const nextRackUnits = Number(deviceRackUnitsInput?.value);
+        const currentRackMountable = isRackMountableDevice(device);
+        const nextRackMountable = Boolean(deviceRackMountableInput?.checked);
+
+        if (!nextName) {
+          setStatus("Selected device name cannot be empty. Changes were not applied.", true);
+          return false;
+        }
+        if (!Number.isInteger(nextRackUnits) || nextRackUnits < 1 || nextRackUnits > 16) {
+          setStatus("Device height must be a whole number from 1 to 16 U/HE. Changes were not applied.", true);
+          return false;
+        }
+        if (nextLocation === "Rack" && !nextRackMountable) {
+          setStatus("Mark the device as Rack mountable before assigning it to Rack. Changes were not applied.", true);
+          return false;
+        }
+        if (nextName !== oldName && getDeviceByName(nextName)) {
+          setStatus(`Another device already uses name: ${nextName}. Changes were not applied.`, true);
+          return false;
+        }
+
+        const ports = ensureDevicePortsArray(device);
+        const portEdits = [];
+        if (deviceEditorPanel) {
+          for (const nameInput of Array.from(deviceEditorPanel.querySelectorAll("[data-port-name]"))) {
+            if (!(nameInput instanceof HTMLInputElement)) continue;
+            const index = Number(nameInput.getAttribute("data-port-name"));
+            if (!Number.isInteger(index) || !ports[index]) continue;
+            const nextPortName = String(nameInput.value || "").trim();
+            if (!nextPortName) {
+              setStatus("Port name cannot be empty. Changes were not applied.", true);
+              return false;
+            }
+            const familyInput = deviceEditorPanel.querySelector(`[data-port-family="${index}"]`);
+            const transportInput = deviceEditorPanel.querySelector(`[data-port-transport="${index}"]`);
+            const visibleInput = deviceEditorPanel.querySelector(`[data-port-visible="${index}"]`);
+            const enabledInput = deviceEditorPanel.querySelector(`[data-port-enabled="${index}"]`);
+            portEdits.push({
+              index,
+              name: nextPortName,
+              family: normalizeFamily(familyInput?.value || ports[index]?.families?.[0] || "AUDIO"),
+              transport: String(transportInput?.value ?? ports[index]?.transport ?? "").trim(),
+              visible: visibleInput instanceof HTMLInputElement
+                ? Boolean(visibleInput.checked)
+                : (!parseBoolLike(ports[index]?.hidden, false) && parseBoolLike(ports[index]?.visible, true)),
+              enabled: enabledInput instanceof HTMLInputElement
+                ? Boolean(enabledInput.checked)
+                : (parseBoolLike(ports[index]?.enabled, true) && !parseBoolLike(ports[index]?.disabled, false)),
+            });
+          }
+        }
+
+        const proposedPortNames = ports.map((port) => String(port?.name || "").trim());
+        for (const edit of portEdits) proposedPortNames[edit.index] = edit.name;
+        const portNameChanged = portEdits.some((edit) => (
+          edit.name !== String(ports[edit.index]?.name || "").trim()
+        ));
+        if (portNameChanged) {
+          const duplicatePortName = proposedPortNames.find((name, index) => (
+            Boolean(name) && proposedPortNames.indexOf(name) !== index
+          ));
+          if (duplicatePortName) {
+            setStatus(`Port name already exists on ${oldName}: ${duplicatePortName}. Changes were not applied.`, true);
+            return false;
+          }
+        }
+
+        const currentPlacement = normalizeRackPosition(device.rack_position);
+        if (nextLocation === "Rack" && currentPlacement) {
+          const placementCheck = canPlaceRackDevice(
+            oldName,
+            currentPlacement.rack,
+            currentPlacement.start_u,
+            nextRackUnits,
+            { rackMountable: nextRackMountable },
+          );
+          if (!placementCheck.ok) {
+            setStatus(`Cannot save rack height: ${placementCheck.message}`, true);
+            return false;
+          }
+        }
+
+        const metadataChanged = nextName !== oldName
+          || nextType !== currentType
+          || nextLocation !== currentLocation
+          || nextRackUnits !== currentRackUnits
+          || nextRackMountable !== currentRackMountable;
+        let portChanged = false;
+        for (const edit of portEdits) {
+          const port = ports[edit.index];
+          const currentFamily = normalizeFamily(port?.families?.[0] || "AUDIO");
+          const currentTransport = String(port?.transport || "").trim();
+          const currentVisible = !parseBoolLike(port?.hidden, false) && parseBoolLike(port?.visible, true);
+          const currentEnabled = parseBoolLike(port?.enabled, true) && !parseBoolLike(port?.disabled, false);
+          if (
+            edit.name !== String(port?.name || "").trim()
+            || edit.family !== currentFamily
+            || edit.transport !== currentTransport
+            || edit.visible !== currentVisible
+            || edit.enabled !== currentEnabled
+          ) portChanged = true;
+        }
+        if (!metadataChanged && !portChanged) return true;
+
+        if (nextName !== oldName) {
+          for (const row of connections) {
+            if (row.source_device === oldName) row.source_device = nextName;
+            if (row.dest_device === oldName) row.dest_device = nextName;
+          }
+        }
+        if (nextName !== oldName) device.name = nextName;
+        if (nextType !== currentType) device.device_type = nextType;
+        if (nextLocation !== currentLocation) device.location = nextLocation;
+        if (nextRackMountable !== currentRackMountable) device.rack_mountable = nextRackMountable;
+        if (nextRackUnits !== currentRackUnits) device.rack_units = nextRackUnits;
+        if (metadataChanged && (!nextRackMountable || nextLocation === "Desk")) delete device.rack_position;
+        if (metadataChanged && !String(device.layout_group || "").trim()) device.layout_group = nextType;
+        for (const edit of portEdits) {
+          const port = ports[edit.index];
+          const currentFamily = normalizeFamily(port?.families?.[0] || "AUDIO");
+          const currentTransport = String(port?.transport || "").trim();
+          const currentVisible = !parseBoolLike(port?.hidden, false) && parseBoolLike(port?.visible, true);
+          const currentEnabled = parseBoolLike(port?.enabled, true) && !parseBoolLike(port?.disabled, false);
+          if (edit.name !== String(port?.name || "").trim()) port.name = edit.name;
+          if (edit.family !== currentFamily) port.families = [edit.family];
+          if (edit.transport !== currentTransport) port.transport = edit.transport;
+          if (edit.visible !== currentVisible) {
+            port.visible = edit.visible;
+            port.hidden = !edit.visible;
+          }
+          if (edit.enabled !== currentEnabled) {
+            port.enabled = edit.enabled;
+            port.disabled = !edit.enabled;
+          }
+        }
+        selectedDeviceName = nextName;
+        sortDevicesInModel();
+        refreshFromModelEdit(`${reason}: ${nextName}`);
+        return true;
+      } finally {
+        deviceEditorCommitInProgress = false;
+      }
+    }
+
+    async function flushPendingDeviceEditorAutoSave(reason = "devices-and-ports-exit") {
+      if (!autoSaveEnabled || !saveApiEnabled || !pendingModelEditSave) return true;
+      if (saveTimer) {
+        clearTimeout(saveTimer);
+        saveTimer = null;
+      }
+      const ok = await saveJsonToDisk(reason, true, false);
+      if (!ok && autoSaveEnabled) scheduleAutoSave(reason);
+      return ok;
+    }
+
+    async function flushAutoSaveForShell(reason = "shell-navigation") {
+      if (!panelDevices.classList.contains("hidden")) {
+        if (!commitPendingDeviceEditorEdits("Saved before leaving the application window")) return false;
+      }
+      if (!autoSaveEnabled) return true;
+      if (!saveApiEnabled) {
+        setStatus("Auto-save could not run because the save API is unavailable.", true);
+        return false;
+      }
+      if (saveTimer) {
+        clearTimeout(saveTimer);
+        saveTimer = null;
+      }
+      const deadline = Date.now() + 7000;
+      while (saveInFlight && Date.now() < deadline) {
+        await new Promise((resolve) => window.setTimeout(resolve, 40));
+      }
+      if (saveInFlight) {
+        setStatus("Auto-save is still running; navigation was held to protect changes.", true);
+        return false;
+      }
+      const ok = await saveJsonToDisk(String(reason || "shell-navigation"), true, false);
+      if (!ok) setStatus("Auto-save failed; navigation was held to protect changes.", true);
+      return ok;
+    }
+
     function applyPresetToAddForm() {
       const preset = getActivePreset(devicePortTab);
       if (!preset) return;
@@ -10298,22 +11570,33 @@ def build_routing_matrix_html(
 
     function showMainTab(tabName) {
       const target = String(tabName || "matrix").toLowerCase();
+      const leavingDeviceEditor = !panelDevices.classList.contains("hidden") && target !== "devices";
+      if (leavingDeviceEditor && !commitPendingDeviceEditorEdits("Saved before leaving Devices & Ports")) {
+        return false;
+      }
+      if (leavingDeviceEditor) flushPendingDeviceEditorAutoSave("devices-and-ports-tab-exit");
       const showMatrix = target === "matrix";
       const showDevices = target === "devices";
+      const showRack = target === "rack" || target === "rack-editor";
       const showVisibility = target === "visibility";
       const showVisuals = target === "visuals";
       panelMatrix.classList.toggle("hidden", !showMatrix);
       panelDevices.classList.toggle("hidden", !showDevices);
+      panelRack.classList.toggle("hidden", !showRack);
       panelVisibility.classList.toggle("hidden", !showVisibility);
       panelVisuals.classList.toggle("hidden", !showVisuals);
       mainTabMatrix.classList.toggle("active", showMatrix);
       mainTabDevices.classList.toggle("active", showDevices);
+      mainTabRack.classList.toggle("active", showRack);
       mainTabVisibility.classList.toggle("active", showVisibility);
       mainTabVisuals.classList.toggle("active", showVisuals);
       if (!showMatrix) hideMatrixHoverTooltip();
       if (showDevices) {
         renderDeviceList();
         renderDeviceEditor();
+      }
+      if (showRack) {
+        renderRackEditor();
       }
       if (showVisibility) {
         renderVisibilityPanel();
@@ -10325,29 +11608,47 @@ def build_routing_matrix_html(
         syncMatrixHorizontalScroller();
       }
       scheduleMatrixViewportHeightUpdate();
+      return true;
+    }
+
+    function applyExternalMainTab(tabName, matrixSubTab = "") {
+      const target = String(tabName || "matrix").trim().toLowerCase();
+      document.body.classList.remove("connection-overview-mode");
+      document.body.dataset.activeShellPanel = target;
+      document.documentElement.dataset.activeShellPanel = target;
+      if (target === "connection-overview") {
+        showMainTab("matrix");
+        showMatrixSubTab("connections");
+        document.body.classList.add("connection-overview-mode");
+        return;
+      }
+      if (target === "rack" || target === "rack-editor") {
+        showMainTab("rack-editor");
+        return;
+      }
+      if (["matrix", "devices", "visibility", "visuals"].includes(target)) {
+        showMainTab(target);
+        if (target === "matrix" && matrixSubTab) showMatrixSubTab(matrixSubTab);
+        return;
+      }
+      showMainTab("matrix");
     }
 
     function showMatrixSubTab(tabName) {
-      const target = USE_PROTOTYPE_MATRIX_MAIN
-        ? "prototype"
-        : normalizeMatrixSubTab(tabName);
+      const target = normalizeMatrixSubTab(tabName);
       selectedMatrixSubTab = target;
       const showPatch = target === "patch";
       const showConnections = target === "connections";
-      const showPrototype = target === "prototype";
       if (matrixContainer) matrixContainer.classList.toggle("hidden", !showPatch);
       if (matrixXScroll) matrixXScroll.classList.toggle("hidden", !showPatch);
       if (connectionList) connectionList.classList.toggle("hidden", !showConnections);
-      if (prototypeMatrixHost) prototypeMatrixHost.classList.toggle("hidden", !showPrototype);
       if (matrixSubTabPatch) matrixSubTabPatch.classList.toggle("active", showPatch);
       if (matrixSubTabConnections) matrixSubTabConnections.classList.toggle("active", showConnections);
-      if (matrixSubTabPrototype) matrixSubTabPrototype.classList.toggle("active", showPrototype);
       if (showPatch) {
         syncMatrixHorizontalScroller();
       } else {
         hideMatrixHoverTooltip();
       }
-      if (showPrototype) updatePrototypeMatrixFrame(false);
       scheduleMatrixViewportHeightUpdate();
     }
 
@@ -10407,37 +11708,35 @@ def build_routing_matrix_html(
       saveInFlight = true;
       try {
         writeUiConfigToModel();
+        const project = findProjectByKey(selectedProjectKey);
+        if (!project || !selectedModelPath || !selectedConnectionsPath) {
+          throw new Error("Select a project, device config, and patch config before saving.");
+        }
         const modelPayload = cloneJson(MODEL) || {};
         const connectionsPayload = buildConnectionsPayload(true);
-        const modelResp = await fetch("/api/save-model", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(modelPayload),
-        });
-        if (!modelResp.ok) {
-          const details = await parseApiError(modelResp, `HTTP ${modelResp.status}`);
-          throw new Error(`Model save failed: ${details}`);
-        }
-        const connResp = await fetch("/api/save-connections", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(connectionsPayload),
-        });
-        if (!connResp.ok) {
-          const details = await parseApiError(connResp, `HTTP ${connResp.status}`);
-          throw new Error(`Connections save failed: ${details}`);
-        }
+        const transactionPayload = buildSaveTransactionPayload(
+          project,
+          selectedModelPath,
+          selectedConnectionsPath,
+          {
+            model: modelPayload,
+            connections: connectionsPayload,
+            expectedModelHash: loadedModelVersionHash,
+            expectedConnectionsHash: loadedConnectionsVersionHash,
+            reason,
+          },
+        );
+        const transactionResponse = await postJsonApi("/api/save-transaction", transactionPayload);
 
         lastSavedModelHash = hashes.modelHash;
         lastSavedConnectionsHash = hashes.connHash;
+        loadedModelVersionHash = String(transactionResponse?.saved?.hashes?.model || "").trim();
+        loadedConnectionsVersionHash = String(transactionResponse?.saved?.hashes?.connections || "").trim();
         pendingModelEditSave = false;
-        let visualsUpdated = false;
-        if (regenerateApiEnabled) {
-          visualsUpdated = await regenerateVisualPreviews(reason, true);
-        } else {
-          refreshVisualPreviews(`saved: ${reason}`);
-          visualsUpdated = true;
-        }
+        mergePreviewPathsFromConfig(transactionResponse);
+        mergeRouteDebugPathFromConfig(transactionResponse);
+        refreshVisualPreviews(`saved: ${reason}`);
+        const visualsUpdated = transactionResponse?.regeneration?.ok !== false;
         if (!silent) {
           if (visualsUpdated) {
             setStatus(`Saved JSON to disk and updated visuals (${reason})`);
@@ -10519,16 +11818,6 @@ def build_routing_matrix_html(
 
     // ----- Matrix renderer -----
     function renderMatrix() {
-      if (USE_PROTOTYPE_MATRIX_MAIN) {
-        hideMatrixHoverTooltip();
-        if (matrixContainer) matrixContainer.classList.add("hidden");
-        if (matrixXScroll) matrixXScroll.classList.add("hidden");
-        if (connectionList) connectionList.classList.add("hidden");
-        if (prototypeMatrixHost) prototypeMatrixHost.classList.remove("hidden");
-        updatePrototypeMatrixFrame(false);
-        scheduleMatrixViewportHeightUpdate();
-        return;
-      }
       try {
         hideMatrixHoverTooltip();
         normalizeConnectionIdsInState();
@@ -11575,13 +12864,21 @@ def build_routing_matrix_html(
 
     if (mainTabMatrix) mainTabMatrix.onclick = () => showMainTab("matrix");
     if (mainTabDevices) mainTabDevices.onclick = () => showMainTab("devices");
+    if (mainTabRack) mainTabRack.onclick = () => showMainTab("rack-editor");
     if (mainTabVisibility) mainTabVisibility.onclick = () => showMainTab("visibility");
     if (mainTabVisuals) mainTabVisuals.onclick = () => showMainTab("visuals");
     if (matrixSubTabPatch) matrixSubTabPatch.onclick = () => showMatrixSubTab("patch");
     if (matrixSubTabConnections) matrixSubTabConnections.onclick = () => showMatrixSubTab("connections");
-    if (matrixSubTabPrototype) matrixSubTabPrototype.onclick = () => showMatrixSubTab("prototype");
-    if (portTabInputs) portTabInputs.onclick = () => setDevicePortTab("in");
-    if (portTabOutputs) portTabOutputs.onclick = () => setDevicePortTab("out");
+    if (portTabInputs) portTabInputs.onclick = () => {
+      if (devicePortTab === "in" || commitPendingDeviceEditorEdits("Saved before switching port view")) {
+        setDevicePortTab("in");
+      }
+    };
+    if (portTabOutputs) portTabOutputs.onclick = () => {
+      if (devicePortTab === "out" || commitPendingDeviceEditorEdits("Saved before switching port view")) {
+        setDevicePortTab("out");
+      }
+    };
     if (downloadModelBtn) downloadModelBtn.onclick = () => downloadModelJson();
     if (regeneratePreviewsBtn) regeneratePreviewsBtn.onclick = async () => {
       if (!saveApiEnabled) {
@@ -11604,6 +12901,15 @@ def build_routing_matrix_html(
     if (themeToggleBtn) themeToggleBtn.onclick = () => {
       const next = selectedThemeMode === "dark" ? "light" : "dark";
       applyThemeMode(next, true);
+    };
+    if (createProjectBtn) createProjectBtn.onclick = async () => {
+      await createNewProject();
+    };
+    if (createDeviceConfigBtn) createDeviceConfigBtn.onclick = async () => {
+      await createNewDeviceConfig();
+    };
+    if (createPatchConfigBtn) createPatchConfigBtn.onclick = async () => {
+      await createNewPatchConfig();
     };
     if (saveDeviceConfigAsBtn) saveDeviceConfigAsBtn.onclick = async () => {
       await saveCurrentModelAs();
@@ -11888,57 +13194,201 @@ def build_routing_matrix_html(
         return;
       }
       const rawType = String(newDeviceType?.value || "").trim() || "Other";
+      const location = normalizeDeviceLocation(newDeviceLocation?.value);
+      const rackUnits = Number(newDeviceRackUnits?.value);
+      const rackMountable = Boolean(newDeviceRackMountable?.checked);
+      if (location === "Rack" && !rackMountable) {
+        setStatus("Mark the device as Rack mountable before assigning it to Rack.", true);
+        return;
+      }
+      if (!Number.isInteger(rackUnits) || rackUnits < 1 || rackUnits > 16) {
+        setStatus("Device height must be a whole number from 1 to 16 U/HE.", true);
+        return;
+      }
       const devices = ensureModelDeviceArray();
       devices.push({
         name: rawName,
         device_type: rawType,
         layout_group: rawType,
+        location,
+        rack_mountable: rackMountable,
+        rack_units: rackUnits,
         ports: [],
       });
       sortDevicesInModel();
       selectedDeviceName = rawName;
       if (newDeviceName) newDeviceName.value = "";
+      if (newDeviceLocation) newDeviceLocation.value = "Desk";
+      if (newDeviceRackUnits) newDeviceRackUnits.value = "1";
+      if (newDeviceRackMountable) newDeviceRackMountable.checked = false;
       refreshFromModelEdit(`Added device: ${rawName}`);
       showMainTab("devices");
     };
 
     if (saveDeviceMetaBtn) saveDeviceMetaBtn.onclick = () => {
-      const device = ensureSelectedDevice();
-      if (!device) {
-        setStatus("No device selected.", true);
+      if (commitPendingDeviceEditorEdits("Saved device")) {
+        flushPendingDeviceEditorAutoSave("save-device-button");
+      }
+    };
+
+    if (rackEditorDeviceSelect) rackEditorDeviceSelect.onchange = () => {
+      const name = String(rackEditorDeviceSelect.value || "").trim();
+      const device = getDeviceByName(name);
+      if (!device) return;
+      selectedDeviceName = name;
+      syncRackEditorControlsFromDevice(device);
+      renderRackEditor({ deviceName: name });
+      setRackEditorStatus(`Selected ${name}.`);
+    };
+
+    if (rackEditorLocationSelect) rackEditorLocationSelect.onchange = () => {
+      const rackFieldsDisabled = normalizeDeviceLocation(rackEditorLocationSelect.value) !== "Rack";
+      if (rackEditorRackSelect) rackEditorRackSelect.disabled = rackFieldsDisabled;
+      if (rackEditorStartUSelect) rackEditorStartUSelect.disabled = rackFieldsDisabled;
+    };
+
+    if (newDeviceRackMountable) newDeviceRackMountable.onchange = () => {
+      if (!newDeviceRackMountable.checked && newDeviceLocation) newDeviceLocation.value = "Desk";
+    };
+
+    if (deviceRackMountableInput) deviceRackMountableInput.onchange = () => {
+      if (!deviceRackMountableInput.checked && deviceLocationInput) deviceLocationInput.value = "Desk";
+    };
+
+    if (applyRackPlacementBtn) applyRackPlacementBtn.onclick = () => {
+      applyRackEditorPlacement();
+    };
+
+    if (removeRackPlacementBtn) removeRackPlacementBtn.onclick = () => {
+      const name = String(rackEditorDeviceSelect?.value || "").trim();
+      const device = getDeviceByName(name);
+      if (!isRackMountableDevice(device)) {
+        setRackEditorStatus("Choose gear marked as Rack mountable.", true);
         return;
       }
-      const nextName = String(deviceNameInput?.value || "").trim();
-      const nextType = String(deviceTypeInput?.value || "").trim() || "Other";
-      if (!nextName) {
-        setStatus("Selected device name cannot be empty.", true);
+      device.location = "Rack";
+      device.rack_units = normalizeRackUnits(rackEditorUnitsInput?.value || device.rack_units);
+      delete device.rack_position;
+      refreshFromModelEdit(`Removed ${name} from rack`);
+      renderRackEditor({ deviceName: name });
+      setRackEditorStatus(`${name} remains a Rack device and is now unplaced.`);
+    };
+
+    if (panelRack) panelRack.onclick = (event) => {
+      const selectButton = event.target instanceof HTMLElement
+        ? event.target.closest("[data-rack-select-device]")
+        : null;
+      if (!(selectButton instanceof HTMLElement)) return;
+      const name = String(selectButton.getAttribute("data-rack-select-device") || "").trim();
+      const device = getDeviceByName(name);
+      if (!device) return;
+      selectedDeviceName = name;
+      renderRackEditor({ deviceName: name });
+      setRackEditorStatus(`Selected ${name}.`);
+    };
+
+    if (panelRack) panelRack.ondragstart = (event) => {
+      const source = event.target instanceof HTMLElement
+        ? event.target.closest("[data-rack-drag-device]")
+        : null;
+      if (!(source instanceof HTMLElement) || !event.dataTransfer) return;
+      const name = String(source.getAttribute("data-rack-drag-device") || "").trim();
+      const device = getDeviceByName(name);
+      if (!isRackMountableDevice(device)) {
+        event.preventDefault();
+        setRackEditorStatus("Only rack-mountable devices can be dragged into racks.", true);
         return;
       }
-      const oldName = String(device?.name || "");
-      if (nextName !== oldName && getDeviceByName(nextName)) {
-        setStatus(`Another device already uses name: ${nextName}`, true);
-        return;
-      }
-      if (nextName !== oldName) {
-        for (const row of connections) {
-          if (row.source_device === oldName) row.source_device = nextName;
-          if (row.dest_device === oldName) row.dest_device = nextName;
+      const units = normalizeRackUnits(device.rack_units);
+      let grabOffsetU = 0;
+      if (source.classList.contains("rack-device-block")) {
+        const rect = source.getBoundingClientRect();
+        if (rect.height > 0) {
+          const relativeY = Math.max(0, Math.min(rect.height - 0.001, event.clientY - rect.top));
+          const offsetFromTop = Math.max(0, Math.min(units - 1, Math.floor((relativeY / rect.height) * units)));
+          grabOffsetU = units - 1 - offsetFromTop;
         }
       }
-      device.name = nextName;
-      device.device_type = nextType;
-      if (!String(device.layout_group || "").trim()) {
-        device.layout_group = nextType;
+      rackDragState = { deviceName: name, units, grabOffsetU };
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/plain", name);
+      try {
+        event.dataTransfer.setData("application/x-studio-rack-device", name);
+      } catch (_error) {
+        // Some Safari versions reject custom drag MIME types; text/plain remains portable.
       }
-      selectedDeviceName = nextName;
-      sortDevicesInModel();
-      refreshFromModelEdit(`Saved device: ${nextName}`, { skipImmediateSave: true });
+      source.classList.add("rack-dragging");
+      for (const grid of Array.from(panelRack.querySelectorAll("[data-rack-drop-rack]"))) {
+        grid.classList.add("rack-drop-target");
+      }
+      selectedDeviceName = name;
+      setRackEditorStatus(`Dragging ${name}. Drop it on a rack unit.`);
+    };
+
+    if (panelRack) panelRack.ondragover = (event) => {
+      const grid = event.target instanceof HTMLElement
+        ? event.target.closest("[data-rack-drop-rack]")
+        : null;
+      if (!(grid instanceof HTMLElement) || !rackDragState) return;
+      event.preventDefault();
+      if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+      for (const candidate of Array.from(panelRack.querySelectorAll("[data-rack-drop-rack]"))) {
+        candidate.classList.remove("rack-drop-valid", "rack-drop-invalid");
+      }
+      const rack = Number(grid.getAttribute("data-rack-drop-rack"));
+      const placement = rackDropPlacementFromPointer(
+        grid,
+        event.clientY,
+        rackDragState.units,
+        rackDragState.grabOffsetU,
+      );
+      const check = placement
+        ? canPlaceRackDevice(rackDragState.deviceName, rack, placement.start_u, rackDragState.units)
+        : { ok: false };
+      grid.classList.add(check.ok ? "rack-drop-valid" : "rack-drop-invalid");
+    };
+
+    if (panelRack) panelRack.ondragleave = (event) => {
+      const grid = event.target instanceof HTMLElement
+        ? event.target.closest("[data-rack-drop-rack]")
+        : null;
+      if (!(grid instanceof HTMLElement)) return;
+      const related = event.relatedTarget;
+      if (related instanceof Node && grid.contains(related)) return;
+      grid.classList.remove("rack-drop-valid", "rack-drop-invalid");
+    };
+
+    if (panelRack) panelRack.ondrop = (event) => {
+      const grid = event.target instanceof HTMLElement
+        ? event.target.closest("[data-rack-drop-rack]")
+        : null;
+      if (!(grid instanceof HTMLElement) || !rackDragState) return;
+      event.preventDefault();
+      const { deviceName, units, grabOffsetU } = rackDragState;
+      const rack = Number(grid.getAttribute("data-rack-drop-rack"));
+      const placement = rackDropPlacementFromPointer(grid, event.clientY, units, grabOffsetU);
+      if (!placement) {
+        setRackEditorStatus(`Could not determine a rack unit for ${deviceName}. Placement unchanged.`, true);
+        finishRackDrag();
+        return;
+      }
+      moveRackDeviceToPosition(deviceName, rack, placement.start_u);
+      finishRackDrag();
+    };
+
+    if (panelRack) panelRack.ondragend = () => {
+      if (rackDragState) finishRackDrag(true);
     };
 
     if (deviceListPanel) deviceListPanel.onclick = (event) => {
       const selectBtn = event.target.closest("[data-select-device]");
       if (selectBtn) {
-        selectedDeviceName = String(selectBtn.getAttribute("data-select-device") || "");
+        const nextDeviceName = String(selectBtn.getAttribute("data-select-device") || "");
+        if (
+          nextDeviceName !== selectedDeviceName
+          && !commitPendingDeviceEditorEdits("Saved before selecting another device")
+        ) return;
+        selectedDeviceName = nextDeviceName;
         renderDeviceList();
         renderDeviceEditor();
         return;
@@ -12083,6 +13533,50 @@ def build_routing_matrix_html(
       refreshFromModelEdit(`Removed port ${portName} on ${String(device.name || "")}`);
     };
 
+    window.addEventListener("message", (event) => {
+      const data = event?.data;
+      if (!data || typeof data !== "object") return;
+      if (data.type === "studio-shell-main-tab-set") {
+        applyExternalMainTab(data.tab, data.matrix_subtab);
+        return;
+      }
+      if (data.type === "studio-theme-set") {
+        applyThemeMode(String(data.mode || ""), false);
+        return;
+      }
+      if (data.type === "studio-shell-autosave-set") {
+        setAutoSaveEnabled(Boolean(data.enabled), false);
+        try {
+          window.parent.postMessage({ type: "studio-shell-autosave-changed", enabled: autoSaveEnabled }, "*");
+        } catch (_error) {
+          // Ignore parent messaging failures.
+        }
+        return;
+      }
+      if (data.type === "studio-shell-autosave-request") {
+        try {
+          window.parent.postMessage({ type: "studio-shell-autosave-state", enabled: autoSaveEnabled }, "*");
+        } catch (_error) {
+          // Ignore parent messaging failures.
+        }
+        return;
+      }
+      if (data.type === "studio-shell-autosave-flush") {
+        const requestId = String(data.request_id || "");
+        void flushAutoSaveForShell(String(data.reason || "shell-navigation")).then((ok) => {
+          try {
+            window.parent.postMessage({
+              type: "studio-shell-autosave-flushed",
+              request_id: requestId,
+              ok: Boolean(ok),
+            }, "*");
+          } catch (_error) {
+            // Ignore parent messaging failures.
+          }
+        });
+      }
+    });
+
     window.addEventListener("error", (event) => {
       const message = String(event?.message || event || "Unknown runtime error");
       captureDebugIssue("error", message, {
@@ -12100,6 +13594,13 @@ def build_routing_matrix_html(
     window.addEventListener("resize", () => {
       scheduleMatrixViewportHeightUpdate();
       syncMatrixHorizontalScroller();
+    });
+    window.addEventListener("blur", () => {
+      void flushAutoSaveForShell("application-window-blur");
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState !== "hidden") return;
+      void flushAutoSaveForShell("application-hidden");
     });
 
     bindDebugTools();
@@ -12126,14 +13627,12 @@ def build_routing_matrix_html(
     applySaveControlsState();
     renderDeviceList();
     renderDeviceEditor();
+    renderRackEditor();
     renderVisibilityPanel();
-    if (USE_PROTOTYPE_MATRIX_MAIN) {
-      document.body.classList.add("main-prototype-mode");
-      selectedMatrixSubTab = "prototype";
-      updatePrototypeMatrixFrame(true);
-    }
-    showMainTab("matrix");
+    const initialUrlParameters = new URLSearchParams(window.location.search || "");
+    document.documentElement.classList.toggle("embedded-mode", initialUrlParameters.get("embedded") === "1");
     showMatrixSubTab(selectedMatrixSubTab);
+    applyExternalMainTab(initialUrlParameters.get("tab") || "matrix", initialUrlParameters.get("matrix_subtab") || "");
     refreshVisualPreviews("init");
     setStatus("Connecting to save API...");
     detectSaveApi();
@@ -12200,13 +13699,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model",
         type=Path,
-        default=Path("projects/studio-sidecar/device-configurations/studio-model-001.json"),
+        default=Path("projects/studio-sidecar/device-configurations/basis.json"),
         help="Device/port model JSON (used by default when present).",
     )
     parser.add_argument(
         "--connections-json",
         type=Path,
-        default=Path("projects/studio-sidecar/patch-configurations/studio-model-001/patch-default.json"),
+        default=Path("projects/studio-sidecar/patch-configurations/basis/patch-default.json"),
         help="Connection matrix JSON containing source/destination port links.",
     )
     parser.add_argument(
@@ -12261,11 +13760,9 @@ def filter_patchbays_from_matrix_inputs(
     filtered_model = dict(model_data)
     model_devices = model_data.get("devices", [])
     if isinstance(model_devices, list):
-        filtered_model["devices"] = [
-            device
-            for device in model_devices
-            if isinstance(device, dict) and not is_patchbay_device(str(device.get("name", "")))
-        ]
+        # Keep patchbay inventory available to the device and rack editors. The
+        # matrix payload below remains free of patchbay routing rows by default.
+        filtered_model["devices"] = [device for device in model_devices if isinstance(device, dict)]
 
     filtered_matrix = dict(matrix_payload)
     rows = matrix_payload.get("connections", [])

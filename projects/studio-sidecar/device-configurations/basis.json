@@ -32,6 +32,7 @@
       "name": "Allen & Heath GS3000",
       "device_type": "Console / Mixer",
       "layout_group": "Analog Front End",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Mic In 1",
@@ -3518,6 +3519,7 @@
       "name": "ATC SCM 11",
       "device_type": "Speaker / Monitor",
       "layout_group": "Monitoring",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Speaker Input L",
@@ -3558,6 +3560,9 @@
       "name": "Audient ASP 880",
       "device_type": "Preamps / Channel Strip",
       "layout_group": "Analog Front End",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
       "ports": [
         {
           "name": "Instrument In 1",
@@ -3991,12 +3996,17 @@
       ],
       "matrix_order": 2,
       "visible": true,
-      "hidden": false
+      "hidden": false,
+      "rack_position": {
+        "rack": 2,
+        "start_u": 14
+      }
     },
     {
       "name": "Avid S1 #1",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Footswitch In",
@@ -4043,6 +4053,7 @@
       "name": "Avid S1 #2",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Footswitch In",
@@ -4089,6 +4100,9 @@
       "name": "Behringer A800 #1",
       "device_type": "Amplifier / Monitor Control",
       "layout_group": "Monitoring",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 2,
       "ports": [
         {
           "name": "Input L",
@@ -4159,6 +4173,9 @@
       "name": "Behringer A800 #2",
       "device_type": "Amplifier / Monitor Control",
       "layout_group": "Monitoring",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 2,
       "ports": [
         {
           "name": "Input L",
@@ -4229,6 +4246,9 @@
       "name": "Focusrite Platinum Voice Master",
       "device_type": "Preamps / Channel Strip",
       "layout_group": "Analog Front End",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
       "ports": [
         {
           "name": "Mic In",
@@ -4318,9 +4338,12 @@
       "matrix_order": 7
     },
     {
-      "name": "Headphone Amp",
+      "name": "IMG STAGELINE PPA-100/SW",
       "device_type": "Amplifier / Monitor Control",
       "layout_group": "Monitoring",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
       "ports": [
         {
           "name": "HA In 1",
@@ -4333,7 +4356,7 @@
             "name": "HA In",
             "member": "1",
             "index": 1,
-            "size": 5
+            "size": 6
           },
           "order": 0
         },
@@ -4348,7 +4371,7 @@
             "name": "HA In",
             "member": "2",
             "index": 2,
-            "size": 5
+            "size": 6
           },
           "order": 1
         },
@@ -4363,7 +4386,7 @@
             "name": "HA In",
             "member": "3",
             "index": 3,
-            "size": 5
+            "size": 6
           },
           "order": 2
         },
@@ -4378,7 +4401,7 @@
             "name": "HA In",
             "member": "4",
             "index": 4,
-            "size": 5
+            "size": 6
           },
           "order": 3
         },
@@ -4393,9 +4416,24 @@
             "name": "HA In",
             "member": "5",
             "index": 5,
-            "size": 5
+            "size": 6
           },
           "order": 4
+        },
+        {
+          "name": "HA In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HA In",
+            "member": "6",
+            "index": 6,
+            "size": 6
+          },
+          "order": 5
         },
         {
           "name": "Main In",
@@ -4407,7 +4445,7 @@
           "group": {
             "name": "Main In"
           },
-          "order": 5
+          "order": 6
         },
         {
           "name": "HP Out 1",
@@ -4422,7 +4460,7 @@
             "index": 1,
             "size": 6
           },
-          "order": 6
+          "order": 7
         },
         {
           "name": "HP Out 2",
@@ -4437,7 +4475,7 @@
             "index": 2,
             "size": 6
           },
-          "order": 7
+          "order": 8
         },
         {
           "name": "HP Out 3",
@@ -4452,7 +4490,7 @@
             "index": 3,
             "size": 6
           },
-          "order": 8
+          "order": 9
         },
         {
           "name": "HP Out 4",
@@ -4467,7 +4505,7 @@
             "index": 4,
             "size": 6
           },
-          "order": 9
+          "order": 10
         },
         {
           "name": "HP Out 5",
@@ -4482,7 +4520,7 @@
             "index": 5,
             "size": 6
           },
-          "order": 10
+          "order": 11
         },
         {
           "name": "HP Out 6",
@@ -4497,7 +4535,7 @@
             "index": 6,
             "size": 6
           },
-          "order": 11
+          "order": 12
         }
       ],
       "matrix_order": 8
@@ -4506,6 +4544,7 @@
       "name": "Mac mini",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Thunderbolt Port",
@@ -4550,6 +4589,7 @@
       "name": "MAO Preamp (confirm model)",
       "device_type": "Preamps / Channel Strip",
       "layout_group": "Analog Front End",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Mic In 1",
@@ -4678,6 +4718,7 @@
       "name": "Netgear Unmanaged Switch",
       "device_type": "Network",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Port 1",
@@ -4806,6 +4847,9 @@
       "name": "RME UFX III",
       "device_type": "Interface",
       "layout_group": "Digital Core",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
       "ports": [
         {
           "name": "MADI In Optical",
@@ -5299,6 +5343,9 @@
       "name": "SSL AX MADI",
       "device_type": "Converter",
       "layout_group": "Digital Core",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 2,
       "ports": [
         {
           "name": "MADI In Optical",
@@ -6090,6 +6137,7 @@
       "name": "Streamdeck #1",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "USB-C",
@@ -6110,6 +6158,7 @@
       "name": "Streamdeck #2",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "USB-C",
@@ -6130,6 +6179,7 @@
       "name": "Talkback Mic",
       "device_type": "Microphone / DI",
       "layout_group": "Analog Front End",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Output",
@@ -6150,6 +6200,7 @@
       "name": "Tannoy System 10",
       "device_type": "Speaker / Monitor",
       "layout_group": "Monitoring",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Speaker Input L",
@@ -6188,6 +6239,7 @@
       "name": "Tascam MS-16",
       "device_type": "Tape Machine",
       "layout_group": "Analog Front End",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "XLR In 1",
@@ -6676,6 +6728,7 @@
       "name": "TC Electronic Clarity M Stereo",
       "device_type": "Outboard / FX",
       "layout_group": "Digital Core",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Optical In",
@@ -6708,6 +6761,7 @@
       "name": "Thunderbolt Dock",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "USB Port 1",
@@ -6800,6 +6854,7 @@
       "name": "TV Screen",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "HDMI In",
@@ -6815,22 +6870,476 @@
         }
       ],
       "matrix_order": 21
+    },
+    {
+      "name": "the t.racks Power MS6",
+      "device_type": "Power Distribution",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
+      "ports": [],
+      "matrix_order": 22
+    },
+    {
+      "name": "the t.racks Power 8 #1",
+      "device_type": "Power Distribution",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
+      "ports": [],
+      "matrix_order": 23,
+      "rack_position": {
+        "rack": 2,
+        "start_u": 16
+      }
+    },
+    {
+      "name": "the t.racks Power 8 #2",
+      "device_type": "Power Distribution",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
+      "ports": [],
+      "matrix_order": 24,
+      "rack_position": {
+        "rack": 3,
+        "start_u": 16
+      }
+    },
+    {
+      "name": "the t.racks Power 8 #3",
+      "device_type": "Power Distribution",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
+      "ports": [],
+      "matrix_order": 25
+    },
+    {
+      "name": "TC Electronic Finalizer 48K",
+      "device_type": "Outboard / FX",
+      "layout_group": "Digital Core",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
+      "ports": [
+        {
+          "name": "S/PDIF In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "SPDIF",
+          "group": {
+            "name": "S/PDIF In"
+          },
+          "order": 0
+        },
+        {
+          "name": "MIDI In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In"
+          },
+          "order": 1
+        },
+        {
+          "name": "Analog In L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 2
+        },
+        {
+          "name": "Analog In R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 3
+        },
+        {
+          "name": "AES/EBU In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU In"
+          },
+          "order": 4
+        },
+        {
+          "name": "Pedal/Fader In",
+          "direction": "in",
+          "families": [
+            "COMP"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Pedal/Fader In"
+          },
+          "order": 5
+        },
+        {
+          "name": "Analog Out L",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 6
+        },
+        {
+          "name": "Analog Out R",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 7
+        },
+        {
+          "name": "AES/EBU Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU Out"
+          },
+          "order": 8
+        },
+        {
+          "name": "S/PDIF Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "SPDIF",
+          "group": {
+            "name": "S/PDIF Out"
+          },
+          "order": 9
+        },
+        {
+          "name": "MIDI Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out"
+          },
+          "order": 10
+        },
+        {
+          "name": "MIDI Thru",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Thru"
+          },
+          "order": 11
+        }
+      ],
+      "matrix_order": 26
+    },
+    {
+      "name": "Sony DPS-R7 Reverb",
+      "device_type": "Outboard / FX",
+      "layout_group": "Digital Core",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
+      "ports": [
+        {
+          "name": "MIDI In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In"
+          },
+          "order": 0
+        },
+        {
+          "name": "Balanced In L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Balanced In",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 1
+        },
+        {
+          "name": "Unbalanced In L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TS",
+          "group": {
+            "name": "Unbalanced In",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 2
+        },
+        {
+          "name": "Balanced In R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Balanced In",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 3
+        },
+        {
+          "name": "Unbalanced In R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TS",
+          "group": {
+            "name": "Unbalanced In",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 4
+        },
+        {
+          "name": "Remote In",
+          "direction": "in",
+          "families": [
+            "COMP"
+          ],
+          "transport": "REMOTE",
+          "group": {
+            "name": "Remote In"
+          },
+          "order": 5
+        },
+        {
+          "name": "Balanced Out L",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Balanced Out",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 6
+        },
+        {
+          "name": "Unbalanced Out L",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TS",
+          "group": {
+            "name": "Unbalanced Out",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 7
+        },
+        {
+          "name": "Balanced Out R",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Balanced Out",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 8
+        },
+        {
+          "name": "Unbalanced Out R",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TS",
+          "group": {
+            "name": "Unbalanced Out",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 9
+        },
+        {
+          "name": "Remote Thru",
+          "direction": "out",
+          "families": [
+            "COMP"
+          ],
+          "transport": "REMOTE",
+          "group": {
+            "name": "Remote Thru"
+          },
+          "order": 10
+        }
+      ],
+      "matrix_order": 27
+    },
+    {
+      "name": "Switchcraft 1U Solder-Lug Patchbay #1",
+      "device_type": "Patchbay",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
+      "ports": [],
+      "matrix_order": 28
+    },
+    {
+      "name": "Switchcraft 1U Solder-Lug Patchbay #2",
+      "device_type": "Patchbay",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
+      "ports": [],
+      "matrix_order": 29
+    },
+    {
+      "name": "Switchcraft 1U Solder-Lug Patchbay #3",
+      "device_type": "Patchbay",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
+      "ports": [],
+      "matrix_order": 30
+    },
+    {
+      "name": "Switchcraft 1U Solder-Lug Patchbay #4",
+      "device_type": "Patchbay",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
+      "ports": [],
+      "matrix_order": 31
     }
   ],
   "ui_config": {
     "version": 1,
-    "updated_at": "2026-03-02T20:42:57.376Z",
+    "updated_at": "2026-08-12T21:18:26.392Z",
+    "theme": {
+      "mode": "dark",
+      "explicit": true
+    },
     "matrix": {
       "patch_mode": "single",
       "pair_count": 8,
       "type_tag": "",
       "allow_double_patching": false,
-      "sub_tab": "prototype",
-      "collapsed_source_groups": [],
-      "collapsed_dest_groups": [],
+      "sub_tab": "connections",
+      "collapsed_source_groups": [
+        "AUDIO::source::Allen & Heath GS3000::aux out",
+        "AUDIO::source::Allen & Heath GS3000::direct out",
+        "AUDIO::source::Allen & Heath GS3000::group out",
+        "AUDIO::source::Allen & Heath GS3000::insert send",
+        "AUDIO::source::Allen & Heath GS3000::monitor out",
+        "AUDIO::source::Allen & Heath GS3000::tape out",
+        "AUDIO::source::Allen & Heath GS3000::tube out",
+        "AUDIO::source::RME UFX III::headphone out",
+        "AUDIO::source::RME UFX III::line out",
+        "AUDIO::source::Sony DPS-R7 Reverb::balanced out",
+        "AUDIO::source::Sony DPS-R7 Reverb::unbalanced out"
+      ],
+      "collapsed_dest_groups": [
+        "AUDIO::dest::Allen & Heath GS3000::insert return",
+        "AUDIO::dest::Allen & Heath GS3000::line in",
+        "AUDIO::dest::Allen & Heath GS3000::mic in",
+        "AUDIO::dest::Allen & Heath GS3000::monitor in",
+        "AUDIO::dest::Allen & Heath GS3000::st aux in",
+        "AUDIO::dest::Allen & Heath GS3000::tape in",
+        "AUDIO::dest::Audient ASP 880::adc in",
+        "AUDIO::dest::Audient ASP 880::instrument in",
+        "AUDIO::dest::Audient ASP 880::mic/line in",
+        "AUDIO::dest::IMG STAGELINE PPA-100/SW::ha in",
+        "AUDIO::dest::RME UFX III::line in",
+        "AUDIO::dest::Sony DPS-R7 Reverb::balanced in",
+        "AUDIO::dest::Sony DPS-R7 Reverb::unbalanced in"
+      ],
       "collapsed_source_devices": [],
       "collapsed_dest_devices": [],
-      "auto_collapsed_families": [],
+      "auto_collapsed_families": [
+        "AUDIO"
+      ],
       "scale": {
         "sourceWidth": 80,
         "destWidth": 55,
@@ -6840,7 +7349,7 @@
       }
     },
     "editor": {
-      "selected_device_name": "RME UFX III",
+      "selected_device_name": "the t.racks Power 8 #2",
       "selected_port_tab": "in"
     },
     "visibility": {
@@ -6854,7 +7363,7 @@
         "Behringer A800 #1",
         "Behringer A800 #2",
         "Focusrite Platinum Voice Master",
-        "Headphone Amp",
+        "IMG STAGELINE PPA-100/SW",
         "Mac mini",
         "MAO Preamp (confirm model)",
         "Netgear Unmanaged Switch",
@@ -6867,7 +7376,17 @@
         "Tascam MS-16",
         "TC Electronic Clarity M Stereo",
         "Thunderbolt Dock",
-        "TV Screen"
+        "TV Screen",
+        "the t.racks Power MS6",
+        "the t.racks Power 8 #1",
+        "the t.racks Power 8 #2",
+        "the t.racks Power 8 #3",
+        "TC Electronic Finalizer 48K",
+        "Sony DPS-R7 Reverb",
+        "Switchcraft 1U Solder-Lug Patchbay #1",
+        "Switchcraft 1U Solder-Lug Patchbay #2",
+        "Switchcraft 1U Solder-Lug Patchbay #3",
+        "Switchcraft 1U Solder-Lug Patchbay #4"
       ]
     }
   }

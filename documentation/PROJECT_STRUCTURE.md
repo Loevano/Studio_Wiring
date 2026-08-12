@@ -70,8 +70,8 @@ python3 routing_matrix_server.py \
   --host 127.0.0.1 \
   --port 8000 \
   --root . \
-  --model projects/studio-sidecar/device-configurations/studio-model-001.json \
-  --connections projects/studio-sidecar/patch-configurations/studio-model-001/patch-default.json \
+  --model projects/studio-sidecar/device-configurations/basis.json \
+  --connections projects/studio-sidecar/patch-configurations/basis/basis.json \
   --routing-rules json/routing_rules.json \
   --route-debug projects/studio-sidecar/outputs/debug/route-debug.json \
   --preview-html projects/studio-sidecar/outputs/html/studio_wiring_point_to_point.html \

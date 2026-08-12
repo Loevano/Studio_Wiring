@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "title": "Generator Fixture Studio",
+  "families": {
+    "AUDIO": {
+      "prefix": "AUDIO",
+      "layer": "Audio Analog",
+      "signal_type": "Analog Audio",
+      "default_cable_type": "Analog"
+    },
+    "NETWORK": {
+      "prefix": "NETWORK",
+      "layer": "Network",
+      "signal_type": "Network Data",
+      "default_cable_type": "Network"
+    }
+  },
+  "devices": [
+    {
+      "name": "Fixture Source",
+      "device_type": "Interface / Converter",
+      "ports": [
+        {
+          "name": "Line Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 0
+        },
+        {
+          "name": "Ethernet Out",
+          "direction": "out",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "CAT6",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "name": "Fixture Destination",
+      "device_type": "Recorder",
+      "ports": [
+        {
+          "name": "Line In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "order": 0
+        },
+        {
+          "name": "Ethernet In",
+          "direction": "in",
+          "families": [
+            "NETWORK"
+          ],
+          "transport": "CAT6",
+          "order": 1
+        }
+      ]
+    }
+  ],
+  "ui_config": {
+    "version": 1,
+    "theme": {
+      "mode": "light",
+      "explicit": false
+    },
+    "matrix": {
+      "type_tag": "",
+      "allow_double_patching": false,
+      "patch_mode": "single",
+      "pair_count": 8,
+      "sub_tab": "patch",
+      "collapsed_source_groups": [],
+      "collapsed_dest_groups": [],
+      "collapsed_source_devices": [],
+      "collapsed_dest_devices": [],
+      "auto_collapsed_families": []
+    },
+    "editor": {
+      "selected_device_name": "Fixture Source",
+      "selected_port_tab": "out"
+    },
+    "visibility": {
+      "hidden_devices": [],
+      "device_order": [
+        "Fixture Source",
+        "Fixture Destination"
+      ]
+    }
+  }
+}

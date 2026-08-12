@@ -17,6 +17,9 @@ from functools import partial
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from typing import Callable
+
+from studio_wiring_schema.validation import Issue, validate_document
 
 
 def write_json_atomic(path: Path, payload: object) -> None:
@@ -24,6 +27,41 @@ def write_json_atomic(path: Path, payload: object) -> None:
     tmp_path = path.with_suffix(path.suffix + ".tmp")
     tmp_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     os.replace(tmp_path, path)
+
+
+def write_json_transaction(changes: list[tuple[Path, object]]) -> None:
+    """Stage every payload, then replace destinations with rollback on failure."""
+    staged: list[tuple[Path, Path]] = []
+    originals: dict[Path, bytes | None] = {}
+    replaced: list[Path] = []
+    transaction_id = f"{os.getpid()}-{threading.get_ident()}-{time.time_ns()}"
+    try:
+        for path, payload in changes:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            originals[path] = path.read_bytes() if path.exists() else None
+            tmp_path = path.with_name(f".{path.name}.{transaction_id}.tmp")
+            tmp_path.write_text(
+                json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
+            staged.append((path, tmp_path))
+        for path, tmp_path in staged:
+            os.replace(tmp_path, path)
+            replaced.append(path)
+    except Exception:
+        for path in reversed(replaced):
+            original = originals[path]
+            if original is None:
+                path.unlink(missing_ok=True)
+            else:
+                path.write_bytes(original)
+        raise
+    finally:
+        for _path, tmp_path in staged:
+            try:
+                tmp_path.unlink(missing_ok=True)
+            except Exception:
+                pass
 
 
 def canonical_json_hash(payload: object) -> str:
@@ -39,6 +77,78 @@ def canonical_json_hash(payload: object) -> str:
 def read_json_hash(path: Path) -> str:
     payload = json.loads(path.read_text(encoding="utf-8"))
     return canonical_json_hash(payload)
+
+
+class SaveConflictError(Exception):
+    def __init__(self, conflicts: dict[str, str]) -> None:
+        super().__init__("Config changed on disk since load; reload and retry save.")
+        self.conflicts = conflicts
+
+
+class SchemaValidationError(ValueError):
+    def __init__(self, issues: list[Issue]) -> None:
+        super().__init__("Save rejected because configuration validation failed.")
+        self.issues = issues
+
+
+def validate_save_transaction_changes(changes: dict[str, object]) -> None:
+    """Reject invalid documents before conflict checks, staging, or disk writes."""
+    document_kinds = {"model": "model", "connections": "patch"}
+    issues: list[Issue] = []
+    for change_name, document_kind in document_kinds.items():
+        if change_name not in changes:
+            continue
+        value = changes[change_name]
+        for issue in validate_document(document_kind, value):
+            issues.append(
+                Issue(
+                    path=f"$.changes.{change_name}{issue.path[1:]}",
+                    code=issue.code,
+                    message=issue.message,
+                    severity=issue.severity,
+                )
+            )
+    if issues:
+        raise SchemaValidationError(issues)
+
+
+def execute_json_save_transaction(
+    *,
+    requested: list[tuple[str, Path, object]],
+    expected_hashes: dict[str, object],
+    lock: threading.Lock,
+    regenerate: bool,
+    regenerate_callback: Callable[[], tuple[bool, str]],
+    after_write: Callable[[], None] | None = None,
+) -> tuple[dict[str, str], bool, str]:
+    """Conflict-check, commit, and optionally regenerate under one lock."""
+    with lock:
+        conflicts: dict[str, str] = {}
+        for label, path, _value in requested:
+            if label not in expected_hashes:
+                raise ValueError(f"expected_hashes.{label} is required")
+            expected_hash = str(expected_hashes.get(label) or "").strip().lower()
+            current_hash = read_json_hash(path) if path.exists() else ""
+            if expected_hash != current_hash:
+                conflicts[label] = current_hash
+        if conflicts:
+            raise SaveConflictError(conflicts)
+
+        write_json_transaction([(path, value) for _label, path, value in requested])
+        if callable(after_write):
+            after_write()
+        saved_hashes = {
+            label: canonical_json_hash(value) for label, _path, value in requested
+        }
+        regenerate_ok = True
+        regenerate_message = ""
+        if regenerate:
+            try:
+                regenerate_ok, regenerate_message = regenerate_callback()
+            except Exception as exc:
+                regenerate_ok = False
+                regenerate_message = f"Regenerate failed after save: {exc}"
+    return saved_hashes, regenerate_ok, regenerate_message
 
 
 def slugify_project_key(name: str) -> str:
@@ -317,6 +427,7 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
     watch_interval_seconds: float = 1.0
     watch_debounce_seconds: float = 0.75
     _regenerate_lock = threading.Lock()
+    _save_transaction_lock = threading.Lock()
     _watcher_lock = threading.Lock()
     _watcher_stop_event = threading.Event()
     _watcher_thread: threading.Thread | None = None
@@ -339,13 +450,22 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
         return tuple(signature)
 
     @classmethod
-    def _run_regenerate_command(cls) -> tuple[bool, str]:
+    def _run_regenerate_command_for_targets(
+        cls,
+        *,
+        model_path: Path,
+        connections_path: Path,
+        routing_rules_path: Path,
+        route_debug_path: Path,
+        preview_html_path: Path,
+        preview_svg_dir: Path,
+    ) -> tuple[bool, str]:
         if not cls.generator_script.exists():
             return False, f"Generator script not found: {cls.generator_script}"
         # Guardrail: regenerate is allowed to update visual outputs, not the
         # active device/patch config JSON files.
         protected_before: dict[Path, bytes | None] = {}
-        for protected_path in (cls.model_path, cls.connections_path):
+        for protected_path in (model_path, connections_path):
             try:
                 protected_before[protected_path] = protected_path.read_bytes()
             except Exception:
@@ -355,17 +475,17 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             sys.executable,
             str(cls.generator_script),
             "--model",
-            str(cls.model_path),
+            str(model_path),
             "--connections-json",
-            str(cls.connections_path),
+            str(connections_path),
             "--routing-rules",
-            str(cls.routing_rules_path),
+            str(routing_rules_path),
             "--output",
-            str(cls.preview_html_path),
+            str(preview_html_path),
             "--svg-dir",
-            str(cls.preview_svg_dir),
+            str(preview_svg_dir),
             "--debug-routes-json",
-            str(cls.route_debug_path),
+            str(route_debug_path),
         ]
         completed = subprocess.run(
             command,
@@ -406,6 +526,62 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             details = (completed.stderr or completed.stdout or "").strip()
             return False, f"Regenerate command failed ({completed.returncode}): {details}"
         return True, (completed.stdout or "").strip()
+
+    @classmethod
+    def _run_regenerate_command(cls) -> tuple[bool, str]:
+        return cls._run_regenerate_command_for_targets(
+            model_path=cls.model_path,
+            connections_path=cls.connections_path,
+            routing_rules_path=cls.routing_rules_path,
+            route_debug_path=cls.route_debug_path,
+            preview_html_path=cls.preview_html_path,
+            preview_svg_dir=cls.preview_svg_dir,
+        )
+
+    @classmethod
+    def trigger_regenerate_for_targets(
+        cls,
+        *,
+        model_path: Path,
+        connections_path: Path,
+        routing_rules_path: Path,
+        route_debug_path: Path,
+        preview_html_path: Path,
+        preview_svg_dir: Path,
+        reason: str,
+    ) -> tuple[bool, str]:
+        with cls._regenerate_lock:
+            ok, message = cls._run_regenerate_command_for_targets(
+                model_path=model_path,
+                connections_path=connections_path,
+                routing_rules_path=routing_rules_path,
+                route_debug_path=route_debug_path,
+                preview_html_path=preview_html_path,
+                preview_svg_dir=preview_svg_dir,
+            )
+        stamp = time.strftime("%Y-%m-%d %H:%M:%S")
+        target = to_posix_rel(model_path, cls.root_path)
+        if ok:
+            print(f"[{stamp}] Regenerated visuals ({reason}; {target}).")
+        else:
+            print(f"[{stamp}] Regenerate failed ({reason}; {target}): {message}")
+        return ok, message
+
+    @classmethod
+    def refresh_watch_baseline_for_targets(
+        cls,
+        *,
+        model_path: Path,
+        connections_path: Path,
+    ) -> None:
+        active_model, active_connections, _routing_rules = cls._active_watch_paths()
+        if model_path.resolve() != active_model.resolve():
+            return
+        if connections_path.resolve() != active_connections.resolve():
+            return
+        baseline = cls._watch_signature()
+        with cls._watcher_lock:
+            cls._watch_baseline_signature = baseline
 
     @classmethod
     def trigger_regenerate(cls, reason: str = "manual") -> tuple[bool, str]:
@@ -550,6 +726,75 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             payload["paths"] = {}
         return meta_path, payload
 
+    def _transaction_targets(self, payload: dict[str, object]) -> dict[str, Path]:
+        project_dir = self._project_dir_from_key(payload.get("project_key"))
+        raw_targets = payload.get("targets")
+        if not isinstance(raw_targets, dict):
+            raise ValueError("targets must be an object")
+
+        def relative_target(key: str) -> object:
+            raw = raw_targets.get(key)
+            value = str(raw or "").strip()
+            if not value:
+                raise ValueError(f"targets.{key} is required")
+            if Path(value).is_absolute() or "://" in value:
+                raise ValueError(f"{key} must be a root-relative path")
+            return raw
+
+        def project_file(key: str) -> Path:
+            resolved = resolve_path_within_root(self.root_path, relative_target(key))
+            if project_dir not in resolved.parents:
+                raise ValueError(f"{key} must be inside selected project")
+            if resolved.exists() and resolved.is_dir():
+                raise ValueError(f"{key} must be a file path")
+            return resolved
+
+        def project_dir_path(key: str) -> Path:
+            resolved = resolve_path_within_root(self.root_path, relative_target(key))
+            if project_dir not in resolved.parents and resolved != project_dir:
+                raise ValueError(f"{key} must be inside selected project")
+            if resolved.exists() and not resolved.is_dir():
+                raise ValueError(f"{key} must be a directory path")
+            return resolved
+
+        model_path = project_file("model_path")
+        connections_path = project_file("connections_path")
+        route_debug_path = project_file("route_debug_path")
+        preview_html_path = project_file("preview_html")
+        preview_svg_dir = project_dir_path("preview_svg_dir")
+        routing_rules_path = resolve_path_within_root(
+            self.root_path,
+            relative_target("routing_rules_path"),
+        )
+        if routing_rules_path.exists() and routing_rules_path.is_dir():
+            raise ValueError("routing_rules_path must be a file path")
+        for label, path in (("model_path", model_path), ("connections_path", connections_path)):
+            if path.suffix.lower() != ".json":
+                raise ValueError(f"{label} must be a .json file")
+        return {
+            "model_path": model_path,
+            "connections_path": connections_path,
+            "routing_rules_path": routing_rules_path,
+            "route_debug_path": route_debug_path,
+            "preview_html_path": preview_html_path,
+            "preview_svg_dir": preview_svg_dir,
+        }
+
+    def _transaction_preview_payload(self, targets: dict[str, Path]) -> dict[str, object]:
+        svg_dir_rel = self._relative_path(targets["preview_svg_dir"]).rstrip("/")
+        return {
+            "preview_html": self._relative_path(targets["preview_html_path"]),
+            "preview_svg_dir": svg_dir_rel,
+            "preview_paths": {
+                "audioAnalog": f"{svg_dir_rel}/audio-analog.svg",
+                "computerData": f"{svg_dir_rel}/computer-data.svg",
+                "digitalAudio": f"{svg_dir_rel}/digital-audio.svg",
+                "network": f"{svg_dir_rel}/network.svg",
+                "allConnections": f"{svg_dir_rel}/all-connections.svg",
+            },
+            "route_debug_path": self._relative_path(targets["route_debug_path"]),
+        }
+
     def _config_payload(self) -> dict[str, object]:
         projects_payload = self._projects_payload()
         expose_targets = bool(self.targets_selected)
@@ -559,6 +804,7 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             "connections_path": self._relative_path(self.connections_path) if expose_targets else "",
             "routing_rules_path": self._relative_path(self.routing_rules_path),
             "route_debug_path": self._relative_path(self.route_debug_path),
+            "save_transaction_available": True,
             "regenerate_available": self.generator_script.exists(),
             "preview_html": self._relative_path(self.preview_html_path),
             "preview_svg_dir": self._relative_path(self.preview_svg_dir),
@@ -604,6 +850,7 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
 
     def do_POST(self) -> None:  # noqa: N802
         if self.path not in {
+            "/api/save-transaction",
             "/api/save-model",
             "/api/save-connections",
             "/api/regenerate",
@@ -615,37 +862,123 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             self._send_json({"ok": False, "error": "Not found"}, status=HTTPStatus.NOT_FOUND)
             return
         try:
+            if self.path == "/api/save-transaction":
+                payload = self._read_json_body()
+                if not isinstance(payload, dict):
+                    raise ValueError("Payload must be a JSON object")
+                targets = self._transaction_targets(payload)
+                changes_raw = payload.get("changes")
+                if not isinstance(changes_raw, dict):
+                    raise ValueError("changes must be an object")
+                expected_raw = payload.get("expected_hashes")
+                if not isinstance(expected_raw, dict):
+                    raise ValueError("expected_hashes must be an object")
+
+                requested: list[tuple[str, Path, object]] = []
+                if "model" in changes_raw:
+                    if not isinstance(changes_raw.get("model"), dict):
+                        raise ValueError("changes.model must be an object")
+                    requested.append(("model", targets["model_path"], changes_raw["model"]))
+                if "connections" in changes_raw:
+                    if not isinstance(changes_raw.get("connections"), dict):
+                        raise ValueError("changes.connections must be an object")
+                    requested.append(
+                        ("connections", targets["connections_path"], changes_raw["connections"])
+                    )
+                if not requested:
+                    raise ValueError("At least one of changes.model or changes.connections is required")
+                try:
+                    validate_save_transaction_changes(changes_raw)
+                except SchemaValidationError as validation_error:
+                    self._send_json(
+                        {
+                            "ok": False,
+                            "error": str(validation_error),
+                            "validation_issues": [
+                                {
+                                    "severity": issue.severity,
+                                    "path": issue.path,
+                                    "code": issue.code,
+                                    "message": issue.message,
+                                }
+                                for issue in validation_error.issues
+                            ],
+                        },
+                        status=HTTPStatus.UNPROCESSABLE_ENTITY,
+                    )
+                    return
+
+                regenerate_requested = bool(
+                    payload.get("regenerate", self.__class__.auto_regenerate)
+                )
+
+                def refresh_watcher() -> None:
+                    self.__class__.refresh_watch_baseline_for_targets(
+                        model_path=targets["model_path"],
+                        connections_path=targets["connections_path"],
+                    )
+
+                def regenerate() -> tuple[bool, str]:
+                    return self.__class__.trigger_regenerate_for_targets(
+                        model_path=targets["model_path"],
+                        connections_path=targets["connections_path"],
+                        routing_rules_path=targets["routing_rules_path"],
+                        route_debug_path=targets["route_debug_path"],
+                        preview_html_path=targets["preview_html_path"],
+                        preview_svg_dir=targets["preview_svg_dir"],
+                        reason=str(payload.get("reason") or "save-transaction"),
+                    )
+
+                try:
+                    saved_hashes, regenerate_ok, regenerate_message = execute_json_save_transaction(
+                        requested=requested,
+                        expected_hashes=expected_raw,
+                        lock=self.__class__._save_transaction_lock,
+                        regenerate=regenerate_requested,
+                        regenerate_callback=regenerate,
+                        after_write=refresh_watcher,
+                    )
+                except SaveConflictError as conflict_error:
+                    self._send_json(
+                        {
+                            "ok": False,
+                            "error": str(conflict_error),
+                            "conflict": sorted(conflict_error.conflicts),
+                            "current_hashes": conflict_error.conflicts,
+                        },
+                        status=HTTPStatus.CONFLICT,
+                    )
+                    return
+
+                self._send_json(
+                    {
+                        "ok": True,
+                        "saved": {
+                            "model": "model" in saved_hashes,
+                            "connections": "connections" in saved_hashes,
+                            "hashes": saved_hashes,
+                            "paths": {
+                                label: self._relative_path(path)
+                                for label, path, _value in requested
+                            },
+                        },
+                        "regeneration": {
+                            "attempted": regenerate_requested,
+                            "ok": regenerate_ok,
+                            "error": "" if regenerate_ok else regenerate_message,
+                            "output": regenerate_message if regenerate_ok else "",
+                        },
+                        **self._transaction_preview_payload(targets),
+                    }
+                )
+                return
+
             if self.path == "/api/create-project":
                 payload = self._read_json_body()
                 if not isinstance(payload, dict):
                     raise ValueError("Payload must be a JSON object")
                 project_name = str(payload.get("name") or "").strip()
                 project_key = ensure_project_from_template(self.root_path, project_name)
-
-                projects_payload = self._projects_payload()
-                project_item = find_project_item(projects_payload, project_key)
-                if project_item:
-                    model_rel = str(project_item.get("default_device_config") or "").strip()
-                    patch_rel = str(project_item.get("default_patch_config") or "").strip()
-                    debug_dir_rel = str(project_item.get("output_debug_directory") or "").strip()
-                    html_dir_rel = str(project_item.get("output_html_directory") or "").strip()
-                    svg_dir_rel = str(project_item.get("output_svg_directory") or "").strip()
-                    if model_rel:
-                        self.__class__.model_path = self._resolve_target_path(model_rel)
-                    if patch_rel:
-                        self.__class__.connections_path = self._resolve_target_path(patch_rel)
-                    self.__class__.targets_selected = bool(model_rel or patch_rel)
-                    if debug_dir_rel:
-                        self.__class__.route_debug_path = self._resolve_target_path(
-                            f"{debug_dir_rel.rstrip('/')}/route-debug.json"
-                        )
-                    if html_dir_rel:
-                        self.__class__.preview_html_path = self._resolve_target_path(
-                            f"{html_dir_rel.rstrip('/')}/studio_wiring_point_to_point.html"
-                        )
-                    if svg_dir_rel:
-                        self.__class__.preview_svg_dir = self._resolve_target_path(svg_dir_rel, expect_dir=True)
-
                 self._send_json({"ok": True, "created_project_key": project_key, **self._config_payload()})
                 return
 
@@ -775,6 +1108,23 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
                     "layout_group": template_group,
                     "ports": normalized_ports,
                 }
+                # Preserve optional per-device placement metadata exactly when
+                # supplied. Missing fields stay missing so legacy/default Desk
+                # and 1U interpretation never rewrites stored templates.
+                for placement_key in ("rack_mountable", "location", "rack_units", "rack_position"):
+                    if placement_key in raw_template:
+                        normalized_template[placement_key] = raw_template[placement_key]
+                placement_issues = validate_document(
+                    "device_templates",
+                    {
+                        "version": 1,
+                        "title": "Device template validation",
+                        "templates": [normalized_template],
+                    },
+                )
+                if placement_issues:
+                    detail = "; ".join(issue.format() for issue in placement_issues)
+                    raise ValueError(f"Invalid device template: {detail}")
 
                 replace_existing = bool(payload.get("replace_existing"))
                 if template_path.exists():
@@ -971,14 +1321,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model",
         type=Path,
-        default=Path("projects/studio-sidecar/device-configurations/studio-model-001.json"),
-        help="Model JSON file to save (default: projects/studio-sidecar/device-configurations/studio-model-001.json).",
+        default=Path("projects/studio-sidecar/device-configurations/basis.json"),
+        help="Model JSON file to save (default: projects/studio-sidecar/device-configurations/basis.json).",
     )
     parser.add_argument(
         "--connections",
         type=Path,
-        default=Path("projects/studio-sidecar/patch-configurations/studio-model-001/patch-default.json"),
-        help="Connections JSON file to save (default: projects/studio-sidecar/patch-configurations/studio-model-001/patch-default.json).",
+        default=Path("projects/studio-sidecar/patch-configurations/basis/patch-default.json"),
+        help="Connections JSON file to save (default: projects/studio-sidecar/patch-configurations/basis/patch-default.json).",
     )
     parser.add_argument(
         "--generator",
@@ -1110,7 +1460,7 @@ def main() -> int:
     print(
         "Save API endpoints: /api/config, /api/projects, /api/set-targets, "
         "/api/create-project, /api/save-project, /api/save-model, "
-        "/api/save-connections, /api/regenerate"
+        "/api/save-connections, /api/save-transaction, /api/regenerate"
     )
     try:
         httpd.serve_forever()

@@ -5,7 +5,7 @@
     {
       "key": "routing",
       "label": "Routing Matrix",
-      "src": "../../routing_matrix.html?embedded=1&tab=matrix&matrix_subtab=prototype"
+      "src": "../../prototypes/routing_matrix_prototype_compact.html?use_save_api=1"
     },
     {
       "key": "connection-overview",
@@ -16,6 +16,11 @@
       "key": "devices",
       "label": "Devices & Ports",
       "src": "../../routing_matrix.html?embedded=1&tab=devices"
+    },
+    {
+      "key": "rack-editor",
+      "label": "Rack Editor",
+      "src": "../../routing_matrix.html?embedded=1&tab=rack-editor"
     },
     {
       "key": "visibility",

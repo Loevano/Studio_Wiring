@@ -125,17 +125,35 @@
       --incompatible-cell-border: #b91c1c;
     }
     * { box-sizing: border-box; }
+    html,
     body {
       margin: 0;
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+    }
+    body {
       font-family: Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--ink);
     }
     .app {
-      min-height: 100vh;
+      width: 100%;
+      height: 100vh;
+      min-width: 0;
+      min-height: 0;
       display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
       gap: 10px;
       padding: 12px;
+      overflow: hidden;
+    }
+    @supports (height: 100dvh) {
+      .app {
+        height: 100dvh;
+      }
     }
     .panel {
       background: var(--panel);
@@ -194,6 +212,35 @@
     .toolbar-group button {
       min-width: 86px;
     }
+    .save-state {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 32px;
+      padding: 0 9px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .save-state::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ok);
+    }
+    .save-state.dirty::before { background: var(--warn); }
+    .save-state.saving::before {
+      background: var(--point-hover);
+      animation: save-state-pulse 0.9s ease-in-out infinite alternate;
+    }
+    @keyframes save-state-pulse {
+      from { opacity: 0.35; }
+      to { opacity: 1; }
+    }
     label {
       display: flex;
       flex-direction: column;
@@ -249,17 +296,18 @@
       border-radius: 10px;
       overflow: auto;
       padding: 0;
-      height: calc(100vh - 190px);
-      min-height: 560px;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      min-width: 0;
+      min-height: 0;
       background: var(--matrix-bg);
       background-clip: padding-box;
       position: relative;
       isolation: isolate;
-      overscroll-behavior: contain;
       overflow-anchor: none;
       -webkit-overflow-scrolling: touch;
-      scrollbar-gutter: stable both-edges;
-      clip-path: inset(0 round 10px);
+      scrollbar-gutter: stable;
     }
     .matrix-wrap.matrix-panning {
       cursor: grabbing;
@@ -288,6 +336,11 @@
       border-left-width: 1px;
     }
 
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+    }
     .sticky-top {
       position: sticky;
       top: 0;
@@ -580,6 +633,42 @@
       outline-offset: -2px;
       z-index: 2;
     }
+    .matrix-cell-control:focus-visible {
+      position: relative;
+      z-index: 4;
+      outline: 3px solid var(--point-hover);
+      outline-offset: -3px;
+      box-shadow: inset 0 0 0 1px var(--panel);
+    }
+    .matrix-cell-control {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: var(--matrix-row-size);
+      padding: 0;
+      cursor: pointer;
+    }
+    td.cell.disabled .matrix-cell-control { cursor: not-allowed; }
+    .icon-btn:focus-visible {
+      outline: 3px solid var(--point-hover);
+      outline-offset: 2px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
     .tooltip {
       position: fixed;
@@ -659,6 +748,15 @@
     <div class="panel">
       <div class="toolbar">
         <div class="toolbar-fields">
+          <label>Project
+            <select id="projectSelect"></select>
+          </label>
+          <label>Device Config
+            <select id="deviceConfigSelect"></select>
+          </label>
+          <label>Patch Config
+            <select id="patchConfigSelect"></select>
+          </label>
           <label>Family
             <select id="familySelect"></select>
           </label>
@@ -688,6 +786,11 @@
           </label>
         </div>
         <div class="toolbar-actions">
+          <div class="toolbar-group" aria-label="Patch history">
+            <span class="toolbar-group-label">History</span>
+            <button id="undoBtn" type="button" disabled aria-keyshortcuts="Control+Z Meta+Z">Undo</button>
+            <button id="redoBtn" type="button" disabled aria-keyshortcuts="Control+Shift+Z Meta+Shift+Z Control+Y">Redo</button>
+          </div>
           <div class="toolbar-group">
             <span class="toolbar-group-label">Transmitters</span>
             <button id="collapseSourceBtn" type="button">Collapse</button>
@@ -698,6 +801,7 @@
             <button id="collapseDestBtn" type="button">Collapse</button>
             <button id="expandDestBtn" type="button">Expand</button>
           </div>
+          <span id="saveState" class="save-state" role="status" aria-live="polite" aria-atomic="true">Saved</span>
         </div>
       </div>
     </div>
@@ -708,6 +812,8 @@
   </div>
 
   <div id="tooltip" class="tooltip"></div>
+  <div id="matrixKeyboardHelp" class="sr-only">Use the arrow keys to move between routing cells. Press Space or Enter to toggle a connection or activate a folder junction.</div>
+  <div id="status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script>
     const QUERY_PARAMS = new URLSearchParams(window.location.search || "");
@@ -729,37 +835,45 @@
       return out;
     }
 
+    const PROJECT_SELECTION_STORAGE_KEY = "studioWiringProjectSelectionV1";
+    const AUTO_SAVE_STORAGE_KEY = "studioWiringAutoSaveToDiskV1";
+    const HAS_PROJECT_QUERY_PARAM = QUERY_PARAMS.has("project_key");
     const HAS_MODEL_QUERY_PARAM = QUERY_PARAMS.has("model");
     const HAS_CONNECTIONS_QUERY_PARAM = QUERY_PARAMS.has("connections");
-    const MODEL_QUERY_PATH = String(QUERY_PARAMS.get("model") || "").trim();
-    const CONNECTIONS_QUERY_PATH = String(QUERY_PARAMS.get("connections") || "").trim();
+    let activeModelPath = String(QUERY_PARAMS.get("model") || "").trim();
+    let activeConnectionsPath = String(QUERY_PARAMS.get("connections") || "").trim();
     const STARTUP_THEME = String(QUERY_PARAMS.get("theme") || "").trim().toLowerCase();
     let themeOverrideMode = (STARTUP_THEME === "dark" || STARTUP_THEME === "light") ? STARTUP_THEME : "";
     const USE_SAVE_API = queryBoolean("use_save_api");
     const ALLOW_SOURCE_PUT = queryBoolean("allow_source_put");
     const ALLOW_DOUBLE_PATCHING_DEFAULT = queryBoolean("allow_double_patching");
     const AUTO_SAVE_CONFIGS_DEFAULT = queryBoolean("auto_save_configs");
-    const SAVE_CONNECTIONS_API = String(QUERY_PARAMS.get("save_connections_api") || "/api/save-connections").trim()
-      || "/api/save-connections";
-    const SET_TARGETS_API = String(QUERY_PARAMS.get("set_targets_api") || "/api/set-targets").trim()
-      || "/api/set-targets";
+    const MATRIX_PERF_ENABLED = queryBoolean("matrix_perf");
+    const SAVE_TRANSACTION_API = String(QUERY_PARAMS.get("save_transaction_api") || "/api/save-transaction").trim()
+      || "/api/save-transaction";
+    let activeProjectKey = String(QUERY_PARAMS.get("project_key") || "").trim();
+    let activeRoutingRulesPath = String(QUERY_PARAMS.get("routing_rules_path") || "json/routing-rules.json").trim();
 
     const MODEL_FALLBACK_CANDIDATES = [
       "./sandbox/prototype-lab/device-configurations/studio-model.prototype.json",
-      "../projects/studio-sidecar/device-configurations/studio-model-001.json",
+      "../projects/studio-sidecar/device-configurations/basis.json",
     ];
     const CONNECTIONS_FALLBACK_CANDIDATES = [
       "./sandbox/prototype-lab/patch-configurations/patch-default.prototype.json",
-      "../projects/studio-sidecar/patch-configurations/studio-model-001/patch-default.json",
+      "../projects/studio-sidecar/patch-configurations/basis/patch-default.json",
     ];
-    const MODEL_URL_CANDIDATES = withPreferredCandidate(
-      MODEL_QUERY_PATH,
-      HAS_MODEL_QUERY_PARAM ? [] : MODEL_FALLBACK_CANDIDATES,
-    );
-    const CONNECTIONS_URL_CANDIDATES = withPreferredCandidate(
-      CONNECTIONS_QUERY_PATH,
-      HAS_CONNECTIONS_QUERY_PARAM ? [] : CONNECTIONS_FALLBACK_CANDIDATES,
-    );
+    function modelUrlCandidates() {
+      return withPreferredCandidate(
+        activeModelPath,
+        (HAS_MODEL_QUERY_PARAM || activeModelPath) ? [] : MODEL_FALLBACK_CANDIDATES,
+      );
+    }
+    function connectionsUrlCandidates() {
+      return withPreferredCandidate(
+        activeConnectionsPath,
+        (HAS_CONNECTIONS_QUERY_PARAM || activeConnectionsPath) ? [] : CONNECTIONS_FALLBACK_CANDIDATES,
+      );
+    }
     const FAMILY_ALL = "ALL";
     const FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK", "CONTROL"];
     const PORT_FOLDER_THRESHOLD = 8;
@@ -770,6 +884,9 @@
     const PATCH_AUTO_SAVE_DEBOUNCE_MS = 450;
 
     const familySelect = document.getElementById("familySelect");
+    const projectSelect = document.getElementById("projectSelect");
+    const deviceConfigSelect = document.getElementById("deviceConfigSelect");
+    const patchConfigSelect = document.getElementById("patchConfigSelect");
     const patchModeSelect = document.getElementById("patchModeSelect");
     const pairCountInput = document.getElementById("pairCountInput");
     const typeTagInput = document.getElementById("typeTagInput");
@@ -780,6 +897,9 @@
     const expandSourceBtn = document.getElementById("expandSourceBtn");
     const collapseDestBtn = document.getElementById("collapseDestBtn");
     const expandDestBtn = document.getElementById("expandDestBtn");
+    const undoBtn = document.getElementById("undoBtn");
+    const redoBtn = document.getElementById("redoBtn");
+    const saveStateEl = document.getElementById("saveState");
     const matrixContainer = document.getElementById("matrixContainer");
     const tooltip = document.getElementById("tooltip");
     const statusEl = document.getElementById("status");
@@ -787,6 +907,9 @@
 
     let MODEL = { devices: [], families: {} };
     let connections = [];
+    let projectCatalog = [];
+    let applyingProjectSelection = false;
+    let activeSaveTargets = {};
 
     let sourceFilter = "";
     let destFilter = "";
@@ -794,18 +917,85 @@
     let pairCount = 8;
     let typeTagValue = "";
     let allowDoublePatching = ALLOW_DOUBLE_PATCHING_DEFAULT;
-    let autoSaveConfigsEnabled = AUTO_SAVE_CONFIGS_DEFAULT;
+    function loadAutoSavePreference() {
+      try {
+        const stored = window.localStorage.getItem(AUTO_SAVE_STORAGE_KEY);
+        if (stored === "1") return true;
+        if (stored === "0") return false;
+      } catch (_error) {
+        // Ignore storage failures and use the URL default.
+      }
+      return null;
+    }
+
+    function persistAutoSavePreference(enabled) {
+      try {
+        window.localStorage.setItem(AUTO_SAVE_STORAGE_KEY, enabled ? "1" : "0");
+      } catch (_error) {
+        // Ignore storage failures.
+      }
+    }
+
+    const storedAutoSavePreference = loadAutoSavePreference();
+    let autoSaveConfigsEnabled = storedAutoSavePreference == null
+      ? AUTO_SAVE_CONFIGS_DEFAULT
+      : storedAutoSavePreference;
     let cableIdAllocator = new Map();
     let patchFileHandle = null;
     let patchFileName = "routing_matrix_connections.prototype.json";
     let modelSourceUrl = "";
     let patchSourceUrl = "";
-    let saveTargetsConfiguredKey = "";
+    let loadedPatchVersionHash = "";
     let patchAutoSaveTimer = 0;
     let patchAutoSaveReason = "";
     let patchAutoSaveInFlight = false;
+    let patchAutoSavePromise = null;
     let normalizedPortsCache = null;
+    let matrixKeyboardFocusKey = "";
+    const PATCH_HISTORY_LIMIT = 100;
+    let patchHistory = [];
+    let patchHistoryIndex = -1;
+    let savedPatchFingerprint = "";
+    let patchDirty = false;
+    let patchSaveInProgress = false;
+    let lastSaveSucceeded = false;
+    let patchSaveRequestSequence = 0;
+    let latestPatchSaveRequestId = 0;
+    let activePatchSaveRequests = 0;
     const portsForFamilyCache = new Map();
+    const compatibilityCacheByFamily = new Map();
+    const connectionRowsByPair = new Map();
+    const connectionRowsByEndpoint = new Map();
+    const matrixPerfCounters = {
+      renderRequests: 0,
+      coalescedRenderRequests: 0,
+      fullRenders: 0,
+      renderedCells: 0,
+      lastRenderCells: 0,
+      lastRenderMs: 0,
+      totalRenderMs: 0,
+      localCellUpdates: 0,
+      compatibilityComputations: 0,
+      compatibilityCacheHits: 0,
+      conflictCandidateChecks: 0,
+    };
+
+    window.__studioMatrixPerf = {
+      counters: matrixPerfCounters,
+      snapshot() {
+        const renders = Number(matrixPerfCounters.fullRenders || 0);
+        return {
+          ...matrixPerfCounters,
+          averageRenderMs: renders > 0 ? matrixPerfCounters.totalRenderMs / renders : 0,
+          compatibilityCacheHitRate: (matrixPerfCounters.compatibilityCacheHits + matrixPerfCounters.compatibilityComputations) > 0
+            ? matrixPerfCounters.compatibilityCacheHits / (matrixPerfCounters.compatibilityCacheHits + matrixPerfCounters.compatibilityComputations)
+            : 0,
+        };
+      },
+      reset() {
+        for (const key of Object.keys(matrixPerfCounters)) matrixPerfCounters[key] = 0;
+      },
+    };
 
     const collapsedSourceDevices = new Set();
     const collapsedDestDevices = new Set();
@@ -817,6 +1007,7 @@
     function invalidatePortCaches() {
       normalizedPortsCache = null;
       portsForFamilyCache.clear();
+      compatibilityCacheByFamily.clear();
     }
 
     function setStatus(message, warn = false) {
@@ -826,10 +1017,163 @@
       statusEl.classList.toggle("ok", !warn && Boolean(message));
     }
 
+    function clonePatchConnections(rows = connections) {
+      return (Array.isArray(rows) ? rows : []).map((row) => ({ ...row }));
+    }
+
+    function patchFingerprint(rows = connections) {
+      return JSON.stringify({ version: 1, connections: Array.isArray(rows) ? rows : [] });
+    }
+
+    function postPatchDirtyState() {
+      if (!window.parent || window.parent === window) return;
+      try {
+        window.parent.postMessage({
+          type: "studio-prototype-patch-state",
+          dirty: patchDirty,
+          saving: patchSaveInProgress,
+          last_save_succeeded: lastSaveSucceeded,
+          can_undo: patchHistoryIndex > 0,
+          can_redo: patchHistoryIndex >= 0 && patchHistoryIndex < patchHistory.length - 1,
+        }, "*");
+      } catch (_error) {
+        // Ignore cross-frame message failures.
+      }
+    }
+
+    function updatePatchStateUi() {
+      const canUndo = patchHistoryIndex > 0;
+      const canRedo = patchHistoryIndex >= 0 && patchHistoryIndex < patchHistory.length - 1;
+      if (undoBtn instanceof HTMLButtonElement) undoBtn.disabled = !canUndo;
+      if (redoBtn instanceof HTMLButtonElement) redoBtn.disabled = !canRedo;
+      if (saveStateEl instanceof HTMLElement) {
+        const label = patchSaveInProgress ? "Saving…" : (patchDirty ? "Unsaved changes" : "Saved");
+        saveStateEl.textContent = label;
+        saveStateEl.classList.toggle("dirty", patchDirty && !patchSaveInProgress);
+        saveStateEl.classList.toggle("saving", patchSaveInProgress);
+      }
+      postPatchDirtyState();
+    }
+
+    function refreshPatchDirtyState() {
+      patchDirty = patchFingerprint() !== savedPatchFingerprint;
+      if (patchDirty) lastSaveSucceeded = false;
+      updatePatchStateUi();
+    }
+
+    function resetPatchHistory(label = "Loaded patch") {
+      patchHistory = [{ label, connections: clonePatchConnections() }];
+      patchHistoryIndex = 0;
+      savedPatchFingerprint = patchFingerprint();
+      patchDirty = false;
+      lastSaveSucceeded = true;
+      updatePatchStateUi();
+    }
+
+    function recordPatchHistory(label) {
+      const fingerprint = patchFingerprint();
+      const currentEntry = patchHistory[patchHistoryIndex];
+      if (currentEntry && patchFingerprint(currentEntry.connections) === fingerprint) {
+        refreshPatchDirtyState();
+        return false;
+      }
+      if (patchHistoryIndex < patchHistory.length - 1) {
+        patchHistory.splice(patchHistoryIndex + 1);
+      }
+      patchHistory.push({ label: String(label || "Patch change"), connections: clonePatchConnections() });
+      if (patchHistory.length > PATCH_HISTORY_LIMIT) patchHistory.shift();
+      patchHistoryIndex = patchHistory.length - 1;
+      refreshPatchDirtyState();
+      return true;
+    }
+
+    function restorePatchHistoryEntry(nextIndex, direction) {
+      if (!Number.isInteger(nextIndex) || nextIndex < 0 || nextIndex >= patchHistory.length) return false;
+      const priorEntry = patchHistory[patchHistoryIndex];
+      const entry = patchHistory[nextIndex];
+      connections = clonePatchConnections(entry.connections);
+      patchHistoryIndex = nextIndex;
+      cableIdAllocator = buildCableIdAllocator(connections);
+      rebuildConnectionLookups();
+      refreshPatchDirtyState();
+      scheduleRender();
+      queuePatchAutoSave(direction);
+      const actionLabel = direction === "undo" ? String(priorEntry?.label || "patch change") : entry.label;
+      setStatus(`${direction === "undo" ? "Undid" : "Redid"}: ${actionLabel}.`);
+      return true;
+    }
+
+    function undoPatch() {
+      return restorePatchHistoryEntry(patchHistoryIndex - 1, "undo");
+    }
+
+    function redoPatch() {
+      return restorePatchHistoryEntry(patchHistoryIndex + 1, "redo");
+    }
+
+    function markPatchSaveStarted() {
+      patchSaveRequestSequence += 1;
+      const requestId = patchSaveRequestSequence;
+      latestPatchSaveRequestId = requestId;
+      activePatchSaveRequests += 1;
+      patchSaveInProgress = activePatchSaveRequests > 0;
+      lastSaveSucceeded = false;
+      updatePatchStateUi();
+      return requestId;
+    }
+
+    function markPatchSaveFinished(success, savedFingerprint = "", requestId = 0) {
+      activePatchSaveRequests = Math.max(0, activePatchSaveRequests - 1);
+      patchSaveInProgress = activePatchSaveRequests > 0;
+      if (success && requestId === latestPatchSaveRequestId) {
+        lastSaveSucceeded = true;
+        savedPatchFingerprint = String(savedFingerprint || patchFingerprint());
+      } else if (requestId === latestPatchSaveRequestId) {
+        lastSaveSucceeded = false;
+      }
+      refreshPatchDirtyState();
+    }
+
     function setAutoSaveConfigsEnabled(enabled, announce = false) {
       autoSaveConfigsEnabled = Boolean(enabled);
+      persistAutoSavePreference(autoSaveConfigsEnabled);
       if (announce) {
         setStatus(`Auto Save Configs: ${autoSaveConfigsEnabled ? "On" : "Off"}`);
+      }
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          type: "studio-shell-autosave-changed",
+          enabled: autoSaveConfigsEnabled,
+        }, "*");
+      }
+      if (autoSaveConfigsEnabled && patchDirty) {
+        queuePatchAutoSave("auto-save-enabled");
+      }
+    }
+
+    async function flushPatchAutoSave(reason = "patch-change") {
+      if (patchAutoSaveTimer) {
+        window.clearTimeout(patchAutoSaveTimer);
+        patchAutoSaveTimer = 0;
+      }
+      if (!autoSaveConfigsEnabled || !patchDirty) return true;
+      if (patchAutoSavePromise) {
+        const priorResult = await patchAutoSavePromise;
+        if (!patchDirty) return priorResult;
+      }
+      patchAutoSaveInFlight = true;
+      const saveReason = String(reason || patchAutoSaveReason || "patch-change");
+      patchAutoSaveReason = "";
+      patchAutoSavePromise = savePatch(false, {
+        silent: true,
+        auto: true,
+        reason: saveReason,
+      });
+      try {
+        return await patchAutoSavePromise;
+      } finally {
+        patchAutoSavePromise = null;
+        patchAutoSaveInFlight = false;
       }
     }
 
@@ -839,38 +1183,39 @@
       if (patchAutoSaveTimer) {
         window.clearTimeout(patchAutoSaveTimer);
       }
-      patchAutoSaveTimer = window.setTimeout(async () => {
+      patchAutoSaveTimer = window.setTimeout(() => {
         patchAutoSaveTimer = 0;
-        if (patchAutoSaveInFlight) {
-          queuePatchAutoSave(patchAutoSaveReason || reason);
-          return;
-        }
-        patchAutoSaveInFlight = true;
-        try {
-          await savePatch(false, {
-            silent: true,
-            auto: true,
-            reason: patchAutoSaveReason || reason,
-          });
-        } finally {
-          patchAutoSaveInFlight = false;
-        }
+        void flushPatchAutoSave(patchAutoSaveReason || reason);
       }, PATCH_AUTO_SAVE_DEBOUNCE_MS);
     }
 
     let renderScheduled = false;
-    function scheduleRender(immediate = false) {
-      if (immediate) {
-        renderScheduled = false;
-        renderMatrix();
+    function scheduleRender(_immediate = false) {
+      matrixPerfCounters.renderRequests += 1;
+      if (renderScheduled) {
+        matrixPerfCounters.coalescedRenderRequests += 1;
         return;
       }
-      if (renderScheduled) return;
       renderScheduled = true;
       window.requestAnimationFrame(() => {
         renderScheduled = false;
         renderMatrix();
       });
+    }
+
+    function finishMatrixRender(startedAt, renderedCellCount) {
+      const elapsed = Math.max(0, performance.now() - Number(startedAt || 0));
+      matrixPerfCounters.fullRenders += 1;
+      matrixPerfCounters.lastRenderCells = Math.max(0, Number(renderedCellCount || 0));
+      matrixPerfCounters.renderedCells += matrixPerfCounters.lastRenderCells;
+      matrixPerfCounters.lastRenderMs = elapsed;
+      matrixPerfCounters.totalRenderMs += elapsed;
+      if (MATRIX_PERF_ENABLED) {
+        console.info(
+          `[matrix perf] render ${matrixPerfCounters.fullRenders}: ${matrixPerfCounters.lastRenderCells} cells in ${elapsed.toFixed(1)} ms`,
+          window.__studioMatrixPerf.snapshot()
+        );
+      }
     }
 
     function captureMatrixViewportState() {
@@ -890,6 +1235,108 @@
       const nextLeft = Math.max(0, Math.min(maxLeft, Number(state.left || 0)));
       matrixWrapEl.scrollTop = nextTop;
       matrixWrapEl.scrollLeft = nextLeft;
+    }
+
+    function matrixEntryFocusIdentity(entry) {
+      if (!entry || typeof entry !== "object") return "entry:unknown";
+      if (entry.kind === "port") {
+        return `port:${encodeURIComponent(String(entry.port?.device || ""))}:${encodeURIComponent(String(entry.port?.port || ""))}`;
+      }
+      if (entry.kind === "group") {
+        return `group:${encodeURIComponent(String(entry.device || ""))}:${encodeURIComponent(String(entry.typeName || ""))}`;
+      }
+      if (entry.kind === "device") return `device:${encodeURIComponent(String(entry.device || ""))}`;
+      return `entry:${encodeURIComponent(String(entry.kind || "unknown"))}`;
+    }
+
+    function matrixCellFocusKey(sourceEntry, destEntry) {
+      return `cell:${matrixEntryFocusIdentity(sourceEntry)}=>${matrixEntryFocusIdentity(destEntry)}`;
+    }
+
+    function captureMatrixFocusState() {
+      const active = document.activeElement;
+      if (!(active instanceof HTMLElement) || !matrixContainer?.contains(active)) return null;
+      const focusTarget = active.closest("[data-matrix-focus-key]");
+      if (!(focusTarget instanceof HTMLElement)) return null;
+      const key = String(focusTarget.dataset.matrixFocusKey || "");
+      const isCell = focusTarget.matches(".matrix-cell-control[data-matrix-focus-cell='1']");
+      if (key && isCell) matrixKeyboardFocusKey = key;
+      return {
+        key,
+        si: Number(focusTarget.dataset.si),
+        di: Number(focusTarget.dataset.di),
+        isCell,
+      };
+    }
+
+    function elementWithMatrixFocusKey(root, key) {
+      if (!(root instanceof Element) || !key) return null;
+      for (const candidate of root.querySelectorAll("[data-matrix-focus-key]")) {
+        if (candidate instanceof HTMLElement && candidate.dataset.matrixFocusKey === key) return candidate;
+      }
+      return null;
+    }
+
+    function nearestMatrixCell(cells, si, di) {
+      if (!Number.isFinite(si) || !Number.isFinite(di)) return null;
+      let best = null;
+      let bestDistance = Number.POSITIVE_INFINITY;
+      for (const cell of cells) {
+        const rowDistance = Math.abs(Number(cell.dataset.si) - si);
+        const colDistance = Math.abs(Number(cell.dataset.di) - di);
+        const distance = rowDistance + colDistance;
+        if (distance < bestDistance) {
+          best = cell;
+          bestDistance = distance;
+        }
+      }
+      return best;
+    }
+
+    function configureMatrixRovingFocus(table, focusState) {
+      if (!(table instanceof HTMLTableElement)) return;
+      const cells = Array.from(table.querySelectorAll(".matrix-cell-control[data-matrix-focus-cell='1']"))
+        .filter((cell) => cell instanceof HTMLButtonElement);
+      if (!cells.length) return;
+
+      let rovingCell = elementWithMatrixFocusKey(table, focusState?.isCell ? focusState.key : matrixKeyboardFocusKey);
+      if (!(rovingCell instanceof HTMLButtonElement)) {
+        rovingCell = cells.find((cell) => cell.closest("td.cell")?.classList.contains("editable") && cell.getAttribute("aria-disabled") !== "true")
+          || cells.find((cell) => cell.getAttribute("role") === "button")
+          || cells[0];
+      }
+      for (const cell of cells) cell.tabIndex = cell === rovingCell ? 0 : -1;
+
+      if (!focusState) return;
+      let restoreTarget = elementWithMatrixFocusKey(table, focusState.key);
+      if (!(restoreTarget instanceof HTMLElement) && focusState.isCell) {
+        restoreTarget = nearestMatrixCell(cells, focusState.si, focusState.di);
+      }
+      if (!(restoreTarget instanceof HTMLElement)) return;
+      if (restoreTarget instanceof HTMLButtonElement) {
+        for (const cell of cells) cell.tabIndex = cell === restoreTarget ? 0 : -1;
+        matrixKeyboardFocusKey = String(restoreTarget.dataset.matrixFocusKey || matrixKeyboardFocusKey);
+      }
+      restoreTarget.focus({ preventScroll: true });
+    }
+
+    function validateMatrixAccessibility(table) {
+      if (!(table instanceof HTMLTableElement)) return;
+      const failures = [];
+      const cells = Array.from(table.querySelectorAll(".matrix-cell-control[data-matrix-focus-cell='1']"));
+      if (cells.length && cells.filter((cell) => cell.getAttribute("tabindex") === "0").length !== 1) {
+        failures.push("matrix must expose exactly one cell in the tab order");
+      }
+      if (cells.some((cell) => !cell.getAttribute("aria-label"))) {
+        failures.push("every navigable matrix cell needs an accessible label");
+      }
+      if (table.querySelector("td.cell.editable:not(:has(.matrix-cell-control[role='checkbox']))")) {
+        failures.push("editable crosspoints need checkbox semantics");
+      }
+      if (table.querySelector("td.cell.groupcell[data-folder-toggle]:not([data-folder-toggle='none']):not(:has(.matrix-cell-control[role='button']))")) {
+        failures.push("actionable folder junctions need button semantics");
+      }
+      if (failures.length) console.warn("Routing matrix accessibility assertion failed:", failures.join("; "));
     }
 
     const panState = {
@@ -968,73 +1415,6 @@
         event.preventDefault();
         event.stopPropagation();
       }, true);
-    }
-
-    function bindMatrixTrackpadDiagonalScroll() {
-      if (!(matrixWrapEl instanceof HTMLElement)) return;
-      if (matrixWrapEl.dataset.trackpadBound === "1") return;
-      matrixWrapEl.dataset.trackpadBound = "1";
-
-      matrixWrapEl.addEventListener("wheel", (event) => {
-        if (!(event instanceof WheelEvent)) return;
-        if (event.ctrlKey) return;
-        if (panState.active) return;
-
-        const canScrollX = matrixWrapEl.scrollWidth > (matrixWrapEl.clientWidth + 1);
-        const canScrollY = matrixWrapEl.scrollHeight > (matrixWrapEl.clientHeight + 1);
-        if (!canScrollX && !canScrollY) return;
-
-        const unit = event.deltaMode === 1
-          ? 16
-          : (event.deltaMode === 2
-            ? Math.max(Number(matrixWrapEl.clientWidth || 0), Number(matrixWrapEl.clientHeight || 0), 1)
-            : 1);
-        const deltaXRaw = Number(event.deltaX || 0) * unit;
-        const deltaYRaw = Number(event.deltaY || 0) * unit;
-        const deltaX = Number.isFinite(deltaXRaw) ? deltaXRaw : 0;
-        const deltaY = Number.isFinite(deltaYRaw) ? deltaYRaw : 0;
-        const horizontalDelta = (deltaX !== 0)
-          ? deltaX
-          : ((event.shiftKey && deltaY !== 0) ? deltaY : 0);
-        const applyX = canScrollX ? horizontalDelta : 0;
-        const applyY = canScrollY ? deltaY : 0;
-        if (applyX === 0 && applyY === 0) return;
-
-        const startLeft = Number(matrixWrapEl.scrollLeft || 0);
-        const startTop = Number(matrixWrapEl.scrollTop || 0);
-        const maxLeft = Math.max(0, Number(matrixWrapEl.scrollWidth || 0) - Number(matrixWrapEl.clientWidth || 0));
-        const maxTop = Math.max(0, Number(matrixWrapEl.scrollHeight || 0) - Number(matrixWrapEl.clientHeight || 0));
-        const nextLeft = Math.max(0, Math.min(maxLeft, startLeft + applyX));
-        const nextTop = Math.max(0, Math.min(maxTop, startTop + applyY));
-        const consumedX = nextLeft - startLeft;
-        const consumedY = nextTop - startTop;
-
-        if (consumedX !== 0) matrixWrapEl.scrollLeft = nextLeft;
-        if (consumedY !== 0) matrixWrapEl.scrollTop = nextTop;
-
-        const remainingY = applyY - consumedY;
-        let stillRemainingY = remainingY;
-        if (Math.abs(stillRemainingY) > 0.5) {
-          const before = Number(window.scrollY || window.pageYOffset || 0);
-          window.scrollBy(0, stillRemainingY);
-          const after = Number(window.scrollY || window.pageYOffset || 0);
-          stillRemainingY -= (after - before);
-        }
-        if (Math.abs(stillRemainingY) > 0.5 && window.parent && window.parent !== window) {
-          try {
-            window.parent.postMessage({
-              type: "studio-prototype-scroll-handoff",
-              delta_y: stillRemainingY,
-            }, "*");
-          } catch (_error) {
-            // Ignore cross-frame message failures.
-          }
-        }
-
-        if (consumedX !== 0 || consumedY !== 0 || Math.abs(remainingY) > 0.5) {
-          event.preventDefault();
-        }
-      }, { passive: false });
     }
 
     window.addEventListener("error", (event) => {
@@ -1387,6 +1767,51 @@
       return `${sourceDevice}::${sourcePort}=>${destDevice}::${destPort}`;
     }
 
+    function addConnectionLookup(map, key, row) {
+      if (!key || !row) return;
+      let rows = map.get(key);
+      if (!rows) {
+        rows = new Set();
+        map.set(key, rows);
+      }
+      rows.add(row);
+    }
+
+    function removeConnectionLookup(map, key, row) {
+      const rows = map.get(key);
+      if (!rows) return;
+      rows.delete(row);
+      if (!rows.size) map.delete(key);
+    }
+
+    function indexConnectionRow(row) {
+      if (!row || typeof row !== "object") return;
+      addConnectionLookup(
+        connectionRowsByPair,
+        connectionKey(row.source_device, row.source_port, row.dest_device, row.dest_port),
+        row
+      );
+      addConnectionLookup(connectionRowsByEndpoint, endpointKey(row.source_device, row.source_port), row);
+      addConnectionLookup(connectionRowsByEndpoint, endpointKey(row.dest_device, row.dest_port), row);
+    }
+
+    function unindexConnectionRow(row) {
+      if (!row || typeof row !== "object") return;
+      removeConnectionLookup(
+        connectionRowsByPair,
+        connectionKey(row.source_device, row.source_port, row.dest_device, row.dest_port),
+        row
+      );
+      removeConnectionLookup(connectionRowsByEndpoint, endpointKey(row.source_device, row.source_port), row);
+      removeConnectionLookup(connectionRowsByEndpoint, endpointKey(row.dest_device, row.dest_port), row);
+    }
+
+    function rebuildConnectionLookups() {
+      connectionRowsByPair.clear();
+      connectionRowsByEndpoint.clear();
+      for (const row of connections) indexConnectionRow(row);
+    }
+
     function buildCableIdAllocator(rows) {
       const state = new Map();
       const list = Array.isArray(rows) ? rows : [];
@@ -1413,13 +1838,23 @@
     }
 
     function findConnectionIndex(family, sourceDevice, sourcePort, destDevice, destPort) {
-      return connections.findIndex((row) =>
-        (family === FAMILY_ALL || row.family === family)
-        && row.source_device === sourceDevice
-        && row.source_port === sourcePort
-        && row.dest_device === destDevice
-        && row.dest_port === destPort
-      );
+      const rows = connectionRowsByPair.get(connectionKey(sourceDevice, sourcePort, destDevice, destPort));
+      if (!rows) return -1;
+      for (const row of rows) {
+        if (family !== FAMILY_ALL && row.family !== family) continue;
+        const index = connections.indexOf(row);
+        if (index >= 0) return index;
+      }
+      return -1;
+    }
+
+    function connectionRowForPair(family, sourceDevice, sourcePort, destDevice, destPort) {
+      const rows = connectionRowsByPair.get(connectionKey(sourceDevice, sourcePort, destDevice, destPort));
+      if (!rows) return null;
+      for (const row of rows) {
+        if (family === FAMILY_ALL || row.family === family) return row;
+      }
+      return null;
     }
 
     function endpointKey(device, port) {
@@ -1427,16 +1862,21 @@
     }
 
     function findStrictConflict(sourceDevice, sourcePort, destDevice, destPort, excludingPairKey = "") {
-      const srcKey = endpointKey(sourceDevice, sourcePort);
-      const dstKey = endpointKey(destDevice, destPort);
+      const endpointKeys = [
+        endpointKey(sourceDevice, sourcePort),
+        endpointKey(destDevice, destPort),
+      ];
       const skipPairKey = String(excludingPairKey || "");
-      for (const row of connections) {
-        if (!row || typeof row !== "object") continue;
-        const rowPairKey = connectionKey(row.source_device, row.source_port, row.dest_device, row.dest_port);
-        if (skipPairKey && rowPairKey === skipPairKey) continue;
-        const rowSource = endpointKey(row.source_device, row.source_port);
-        const rowDest = endpointKey(row.dest_device, row.dest_port);
-        if (rowSource === srcKey || rowDest === srcKey || rowSource === dstKey || rowDest === dstKey) {
+      const visited = new Set();
+      for (const key of endpointKeys) {
+        const candidates = connectionRowsByEndpoint.get(key);
+        if (!candidates) continue;
+        for (const row of candidates) {
+          if (visited.has(row)) continue;
+          visited.add(row);
+          matrixPerfCounters.conflictCandidateChecks += 1;
+          const rowPairKey = connectionKey(row.source_device, row.source_port, row.dest_device, row.dest_port);
+          if (skipPairKey && rowPairKey === skipPairKey) continue;
           return row;
         }
       }
@@ -1456,42 +1896,81 @@
       return FAMILY_ORDER.filter((fam) => src.includes(fam) && dst.includes(fam));
     }
 
-    function linkCompatibilityReason(selectedFamily, sourcePort, destPort) {
+    function computeLinkCompatibility(selectedFamily, sourcePort, destPort) {
       const shared = sharedFamilies(sourcePort, destPort);
-      if (!shared.length) return "Incompatible port families";
+      if (!shared.length) return { family: "", reason: "Incompatible port families" };
       const candidates = selectedFamily === FAMILY_ALL
         ? shared
         : (shared.includes(selectedFamily) ? [selectedFamily] : []);
-      if (!candidates.length) return `No shared family for ${selectedFamily}`;
+      if (!candidates.length) return { family: "", reason: `No shared family for ${selectedFamily}` };
       for (const family of candidates) {
-        if (supportsTransportCompatibilityForFamily(family, sourcePort, destPort)) return "";
+        if (supportsTransportCompatibilityForFamily(family, sourcePort, destPort)) {
+          return { family, reason: "" };
+        }
       }
       if (candidates.includes("AUDIO") && isSpeakerToAnalogPair(sourcePort, destPort)) {
-        return "Speaker to analog connection is not allowed";
+        return { family: "", reason: "Speaker to analog connection is not allowed" };
       }
       if (candidates.includes("CONTROL")) {
         const sourceProtocol = controlProtocolForPort(sourcePort) || "?";
         const destProtocol = controlProtocolForPort(destPort) || "?";
-        return `CONTROL transport mismatch: ${sourceProtocol} -> ${destProtocol}`;
+        return { family: "", reason: `CONTROL transport mismatch: ${sourceProtocol} -> ${destProtocol}` };
       }
-      return "Unavailable connection";
+      return { family: "", reason: "Unavailable connection" };
+    }
+
+    function linkCompatibility(selectedFamily, sourcePort, destPort) {
+      const familyKey = String(selectedFamily || "");
+      let sourceCache = compatibilityCacheByFamily.get(familyKey);
+      if (!sourceCache) {
+        sourceCache = new WeakMap();
+        compatibilityCacheByFamily.set(familyKey, sourceCache);
+      }
+      let destCache = sourceCache.get(sourcePort);
+      if (!destCache) {
+        destCache = new WeakMap();
+        sourceCache.set(sourcePort, destCache);
+      }
+      const cached = destCache.get(destPort);
+      if (cached) {
+        matrixPerfCounters.compatibilityCacheHits += 1;
+        return cached;
+      }
+      const computed = computeLinkCompatibility(familyKey, sourcePort, destPort);
+      destCache.set(destPort, computed);
+      matrixPerfCounters.compatibilityComputations += 1;
+      return computed;
+    }
+
+    function linkCompatibilityReason(selectedFamily, sourcePort, destPort) {
+      return linkCompatibility(selectedFamily, sourcePort, destPort).reason;
     }
 
     function resolveLinkFamily(selectedFamily, sourcePort, destPort) {
-      const shared = sharedFamilies(sourcePort, destPort);
-      if (!shared.length) return "";
-      if (selectedFamily === FAMILY_ALL) {
-        for (const candidate of shared) {
-          if (supportsTransportCompatibilityForFamily(candidate, sourcePort, destPort)) {
-            return candidate;
-          }
-        }
-        return "";
-      }
-      if (!shared.includes(selectedFamily)) return "";
-      return supportsTransportCompatibilityForFamily(selectedFamily, sourcePort, destPort)
-        ? selectedFamily
-        : "";
+      return linkCompatibility(selectedFamily, sourcePort, destPort).family;
+    }
+
+    function crosspointPresentation(family, sourcePort, destPort, connection) {
+      const compatibility = linkCompatibility(family, sourcePort, destPort);
+      const connected = Boolean(connection);
+      const enabled = Boolean(sourcePort?.enabled) && Boolean(destPort?.enabled);
+      const title = connected
+        ? `${connection.cable_id || "(auto)"}: ${sourcePort.port} -> ${destPort.port}`
+        : ((!enabled)
+          ? "Disabled port"
+          : (compatibility.family
+            ? `${selectedPatchMode === PATCH_MODE_PAINT ? "Drag to paint diagonally from first point" : "Click to connect"} (${compatibility.family})`
+            : compatibility.reason));
+      const connectionState = connected
+        ? `Connected${connection.cable_id ? ` with cable ${connection.cable_id}` : ""}. Press Space or Enter to disconnect using ${selectedPatchMode} mode.`
+        : ((!enabled)
+          ? "Not connected. Unavailable because one or both ports are disabled."
+          : (compatibility.family
+            ? (selectedPatchMode === PATCH_MODE_PAINT
+              ? `Not connected. Press Space or Enter to toggle this crosspoint, or drag with a pointer to paint diagonally. Compatible ${compatibility.family} connection.`
+              : `Not connected. Press Space or Enter to connect using ${selectedPatchMode} mode. Compatible ${compatibility.family} connection.`)
+            : `Not connected. Incompatible: ${compatibility.reason || "these ports cannot be connected"}.`));
+      return { connected, enabled, compatibility, title, connectionState };
     }
 
     function guessTypeTag(family) {
@@ -1841,7 +2320,9 @@
     }
 
     function renderMatrix() {
+      const renderStartedAt = performance.now();
       const viewportState = captureMatrixViewportState();
+      const focusState = captureMatrixFocusState();
       if (tooltip) tooltip.style.display = "none";
       const prevMatrixVisibility = matrixContainer ? String(matrixContainer.style.visibility || "") : "";
       if (matrixContainer) matrixContainer.style.visibility = "hidden";
@@ -1888,25 +2369,25 @@
         setStatus(`No entries to show for ${family}.`, true);
         restoreMatrixViewportState(viewportState);
         if (matrixContainer) matrixContainer.style.visibility = prevMatrixVisibility;
+        finishMatrixRender(renderStartedAt, 0);
         return;
       }
 
-      const familyConnIndexByKey = new Map();
-      for (let i = 0; i < connections.length; i += 1) {
-        const row = connections[i];
+      const familyConnectionByKey = new Map();
+      for (const row of connections) {
         if (family !== FAMILY_ALL && row.family !== family) continue;
-        familyConnIndexByKey.set(connectionKey(row.source_device, row.source_port, row.dest_device, row.dest_port), i);
+        familyConnectionByKey.set(connectionKey(row.source_device, row.source_port, row.dest_device, row.dest_port), row);
       }
-      const familyConnectionKeys = new Set(familyConnIndexByKey.keys());
+      const familyConnectionKeys = new Set(familyConnectionByKey.keys());
       matrixContainer.style.padding = "0";
       matrixContainer.style.color = "";
       matrixContainer.style.position = "relative";
 
-      let html = "<table><thead><tr>";
+      let html = `<table aria-label="${escAttr(family)} routing matrix" aria-describedby="matrixKeyboardHelp"><thead><tr>`;
       html += "<th class=\"top-left sticky-top sticky-left\"><div class=\"tl-box\">";
       html += "<div class=\"mini tl-axis-metrics\">";
-      html += `<span class=\"axis-metric\">Transmitters: ${sourceLeafCount}<button class=\"icon-btn\" id=\"toggleSourceTopBtn\" type=\"button\" title=\"${escAttr(sourceAxisToggle.title)}\"${sourceAxisToggle.enabled ? "" : " disabled"}>${escHtml(sourceAxisToggle.label)}</button></span>`;
-      html += `<span class=\"axis-metric\">Receivers: ${destLeafCount}<button class=\"icon-btn\" id=\"toggleDestTopBtn\" type=\"button\" title=\"${escAttr(destAxisToggle.title)}\"${destAxisToggle.enabled ? "" : " disabled"}>${escHtml(destAxisToggle.label)}</button></span>`;
+      html += `<span class=\"axis-metric\">Transmitters: ${sourceLeafCount}<button class=\"icon-btn\" id=\"toggleSourceTopBtn\" data-matrix-focus-key=\"header:source:all\" type=\"button\" title=\"${escAttr(sourceAxisToggle.title)}\" aria-label=\"${escAttr(sourceAxisToggle.title)}\" aria-expanded=\"${sourceAxisToggle.action === "collapse" ? "true" : "false"}\"${sourceAxisToggle.enabled ? "" : " disabled"}>${escHtml(sourceAxisToggle.label)}</button></span>`;
+      html += `<span class=\"axis-metric\">Receivers: ${destLeafCount}<button class=\"icon-btn\" id=\"toggleDestTopBtn\" data-matrix-focus-key=\"header:dest:all\" type=\"button\" title=\"${escAttr(destAxisToggle.title)}\" aria-label=\"${escAttr(destAxisToggle.title)}\" aria-expanded=\"${destAxisToggle.action === "collapse" ? "true" : "false"}\"${destAxisToggle.enabled ? "" : " disabled"}>${escHtml(destAxisToggle.label)}</button></span>`;
       html += "</div>";
       html += "</div></th>";
 
@@ -1923,14 +2404,14 @@
           entryName = `${entry.device}`;
           entryCount = `${entry.memberCount}`;
           const toggleMeta = toggleMetaForEntry(entry);
-          toggle = `<button class=\"icon-btn\" data-device-toggle=\"1\" data-axis=\"dest\" data-device=\"${escAttr(entry.deviceKey)}\" data-device-name=\"${escAttr(entry.device)}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\">${toggleMeta.symbol}</button>`;
+          toggle = `<button class=\"icon-btn\" data-device-toggle=\"1\" data-axis=\"dest\" data-device=\"${escAttr(entry.deviceKey)}\" data-device-name=\"${escAttr(entry.device)}\" data-matrix-focus-key=\"header:dest:${escAttr(matrixEntryFocusIdentity(entry))}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\" aria-label=\"${escAttr(`${toggleMeta.title}: ${entry.device}`)}\" aria-expanded=\"${toggleMeta.collapsed ? "false" : "true"}\">${toggleMeta.symbol}</button>`;
         } else if (entry.kind === "group") {
           classes.push("dest-kind-group");
           nameClass = "group";
           entryName = `${entry.typeName}`;
           entryCount = `${entry.memberCount}`;
           const toggleMeta = toggleMetaForEntry(entry);
-          toggle = `<button class=\"icon-btn\" data-group-toggle=\"1\" data-axis=\"dest\" data-group=\"${escAttr(entry.groupKey)}\" data-device-name=\"${escAttr(entry.device)}\" data-type-name=\"${escAttr(entry.typeName)}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\">${toggleMeta.symbol}</button>`;
+          toggle = `<button class=\"icon-btn\" data-group-toggle=\"1\" data-axis=\"dest\" data-group=\"${escAttr(entry.groupKey)}\" data-device-name=\"${escAttr(entry.device)}\" data-type-name=\"${escAttr(entry.typeName)}\" data-matrix-focus-key=\"header:dest:${escAttr(matrixEntryFocusIdentity(entry))}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\" aria-label=\"${escAttr(`${toggleMeta.title}: ${entry.device} ${entry.typeName}`)}\" aria-expanded=\"${toggleMeta.collapsed ? "false" : "true"}\">${toggleMeta.symbol}</button>`;
         } else {
           classes.push("dest-kind-port");
           nameClass = "port";
@@ -1946,7 +2427,7 @@
           : `${entry.device} ${entryName} ${entryCount}`.trim();
         const lineClass = entry.kind === "port" ? "dest-head-line port" : "dest-head-line folder";
         const innerClass = entry.kind === "port" ? "dest-col-inner port" : "dest-col-inner folder";
-        html += `<th class=\"${classes.join(" ")}\"><div class=\"${innerClass}\">${toggle}<div class=\"${lineClass}\">${iconHtml}<span class=\"dest-name ${nameClass}\" title=\"${escAttr(titleText)}\">${nameHtml}</span>${countHtml}</div></div></th>`;
+        html += `<th class=\"${classes.join(" ")}\" scope=\"col\"><div class=\"${innerClass}\">${toggle}<div class=\"${lineClass}\">${iconHtml}<span class=\"dest-name ${nameClass}\" title=\"${escAttr(titleText)}\">${nameHtml}</span>${countHtml}</div></div></th>`;
       }
       html += "</tr></thead><tbody>";
 
@@ -1963,14 +2444,14 @@
           sourceHeadClasses.push("source-kind-device");
           countText = `${source.memberCount} ports`;
           const toggleMeta = toggleMetaForEntry(source);
-          toggle = `<button class=\"icon-btn\" data-device-toggle=\"1\" data-axis=\"source\" data-device=\"${escAttr(source.deviceKey)}\" data-device-name=\"${escAttr(source.device)}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\">${toggleMeta.symbol}</button>`;
+          toggle = `<button class=\"icon-btn\" data-device-toggle=\"1\" data-axis=\"source\" data-device=\"${escAttr(source.deviceKey)}\" data-device-name=\"${escAttr(source.device)}\" data-matrix-focus-key=\"header:source:${escAttr(matrixEntryFocusIdentity(source))}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\" aria-label=\"${escAttr(`${toggleMeta.title}: ${source.device}`)}\" aria-expanded=\"${toggleMeta.collapsed ? "false" : "true"}\">${toggleMeta.symbol}</button>`;
         } else if (source.kind === "group") {
           rowName = source.typeName;
           rowClass = "group";
           sourceHeadClasses.push("source-kind-group");
           countText = `${source.memberCount}`;
           const toggleMeta = toggleMetaForEntry(source);
-          toggle = `<button class=\"icon-btn\" data-group-toggle=\"1\" data-axis=\"source\" data-group=\"${escAttr(source.groupKey)}\" data-device-name=\"${escAttr(source.device)}\" data-type-name=\"${escAttr(source.typeName)}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\">${toggleMeta.symbol}</button>`;
+          toggle = `<button class=\"icon-btn\" data-group-toggle=\"1\" data-axis=\"source\" data-group=\"${escAttr(source.groupKey)}\" data-device-name=\"${escAttr(source.device)}\" data-type-name=\"${escAttr(source.typeName)}\" data-matrix-focus-key=\"header:source:${escAttr(matrixEntryFocusIdentity(source))}\" type=\"button\" title=\"${escAttr(toggleMeta.title)}\" aria-label=\"${escAttr(`${toggleMeta.title}: ${source.device} ${source.typeName}`)}\" aria-expanded=\"${toggleMeta.collapsed ? "false" : "true"}\">${toggleMeta.symbol}</button>`;
         } else {
           rowName = `<span class="port-with-icon">${iconHtmlForPort(source.port)}<span class="text">${escHtml(source.port.port)}</span></span>`;
           rowClass = "port";
@@ -1979,14 +2460,17 @@
 
         html += "<tr>";
         if (source.kind === "port") {
-          html += `<th class=\"${sourceHeadClasses.join(" ")}\"><div class=\"source-line\">${toggle}<span class=\"name ${rowClass}\" title=\"${escAttr(source.device + ' ' + source.port.port)}\">${rowName}</span>${countText ? `<span class=\"count\">${escHtml(countText)}</span>` : ""}</div></th>`;
+          html += `<th class=\"${sourceHeadClasses.join(" ")}\" scope=\"row\"><div class=\"source-line\">${toggle}<span class=\"name ${rowClass}\" title=\"${escAttr(source.device + ' ' + source.port.port)}\">${rowName}</span>${countText ? `<span class=\"count\">${escHtml(countText)}</span>` : ""}</div></th>`;
         } else {
-          html += `<th class=\"${sourceHeadClasses.join(" ")}\"><div class=\"source-line\">${toggle}<span class=\"name ${rowClass}\" title=\"${escAttr(source.device + ' ' + rowName)}\">${escHtml(rowName)}</span>${countText ? `<span class=\"count\">${escHtml(countText)}</span>` : ""}</div></th>`;
+          html += `<th class=\"${sourceHeadClasses.join(" ")}\" scope=\"row\"><div class=\"source-line\">${toggle}<span class=\"name ${rowClass}\" title=\"${escAttr(source.device + ' ' + rowName)}\">${escHtml(rowName)}</span>${countText ? `<span class=\"count\">${escHtml(countText)}</span>` : ""}</div></th>`;
         }
 
         for (let d = 0; d < visibleDests.length; d += 1) {
           const dest = visibleDests[d];
           const editable = source.kind === "port" && dest.kind === "port";
+          const cellFocusKey = matrixCellFocusKey(source, dest);
+          const sourceLabel = formatEntryLabel(source);
+          const destLabel = formatEntryLabel(dest);
           if (!editable) {
             const cls = ["cell", "groupcell"];
             const hasDeviceAxis = source.kind === "device" || dest.kind === "device";
@@ -1999,31 +2483,30 @@
             if (meta.destFolder) cls.push("folder-dest");
             if (meta.sourceFolder && meta.destFolder) cls.push("folder-junction");
             if (!meta.canToggle) cls.push("disabled");
-            html += `<td class=\"${cls.join(" ")}\" data-si=\"${s}\" data-di=\"${d}\" data-folder-toggle=\"${escAttr(meta.action)}\" data-hover=\"${escAttr(meta.hover)}\">${escHtml(meta.symbol)}</td>`;
+            const folderLabel = meta.canToggle
+              ? `${meta.hover} Source ${sourceLabel}; destination ${destLabel}.`
+              : `Source ${sourceLabel}; destination ${destLabel}. No folder action available.`;
+            const expandedState = meta.canToggle ? ` aria-expanded=\"${meta.action === "collapse" ? "true" : "false"}\"` : "";
+            html += `<td class=\"${cls.join(" ")}\" data-si=\"${s}\" data-di=\"${d}\" data-folder-toggle=\"${escAttr(meta.action)}\" data-hover=\"${escAttr(meta.hover)}\"><button class=\"matrix-cell-control\" type=\"button\" role=\"button\" tabindex=\"-1\" data-matrix-focus-cell=\"1\" data-matrix-focus-key=\"${escAttr(cellFocusKey)}\" data-si=\"${s}\" data-di=\"${d}\" aria-label=\"${escAttr(folderLabel)}\"${meta.canToggle ? "" : " aria-disabled=\"true\" disabled"}${expandedState}>${escHtml(meta.symbol)}</button></td>`;
             continue;
           }
 
           const src = source.port;
           const dst = dest.port;
-          const linkFamily = resolveLinkFamily(family, src, dst);
           const key = connectionKey(src.device, src.port, dst.device, dst.port);
-          const connIdx = familyConnIndexByKey.has(key) ? Number(familyConnIndexByKey.get(key)) : -1;
-          const connected = connIdx >= 0;
-          const enabled = Boolean(src.enabled) && Boolean(dst.enabled);
+          const connection = familyConnectionByKey.get(key) || null;
+          const presentation = crosspointPresentation(family, src, dst, connection);
+          const connected = presentation.connected;
+          const enabled = presentation.enabled;
+          const linkFamily = presentation.compatibility.family;
           const cls = ["cell"];
           if (enabled) cls.push("editable");
           if (!enabled) cls.push("disabled");
           if (connected) cls.push("on");
           if (!connected && !linkFamily) cls.push("incompatible");
-          const title = connected
-            ? `${connections[connIdx].cable_id || "(auto)"}: ${src.port} -> ${dst.port}`
-            : ((!enabled)
-              ? "Disabled port"
-              : (linkFamily
-                ? `${selectedPatchMode === PATCH_MODE_PAINT ? "Drag to paint diagonally from first point" : "Click to connect"} (${linkFamily})`
-                : linkCompatibilityReason(family, src, dst)));
+          const crosspointLabel = `${sourceLabel} to ${destLabel}. ${presentation.connectionState}`;
           const text = "";
-          html += `<td class=\"${cls.join(" ")}\" data-si=\"${s}\" data-di=\"${d}\" data-hover=\"${escAttr(title)}\">${text}</td>`;
+          html += `<td class=\"${cls.join(" ")}\" data-si=\"${s}\" data-di=\"${d}\" data-hover=\"${escAttr(presentation.title)}\"><button class=\"matrix-cell-control\" type=\"button\" role=\"checkbox\" tabindex=\"-1\" data-matrix-focus-cell=\"1\" data-matrix-focus-key=\"${escAttr(cellFocusKey)}\" data-si=\"${s}\" data-di=\"${d}\" aria-label=\"${escAttr(crosspointLabel)}\" aria-checked=\"${connected ? "true" : "false"}\"${enabled ? "" : " aria-disabled=\"true\" disabled"}>${text}</button></td>`;
         }
 
         html += "</tr>";
@@ -2036,7 +2519,6 @@
       const toggleDestTopBtn = document.getElementById("toggleDestTopBtn");
 
       if (toggleSourceTopBtn) toggleSourceTopBtn.onclick = () => {
-        toggleSourceTopBtn.blur();
         if (!sourceAxisToggle.enabled || sourceAxisToggle.action === "none") {
           setStatus("No source folders available for toggle.", true);
           return;
@@ -2047,7 +2529,6 @@
         scheduleRender(true);
       };
       if (toggleDestTopBtn) toggleDestTopBtn.onclick = () => {
-        toggleDestTopBtn.blur();
         if (!destAxisToggle.enabled || destAxisToggle.action === "none") {
           setStatus("No destination folders available for toggle.", true);
           return;
@@ -2062,6 +2543,7 @@
       if (!table) {
         restoreMatrixViewportState(viewportState);
         if (matrixContainer) matrixContainer.style.visibility = prevMatrixVisibility;
+        finishMatrixRender(renderStartedAt, 0);
         return;
       }
 
@@ -2132,6 +2614,7 @@
         let changed = 0;
         let skipped = 0;
         let firstError = "";
+        const changedPairs = [];
         for (let offset = 0; offset < span; offset += 1) {
           const srcLeaf = sourceLeafEntries[sourceIndex + offset];
           const dstLeaf = destLeafEntries[destIndex + offset];
@@ -2152,13 +2635,19 @@
 
           if (action === "disconnect") {
             if (idx >= 0) {
+              const removedRow = connections[idx];
+              unindexConnectionRow(removedRow);
               connections.splice(idx, 1);
-              if (findConnectionIndex(family, sPort.device, sPort.port, dPort.device, dPort.port) >= 0) {
+              const remainingRow = connectionRowForPair(family, sPort.device, sPort.port, dPort.device, dPort.port);
+              if (remainingRow) {
                 familyConnectionKeys.add(key);
+                familyConnectionByKey.set(key, remainingRow);
               } else {
                 familyConnectionKeys.delete(key);
+                familyConnectionByKey.delete(key);
               }
               changed += 1;
+              changedPairs.push({ key, sourcePort: sPort, destPort: dPort });
             }
             continue;
           }
@@ -2187,7 +2676,7 @@
             }
             continue;
           }
-          connections.push({
+          const newConnection = {
             cable_id: nextCableId(cableIdAllocator, linkFamily),
             family: linkFamily,
             source_device: sPort.device,
@@ -2198,11 +2687,15 @@
             status: "Connected",
             notes: "",
             override_1to1: Boolean(conflict),
-          });
+          };
+          connections.push(newConnection);
+          indexConnectionRow(newConnection);
           familyConnectionKeys.add(key);
+          familyConnectionByKey.set(key, newConnection);
           changed += 1;
+          changedPairs.push({ key, sourcePort: sPort, destPort: dPort });
         }
-        return { changed, skipped, firstError };
+        return { changed, skipped, firstError, changedPairs };
       }
 
       function applyPatchFromCell(cell, forcedAction = "", forcedSpan = patchSpan()) {
@@ -2212,6 +2705,7 @@
             changed: 0,
             skipped: 0,
             firstError: context.error || "No editable patch point selected.",
+            changedPairs: [],
             action: "",
             context: null,
           };
@@ -2347,6 +2841,40 @@
         return (cell instanceof HTMLTableCellElement) ? cell : null;
       }
 
+      function syncChangedPatchCells(result) {
+        const changedPairs = Array.isArray(result?.changedPairs) ? result.changedPairs : [];
+        if (!changedPairs.length) return false;
+        let updated = 0;
+        for (const pair of changedPairs) {
+          const sourcePort = pair?.sourcePort;
+          const destPort = pair?.destPort;
+          if (!sourcePort || !destPort) continue;
+          const si = sourceVisibleIndexByKey.get(connectionKey(sourcePort.device, sourcePort.port, "", ""));
+          const di = destVisibleIndexByKey.get(connectionKey("", "", destPort.device, destPort.port));
+          const cell = matrixCellByIndices(si, di);
+          if (!(cell instanceof HTMLTableCellElement)) continue;
+          const connection = connectionRowForPair(
+            family,
+            sourcePort.device,
+            sourcePort.port,
+            destPort.device,
+            destPort.port
+          );
+          const presentation = crosspointPresentation(family, sourcePort, destPort, connection);
+          const control = cell.querySelector(".matrix-cell-control");
+          cell.classList.toggle("on", presentation.connected);
+          control?.setAttribute("aria-checked", presentation.connected ? "true" : "false");
+          control?.setAttribute(
+            "aria-label",
+            `${formatEntryLabel({ kind: "port", port: sourcePort })} to ${formatEntryLabel({ kind: "port", port: destPort })}. ${presentation.connectionState}`
+          );
+          cell.dataset.hover = presentation.title;
+          updated += 1;
+        }
+        matrixPerfCounters.localCellUpdates += updated;
+        return updated === changedPairs.length;
+      }
+
       table.onmousemove = (event) => {
         const cell = eventClosest(event, "td.cell");
         pendingHover = {
@@ -2383,8 +2911,9 @@
           } else {
             setStatus(`Disconnected ${session.changed} link(s) in paint mode${session.skipped > 0 ? ` (${session.skipped} skipped)` : ""}.`);
           }
+          recordPatchHistory(`${session.action === "connect" ? "Paint connect" : "Paint disconnect"} ${session.changed} link(s)`);
           queuePatchAutoSave(session.action === "connect" ? "paint-connect" : "paint-disconnect");
-          scheduleRender(true);
+          if (!syncChangedPatchCells({ changedPairs: session.changedPairs })) scheduleRender();
           return;
         }
         setStatus(session.firstError || "No changes.", true);
@@ -2416,12 +2945,15 @@
           const result = applyPatchRangeFromStart(context.srcIdx, context.dstIdx, paintSession.action, 1);
           paintSession.changed += result.changed;
           paintSession.skipped += result.skipped;
+          if (Array.isArray(result.changedPairs)) paintSession.changedPairs.push(...result.changedPairs);
           if (!paintSession.firstError && result.firstError) paintSession.firstError = result.firstError;
           if (result.changed <= 0) continue;
           const paintCellEl = matrixCellByIndices(context.si, context.di);
           if (!(paintCellEl instanceof HTMLTableCellElement)) continue;
           const isConnected = paintSession.action === "connect";
+          const paintControl = paintCellEl.querySelector(".matrix-cell-control");
           paintCellEl.classList.toggle("on", isConnected);
+          paintControl?.setAttribute("aria-checked", isConnected ? "true" : "false");
           const srcPortName = String(context?.src?.port || "");
           const dstPortName = String(context?.dst?.port || "");
           if (!srcPortName || !dstPortName) continue;
@@ -2452,6 +2984,7 @@
           skipped: 0,
           firstError: "",
           visited: new Set(),
+          changedPairs: [],
         };
         window.addEventListener("mouseup", endPaintSession, true);
         window.addEventListener("blur", endPaintSession);
@@ -2465,10 +2998,100 @@
         paintCell(cell);
       };
 
+      function reportPatchResult(result, modeLabel = selectedPatchMode) {
+        if (result.changed > 0 && result.action === "connect") {
+          setStatus(`Connected ${result.changed} link(s) with ${modeLabel}${result.skipped > 0 ? ` (${result.skipped} skipped)` : ""}.`);
+          recordPatchHistory(`Connect ${result.changed} link(s) with ${modeLabel}`);
+          queuePatchAutoSave(`${modeLabel}-connect`);
+          if (!syncChangedPatchCells(result)) scheduleRender();
+          return;
+        }
+        if (result.changed > 0 && result.action === "disconnect") {
+          setStatus(`Disconnected ${result.changed} link(s) with ${modeLabel}${result.skipped > 0 ? ` (${result.skipped} skipped)` : ""}.`);
+          recordPatchHistory(`Disconnect ${result.changed} link(s) with ${modeLabel}`);
+          queuePatchAutoSave(`${modeLabel}-disconnect`);
+          if (!syncChangedPatchCells(result)) scheduleRender();
+          return;
+        }
+        setStatus(result.firstError || "No changes.", true);
+      }
+
+      function activatePatchCell(cell, keyboard = false) {
+        if (!(cell instanceof HTMLTableCellElement) || !cell.classList.contains("editable")) return;
+        if (keyboard && selectedPatchMode === PATCH_MODE_PAINT) {
+          reportPatchResult(applyPatchFromCell(cell, "", 1), PATCH_MODE_PAINT);
+          return;
+        }
+        reportPatchResult(applyPatchFromCell(cell, "", patchSpan()), selectedPatchMode);
+      }
+
+      function setRovingCellFocus(cell) {
+        if (!(cell instanceof HTMLTableCellElement) || !table.contains(cell)) return;
+        const control = cell.querySelector(".matrix-cell-control[data-matrix-focus-cell='1']");
+        if (!(control instanceof HTMLButtonElement)) return;
+        for (const candidate of table.querySelectorAll(".matrix-cell-control[data-matrix-focus-cell='1'][tabindex='0']")) {
+          if (candidate !== control) candidate.setAttribute("tabindex", "-1");
+        }
+        control.tabIndex = 0;
+        matrixKeyboardFocusKey = String(control.dataset.matrixFocusKey || "");
+      }
+
+      table.onfocusin = (event) => {
+        const focusControl = eventClosest(event, ".matrix-cell-control");
+        const cell = focusControl?.closest("td.cell");
+        if (!(cell instanceof HTMLTableCellElement) || !table.contains(cell)) return;
+        setRovingCellFocus(cell);
+        applyAxisHover(cell);
+      };
+
+      table.onfocusout = () => {
+        window.requestAnimationFrame(() => {
+          if (!table.contains(document.activeElement)) clearAxisHover();
+        });
+      };
+
+      table.onkeydown = (event) => {
+        const control = eventClosest(event, ".matrix-cell-control");
+        const cell = control?.closest("td.cell");
+        if (!(cell instanceof HTMLTableCellElement) || !table.contains(cell)) return;
+
+        const directionByKey = {
+          ArrowUp: [-1, 0],
+          ArrowDown: [1, 0],
+          ArrowLeft: [0, -1],
+          ArrowRight: [0, 1],
+        };
+        const direction = directionByKey[event.key];
+        const hasAssistiveModifier = event.altKey || event.ctrlKey || event.metaKey;
+        if (direction && !hasAssistiveModifier) {
+          event.preventDefault();
+          const nextCell = matrixCellByIndices(
+            Number(cell.dataset.si) + direction[0],
+            Number(cell.dataset.di) + direction[1]
+          );
+          if (!(nextCell instanceof HTMLTableCellElement)) return;
+          setRovingCellFocus(nextCell);
+          nextCell.querySelector(".matrix-cell-control")?.focus({ preventScroll: true });
+          nextCell.scrollIntoView({ block: "nearest", inline: "nearest" });
+          return;
+        }
+
+        if ((event.key !== "Enter" && event.key !== " ") || hasAssistiveModifier) return;
+        event.preventDefault();
+        if (control?.getAttribute("role") === "button" && cell.dataset.folderToggle !== "none") {
+          cell.click();
+          return;
+        }
+        if (control?.getAttribute("role") === "checkbox" && control.getAttribute("aria-disabled") !== "true") {
+          activatePatchCell(cell, true);
+          return;
+        }
+        setStatus(String(cell.dataset.hover || "No action is available for this matrix cell."), true);
+      };
+
       table.onclick = (event) => {
         const headerToggle = eventClosest(event, "[data-device-toggle],[data-group-toggle]");
         if (headerToggle) {
-          if (headerToggle instanceof HTMLButtonElement) headerToggle.blur();
           const axis = String(headerToggle.dataset.axis || "");
           const entry = entryFromToggleDataset(headerToggle.dataset);
           const result = toggleHeaderEntryOnAxis(family, axis, entry);
@@ -2517,20 +3140,11 @@
 
         const cell = eventClosest(event, "td.cell.editable");
         if (!cell) return;
-        const result = applyPatchFromCell(cell, "", patchSpan());
-        if (result.changed > 0 && result.action === "connect") {
-          setStatus(`Connected ${result.changed} link(s) with ${selectedPatchMode}${result.skipped > 0 ? ` (${result.skipped} skipped)` : ""}.`);
-          queuePatchAutoSave(`${selectedPatchMode}-connect`);
-          scheduleRender(true);
-        } else if (result.changed > 0 && result.action === "disconnect") {
-          setStatus(`Disconnected ${result.changed} link(s) with ${selectedPatchMode}${result.skipped > 0 ? ` (${result.skipped} skipped)` : ""}.`);
-          queuePatchAutoSave(`${selectedPatchMode}-disconnect`);
-          scheduleRender(true);
-        } else {
-          setStatus(result.firstError || "No changes.", true);
-        }
+        activatePatchCell(cell, false);
       };
 
+      configureMatrixRovingFocus(table, focusState);
+      validateMatrixAccessibility(table);
       restoreMatrixViewportState(viewportState);
       // Force one sync layout pass so sticky/rotated destination headers settle
       // before the refreshed matrix becomes visible.
@@ -2543,6 +3157,7 @@
         matrixWrapEl.scrollLeft = settledLeft;
       }
       if (matrixContainer) matrixContainer.style.visibility = prevMatrixVisibility;
+      finishMatrixRender(renderStartedAt, visibleSources.length * visibleDests.length);
       window.requestAnimationFrame(() => {
         restoreMatrixViewportState(viewportState);
       });
@@ -2573,12 +3188,32 @@
     async function fetchJson(url) {
       const base = String(url || "").trim();
       if (!base) throw new Error("Empty URL");
-      const target = `${base}${base.includes("?") ? "&" : "?"}_ts=${Date.now()}`;
+      const fetchBase = /^(projects|json|defaults|prototypes)\//.test(base) ? `/${base}` : base;
+      const target = `${fetchBase}${fetchBase.includes("?") ? "&" : "?"}_ts=${Date.now()}`;
       const response = await fetch(target, { cache: "no-store" });
       if (!response.ok) {
         throw new Error(`${response.status} ${response.statusText} @ ${base}`);
       }
       return response.json();
+    }
+
+    function canonicalizeJsonForHash(value) {
+      if (Array.isArray(value)) return value.map((item) => canonicalizeJsonForHash(item));
+      if (value && typeof value === "object") {
+        const out = {};
+        for (const key of Object.keys(value).sort()) out[key] = canonicalizeJsonForHash(value[key]);
+        return out;
+      }
+      return value;
+    }
+
+    async function computeJsonPayloadHash(payload) {
+      const text = JSON.stringify(canonicalizeJsonForHash(payload));
+      if (!(window.crypto && window.crypto.subtle && typeof TextEncoder !== "undefined")) return "";
+      const digest = await window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+      return Array.from(new Uint8Array(digest))
+        .map((value) => value.toString(16).padStart(2, "0"))
+        .join("");
     }
 
     async function fetchJsonFromCandidates(candidates) {
@@ -2593,6 +3228,195 @@
         }
       }
       throw new Error(errors.join(" | "));
+    }
+
+    function projectByKey(key) {
+      const token = String(key || "").trim();
+      return projectCatalog.find((project) => String(project?.key || "").trim() === token) || null;
+    }
+
+    function loadProjectSelectionPreference() {
+      try {
+        const payload = JSON.parse(window.localStorage.getItem(PROJECT_SELECTION_STORAGE_KEY) || "null");
+        if (!payload || typeof payload !== "object" || Array.isArray(payload)) return {};
+        return {
+          project_key: String(payload.project_key || "").trim(),
+          model_path: String(payload.model_path || "").trim(),
+          connections_path: String(payload.connections_path || "").trim(),
+        };
+      } catch (_error) {
+        return {};
+      }
+    }
+
+    function persistProjectSelectionPreference(projectKey, modelPath, connectionsPath) {
+      const payload = {
+        project_key: String(projectKey || "").trim(),
+        model_path: String(modelPath || "").trim(),
+        connections_path: String(connectionsPath || "").trim(),
+      };
+      if (!payload.project_key) return;
+      try {
+        window.localStorage.setItem(PROJECT_SELECTION_STORAGE_KEY, JSON.stringify(payload));
+      } catch (_error) {
+        // Selection remains active for this page when storage is unavailable.
+      }
+    }
+
+    function projectForPath(pathValue) {
+      const normalized = normalizeApiTargetPath(pathValue);
+      return projectCatalog.find((project) => {
+        const base = String(project?.base_path || "").replace(/\/+$/, "");
+        return base && (normalized === base || normalized.startsWith(`${base}/`));
+      }) || null;
+    }
+
+    function setConfigOptions(select, paths, preferred, emptyLabel) {
+      if (!(select instanceof HTMLSelectElement)) return "";
+      const values = Array.from(new Set((Array.isArray(paths) ? paths : [])
+        .map((value) => String(value || "").trim()).filter(Boolean)));
+      select.innerHTML = values.length
+        ? values.map((value) => {
+          const label = decodeURIComponent(value.split("/").pop() || value).replace(/\.json$/i, "");
+          return `<option value="${escAttr(value)}">${escHtml(label)}</option>`;
+        }).join("")
+        : `<option value="">${escHtml(emptyLabel)}</option>`;
+      const selected = values.includes(String(preferred || "").trim())
+        ? String(preferred || "").trim()
+        : (values[0] || "");
+      select.value = selected;
+      select.disabled = !values.length;
+      return selected;
+    }
+
+    function patchPathsForModel(project, modelPath) {
+      const mapping = project?.device_patch_map;
+      if (mapping && typeof mapping === "object") {
+        const direct = mapping[modelPath];
+        if (Array.isArray(direct) && direct.length) return direct;
+      }
+      return Array.isArray(project?.patch_configs) ? project.patch_configs : [];
+    }
+
+    function updateActiveSaveTargets(project) {
+      const base = String(project?.base_path || "").replace(/\/+$/, "");
+      const svgDir = String(project?.output_svg_directory || `${base}/outputs/svgs`).trim();
+      const debugDir = String(project?.output_debug_directory || `${base}/outputs/debug`).trim();
+      const htmlDir = String(project?.output_html_directory || `${base}/outputs/html`).trim();
+      activeSaveTargets = {
+        routing_rules_path: activeRoutingRulesPath,
+        route_debug_path: `${debugDir.replace(/\/+$/, "")}/route-debug.json`,
+        preview_html: `${htmlDir.replace(/\/+$/, "")}/studio_wiring_point_to_point.html`,
+        preview_svg_dir: svgDir,
+      };
+    }
+
+    function syncProjectSelectors(project, preferredModel, preferredPatch) {
+      if (!project) return;
+      applyingProjectSelection = true;
+      activeProjectKey = String(project.key || "").trim();
+      if (projectSelect instanceof HTMLSelectElement) projectSelect.value = activeProjectKey;
+      activeModelPath = setConfigOptions(
+        deviceConfigSelect,
+        project.device_configs,
+        preferredModel || project.default_device_config,
+        "No device configs",
+      );
+      activeConnectionsPath = setConfigOptions(
+        patchConfigSelect,
+        patchPathsForModel(project, activeModelPath),
+        preferredPatch || project.default_patch_config,
+        "No patch configs",
+      );
+      updateActiveSaveTargets(project);
+      applyingProjectSelection = false;
+    }
+
+    function writeActiveSelectionToUrl() {
+      persistProjectSelectionPreference(activeProjectKey, activeModelPath, activeConnectionsPath);
+      const url = new URL(window.location.href);
+      url.searchParams.set("project_key", activeProjectKey);
+      url.searchParams.set("model", activeModelPath);
+      url.searchParams.set("connections", activeConnectionsPath);
+      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    }
+
+    async function loadProjectCatalog() {
+      if (!(projectSelect instanceof HTMLSelectElement)) return false;
+      try {
+        const response = await fetch("/api/config", { cache: "no-store" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const payload = await response.json();
+        activeRoutingRulesPath = String(payload?.routing_rules_path || activeRoutingRulesPath).trim();
+        projectCatalog = Array.isArray(payload?.projects) ? payload.projects : [];
+        if (!projectCatalog.length) throw new Error("No projects available");
+        projectSelect.innerHTML = projectCatalog.map((project) => (
+          `<option value="${escAttr(project.key)}">${escHtml(project.name || project.key)}</option>`
+        )).join("");
+        const hasExplicitSelection = HAS_PROJECT_QUERY_PARAM || HAS_MODEL_QUERY_PARAM || HAS_CONNECTIONS_QUERY_PARAM;
+        const storedSelection = hasExplicitSelection ? {} : loadProjectSelectionPreference();
+        const preferredProjectKey = activeProjectKey || String(storedSelection.project_key || "").trim();
+        const preferredModelPath = activeModelPath || String(storedSelection.model_path || "").trim();
+        const preferredConnectionsPath = activeConnectionsPath || String(storedSelection.connections_path || "").trim();
+        const selectedProject = projectByKey(preferredProjectKey)
+          || projectForPath(preferredModelPath)
+          || projectByKey(payload?.active_project_key)
+          || projectCatalog[0];
+        syncProjectSelectors(selectedProject, preferredModelPath, preferredConnectionsPath);
+        return true;
+      } catch (error) {
+        projectCatalog = [];
+        projectSelect.innerHTML = '<option value="">Standalone sandbox</option>';
+        projectSelect.disabled = true;
+        if (deviceConfigSelect instanceof HTMLSelectElement) deviceConfigSelect.disabled = true;
+        if (patchConfigSelect instanceof HTMLSelectElement) patchConfigSelect.disabled = true;
+        return false;
+      }
+    }
+
+    async function applyProjectSelection(reason) {
+      if (applyingProjectSelection) return;
+      if (patchDirty && !window.confirm("Discard unsaved patch changes and switch project?")) {
+        projectSelect.value = activeProjectKey;
+        return;
+      }
+      const project = projectByKey(projectSelect?.value);
+      if (!project) return;
+      syncProjectSelectors(project, "", "");
+      writeActiveSelectionToUrl();
+      await reloadData(reason);
+    }
+
+    async function applyDeviceSelection(reason) {
+      if (applyingProjectSelection) return;
+      if (patchDirty && !window.confirm("Discard unsaved patch changes and switch device config?")) {
+        deviceConfigSelect.value = activeModelPath;
+        return;
+      }
+      const project = projectByKey(activeProjectKey);
+      if (!project) return;
+      activeModelPath = String(deviceConfigSelect?.value || "").trim();
+      applyingProjectSelection = true;
+      activeConnectionsPath = setConfigOptions(
+        patchConfigSelect,
+        patchPathsForModel(project, activeModelPath),
+        project.default_patch_config,
+        "No patch configs",
+      );
+      applyingProjectSelection = false;
+      writeActiveSelectionToUrl();
+      await reloadData(reason);
+    }
+
+    async function applyPatchSelection(reason) {
+      if (applyingProjectSelection) return;
+      if (patchDirty && !window.confirm("Discard unsaved patch changes and switch patch config?")) {
+        patchConfigSelect.value = activeConnectionsPath;
+        return;
+      }
+      activeConnectionsPath = String(patchConfigSelect?.value || "").trim();
+      writeActiveSelectionToUrl();
+      await reloadData(reason);
     }
 
     function initFamilySelect() {
@@ -2686,6 +3510,18 @@
       return target;
     }
 
+    class SaveApiError extends Error {
+      constructor(message, status = 0) {
+        super(message);
+        this.name = "SaveApiError";
+        this.status = Number(status || 0);
+      }
+    }
+
+    function isSaveConflictError(error) {
+      return error instanceof SaveApiError && (error.status === 409 || error.status === 412);
+    }
+
     async function writePatchToSaveApi(apiUrl, payloadObject) {
       const target = String(apiUrl || "").trim();
       if (!target) throw new Error("No save API target configured");
@@ -2694,10 +3530,13 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payloadObject),
       });
-      if (!response.ok) {
-        throw new Error(`${response.status} ${response.statusText}`);
-      }
       const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new SaveApiError(
+          String(result?.error || `${response.status} ${response.statusText}`),
+          response.status,
+        );
+      }
       if (result && typeof result === "object" && result.ok === false) {
         throw new Error(String(result.error || "Save API rejected patch payload"));
       }
@@ -2727,33 +3566,45 @@
     }
 
     function buildSaveTargetsPayload() {
-      const payload = {};
-      const modelTarget = normalizeApiTargetPath(MODEL_QUERY_PATH) || normalizeApiTargetPath(modelSourceUrl);
-      const patchTarget = normalizeApiTargetPath(CONNECTIONS_QUERY_PATH) || normalizeApiTargetPath(patchSourceUrl);
+      const payload = { ...activeSaveTargets };
+      const modelTarget = normalizeApiTargetPath(activeModelPath) || normalizeApiTargetPath(modelSourceUrl);
+      const patchTarget = normalizeApiTargetPath(activeConnectionsPath) || normalizeApiTargetPath(patchSourceUrl);
       if (modelTarget) payload.model_path = modelTarget;
       if (patchTarget) payload.connections_path = patchTarget;
+      for (const key of ["routing_rules_path", "route_debug_path", "preview_html", "preview_svg_dir"]) {
+        const value = normalizeApiTargetPath(QUERY_PARAMS.get(key));
+        if (value) payload[key] = value;
+      }
       return payload;
     }
 
-    async function ensureSaveTargetsConfigured() {
-      const payload = buildSaveTargetsPayload();
-      const keys = Object.keys(payload);
-      if (!keys.length) return;
-      const targetKey = `${payload.model_path || ""}|${payload.connections_path || ""}`;
-      if (saveTargetsConfiguredKey === targetKey) return;
-      const response = await fetch(SET_TARGETS_API, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) {
-        throw new Error(`${response.status} ${response.statusText}`);
+    function inferSaveProjectKey(targets) {
+      if (activeProjectKey) return activeProjectKey;
+      for (const key of ["model_path", "connections_path"]) {
+        const match = String(targets?.[key] || "").match(/^projects\/([^/]+)\//);
+        if (match) return match[1];
       }
-      const result = await response.json().catch(() => ({}));
-      if (result && typeof result === "object" && result.ok === false) {
-        throw new Error(String(result.error || "set-targets failed"));
-      }
-      saveTargetsConfiguredKey = targetKey;
+      return "";
+    }
+
+    function buildPatchSaveTransaction(payloadObject, reason) {
+      const targets = buildSaveTargetsPayload();
+      const required = [
+        "model_path", "connections_path", "routing_rules_path",
+        "route_debug_path", "preview_html", "preview_svg_dir",
+      ];
+      const missing = required.filter((key) => !String(targets[key] || "").trim());
+      if (missing.length) throw new Error(`Missing save target(s): ${missing.join(", ")}`);
+      const projectKey = inferSaveProjectKey(targets);
+      if (!projectKey) throw new Error("Missing project key for patch save");
+      return {
+        project_key: projectKey,
+        targets,
+        changes: { connections: payloadObject },
+        expected_hashes: { connections: String(loadedPatchVersionHash || "").trim() },
+        reason: String(reason || "prototype-patch-save"),
+        regenerate: true,
+      };
     }
 
     function shouldAutoTrySaveApi() {
@@ -2762,20 +3613,28 @@
     }
 
     async function savePatch(saveAs = false, options = {}) {
+      const saveRequestId = markPatchSaveStarted();
+      let savingFingerprint = "";
+      const finishSave = (success) => {
+        markPatchSaveFinished(Boolean(success), savingFingerprint, saveRequestId);
+        return Boolean(success);
+      };
       const silent = Boolean(options?.silent);
       const auto = Boolean(options?.auto);
       const reason = String(options?.reason || "").trim() || "change";
       const payloadObject = buildPatchPayload();
       const payloadText = JSON.stringify(payloadObject, null, 2);
+      savingFingerprint = patchFingerprint(payloadObject.connections);
       const canUseFilePicker = typeof window.showSaveFilePicker === "function";
       const defaultName = normalizePatchFilename(patchFileName);
 
       if (!saveAs && (USE_SAVE_API || shouldAutoTrySaveApi())) {
         try {
-          await ensureSaveTargetsConfigured();
-          const apiResult = await writePatchToSaveApi(SAVE_CONNECTIONS_API, payloadObject);
-          if (apiResult && typeof apiResult === "object" && apiResult.regenerate_ok === false) {
-            const warning = String(apiResult.regenerate_error || "unknown error");
+          const transaction = buildPatchSaveTransaction(payloadObject, reason);
+          const apiResult = await writePatchToSaveApi(SAVE_TRANSACTION_API, transaction);
+          loadedPatchVersionHash = String(apiResult?.saved?.hashes?.connections || "").trim();
+          if (apiResult?.regeneration?.attempted && apiResult?.regeneration?.ok === false) {
+            const warning = String(apiResult?.regeneration?.error || "unknown error");
             setStatus(
               silent
                 ? `Auto-save patch warning (${reason}): ${warning}`
@@ -2783,10 +3642,14 @@
               true
             );
           } else if (!silent) {
-            setStatus(`Saved patch JSON via API: ${SAVE_CONNECTIONS_API}`);
+            setStatus(`Saved patch JSON via transaction API: ${SAVE_TRANSACTION_API}`);
           }
-          return true;
+          return finishSave(true);
         } catch (error) {
+          if (isSaveConflictError(error)) {
+            setStatus("Patch changed on disk. Reload the selected patch, review changes, and retry save.", true);
+            return finishSave(false, saveRequestId);
+          }
           if (USE_SAVE_API) {
             const detail = String(error);
             if (silent || auto) {
@@ -2794,7 +3657,7 @@
             } else {
               setStatus(`Save API patch save failed (${detail}). Falling back to local save options...`, true);
             }
-            if (auto) return false;
+            if (auto) return finishSave(false);
           }
         }
       }
@@ -2807,7 +3670,7 @@
           if (!silent) {
             setStatus(`Saved patch JSON: ${patchFileName}`);
           }
-          return true;
+          return finishSave(true);
         } catch (error) {
           const detail = String(error);
           if (silent || auto) {
@@ -2820,7 +3683,7 @@
               true
             );
           }
-          if (auto) return false;
+          if (auto) return finishSave(false);
         }
       }
 
@@ -2831,7 +3694,7 @@
           if (!silent) {
             setStatus(`Saved patch JSON: ${patchFileName}`);
           }
-          return true;
+          return finishSave(true);
         } catch (error) {
           const detail = String(error);
           if (silent || auto) {
@@ -2839,13 +3702,13 @@
           } else {
             setStatus(`Source-path overwrite failed (${detail}).`, true);
           }
-          if (auto) return false;
+          if (auto) return finishSave(false);
         }
       }
 
       if (auto || silent) {
         setStatus("Auto-save patch skipped: no non-interactive save target available.", true);
-        return false;
+        return finishSave(false);
       }
 
       if (canUseFilePicker) {
@@ -2861,11 +3724,11 @@
           patchFileHandle = fileHandle;
           patchFileName = normalizePatchFilename(String(fileHandle.name || defaultName));
           setStatus(`Saved patch JSON: ${patchFileName}`);
-          return true;
+          return finishSave(true);
         } catch (error) {
           if (error && String(error.name || "") === "AbortError") {
             setStatus("Save cancelled.");
-            return false;
+            return finishSave(false);
           }
           setStatus(
             saveAs
@@ -2878,7 +3741,7 @@
 
       if (!saveAs) {
         setStatus("Could not overwrite existing patch file. Use Save Patch As to pick the existing patch JSON once, then Save Patch will overwrite it.", true);
-        return false;
+        return finishSave(false);
       }
 
       let filename = defaultName;
@@ -2886,7 +3749,7 @@
         const typed = window.prompt("Save patch as filename", defaultName);
         if (typed === null) {
           setStatus("Save cancelled.");
-          return false;
+          return finishSave(false);
         }
         filename = normalizePatchFilename(typed);
       }
@@ -2894,23 +3757,26 @@
       patchFileName = filename;
       downloadPatchPayload(payloadText, filename);
       setStatus(`Downloaded patch JSON: ${filename}`);
-      return true;
+      return finishSave(true);
     }
 
-    async function reloadData() {
+    async function reloadData(reason = "reload") {
       try {
         const explicitSelectionMode = HAS_MODEL_QUERY_PARAM || HAS_CONNECTIONS_QUERY_PARAM;
         setStatus(explicitSelectionMode
           ? "Loading selected prototype JSON..."
           : "Loading prototype sandbox JSON...");
-        const modelResult = MODEL_URL_CANDIDATES.length > 0
-          ? await fetchJsonFromCandidates(MODEL_URL_CANDIDATES)
+        const modelCandidates = modelUrlCandidates();
+        const connectionCandidates = connectionsUrlCandidates();
+        const modelResult = modelCandidates.length > 0
+          ? await fetchJsonFromCandidates(modelCandidates)
           : { payload: { devices: [], families: {} }, url: "" };
-        const connResult = CONNECTIONS_URL_CANDIDATES.length > 0
-          ? await fetchJsonFromCandidates(CONNECTIONS_URL_CANDIDATES)
+        const connResult = connectionCandidates.length > 0
+          ? await fetchJsonFromCandidates(connectionCandidates)
           : { payload: { version: 1, connections: [] }, url: "" };
         const modelPayload = modelResult.payload;
         const connPayload = connResult.payload;
+        loadedPatchVersionHash = await computeJsonPayloadHash(connPayload);
         MODEL = modelPayload && typeof modelPayload === "object" ? modelPayload : { devices: [], families: {} };
         applyThemeFromModel(MODEL);
         const matrixCfg = getPath(MODEL, ["ui_config", "matrix"], {});
@@ -2932,6 +3798,8 @@
             row.cable_id = nextCableId(cableIdAllocator, row.family);
           }
         }
+        rebuildConnectionLookups();
+        resetPatchHistory("Loaded patch");
         collapsedSourceDevices.clear();
         collapsedDestDevices.clear();
         collapsedSourceGroups.clear();
@@ -2950,7 +3818,7 @@
         scheduleRender();
         const loadedModelLabel = modelResult.url || "(empty model)";
         const loadedPatchLabel = connResult.url || "(empty patch)";
-        setStatus(`Loaded model: ${loadedModelLabel} | patch: ${loadedPatchLabel}`);
+        setStatus(`Loaded model: ${loadedModelLabel} | patch: ${loadedPatchLabel} [${reason}]`);
       } catch (error) {
         matrixContainer.innerHTML = `<div style=\"padding:12px;color:#fca5a5;\">Load failed: ${escHtml(String(error))}</div>`;
         setStatus(`Load failed: ${String(error)}`, true);
@@ -3030,6 +3898,33 @@
       setAxisCollapsed(destEntries, "dest", false);
       scheduleRender(true);
     };
+    if (undoBtn instanceof HTMLButtonElement) undoBtn.onclick = () => {
+      if (!undoPatch()) setStatus("Nothing to undo.", true);
+    };
+    if (redoBtn instanceof HTMLButtonElement) redoBtn.onclick = () => {
+      if (!redoPatch()) setStatus("Nothing to redo.", true);
+    };
+    document.addEventListener("keydown", (event) => {
+      const target = event.target instanceof HTMLElement ? event.target : null;
+      if (target && (target.matches("input, textarea, select") || target.isContentEditable)) return;
+      const commandModifier = event.metaKey || event.ctrlKey;
+      if (!commandModifier || event.altKey) return;
+      const key = String(event.key || "").toLowerCase();
+      const wantsRedo = (key === "z" && event.shiftKey) || (key === "y" && event.ctrlKey && !event.metaKey);
+      const wantsUndo = key === "z" && !event.shiftKey;
+      if (!wantsUndo && !wantsRedo) return;
+      event.preventDefault();
+      if (wantsRedo) {
+        if (!redoPatch()) setStatus("Nothing to redo.", true);
+      } else if (!undoPatch()) {
+        setStatus("Nothing to undo.", true);
+      }
+    });
+    window.addEventListener("beforeunload", (event) => {
+      if (!patchDirty || lastSaveSucceeded) return;
+      event.preventDefault();
+      event.returnValue = "";
+    });
     window.addEventListener("message", (event) => {
       const data = event?.data;
       if (!data || typeof data !== "object") return;
@@ -3044,15 +3939,53 @@
         setAutoSaveConfigsEnabled(Boolean(data.enabled), false);
         return;
       }
+      if (data.type === "studio-shell-autosave-set") {
+        setAutoSaveConfigsEnabled(Boolean(data.enabled), false);
+        return;
+      }
+      if (data.type === "studio-shell-autosave-request") {
+        window.parent.postMessage({
+          type: "studio-shell-autosave-state",
+          enabled: autoSaveConfigsEnabled,
+        }, "*");
+        return;
+      }
+      if (data.type === "studio-shell-autosave-flush") {
+        const requestId = String(data.request_id || "");
+        void flushPatchAutoSave(String(data.reason || "shell-navigation")).then((ok) => {
+          window.parent.postMessage({
+            type: "studio-shell-autosave-flushed",
+            request_id: requestId,
+            ok: Boolean(ok),
+          }, "*");
+        });
+        return;
+      }
       if (data.type === "studio-prototype-save-patch") {
         const saveAs = Boolean(data.save_as);
         void savePatch(saveAs);
       }
     });
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden" && autoSaveConfigsEnabled && patchDirty) {
+        void flushPatchAutoSave("window-hidden");
+      }
+    });
 
     bindMatrixDiagonalPan();
-    bindMatrixTrackpadDiagonalScroll();
-    reloadData();
+    if (projectSelect instanceof HTMLSelectElement) {
+      projectSelect.addEventListener("change", () => void applyProjectSelection("project-selection"));
+    }
+    if (deviceConfigSelect instanceof HTMLSelectElement) {
+      deviceConfigSelect.addEventListener("change", () => void applyDeviceSelection("device-selection"));
+    }
+    if (patchConfigSelect instanceof HTMLSelectElement) {
+      patchConfigSelect.addEventListener("change", () => void applyPatchSelection("patch-selection"));
+    }
+    void loadProjectCatalog().then(() => {
+      writeActiveSelectionToUrl();
+      return reloadData("startup");
+    });
   </script>
 </body>
 </html>

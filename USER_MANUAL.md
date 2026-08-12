@@ -1,6 +1,6 @@
 # Casual User Manual (Simple)
 
-Last updated: 2026-03-01
+Last updated: 2026-08-12
 
 This guide is for normal daily use. No coding knowledge needed.
 
@@ -47,9 +47,9 @@ You always work in this order:
 
 ### Step-by-step
 
-1. In top bar, open `Project` and choose `Create New Project...`
-2. In top bar, open `Device Config` and choose `Create New Device Config...`
-3. In top bar, open `Patch Config` and choose `Create New Patch Config...`
+1. In the top bar, choose `New Project` and confirm the displayed destination.
+2. Choose `New Device Config` and enter a name.
+3. Choose `New Patch Config` and enter a name.
 
 That creates your working files.
 
@@ -70,11 +70,13 @@ Go to `Devices & Ports` tab:
 - set device type and port details
 - click `Save Device Config` when ready
 
+Pending fields for the selected device and its visible port list are applied automatically when you select another device, switch the Inputs/Outputs view, leave the Devices & Ports tab, or move to another browser window. Invalid values keep the editor open and show an error instead of being partially applied.
+
 Use `Save Device Config As` if you want a copy/version.
 
 ## 6. Build Your Patch Config
 
-Go to `Routing Matrix` tab (Prototype Matrix):
+Go to the `Routing Matrix` tab:
 
 - click a `+` cell to connect
 - click again to disconnect
@@ -86,12 +88,32 @@ Save with:
 - `Save Patch` (overwrite current patch config)
 - `Save Patch As` (new patch config file)
 
+The matrix shows `Saved`, `Saving`, or `Unsaved`. Use the Undo/Redo buttons or the usual Cmd/Ctrl-Z shortcuts. If another edit changed the same file on disk, the app reports a conflict instead of silently overwriting it.
+
+## 6A. Arrange Rack Equipment
+
+Open the `Rack Editor` tab to describe where equipment is physically installed.
+
+- Existing devices are not rack mountable unless explicitly marked.
+- In `Devices & Ports`, check `Rack mountable` for equipment that can physically be installed in a rack. Unmarked equipment such as speakers and S1 control surfaces is not shown in the Rack Editor.
+- `Desk` and `Rack` describe the current location. A rack-mountable Desk device appears in the unplaced list and moves to `Rack` when dropped into a rack.
+- Set its height from 1–16 U/HE.
+- Drag the device from the unplaced list or its current rack position onto a rack unit. Green means valid; red means the move would overlap or exceed U16.
+- For keyboard use, choose Rack 1–4 and the lowest occupied U, then apply the placement.
+- Use `Remove from Rack` to leave a Rack device unplaced.
+
+The editor shows U16 at the top and U1 at the bottom. It rejects placements that extend beyond U16 or overlap another device. Rack changes are part of the device configuration, so save the device config afterward. See [the Rack Editor reference](documentation/RACK_EDITOR.md) for the exact JSON fields.
+
 ## 7. Auto Save Configs
 
-If `Auto Save Configs` is ON, edits are saved automatically.
+If `Auto Save` is ON in the shell bar, edits are saved automatically. This is one global browser preference: it stays enabled when you switch between Routing Matrix, Devices & Ports, Rack Editor, Visibility, and Visuals, and it is restored after a reload.
 
 - Device edits save to the selected device config
 - Patch edits save to the selected patch config
+- Switching tabs or leaving the application window flushes pending edits immediately instead of waiting for the normal debounce.
+- If that flush fails or times out, the tab switch is cancelled so unsaved work is not silently discarded.
+- With Auto Save off, navigation within the same application preserves edits in the current browser session but does not write them to disk.
+- Auto Save requires `routing_matrix_server.py`; the static HTML/file view cannot write project JSON to disk.
 
 ## 8. Visibility + Visuals
 

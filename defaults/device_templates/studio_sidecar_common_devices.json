@@ -4361,9 +4361,11 @@
       "matrix_order": 8
     },
     {
-      "name": "Headphone Amp",
+      "name": "IMG STAGELINE PPA-100/SW",
       "device_type": "Amplifier / Monitor Control",
       "layout_group": "Monitoring",
+      "rack_mountable": true,
+      "rack_units": 1,
       "ports": [
         {
           "name": "HA In 1",
@@ -4376,7 +4378,7 @@
             "name": "HA In",
             "member": "1",
             "index": 1,
-            "size": 5
+            "size": 6
           },
           "order": 0
         },
@@ -4391,7 +4393,7 @@
             "name": "HA In",
             "member": "2",
             "index": 2,
-            "size": 5
+            "size": 6
           },
           "order": 1
         },
@@ -4406,7 +4408,7 @@
             "name": "HA In",
             "member": "3",
             "index": 3,
-            "size": 5
+            "size": 6
           },
           "order": 2
         },
@@ -4421,7 +4423,7 @@
             "name": "HA In",
             "member": "4",
             "index": 4,
-            "size": 5
+            "size": 6
           },
           "order": 3
         },
@@ -4436,9 +4438,24 @@
             "name": "HA In",
             "member": "5",
             "index": 5,
-            "size": 5
+            "size": 6
           },
           "order": 4
+        },
+        {
+          "name": "HA In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "HA In",
+            "member": "6",
+            "index": 6,
+            "size": 6
+          },
+          "order": 5
         },
         {
           "name": "Main In",
@@ -4450,7 +4467,7 @@
           "group": {
             "name": "Main In"
           },
-          "order": 5
+          "order": 6
         },
         {
           "name": "HP Out 1",
@@ -4465,7 +4482,7 @@
             "index": 1,
             "size": 6
           },
-          "order": 6
+          "order": 7
         },
         {
           "name": "HP Out 2",
@@ -4480,7 +4497,7 @@
             "index": 2,
             "size": 6
           },
-          "order": 7
+          "order": 8
         },
         {
           "name": "HP Out 3",
@@ -4495,7 +4512,7 @@
             "index": 3,
             "size": 6
           },
-          "order": 8
+          "order": 9
         },
         {
           "name": "HP Out 4",
@@ -4510,7 +4527,7 @@
             "index": 4,
             "size": 6
           },
-          "order": 9
+          "order": 10
         },
         {
           "name": "HP Out 5",
@@ -4525,7 +4542,7 @@
             "index": 5,
             "size": 6
           },
-          "order": 10
+          "order": 11
         },
         {
           "name": "HP Out 6",
@@ -4540,7 +4557,7 @@
             "index": 6,
             "size": 6
           },
-          "order": 11
+          "order": 12
         }
       ],
       "matrix_order": 9

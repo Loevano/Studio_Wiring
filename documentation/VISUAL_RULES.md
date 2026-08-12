@@ -4,8 +4,8 @@ Last updated: 2026-03-01
 
 This file is the canonical rule set for SVG wire rendering. The generator reads:
 
-- `projects/studio-sidecar/device-configurations/studio-model-001.json` (devices + ports)
-- `projects/studio-sidecar/patch-configurations/studio-model-001/patch-default.json` (connections)
+- the selected project's device configuration (devices + ports)
+- the selected device configuration's patch configuration (connections)
 - `json/routing_rules.json` (global label/routing policy)
 
 ## 1. Device/Port Rendering
@@ -49,14 +49,13 @@ This file is the canonical rule set for SVG wire rendering. The generator reads:
 - Matrix and visuals share the same source JSON files.
 - Server regenerate (`/api/regenerate`) passes model + connections + routing rules to generator.
 - Regenerate updates:
-  - `projects/studio-sidecar/outputs/html/routing_matrix.html`
   - `projects/studio-sidecar/outputs/html/studio_wiring_point_to_point.html`
   - `projects/studio-sidecar/outputs/svgs/*.svg`
   - `projects/studio-sidecar/outputs/debug/route-debug.json`
 
 ## 6. Wire Debug Artifact
 
-- `projects/studio-sidecar/outputs/debug/route-debug.json` includes per cable:
+- The selected project's `outputs/debug/route-debug.json` includes per cable:
   - source/destination endpoints + columns,
   - chosen route points/path,
   - route mode (forward/backward/backward_wrap_below),

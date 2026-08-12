@@ -1,0 +1,16 @@
+{
+  "connections": [
+    {
+      "cable_id": "AUDIO-001",
+      "source": {
+        "device": "Legacy Source",
+        "port": "Out 1"
+      },
+      "destination": {
+        "device": "Legacy Destination",
+        "port": "In 1"
+      },
+      "override_1to1": "no"
+    }
+  ]
+}

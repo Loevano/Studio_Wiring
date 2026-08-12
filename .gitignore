@@ -2,3 +2,6 @@
 __pycache__/
 *.py[cod]
 *.log
+
+# Local recovery snapshots are runtime/user data, not application source.
+backups/

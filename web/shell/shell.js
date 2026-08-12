@@ -3,6 +3,8 @@
 
   const MANIFEST_PATH = "../manifests/tabs.json";
   const THEME_STORAGE_KEY = "studioWiringThemeModeV1";
+  const AUTO_SAVE_STORAGE_KEY = "studioWiringAutoSaveToDiskV1";
+  const AUTO_SAVE_FLUSH_TIMEOUT_MS = 8000;
 
   const tabBar = document.getElementById("shellTabBar");
   const tabFrame = document.getElementById("shellTabFrame");
@@ -17,6 +19,9 @@
   let activeTheme = "light";
   let autoSaveEnabled = false;
   let frameReady = false;
+  let autoSaveFlushSequence = 0;
+  let tabNavigationSequence = 0;
+  const pendingAutoSaveFlushes = new Map();
 
   function reportStatus(message, warn) {
     const text = String(message || "").trim();
@@ -127,6 +132,22 @@
     }
   }
 
+  function loadAutoSavePreference() {
+    try {
+      return window.localStorage.getItem(AUTO_SAVE_STORAGE_KEY) === "1";
+    } catch (_error) {
+      return false;
+    }
+  }
+
+  function persistAutoSavePreference(enabled) {
+    try {
+      window.localStorage.setItem(AUTO_SAVE_STORAGE_KEY, enabled ? "1" : "0");
+    } catch (_error) {
+      // Ignore storage failures.
+    }
+  }
+
   function postThemeToFrame(mode) {
     if (!(tabFrame instanceof HTMLIFrameElement)) return;
     if (!tabFrame.contentWindow) return;
@@ -162,6 +183,38 @@
     }
   }
 
+  function requestAutoSaveFlushFromFrame(reason) {
+    if (!autoSaveEnabled || !frameReady) return Promise.resolve(true);
+    if (!(tabFrame instanceof HTMLIFrameElement) || !tabFrame.contentWindow) {
+      return Promise.resolve(true);
+    }
+    autoSaveFlushSequence += 1;
+    const requestId = `shell-autosave-${autoSaveFlushSequence}`;
+    return new Promise((resolve) => {
+      const timeoutId = window.setTimeout(() => {
+        pendingAutoSaveFlushes.delete(requestId);
+        resolve(false);
+      }, AUTO_SAVE_FLUSH_TIMEOUT_MS);
+      pendingAutoSaveFlushes.set(requestId, {
+        resolve: (ok) => {
+          window.clearTimeout(timeoutId);
+          pendingAutoSaveFlushes.delete(requestId);
+          resolve(Boolean(ok));
+        },
+      });
+      try {
+        tabFrame.contentWindow.postMessage({
+          type: "studio-shell-autosave-flush",
+          request_id: requestId,
+          reason: String(reason || "shell-navigation"),
+        }, "*");
+      } catch (_error) {
+        const pending = pendingAutoSaveFlushes.get(requestId);
+        if (pending) pending.resolve(false);
+      }
+    });
+  }
+
   function requestDebugReportCopyFromFrame() {
     if (!(tabFrame instanceof HTMLIFrameElement)) return;
     if (!tabFrame.contentWindow) return;
@@ -174,8 +227,10 @@
 
   function applyAutoSaveButtonState(enabled) {
     autoSaveEnabled = Boolean(enabled);
+    persistAutoSavePreference(autoSaveEnabled);
     if (!(autoSaveToggleBtn instanceof HTMLButtonElement)) return;
     autoSaveToggleBtn.textContent = autoSaveEnabled ? "Auto Save: On" : "Auto Save: Off";
+    autoSaveToggleBtn.setAttribute("aria-pressed", autoSaveEnabled ? "true" : "false");
     autoSaveToggleBtn.title = autoSaveEnabled
       ? "Disable automatic save after edits"
       : "Enable automatic save after edits";
@@ -244,9 +299,21 @@
       }).join("");
     }
 
-    function loadTab(tabKey) {
+    async function loadTab(tabKey) {
+      tabNavigationSequence += 1;
+      const navigationId = tabNavigationSequence;
       const nextKey = normalizeTabKey(tabKey, knownKeys, defaultKey);
       const tab = tabs.find((entry) => entry.key === nextKey) || tabs[0];
+
+      if (frameReady && nextKey !== activeKey && autoSaveEnabled) {
+        const flushed = await requestAutoSaveFlushFromFrame(`shell-tab:${activeKey || "unknown"}->${nextKey}`);
+        if (navigationId !== tabNavigationSequence) return;
+        if (!flushed) {
+          reportStatus("Auto-save did not finish; tab switch was cancelled to protect unsaved changes.", true);
+          requestAutoSaveStateFromFrame();
+          return;
+        }
+      }
       activeKey = tab.key;
 
       const srcBase = toAbsoluteUrl(window.location.href, tab.src);
@@ -293,7 +360,7 @@
       if (!(target instanceof HTMLElement)) return;
       const tabKey = String(target.getAttribute("data-shell-tab") || "").trim();
       if (!tabKey) return;
-      loadTab(tabKey);
+      void loadTab(tabKey);
     });
 
     tabFrame.addEventListener("load", () => {
@@ -304,8 +371,15 @@
     });
 
     window.addEventListener("message", (event) => {
+      if (event.source !== tabFrame.contentWindow) return;
       const data = event?.data;
       if (!data || typeof data !== "object") return;
+      if (data.type === "studio-shell-autosave-flushed") {
+        const requestId = String(data.request_id || "");
+        const pending = pendingAutoSaveFlushes.get(requestId);
+        if (pending) pending.resolve(Boolean(data.ok));
+        return;
+      }
       if (data.type === "studio-theme-request") {
         postThemeToFrame(activeTheme);
         return;
@@ -340,9 +414,9 @@
       });
     }
 
-    applyAutoSaveButtonState(false);
+    applyAutoSaveButtonState(loadAutoSavePreference());
     applyTheme(loadThemePreference(), false, false);
-    loadTab(activeKey);
+    void loadTab(activeKey);
   }
 
   loadManifest()

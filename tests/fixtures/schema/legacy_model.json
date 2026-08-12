@@ -1,0 +1,21 @@
+{
+  "name": "Legacy Fixture Studio",
+  "devices": [
+    {
+      "device_name": "Legacy Source",
+      "type": "Interface",
+      "visible": "yes",
+      "ports": [
+        {
+          "port_name": "Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "enabled": 1,
+          "hidden": "false"
+        }
+      ]
+    }
+  ]
+}
