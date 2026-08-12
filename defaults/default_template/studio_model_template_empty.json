@@ -25,6 +25,12 @@
       "layer": "Network",
       "signal_type": "Network Data",
       "default_cable_type": "Network"
+    },
+    "POWER": {
+      "prefix": "POWER",
+      "layer": "Power",
+      "signal_type": "Mains Power",
+      "default_cable_type": "AC Power"
     }
   },
   "devices": [],

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 import shutil
 import subprocess
@@ -102,6 +103,19 @@ class GeneratedConfigurationUiTests(unittest.TestCase):
         self.assertIsNotNone(match)
         self.assertIn("commitPendingDeviceEditorEdits", match.group("body"))
         self.assertIn("flushPendingDeviceEditorAutoSave", match.group("body"))
+
+    def test_power_is_a_first_class_family(self) -> None:
+        self.assertIn('const FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK", "POWER"]', self.html)
+        self.assertIn('{ id: "POWER_IN", label: "AC Power In"', self.html)
+        self.assertIn('{ id: "POWER_OUT", label: "AC Power Out"', self.html)
+
+        for relative_path in (
+            "defaults/default_template/studio_model_template_empty.json",
+            "projects/_template/device-configurations/studio-model.json",
+        ):
+            model = json.loads((ROOT / relative_path).read_text(encoding="utf-8"))
+            self.assertEqual(model["families"]["POWER"]["prefix"], "POWER", relative_path)
+            self.assertEqual(model["families"]["POWER"]["layer"], "Power", relative_path)
 
 
 if __name__ == "__main__":

@@ -7,6 +7,7 @@ import json
 import re
 import sys
 import unittest
+from collections import Counter
 from pathlib import Path
 
 
@@ -161,6 +162,15 @@ class StudioSidecarPresetTests(unittest.TestCase):
         self.assertEqual(overview[5], [CURRENT_HEADPHONE_AMP])
 
     def test_generated_artifacts_and_rack_eligibility_match_the_preset(self) -> None:
+        self.assertEqual(
+            self.model["families"]["POWER"],
+            {
+                "prefix": "POWER",
+                "layer": "Power",
+                "signal_type": "Mains Power",
+                "default_cable_type": "AC Power",
+            },
+        )
         generated = [
             ROUTING_MATRIX_PATH,
             SIDECAR / "outputs" / "html" / "studio_wiring_point_to_point.html",
@@ -193,6 +203,47 @@ class StudioSidecarPresetTests(unittest.TestCase):
             self.assertTrue(self.devices[name].get("rack_mountable"), name)
             self.assertEqual(self.devices[name].get("rack_units"), 1, name)
             self.assertEqual(self.devices[name].get("ports"), [], name)
+
+        power_conditioner = self.devices["Black Lion Audio PG-1 Type F MKII"]
+        self.assertEqual(power_conditioner.get("device_type"), "Power Distribution")
+        self.assertEqual(power_conditioner.get("layout_group"), "Rack Infrastructure")
+        self.assertTrue(power_conditioner.get("rack_mountable"))
+        self.assertEqual(power_conditioner.get("rack_units"), 1)
+        self.assertEqual(power_conditioner.get("ports"), [])
+
+        lucid = self.devices["Lucid 88192"]
+        self.assertEqual(lucid.get("device_type"), "Converter")
+        self.assertTrue(lucid.get("rack_mountable"))
+        self.assertEqual(lucid.get("rack_units"), 2)
+        self.assertEqual(len(lucid.get("ports", [])), 30)
+        self.assertEqual(
+            Counter((port["direction"], port["transport"]) for port in lucid["ports"]),
+            Counter(
+                {
+                    ("in", "XLR"): 8,
+                    ("out", "XLR"): 8,
+                    ("in", "AES"): 4,
+                    ("out", "AES"): 4,
+                    ("in", "ADAT"): 2,
+                    ("out", "ADAT"): 2,
+                    ("in", "CLOCK"): 1,
+                    ("out", "CLOCK"): 1,
+                }
+            ),
+        )
+        self.assertEqual(
+            {(port["direction"], tuple(port["families"]), port["transport"]) for port in lucid["ports"]},
+            {
+                ("in", ("AUDIO",), "XLR"),
+                ("out", ("AUDIO",), "XLR"),
+                ("in", ("DIGI",), "AES"),
+                ("out", ("DIGI",), "AES"),
+                ("in", ("DIGI",), "ADAT"),
+                ("out", ("DIGI",), "ADAT"),
+                ("in", ("DIGI",), "CLOCK"),
+                ("out", ("DIGI",), "CLOCK"),
+            },
+        )
 
         production_files = [MODEL_PATH, *self.patch_paths, GENERATOR_PATH, *generated]
         for path in production_files:

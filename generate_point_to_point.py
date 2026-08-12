@@ -32,7 +32,7 @@ CONNECTION_LABEL_CHAR_PX = 5.4
 # ---------------------------------------------------------------------------
 # Matrix family defaults (shared by SVG generation + routing UI)
 # ---------------------------------------------------------------------------
-MATRIX_FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK"]
+MATRIX_FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK", "POWER"]
 
 DEFAULT_MATRIX_FAMILY_DEFINITIONS: dict[str, dict[str, str]] = {
     "AUDIO": {
@@ -58,6 +58,12 @@ DEFAULT_MATRIX_FAMILY_DEFINITIONS: dict[str, dict[str, str]] = {
         "layer": "Network",
         "signal_type": "Network Data",
         "default_cable_type": "Network",
+    },
+    "POWER": {
+        "prefix": "POWER",
+        "layer": "Power",
+        "signal_type": "Mains Power",
+        "default_cable_type": "AC Power",
     },
 }
 
@@ -7329,7 +7335,7 @@ def build_routing_matrix_html(
     const EMPTY_MODEL_TEMPLATE = __EMPTY_MODEL_TEMPLATE_JSON__;
     const EMBEDDED_MATRIX = __MATRIX_JSON__;
     const FAMILY_ALL = "ALL";
-    const FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK"];
+    const FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK", "POWER"];
 
     const familySelect = document.getElementById("familySelect");
     const sourceFilterInput = document.getElementById("sourceFilterInput");
@@ -7527,6 +7533,7 @@ def build_routing_matrix_html(
         { id: "SPDIF_IN", label: "S/PDIF In", base: "S/PDIF In", family: "DIGI", transport: "SPDIF" },
         { id: "ADAT_IN", label: "ADAT In", base: "ADAT In", family: "DIGI", transport: "ADAT" },
         { id: "AES_IN", label: "AES In", base: "AES In", family: "DIGI", transport: "AES" },
+        { id: "POWER_IN", label: "AC Power In", base: "AC Power In", family: "POWER", transport: "IEC" },
         { id: "CUSTOM_IN", label: "Custom", base: "Input", family: "AUDIO", transport: "" },
       ],
       out: [
@@ -7541,6 +7548,7 @@ def build_routing_matrix_html(
         { id: "SPDIF_OUT", label: "S/PDIF Out", base: "S/PDIF Out", family: "DIGI", transport: "SPDIF" },
         { id: "ADAT_OUT", label: "ADAT Out", base: "ADAT Out", family: "DIGI", transport: "ADAT" },
         { id: "AES_OUT", label: "AES Out", base: "AES Out", family: "DIGI", transport: "AES" },
+        { id: "POWER_OUT", label: "AC Power Out", base: "AC Power Out", family: "POWER", transport: "SCHUKO" },
         { id: "CUSTOM_OUT", label: "Custom", base: "Output", family: "AUDIO", transport: "" },
       ],
     };
@@ -9875,6 +9883,7 @@ def build_routing_matrix_html(
         COMP: { prefix: "COMP" },
         DIGI: { prefix: "DIGI" },
         NETWORK: { prefix: "NETWORK" },
+        POWER: { prefix: "POWER" },
       };
       const merged = { ...defaults };
       for (const [key, cfg] of Object.entries(modelDefs)) {
@@ -12703,6 +12712,7 @@ def build_routing_matrix_html(
           COMP: { prefix: "COMP", layer: "Computer/Data", signal_type: "Computer Data", default_cable_type: "Computer/Data" },
           DIGI: { prefix: "DIGI", layer: "Digital Audio", signal_type: "Digital Audio", default_cable_type: "Digital Audio" },
           NETWORK: { prefix: "NETWORK", layer: "Network", signal_type: "Network Data", default_cable_type: "Network" },
+          POWER: { prefix: "POWER", layer: "Power", signal_type: "Mains Power", default_cable_type: "AC Power" },
         };
       }
       if (!Array.isArray(MODEL.devices)) MODEL.devices = [];

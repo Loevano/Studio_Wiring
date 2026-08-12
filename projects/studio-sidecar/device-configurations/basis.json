@@ -25,6 +25,12 @@
       "layer": "Network",
       "signal_type": "Network Data",
       "default_cable_type": "Network"
+    },
+    "POWER": {
+      "prefix": "POWER",
+      "layer": "Power",
+      "signal_type": "Mains Power",
+      "default_cable_type": "AC Power"
     }
   },
   "devices": [
@@ -3998,7 +4004,7 @@
       "visible": true,
       "hidden": false,
       "rack_position": {
-        "rack": 2,
+        "rack": 3,
         "start_u": 14
       }
     },
@@ -4101,7 +4107,7 @@
       "device_type": "Amplifier / Monitor Control",
       "layout_group": "Monitoring",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 2,
       "ports": [
         {
@@ -4167,14 +4173,18 @@
       ],
       "matrix_order": 5,
       "visible": true,
-      "hidden": false
+      "hidden": false,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 3
+      }
     },
     {
       "name": "Behringer A800 #2",
       "device_type": "Amplifier / Monitor Control",
       "layout_group": "Monitoring",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 2,
       "ports": [
         {
@@ -4240,14 +4250,18 @@
       ],
       "matrix_order": 6,
       "visible": true,
-      "hidden": false
+      "hidden": false,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 1
+      }
     },
     {
       "name": "Focusrite Platinum Voice Master",
       "device_type": "Preamps / Channel Strip",
       "layout_group": "Analog Front End",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 1,
       "ports": [
         {
@@ -4335,14 +4349,18 @@
           "order": 6
         }
       ],
-      "matrix_order": 7
+      "matrix_order": 7,
+      "rack_position": {
+        "rack": 3,
+        "start_u": 13
+      }
     },
     {
       "name": "IMG STAGELINE PPA-100/SW",
       "device_type": "Amplifier / Monitor Control",
       "layout_group": "Monitoring",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 1,
       "ports": [
         {
@@ -4538,7 +4556,11 @@
           "order": 12
         }
       ],
-      "matrix_order": 8
+      "matrix_order": 8,
+      "rack_position": {
+        "rack": 4,
+        "start_u": 1
+      }
     },
     {
       "name": "Mac mini",
@@ -5344,7 +5366,7 @@
       "device_type": "Converter",
       "layout_group": "Digital Core",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 2,
       "ports": [
         {
@@ -6131,7 +6153,11 @@
           "order": 50
         }
       ],
-      "matrix_order": 13
+      "matrix_order": 13,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 9
+      }
     },
     {
       "name": "Streamdeck #1",
@@ -6876,10 +6902,14 @@
       "device_type": "Power Distribution",
       "layout_group": "Rack Infrastructure",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 1,
       "ports": [],
-      "matrix_order": 22
+      "matrix_order": 22,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 15
+      }
     },
     {
       "name": "the t.racks Power 8 #1",
@@ -6924,7 +6954,7 @@
       "device_type": "Outboard / FX",
       "layout_group": "Digital Core",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 1,
       "ports": [
         {
@@ -7084,14 +7114,18 @@
           "order": 11
         }
       ],
-      "matrix_order": 26
+      "matrix_order": 26,
+      "rack_position": {
+        "rack": 2,
+        "start_u": 14
+      }
     },
     {
       "name": "Sony DPS-R7 Reverb",
       "device_type": "Outboard / FX",
       "layout_group": "Digital Core",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 1,
       "ports": [
         {
@@ -7251,52 +7285,545 @@
           "order": 10
         }
       ],
-      "matrix_order": 27
+      "matrix_order": 27,
+      "rack_position": {
+        "rack": 2,
+        "start_u": 13
+      }
     },
     {
       "name": "Switchcraft 1U Solder-Lug Patchbay #1",
       "device_type": "Patchbay",
       "layout_group": "Rack Infrastructure",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 1,
       "ports": [],
-      "matrix_order": 28
+      "matrix_order": 28,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 14
+      }
     },
     {
       "name": "Switchcraft 1U Solder-Lug Patchbay #2",
       "device_type": "Patchbay",
       "layout_group": "Rack Infrastructure",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 1,
       "ports": [],
-      "matrix_order": 29
+      "matrix_order": 29,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 13
+      }
     },
     {
       "name": "Switchcraft 1U Solder-Lug Patchbay #3",
       "device_type": "Patchbay",
       "layout_group": "Rack Infrastructure",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 1,
       "ports": [],
-      "matrix_order": 30
+      "matrix_order": 30,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 12
+      }
     },
     {
       "name": "Switchcraft 1U Solder-Lug Patchbay #4",
       "device_type": "Patchbay",
       "layout_group": "Rack Infrastructure",
       "rack_mountable": true,
-      "location": "Desk",
+      "location": "Rack",
       "rack_units": 1,
       "ports": [],
-      "matrix_order": 31
+      "matrix_order": 31,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 11
+      }
+    },
+    {
+      "name": "Black Lion Audio PG-1 Type F MKII",
+      "device_type": "Power Distribution",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
+      "ports": [],
+      "matrix_order": 32,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 16
+      }
+    },
+    {
+      "name": "Lucid 88192",
+      "device_type": "Converter",
+      "layout_group": "Digital Core",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 2,
+      "ports": [
+        {
+          "name": "Analog In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          },
+          "order": 0
+        },
+        {
+          "name": "Analog In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          },
+          "order": 1
+        },
+        {
+          "name": "Analog In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          },
+          "order": 2
+        },
+        {
+          "name": "Analog In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          },
+          "order": 3
+        },
+        {
+          "name": "Analog In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          },
+          "order": 4
+        },
+        {
+          "name": "Analog In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          },
+          "order": 5
+        },
+        {
+          "name": "Analog In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          },
+          "order": 6
+        },
+        {
+          "name": "Analog In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          },
+          "order": 7
+        },
+        {
+          "name": "AES/EBU In 1-2",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU In",
+            "member": "1-2",
+            "index": 1,
+            "size": 4
+          },
+          "order": 8
+        },
+        {
+          "name": "ADAT In 1-8 / SMUX2 1-4",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "ADAT",
+          "group": {
+            "name": "ADAT In",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          },
+          "order": 9
+        },
+        {
+          "name": "AES/EBU In 3-4",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU In",
+            "member": "3-4",
+            "index": 2,
+            "size": 4
+          },
+          "order": 10
+        },
+        {
+          "name": "ADAT In SMUX2 5-8",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "ADAT",
+          "group": {
+            "name": "ADAT In",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          },
+          "order": 11
+        },
+        {
+          "name": "AES/EBU In 5-6",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU In",
+            "member": "5-6",
+            "index": 3,
+            "size": 4
+          },
+          "order": 12
+        },
+        {
+          "name": "AES/EBU In 7-8",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU In",
+            "member": "7-8",
+            "index": 4,
+            "size": 4
+          },
+          "order": 13
+        },
+        {
+          "name": "Word Clock In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "CLOCK",
+          "group": {
+            "name": "Word Clock In"
+          },
+          "order": 14
+        },
+        {
+          "name": "Analog Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          },
+          "order": 15
+        },
+        {
+          "name": "Analog Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          },
+          "order": 16
+        },
+        {
+          "name": "Analog Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          },
+          "order": 17
+        },
+        {
+          "name": "Analog Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          },
+          "order": 18
+        },
+        {
+          "name": "Analog Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          },
+          "order": 19
+        },
+        {
+          "name": "Analog Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          },
+          "order": 20
+        },
+        {
+          "name": "Analog Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          },
+          "order": 21
+        },
+        {
+          "name": "Analog Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          },
+          "order": 22
+        },
+        {
+          "name": "AES/EBU Out 1-2",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU Out",
+            "member": "1-2",
+            "index": 1,
+            "size": 4
+          },
+          "order": 23
+        },
+        {
+          "name": "ADAT Out 1-8 / SMUX2 1-4",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "ADAT",
+          "group": {
+            "name": "ADAT Out",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          },
+          "order": 24
+        },
+        {
+          "name": "AES/EBU Out 3-4",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU Out",
+            "member": "3-4",
+            "index": 2,
+            "size": 4
+          },
+          "order": 25
+        },
+        {
+          "name": "ADAT Out SMUX2 5-8",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "ADAT",
+          "group": {
+            "name": "ADAT Out",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          },
+          "order": 26
+        },
+        {
+          "name": "AES/EBU Out 5-6",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU Out",
+            "member": "5-6",
+            "index": 3,
+            "size": 4
+          },
+          "order": 27
+        },
+        {
+          "name": "AES/EBU Out 7-8",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU Out",
+            "member": "7-8",
+            "index": 4,
+            "size": 4
+          },
+          "order": 28
+        },
+        {
+          "name": "Word Clock Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "CLOCK",
+          "group": {
+            "name": "Word Clock Out"
+          },
+          "order": 29
+        }
+      ],
+      "matrix_order": 33,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 7
+      }
     }
   ],
   "ui_config": {
     "version": 1,
-    "updated_at": "2026-08-12T21:18:26.392Z",
+    "updated_at": "2026-08-12T21:51:48.057Z",
     "theme": {
       "mode": "dark",
       "explicit": true
@@ -7349,7 +7876,7 @@
       }
     },
     "editor": {
-      "selected_device_name": "the t.racks Power 8 #2",
+      "selected_device_name": "Black Lion Audio PG-1 Type F MKII",
       "selected_port_tab": "in"
     },
     "visibility": {
@@ -7386,7 +7913,9 @@
         "Switchcraft 1U Solder-Lug Patchbay #1",
         "Switchcraft 1U Solder-Lug Patchbay #2",
         "Switchcraft 1U Solder-Lug Patchbay #3",
-        "Switchcraft 1U Solder-Lug Patchbay #4"
+        "Switchcraft 1U Solder-Lug Patchbay #4",
+        "Black Lion Audio PG-1 Type F MKII",
+        "Lucid 88192"
       ]
     }
   }
