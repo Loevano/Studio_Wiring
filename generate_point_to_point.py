@@ -367,7 +367,7 @@ def parse_direction(direction: str) -> str:
 def classify_port_family(port: str, device_type: str | None = None) -> str:
     text = abbreviate_port_label(port).lower()
 
-    if any(token in text for token in ("power", "ac mains", "dc in", "mains")):
+    if "power" in text or "mains" in text or re.search(r"\bdc\s+in\b", text):
         return "power"
     if "midi" in text:
         return "midi"
@@ -558,7 +558,7 @@ def resolve_connection_family_and_color(connection: Connection) -> tuple[str, st
         ]
     ).lower()
 
-    if any(token in haystack for token in ("power", "ac mains", "dc in")):
+    if "power" in haystack or "ac mains" in haystack or re.search(r"\bdc\s+in\b", haystack):
         return ("Power", "#a16207")
     if "madi" in haystack:
         return ("MADI", "#2563eb")
@@ -686,10 +686,34 @@ def normalize_connection_type(raw: str) -> str:
     return compact
 
 
+def short_power_connector_tag(connection: Connection) -> str:
+    """Return a compact connector-only tag for POWER diagram labels."""
+    compact = re.sub(r"[^A-Za-z0-9]+", "", connection.connection_type).upper()
+    if not compact:
+        return ""
+
+    if any(token in compact for token in ("VERIFY", "UNKNOWN", "TBD")):
+        return "TBD"
+
+    iec_match = re.search(r"(?:IEC)?(C(?:5|7|13|14|15|19|20))", compact)
+    if iec_match:
+        return iec_match.group(1)
+
+    if "RPS11" in compact:
+        return "RPS11"
+    if "ADAPTER" in compact:
+        return "ADAPTER"
+    if "SCHUKO" in compact:
+        return "SCHUKO"
+    return compact
+
+
 def display_connection_type_tag(connection: Connection) -> str:
+    cable_id = connection.cable_id.strip().upper()
+    if cable_id.startswith("POWER-"):
+        return short_power_connector_tag(connection)
     if connection.connection_type:
         return connection.connection_type
-    cable_id = connection.cable_id.strip().upper()
     if cable_id.startswith("COMP-") or cable_id.startswith("DIGI-") or cable_id.startswith("NETWORK-"):
         return short_transport_tag(connection)
     return ""
@@ -3007,8 +3031,10 @@ def render_svg(
     max_bottom = max(max_box_bottom, max_group_bottom)
 
     width = max(1200.0, rightmost_x + margin_x)
-    # Extra bottom room allows "backward" routes to travel around columns.
-    height = max_bottom + margin_y + 70.0
+    # Extra bottom room allows backward/outer routes to stay in distinct lanes.
+    # The overview carries every family, so it needs a larger shared gutter.
+    route_gutter = 180.0 if overview_mode else 70.0
+    height = max_bottom + margin_y + route_gutter
 
     total_ports = sum(len(box.port_roles) for box in boxes.values())
     wired_ports = sum(
@@ -3291,6 +3317,7 @@ def render_svg(
             backward_slot[idx] = (slot, total)
 
     placed_label_rects: list[tuple[float, float, float, float]] = []
+    pending_connection_wire_lines: list[tuple[bool, list[str]]] = []
     pending_connection_label_lines: list[str] = []
 
     def centered_slot_offset(
@@ -3969,6 +3996,21 @@ def render_svg(
                 dy,
                 family,
             )
+            if overview_mode and int(best_score[0]) > 0:
+                legacy_points = build_backward_points(legacy_bottom)
+                legacy_score = route_candidate_score(
+                    legacy_points,
+                    connection.source_device,
+                    connection.dest_device,
+                    src_box,
+                    dst_box,
+                    sy,
+                    dy,
+                    family,
+                )
+                if legacy_score < best_score:
+                    best_points = legacy_points
+                    best_score = legacy_score
             for turn_y in candidate_turns[1:]:
                 candidate_points = build_backward_points(turn_y)
                 candidate_score = route_candidate_score(
@@ -4704,9 +4746,10 @@ def render_svg(
             f"{connection.cable_id}: {connection.source_device} [{connection.source_jack}] -> {connection.dest_device} [{connection.dest_jack}]"
         )
 
-        svg_lines.append(
-            f'  <path d="{path}" fill="none" stroke="{wire_color}" stroke-width="{stroke_width}"{stroke_dash}{marker_attrs}><title>{detail}</title></path>'
-        )
+        connection_wire_lines = [
+            f'  <path d="{path}" fill="none" stroke="#f8fafc" stroke-width="{stroke_width + 2.4:.2f}"{stroke_dash} stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>',
+            f'  <path d="{path}" fill="none" stroke="{wire_color}" stroke-width="{stroke_width}"{stroke_dash} stroke-linecap="round" stroke-linejoin="round"{marker_attrs}><title>{detail}</title></path>',
+        ]
 
         # Multichannel links get explicit fan-in / fan-out collectors so it's
         # clear that multiple channel ports feed one bundled trunk.
@@ -4764,49 +4807,50 @@ def render_svg(
 
             if len(src_ys) >= 2:
                 src_bundle_x = max(8.0, min(width - 8.0, sx + (source_dir * collector_offset)))
-                svg_lines.append(
+                connection_wire_lines.append(
                     f'  <line x1="{src_bundle_x:.1f}" y1="{src_ys[0]:.1f}" x2="{src_bundle_x:.1f}" y2="{src_ys[-1]:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round"{collector_dash}/>'
                 )
                 for y in src_ys:
-                    svg_lines.append(
+                    connection_wire_lines.append(
                         f'  <line x1="{sx:.1f}" y1="{y:.1f}" x2="{src_bundle_x:.1f}" y2="{y:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round" opacity="0.95"/>'
                     )
 
             if len(dst_ys) >= 2:
                 dst_bundle_x = max(8.0, min(width - 8.0, dx + (dest_dir * collector_offset)))
-                svg_lines.append(
+                connection_wire_lines.append(
                     f'  <line x1="{dst_bundle_x:.1f}" y1="{dst_ys[0]:.1f}" x2="{dst_bundle_x:.1f}" y2="{dst_ys[-1]:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round"{collector_dash}/>'
                 )
                 for y in dst_ys:
-                    svg_lines.append(
+                    connection_wire_lines.append(
                         f'  <line x1="{dst_bundle_x:.1f}" y1="{y:.1f}" x2="{dx:.1f}" y2="{y:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round" opacity="0.95"/>'
                     )
 
-        # Put labels on straight lead segments and avoid label-on-label collisions.
-        if source_label_side == "below":
-            src_label_candidates = [0.0] + [label_offset_step * idx for idx in range(1, 7)]
-            src_label_y_base = sy + label_wire_gap + 10.0
-            src_label_x, src_label_y, src_rect_x = find_label_position(
-                desired_x=(sx + src_lead_x) / 2.0,
-                desired_y=src_label_y_base,
-                label_width_px=label_width,
-                y_offsets=src_label_candidates,
-                blocked_lines=None,
-                min_allowed_y=min(height - 16.0, sy + label_wire_gap + 10.0),
-            )
-        else:
-            src_label_candidates = [0.0] + [-(label_offset_step * idx) for idx in range(1, 7)]
-            src_label_y_base = sy - label_wire_gap - 4.0
-            src_label_x, src_label_y, src_rect_x = find_label_position(
-                desired_x=(sx + src_lead_x) / 2.0,
-                desired_y=src_label_y_base,
-                label_width_px=label_width,
-                y_offsets=src_label_candidates,
-                blocked_lines=None,
-                max_allowed_y=max(margin_y + 20.0, sy - label_wire_gap - 4.0),
-            )
+        pending_connection_wire_lines.append((family == "Power", connection_wire_lines))
 
+        # Put labels on straight lead segments and avoid label-on-label collisions.
         if raw_label:
+            if source_label_side == "below":
+                src_label_candidates = [0.0] + [label_offset_step * idx for idx in range(1, 7)]
+                src_label_y_base = sy + label_wire_gap + 10.0
+                src_label_x, src_label_y, src_rect_x = find_label_position(
+                    desired_x=(sx + src_lead_x) / 2.0,
+                    desired_y=src_label_y_base,
+                    label_width_px=label_width,
+                    y_offsets=src_label_candidates,
+                    blocked_lines=None,
+                    min_allowed_y=min(height - 16.0, sy + label_wire_gap + 10.0),
+                )
+            else:
+                src_label_candidates = [0.0] + [-(label_offset_step * idx) for idx in range(1, 7)]
+                src_label_y_base = sy - label_wire_gap - 4.0
+                src_label_x, src_label_y, src_rect_x = find_label_position(
+                    desired_x=(sx + src_lead_x) / 2.0,
+                    desired_y=src_label_y_base,
+                    label_width_px=label_width,
+                    y_offsets=src_label_candidates,
+                    blocked_lines=None,
+                    max_allowed_y=max(margin_y + 20.0, sy - label_wire_gap - 4.0),
+                )
             pending_connection_label_lines.append(
                 f'  <rect x="{src_rect_x:.1f}" y="{src_label_y - 10.0:.1f}" width="{label_width + 6.0:.1f}" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>'
             )
@@ -4841,6 +4885,13 @@ def render_svg(
             pending_connection_label_lines.append(
                 f'  <text x="{dst_label_x:.1f}" y="{dst_label_y:.1f}" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="{label_font_size:.1f}" fill="{wire_color}">{cable_label}</text>'
             )
+
+    # Paint signal wires first and power wires last. The pale under-stroke makes
+    # every crossing legible while keeping the power layer visibly on top.
+    for is_power in (False, True):
+        for wire_is_power, wire_lines in pending_connection_wire_lines:
+            if wire_is_power == is_power:
+                svg_lines.extend(wire_lines)
 
     # Draw all connection labels after all wires so no wire can overlap text boxes.
     svg_lines.extend(pending_connection_label_lines)
@@ -5351,7 +5402,7 @@ def build_routing_matrix_html(
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>__TITLE__ | Routing Matrix</title>
+  <title>__TITLE__ | Wiring Matrix</title>
   <script>
     (function applyInitialShellRoute() {
       const parameters = new URLSearchParams(window.location.search || "");
@@ -5970,8 +6021,35 @@ def build_routing_matrix_html(
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 4px;
       max-width: calc(var(--matrix-source-col-width) - 12px);
+    }
+    .port-label-text {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .port-head .port-family-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 4px;
+      padding: 0 4px;
+      min-width: 22px;
+      height: 13px;
+      border: 1px solid #a16207;
+      border-radius: 4px;
+      background: #fef3c7;
+      color: #854d0e;
+      font-size: 0.56rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.03em;
+      vertical-align: middle;
+      flex: 0 0 auto;
     }
     .source-head.device-folder .dev {
       font-size: 0.84rem;
@@ -6079,7 +6157,9 @@ def build_routing_matrix_html(
     .dest-port {
       font-size: 0.82rem;
       color: #475569;
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 3px;
       line-height: 1.05;
       white-space: nowrap;
       overflow: hidden;
@@ -6122,7 +6202,7 @@ def build_routing_matrix_html(
       min-height: calc(var(--matrix-dest-inner-height) - 14px);
     }
     body.dest-orientation-vertical .dest-device,
-    body.dest-orientation-vertical .dest-port {
+    body.dest-orientation-vertical .port-label-text {
       writing-mode: vertical-rl;
       text-orientation: mixed;
       transform: rotate(180deg);
@@ -6136,7 +6216,15 @@ def build_routing_matrix_html(
       line-height: 1.0;
     }
     body.dest-orientation-vertical .dest-port {
+      flex-direction: row;
+      align-items: flex-end;
+      overflow: visible;
+      max-width: none;
       max-height: none;
+    }
+    body.dest-orientation-vertical .dest-port .port-family-badge {
+      writing-mode: horizontal-tb;
+      transform: none;
     }
     .source-line {
       display: flex;
@@ -6836,6 +6924,11 @@ def build_routing_matrix_html(
     body.theme-dark .muted-note {
       color: #94a3b8;
     }
+    body.theme-dark .port-family-badge {
+      border-color: #d97706;
+      background: #422006;
+      color: #fde68a;
+    }
     body.theme-dark .dest-device {
       color: #cbd5e1;
     }
@@ -7023,11 +7116,11 @@ def build_routing_matrix_html(
 <body>
   <div class="wrap">
     <div id="appTitlePanel" class="panel app-title-panel">
-      <h1>__TITLE__ | Routing Matrix</h1>
+      <h1>__TITLE__ | Wiring Matrix</h1>
       <div class="meta">Generated: __DATE__ | Click a cell to connect/disconnect.</div>
     </div>
     <div id="internalAppTabBar" class="panel tab-bar">
-      <button id="mainTabMatrix" class="tab-btn active" type="button">Routing Matrix</button>
+      <button id="mainTabMatrix" class="tab-btn active" type="button">Wiring Matrix</button>
       <button id="mainTabDevices" class="tab-btn" type="button">Devices & Ports</button>
       <button id="mainTabRack" class="tab-btn" type="button">Rack Editor</button>
       <button id="mainTabVisibility" class="tab-btn" type="button">Visibility</button>
@@ -7296,6 +7389,13 @@ def build_routing_matrix_html(
               </div>
               <div class="preview-card">
                 <div class="preview-card-head">
+                  <span class="preview-card-title">Power</span>
+                  <a id="previewLinkPower" class="preview-open-link" href="../svgs/power.svg" target="_blank" rel="noopener noreferrer">Open</a>
+                </div>
+                <object id="previewPower" class="preview-image" data="../svgs/power.svg" type="image/svg+xml" aria-label="Power preview"></object>
+              </div>
+              <div class="preview-card">
+                <div class="preview-card-head">
                   <span class="preview-card-title">All Connections</span>
                   <a id="previewLinkAllConnections" class="preview-open-link" href="../svgs/all-connections.svg" target="_blank" rel="noopener noreferrer">Open</a>
                 </div>
@@ -7417,11 +7517,13 @@ def build_routing_matrix_html(
     const previewComputerData = document.getElementById("previewComputerData");
     const previewDigitalAudio = document.getElementById("previewDigitalAudio");
     const previewNetwork = document.getElementById("previewNetwork");
+    const previewPower = document.getElementById("previewPower");
     const previewAllConnections = document.getElementById("previewAllConnections");
     const previewLinkAudioAnalog = document.getElementById("previewLinkAudioAnalog");
     const previewLinkComputerData = document.getElementById("previewLinkComputerData");
     const previewLinkDigitalAudio = document.getElementById("previewLinkDigitalAudio");
     const previewLinkNetwork = document.getElementById("previewLinkNetwork");
+    const previewLinkPower = document.getElementById("previewLinkPower");
     const previewLinkAllConnections = document.getElementById("previewLinkAllConnections");
     const resetScaleBtn = document.getElementById("resetScaleBtn");
     const themeToggleBtn = document.getElementById("themeToggleBtn");
@@ -7451,6 +7553,7 @@ def build_routing_matrix_html(
       computerData: { img: previewComputerData, link: previewLinkComputerData },
       digitalAudio: { img: previewDigitalAudio, link: previewLinkDigitalAudio },
       network: { img: previewNetwork, link: previewLinkNetwork },
+      power: { img: previewPower, link: previewLinkPower },
       allConnections: { img: previewAllConnections, link: previewLinkAllConnections },
     };
 
@@ -7558,19 +7661,27 @@ def build_routing_matrix_html(
     const THEME_STORAGE_KEY = "studioWiringThemeModeV1";
     const PROJECT_SELECTION_STORAGE_KEY = "studioWiringProjectSelectionV1";
     const SAVE_DEBOUNCE_MS = 650;
+    const IS_PROJECT_OUTPUT_PAGE = window.location.pathname.includes("/outputs/html/");
+    const DEFAULT_PREVIEW_DIRECTORY = IS_PROJECT_OUTPUT_PAGE
+      ? "../svgs"
+      : "/projects/studio-sidecar/outputs/svgs";
     const DEFAULT_PREVIEW_PATHS = {
-      audioAnalog: "../svgs/audio-analog.svg",
-      computerData: "../svgs/computer-data.svg",
-      digitalAudio: "../svgs/digital-audio.svg",
-      network: "../svgs/network.svg",
-      allConnections: "../svgs/all-connections.svg",
+      audioAnalog: `${DEFAULT_PREVIEW_DIRECTORY}/audio-analog.svg`,
+      computerData: `${DEFAULT_PREVIEW_DIRECTORY}/computer-data.svg`,
+      digitalAudio: `${DEFAULT_PREVIEW_DIRECTORY}/digital-audio.svg`,
+      network: `${DEFAULT_PREVIEW_DIRECTORY}/network.svg`,
+      power: `${DEFAULT_PREVIEW_DIRECTORY}/power.svg`,
+      allConnections: `${DEFAULT_PREVIEW_DIRECTORY}/all-connections.svg`,
     };
-    const DEFAULT_ROUTE_DEBUG_PATH = "../debug/route-debug.json";
+    const DEFAULT_ROUTE_DEBUG_PATH = IS_PROJECT_OUTPUT_PAGE
+      ? "../debug/route-debug.json"
+      : "/projects/studio-sidecar/outputs/debug/route-debug.json";
     const PREVIEW_SPECS = [
       { key: "audioAnalog", label: "Audio Analog", file: "audio-analog.svg" },
       { key: "computerData", label: "Computer/Data", file: "computer-data.svg" },
       { key: "digitalAudio", label: "Digital Audio", file: "digital-audio.svg" },
       { key: "network", label: "Network", file: "network.svg" },
+      { key: "power", label: "Power", file: "power.svg" },
       { key: "allConnections", label: "All Connections", file: "all-connections.svg" },
     ];
     const DEFAULT_MATRIX_SCALE = {
@@ -10176,6 +10287,24 @@ def build_routing_matrix_html(
       return shared.includes(selectedFamily) ? selectedFamily : "";
     }
 
+    function powerConnectorAdvisory(linkFamily, sourcePort, destPort) {
+      if (linkFamily !== "POWER") return "";
+      const sourceType = String(sourcePort?.transport || "").trim();
+      const destType = String(destPort?.transport || "").trim();
+      if (
+        !sourceType
+        || !destType
+        || normalizedPowerSourceTransport(sourceType) === normalizedPowerSourceTransport(destType)
+      ) return "";
+      return `POWER connector check: ${sourceType} → ${destType}. Connection allowed; use the correct power cable or adapter.`;
+    }
+
+    function powerPortBadge(port) {
+      const families = Array.isArray(port?.families) ? port.families : [];
+      if (!families.includes("POWER")) return "";
+      return '<span class="port-family-badge" title="POWER family port" aria-label="POWER family port">PWR</span>';
+    }
+
     function buildGroupKey(family, axis, device, groupName) {
       const normalizedGroup = String(groupName || "").trim().toLowerCase();
       return `${family}::${axis}::${device}::${normalizedGroup}`;
@@ -10402,6 +10531,55 @@ def build_routing_matrix_html(
       return null;
     }
 
+    function connectionsForEndpoint(device, port) {
+      const key = endpointKey(device, port);
+      return connections.filter((conn) => (
+        endpointKey(conn.source_device, conn.source_port) === key
+        || endpointKey(conn.dest_device, conn.dest_port) === key
+      ));
+    }
+
+    function normalizedPowerSourceTransport(value) {
+      const compact = String(value || "").trim().toUpperCase().replace(/[^A-Z0-9]+/g, "");
+      if (/^(SCHUKO|TYPEF|CEE7|CEE77)$/.test(compact)) return "SCHUKO";
+      const iecMatch = compact.match(/^(?:IEC)?C(5|6|7|8|13|14|19|20)$/);
+      if (iecMatch) return `C${iecMatch[1]}`;
+      return compact;
+    }
+
+    function deviceSuppliesPower(deviceName) {
+      const ports = portsByDevice.get(String(deviceName || "").trim()) || [];
+      return ports.some((port) => (
+        port.visible
+        && port.enabled
+        && (port.direction === "out" || port.direction === "io")
+        && Array.isArray(port.families)
+        && port.families.includes("POWER")
+      ));
+    }
+
+    function movablePowerConnection(source, dest) {
+      if (!source?.enabled || !dest?.enabled || deviceSuppliesPower(dest.device)) return null;
+      const sourceConflicts = connectionsForEndpoint(source.device, source.port);
+      const destConflicts = connectionsForEndpoint(dest.device, dest.port);
+      if (sourceConflicts.length !== 0 || destConflicts.length !== 1) return null;
+      const row = destConflicts[0];
+      if (
+        normalizeFamily(row?.family) !== "POWER"
+        || Boolean(row?.override_1to1)
+        || row?.dest_device !== dest.device
+        || row?.dest_port !== dest.port
+      ) return null;
+      return row;
+    }
+
+    function powerMoveHoverTitle(source, dest, linkFamily) {
+      if (selectedPatchMode !== "single" || linkFamily !== "POWER") return "";
+      const row = movablePowerConnection(source, dest);
+      if (!row) return "";
+      return `Click to move POWER from ${row.source_device} [${row.source_port}] to ${source.device} [${source.port}] for ${dest.device}`;
+    }
+
     function ensureModelDeviceArray() {
       if (!MODEL || typeof MODEL !== "object") MODEL = {};
       if (!Array.isArray(MODEL.devices)) MODEL.devices = [];
@@ -10515,6 +10693,23 @@ def build_routing_matrix_html(
       const dstTransport = String(destPort?.transport || "").trim().toUpperCase();
       if (srcTransport && srcTransport === dstTransport) return srcTransport;
       const both = `${srcTransport} ${dstTransport}`;
+      if (family === "POWER") {
+        const sourceConnector = normalizedPowerSourceTransport(srcTransport);
+        const destinationConnector = normalizedPowerSourceTransport(dstTransport);
+        const inletToCableConnector = {
+          C6: "C5",
+          C8: "C7",
+          C14: "C13",
+          C20: "C19",
+        };
+        const cableDestination = inletToCableConnector[destinationConnector] || destinationConnector;
+        if (sourceConnector && cableDestination) {
+          return sourceConnector === cableDestination
+            ? sourceConnector
+            : `${sourceConnector}–${cableDestination}`;
+        }
+        return sourceConnector || cableDestination || "";
+      }
       if (family === "COMP") {
         if (both.includes("HDMI")) return "HDMI";
         if (both.includes("THUNDERBOLT") || both.includes("TB")) return "TB4";
@@ -10646,6 +10841,14 @@ def build_routing_matrix_html(
           error: `Disabled port: ${source.device} [${source.port}] -> ${dest.device} [${dest.port}] is read-only.`,
         };
       }
+      const sourceDirection = String(source.direction || "").trim().toLowerCase();
+      const destDirection = String(dest.direction || "").trim().toLowerCase();
+      if (!(sourceDirection === "out" || sourceDirection === "io") || !(destDirection === "in" || destDirection === "io")) {
+        return {
+          changed: false,
+          error: `Invalid port directions: ${source.device} [${source.port}] must be an output and ${dest.device} [${dest.port}] must be an input.`,
+        };
+      }
       const linkFamily = resolveLinkFamily(selectedFamily, source, dest);
       let action = normalizePatchAction(requestedAction);
       const existingIdx = findConnectionIndex(
@@ -10682,6 +10885,37 @@ def build_routing_matrix_html(
         ? Boolean(options.override)
         : Boolean(overrideToggle?.checked);
       if (!override) {
+        const movablePowerRow = selectedFamily === "POWER"
+          && linkFamily === "POWER"
+          && options.reassignOccupiedPowerDestination === true
+          ? movablePowerConnection(source, dest)
+          : null;
+        if (movablePowerRow) {
+          const previousSource = {
+            device: movablePowerRow.source_device,
+            port: movablePowerRow.source_port,
+          };
+          const previousPort = findPortMeta(movablePowerRow.source_device, movablePowerRow.source_port);
+          const sourceConnectorChanged = (
+            normalizedPowerSourceTransport(previousPort?.transport)
+            !== normalizedPowerSourceTransport(source.transport)
+          );
+          movablePowerRow.source_device = source.device;
+          movablePowerRow.source_port = source.port;
+          if (sourceConnectorChanged) {
+            const movedConnectionType = guessTypeTag(linkFamily, source, dest);
+            if (movedConnectionType) movablePowerRow.connection_type = movedConnectionType;
+          }
+          movablePowerRow.override_1to1 = false;
+          return {
+            changed: true,
+            action: "move",
+            linkFamily,
+            row: movablePowerRow,
+            previousSource,
+            currentSource: { device: source.device, port: source.port },
+          };
+        }
         const conflict = findStrictConflict(source.device, source.port, dest.device, dest.port);
         if (conflict) {
           return {
@@ -12042,6 +12276,7 @@ def build_routing_matrix_html(
           let groupToggle = "";
           let deviceToggle = "";
           let deviceText = "";
+          let familyBadge = "";
 
           if (entry.kind === "device_header") {
             classes.push("device-folder");
@@ -12062,6 +12297,7 @@ def build_routing_matrix_html(
             groupToggle = `<button type="button" class="group-toggle" data-group-toggle="1" data-axis="dest" data-group="${esc(entry.groupKey)}" title="Expand group">▸</button>`;
           } else {
             title = `${entry.port.device} [${entry.port.port}]`;
+            familyBadge = powerPortBadge(entry.port);
             const suppressPortLabel = singlePortDestDevices.has(String(entry.port.device || ""))
               && isGenericSinglePortLabel(entry.port.port);
             destPortText = suppressPortLabel ? "" : compactText(entry.port.port, 18);
@@ -12069,7 +12305,7 @@ def build_routing_matrix_html(
               groupToggle = `<button type="button" class="group-toggle" data-group-toggle="1" data-axis="dest" data-group="${esc(entry.groupKey)}" title="Collapse group">▾</button>`;
             }
           }
-          table += `<th class="${classes.join(" ")}" title="${esc(title)}"><div class="dest-col"><div class="dest-controls">${deviceToggle}${groupToggle}</div><div class="dest-labels"><span class="dest-device">${esc(deviceText || " ")}</span><span class="dest-port">${esc(destPortText || " ")}</span></div></div></th>`;
+          table += `<th class="${classes.join(" ")}" title="${esc(title)}"><div class="dest-col"><div class="dest-controls">${deviceToggle}${groupToggle}</div><div class="dest-labels"><span class="dest-device">${esc(deviceText || " ")}</span><span class="dest-port"><span class="port-label-text">${esc(destPortText || " ")}</span>${familyBadge}</span></div></div></th>`;
         }
         table += "</tr></thead><tbody>";
 
@@ -12131,7 +12367,8 @@ def build_routing_matrix_html(
         const sourceDeviceInline = String(sourceRow.inlineDevice || "");
         const sourceDeviceShort = sourceDeviceInline ? compactText(sourceDeviceInline, 18) : "";
         const sourcePortShort = sourceRow.suppressPortLabel ? "" : compactText(sourcePortText, 16);
-        table += `<tr><th class="${classes.join(" ")}" title="${esc(sourceTitle)}"><div class="source-line">${groupToggle}<span class="dev">${esc(sourceDeviceShort)}</span></div><span class="prt">${esc(sourcePortShort)}</span></th>`;
+        const sourceFamilyBadge = sourceEntry.kind === "port" ? powerPortBadge(sourceEntry.port) : "";
+        table += `<tr><th class="${classes.join(" ")}" title="${esc(sourceTitle)}"><div class="source-line">${groupToggle}<span class="dev">${esc(sourceDeviceShort)}</span></div><span class="prt"><span class="port-label-text">${esc(sourcePortShort)}</span>${sourceFamilyBadge}</span></th>`;
 
         for (let dIdx = 0; dIdx < displayDestEntries.length; dIdx += 1) {
           const destEntry = displayDestEntries[dIdx];
@@ -12156,6 +12393,8 @@ def build_routing_matrix_html(
           const connected = connIdx >= 0;
           const row = connected ? connections[connIdx] : null;
           const compatible = Boolean(linkFamily);
+          const connectorAdvisory = !connected ? powerConnectorAdvisory(linkFamily, source, dest) : "";
+          const moveTitle = !connected ? powerMoveHoverTitle(source, dest, linkFamily) : "";
           const cellClasses = ["cell"];
           if (connected) cellClasses.push("on");
           if (connected && row?.override_1to1) cellClasses.push("override");
@@ -12167,7 +12406,9 @@ def build_routing_matrix_html(
               : "Disabled port (read-only)")
             : (connected
               ? `${row.cable_id || "(auto)"} ${row.connection_type || ""} [${row.family || "?"}]`.trim()
-              : (compatible ? `Click to connect (${linkFamily})` : "Incompatible port families"));
+              : (moveTitle || (compatible
+                ? `Click to connect (${linkFamily})${connectorAdvisory ? ` — ${connectorAdvisory}` : ""}`
+                : "Incompatible port families")));
           table += `<td class="${cellClasses.join(" ")}" data-hover-title="${esc(title)}" data-si="${sIdx}" data-di="${dIdx}"></td>`;
         }
         table += "</tr>";
@@ -12270,13 +12511,21 @@ def build_routing_matrix_html(
           );
           const connected = latestIdx >= 0;
           const row = connected ? connections[latestIdx] : null;
+          const connectorAdvisory = !connected
+            ? powerConnectorAdvisory(context.linkFamily, context.source, context.dest)
+            : "";
+          const moveTitle = !connected
+            ? powerMoveHoverTitle(context.source, context.dest, context.linkFamily)
+            : "";
           const title = !context.patchEnabled
             ? (connected
               ? `Linked but disabled for patch changes: ${row?.cable_id || "(auto)"}`
               : "Disabled port (read-only)")
             : (connected
               ? `${row.cable_id || "(auto)"} ${row.connection_type || ""} [${row.family || "?"}]`.trim()
-              : (context.linkFamily ? `Click to connect (${context.linkFamily})` : "Incompatible port families"));
+              : (moveTitle || (context.linkFamily
+                ? `Click to connect (${context.linkFamily})${connectorAdvisory ? ` — ${connectorAdvisory}` : ""}`
+                : "Incompatible port families")));
           cell.dataset.hoverTitle = title;
         }
 
@@ -12298,11 +12547,12 @@ def build_routing_matrix_html(
           updateCellHoverTitle(cell, context);
         }
 
-        function applyPatchContexts(contexts, requestedAction) {
+        function applyPatchContexts(contexts, requestedAction, options = {}) {
           const summary = {
             changed: 0,
             connected: 0,
             disconnected: 0,
+            moved: 0,
             blocked: 0,
             firstError: "",
             action: normalizePatchAction(requestedAction),
@@ -12315,11 +12565,12 @@ def build_routing_matrix_html(
               }
               continue;
             }
-            const result = performPatchAction(family, context.source, context.dest, summary.action);
+            const result = performPatchAction(family, context.source, context.dest, summary.action, options);
             if (result.changed) {
               summary.changed += 1;
               if (result.action === "connect") summary.connected += 1;
               if (result.action === "disconnect") summary.disconnected += 1;
+              if (result.action === "move") summary.moved += 1;
               if (context.cell) refreshRenderedCellState(context.cell);
             } else if (result.error && !summary.firstError) {
               summary.firstError = result.error;
@@ -12632,12 +12883,19 @@ def build_routing_matrix_html(
             return;
           }
 
-          const summary = applyPatchContexts(contexts, "toggle");
+          const summary = applyPatchContexts(contexts, "toggle", {
+            reassignOccupiedPowerDestination: family === "POWER",
+          });
           if (summary.changed > 0) {
-            const saveReason = summary.connected > 0 && summary.disconnected === 0 ? "connect" : "disconnect";
+            const saveReason = summary.moved > 0
+              ? "power-move"
+              : (summary.connected > 0 && summary.disconnected === 0 ? "connect" : "disconnect");
             scheduleAutoSave(saveReason);
-            if (summary.connected > 0 && summary.disconnected === 0) {
-              setStatus(`Connected ${context.source.device} [${context.source.port}] -> ${context.dest.device} [${context.dest.port}] (${context.linkFamily || family})`);
+            if (summary.moved > 0 && summary.connected === 0 && summary.disconnected === 0) {
+              setStatus(`Moved POWER feed to ${context.source.device} [${context.source.port}] for ${context.dest.device} [${context.dest.port}]`);
+            } else if (summary.connected > 0 && summary.disconnected === 0) {
+              const advisory = powerConnectorAdvisory(context.linkFamily || family, context.source, context.dest);
+              setStatus(`Connected ${context.source.device} [${context.source.port}] -> ${context.dest.device} [${context.dest.port}] (${context.linkFamily || family})${advisory ? ` — ${advisory}` : ""}`);
             } else if (summary.disconnected > 0 && summary.connected === 0) {
               setStatus(`Disconnected ${context.source.device} [${context.source.port}] -> ${context.dest.device} [${context.dest.port}]`);
             } else {

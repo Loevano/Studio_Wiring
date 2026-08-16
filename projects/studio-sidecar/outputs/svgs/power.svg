@@ -1,0 +1,344 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2647" height="1150" viewBox="0 0 2647 1150">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="100%" height="100%" fill="#f8fafc"/>
+  <text x="30" y="34" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#0f172a">Studio Sidecar | Power | 2026-08-13</text>
+  <text x="30" y="54" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Devices: 17 | Cables: 16 | Ports shown: 32/32 wired</text>
+  <rect x="20.0" y="162.0" width="290.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="590.0" y="162.0" width="318.5" height="174.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="590.0" y="388.0" width="318.5" height="146.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1188.5" y="162.0" width="290.0" height="240.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1758.5" y="162.0" width="290.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1758.5" y="294.0" width="290.0" height="174.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1758.5" y="520.0" width="290.0" height="174.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1758.5" y="746.0" width="290.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1758.5" y="878.0" width="290.0" height="168.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="2328.5" y="162.0" width="299.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="2328.5" y="294.0" width="299.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="2328.5" y="426.0" width="299.0" height="80.0" rx="8" ry="8" fill="#ecfeff" fill-opacity="0.55" stroke="#0891b2" stroke-width="1" stroke-dasharray="6 4"/>
+  <rect x="2328.5" y="558.0" width="299.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <path d="M 2038.5 955.0 H 2121.6 V 1076.0 H 490.0 V 217.0 H 510.0 H 600.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 2038.5 955.0 H 2121.6 V 1076.0 H 490.0 V 217.0 H 510.0 H 600.0" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-010: Power Strip Rack 2 AN [Outlet 2] -&gt; Audient ASP 880 [AC In]</title></path>
+  <path d="M 2038.5 1021.0 H 2137.0 V 1086.0 H 490.0 V 311.0 H 510.0 H 600.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 2038.5 1021.0 H 2137.0 V 1086.0 H 490.0 V 311.0 H 510.0 H 600.0" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-013: Power Strip Rack 2 AN [Outlet 5] -&gt; Focusrite Platinum Voice Master [AC In]</title></path>
+  <path d="M 300.0 217.0 H 408.0 H 450.0 V 443.0 H 492.0 H 600.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 300.0 217.0 H 408.0 H 450.0 V 443.0 H 492.0 H 600.0" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-006: Meterkast [Groep 1] -&gt; Black Lion Audio PG-1 Type F MKII [AC In]</title></path>
+  <path d="M 898.5 487.0 H 1006.5 H 1076.5 V 217.0 H 1090.5 H 1198.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 898.5 487.0 H 1006.5 H 1076.5 V 217.0 H 1090.5 H 1198.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-004: Black Lion Audio PG-1 Type F MKII [Digital Outlet 1] -&gt; Power Strip Rack 1 DIG [AC In]</title></path>
+  <path d="M 898.5 443.0 H 1006.5 H 1076.5 V 333.0 H 1090.5 H 1198.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 898.5 443.0 H 1006.5 H 1076.5 V 333.0 H 1090.5 H 1198.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-002: Black Lion Audio PG-1 Type F MKII [Analog Outlet 1] -&gt; Power Switcher [AC In]</title></path>
+  <path d="M 1468.5 377.0 H 1576.5 H 1639.8 V 217.0 H 1660.5 H 1768.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1468.5 377.0 H 1576.5 H 1639.8 V 217.0 H 1660.5 H 1768.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-016: Power Switcher [Outlet 3] -&gt; Tascam MS-16 [AC In]</title></path>
+  <path d="M 1468.5 239.0 H 1576.5 H 1646.5 V 575.0 H 1660.5 H 1768.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1468.5 239.0 H 1576.5 H 1646.5 V 575.0 H 1660.5 H 1768.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-008: Power Strip Rack 1 DIG [Outlet 2] -&gt; Lucid 88192 [AC In]</title></path>
+  <path d="M 1468.5 217.0 H 1576.5 H 1646.5 V 669.0 H 1660.5 H 1768.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1468.5 217.0 H 1576.5 H 1646.5 V 669.0 H 1660.5 H 1768.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-007: Power Strip Rack 1 DIG [Outlet 1] -&gt; SSL AX MADI [AC In]</title></path>
+  <path d="M 1468.5 355.0 H 1576.5 H 1646.5 V 801.0 H 1660.5 H 1768.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1468.5 355.0 H 1576.5 H 1646.5 V 801.0 H 1660.5 H 1768.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-015: Power Switcher [Outlet 2] -&gt; Allen &amp; Heath RPS11 [AC In]</title></path>
+  <path d="M 1468.5 333.0 H 1576.5 H 1646.5 V 933.0 H 1660.5 H 1768.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1468.5 333.0 H 1576.5 H 1646.5 V 933.0 H 1660.5 H 1768.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-014: Power Switcher [Outlet 1] -&gt; Power Strip Rack 2 AN [AC In]</title></path>
+  <path d="M 2038.5 801.0 H 2153.5 H 2178.9 V 217.0 H 2223.5 H 2338.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 2038.5 801.0 H 2153.5 H 2178.9 V 217.0 H 2223.5 H 2338.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-001: Allen &amp; Heath RPS11 [Console DC Out] -&gt; Allen &amp; Heath GS3000 [RPS11 DC In]</title></path>
+  <path d="M 2038.5 999.0 H 2146.5 H 2209.8 V 349.0 H 2230.5 H 2338.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 2038.5 999.0 H 2146.5 H 2209.8 V 349.0 H 2230.5 H 2338.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-012: Power Strip Rack 2 AN [Outlet 4] -&gt; TC Electronic Clarity M Stereo [AC In]</title></path>
+  <path d="M 2038.5 977.0 H 2146.5 H 2216.5 V 481.0 H 2230.5 H 2338.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 2038.5 977.0 H 2146.5 H 2216.5 V 481.0 H 2230.5 H 2338.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-011: Power Strip Rack 2 AN [Outlet 3] -&gt; Mac mini [AC In]</title></path>
+  <path d="M 2038.5 933.0 H 2146.5 H 2216.5 V 613.0 H 2230.5 H 2338.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 2038.5 933.0 H 2146.5 H 2216.5 V 613.0 H 2230.5 H 2338.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-009: Power Strip Rack 2 AN [Outlet 1] -&gt; Power Strip Rack 3 AN [AC In]</title></path>
+  <path d="M 898.5 465.0 H 1000.4 V 156.0 H 1660.5 V 349.0 H 1768.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 898.5 465.0 H 1000.4 V 156.0 H 1660.5 V 349.0 H 1768.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-003: Black Lion Audio PG-1 Type F MKII [High Current Outlet 1] -&gt; Behringer A800 #1 [AC In]</title></path>
+  <path d="M 898.5 509.0 H 1014.2 H 1471.5 V 443.0 H 1660.5 H 1768.5" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 898.5 509.0 H 1014.2 H 1471.5 V 443.0 H 1660.5 H 1768.5" fill="none" stroke="#a16207" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>POWER-005: Black Lion Audio PG-1 Type F MKII [High Current Outlet 2] -&gt; Behringer A800 #2 [AC In]</title></path>
+  <rect x="2052.8" y="937.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2080.1" y="947.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-010</text>
+  <rect x="527.7" y="221.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="555.0" y="231.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-010</text>
+  <rect x="2060.4" y="1003.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2087.8" y="1013.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-013</text>
+  <rect x="527.7" y="315.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="555.0" y="325.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-013</text>
+  <rect x="326.7" y="199.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="354.0" y="209.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-006</text>
+  <rect x="518.7" y="447.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="546.0" y="457.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-006</text>
+  <rect x="925.2" y="469.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="952.5" y="479.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-004</text>
+  <rect x="1117.2" y="221.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1144.5" y="231.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-004</text>
+  <rect x="925.2" y="425.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="952.5" y="435.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-002</text>
+  <rect x="1117.2" y="337.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1144.5" y="347.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-002</text>
+  <rect x="1495.2" y="359.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1522.5" y="369.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-016</text>
+  <rect x="1687.2" y="221.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1714.5" y="231.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-016</text>
+  <rect x="1495.2" y="221.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1522.5" y="231.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-008</text>
+  <rect x="1687.2" y="579.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1714.5" y="589.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-008</text>
+  <rect x="1495.2" y="199.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1522.5" y="209.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-007</text>
+  <rect x="1687.2" y="673.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1714.5" y="683.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-007</text>
+  <rect x="1495.2" y="337.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1522.5" y="347.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-015</text>
+  <rect x="1687.2" y="805.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1714.5" y="815.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-015</text>
+  <rect x="1495.2" y="315.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1522.5" y="325.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-014</text>
+  <rect x="1687.2" y="937.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1714.5" y="947.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-014</text>
+  <rect x="2052.5" y="783.0" width="87.0" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2096.0" y="793.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-001 RPS11</text>
+  <rect x="2237.5" y="221.0" width="87.0" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2281.0" y="231.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-001 RPS11</text>
+  <rect x="2065.2" y="981.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2092.5" y="991.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-012</text>
+  <rect x="2257.2" y="353.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2284.5" y="363.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-012</text>
+  <rect x="2065.2" y="959.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2092.5" y="969.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-011</text>
+  <rect x="2257.2" y="485.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2284.5" y="495.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-011</text>
+  <rect x="2065.2" y="915.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2092.5" y="925.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-009</text>
+  <rect x="2257.2" y="617.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2284.5" y="627.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-009</text>
+  <rect x="922.2" y="447.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="949.5" y="457.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-003</text>
+  <rect x="1687.2" y="353.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1714.5" y="363.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-003</text>
+  <rect x="929.0" y="491.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="956.3" y="501.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-005</text>
+  <rect x="1687.2" y="447.0" width="54.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1714.5" y="457.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#a16207">POWER-005</text>
+  <rect x="30.0" y="170.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="30.0" y="170.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="30.0" y1="206.0" x2="300.0" y2="206.0" stroke="#334155" stroke-width="1"/>
+  <text x="40.0" y="184.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="290.0" y="184.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="165.0" y="190.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Meterkast</text>
+  <text x="165.0" y="201.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="287.0" y="220.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Groep 1</text>
+  <circle cx="300.0" cy="217.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="600.0" y="170.0" width="298.5" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="600.0" y="170.0" width="298.5" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="600.0" y1="206.0" x2="898.5" y2="206.0" stroke="#334155" stroke-width="1"/>
+  <text x="610.0" y="184.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="888.5" y="184.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="749.2" y="190.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Audient ASP 880</text>
+  <text x="749.2" y="201.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="613.0" y="220.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="600.0" cy="217.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="600.0" y="264.0" width="298.5" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="600.0" y="264.0" width="298.5" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="600.0" y1="300.0" x2="898.5" y2="300.0" stroke="#334155" stroke-width="1"/>
+  <text x="610.0" y="278.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="888.5" y="278.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="749.2" y="284.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Focusrite Platinum Voice Ma...</text>
+  <text x="749.2" y="295.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="613.0" y="314.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="600.0" cy="311.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="600.0" y="396.0" width="298.5" height="130.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="600.0" y="396.0" width="298.5" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="600.0" y1="432.0" x2="898.5" y2="432.0" stroke="#334155" stroke-width="1"/>
+  <text x="610.0" y="410.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="888.5" y="410.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="749.2" y="416.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Black Lion Audio PG-1 Type ...</text>
+  <text x="749.2" y="427.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">5/5 wired ports</text>
+  <text x="613.0" y="446.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="600.0" cy="443.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="885.5" y="446.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AN Outlet 1</text>
+  <circle cx="898.5" cy="443.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="600.0" y1="454.0" x2="898.5" y2="454.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="885.5" y="468.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">High Current Out...</text>
+  <circle cx="898.5" cy="465.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="600.0" y1="476.0" x2="898.5" y2="476.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="885.5" y="490.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">DIG Outlet 1</text>
+  <circle cx="898.5" cy="487.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="600.0" y1="498.0" x2="898.5" y2="498.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="885.5" y="512.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">High Current Out...</text>
+  <circle cx="898.5" cy="509.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1198.5" y="170.0" width="270.0" height="86.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1198.5" y="170.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1198.5" y1="206.0" x2="1468.5" y2="206.0" stroke="#334155" stroke-width="1"/>
+  <text x="1208.5" y="184.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="1458.5" y="184.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1333.5" y="190.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Power Strip Rack 1 DIG</text>
+  <text x="1333.5" y="201.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">3/3 wired ports</text>
+  <text x="1211.5" y="220.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="1198.5" cy="217.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1455.5" y="220.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Outlet 1</text>
+  <circle cx="1468.5" cy="217.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1198.5" y1="228.0" x2="1468.5" y2="228.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1455.5" y="242.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Outlet 2</text>
+  <circle cx="1468.5" cy="239.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1198.5" y="286.0" width="270.0" height="108.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1198.5" y="286.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1198.5" y1="322.0" x2="1468.5" y2="322.0" stroke="#334155" stroke-width="1"/>
+  <text x="1208.5" y="300.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="1458.5" y="300.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1333.5" y="306.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Power Switcher</text>
+  <text x="1333.5" y="317.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">4/4 wired ports</text>
+  <text x="1211.5" y="336.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="1198.5" cy="333.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1455.5" y="336.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Outlet 1</text>
+  <circle cx="1468.5" cy="333.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1198.5" y1="344.0" x2="1468.5" y2="344.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1455.5" y="358.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Outlet 2</text>
+  <circle cx="1468.5" cy="355.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1198.5" y1="366.0" x2="1468.5" y2="366.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1455.5" y="380.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Outlet 3</text>
+  <circle cx="1468.5" cy="377.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1768.5" y="170.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1768.5" y="170.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1768.5" y1="206.0" x2="2038.5" y2="206.0" stroke="#334155" stroke-width="1"/>
+  <text x="1778.5" y="184.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2028.5" y="184.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1903.5" y="190.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Tascam MS-16</text>
+  <text x="1903.5" y="201.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="1781.5" y="220.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="1768.5" cy="217.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1768.5" y="302.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1768.5" y="302.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1768.5" y1="338.0" x2="2038.5" y2="338.0" stroke="#334155" stroke-width="1"/>
+  <text x="1778.5" y="316.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2028.5" y="316.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1903.5" y="322.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Behringer A800 #1</text>
+  <text x="1903.5" y="333.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="1781.5" y="352.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="1768.5" cy="349.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1768.5" y="396.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1768.5" y="396.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1768.5" y1="432.0" x2="2038.5" y2="432.0" stroke="#334155" stroke-width="1"/>
+  <text x="1778.5" y="410.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2028.5" y="410.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1903.5" y="416.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Behringer A800 #2</text>
+  <text x="1903.5" y="427.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="1781.5" y="446.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="1768.5" cy="443.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1768.5" y="528.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1768.5" y="528.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1768.5" y1="564.0" x2="2038.5" y2="564.0" stroke="#334155" stroke-width="1"/>
+  <text x="1778.5" y="542.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2028.5" y="542.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1903.5" y="548.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Lucid 88192</text>
+  <text x="1903.5" y="559.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="1781.5" y="578.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="1768.5" cy="575.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1768.5" y="622.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1768.5" y="622.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1768.5" y1="658.0" x2="2038.5" y2="658.0" stroke="#334155" stroke-width="1"/>
+  <text x="1778.5" y="636.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2028.5" y="636.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1903.5" y="642.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">SSL AX MADI</text>
+  <text x="1903.5" y="653.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="1781.5" y="672.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="1768.5" cy="669.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1768.5" y="754.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1768.5" y="754.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1768.5" y1="790.0" x2="2038.5" y2="790.0" stroke="#334155" stroke-width="1"/>
+  <text x="1778.5" y="768.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2028.5" y="768.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1903.5" y="774.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Allen &amp; Heath RPS11</text>
+  <text x="1903.5" y="785.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">2/2 wired ports</text>
+  <text x="1781.5" y="804.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="1768.5" cy="801.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="2025.5" y="804.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Console DC Out</text>
+  <circle cx="2038.5" cy="801.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1768.5" y="886.0" width="270.0" height="152.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1768.5" y="886.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1768.5" y1="922.0" x2="2038.5" y2="922.0" stroke="#334155" stroke-width="1"/>
+  <text x="1778.5" y="900.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2028.5" y="900.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1903.5" y="906.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Power Strip Rack 2 AN</text>
+  <text x="1903.5" y="917.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">6/6 wired ports</text>
+  <text x="1781.5" y="936.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="1768.5" cy="933.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="2025.5" y="936.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Outlet 1</text>
+  <circle cx="2038.5" cy="933.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1768.5" y1="944.0" x2="2038.5" y2="944.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="2025.5" y="958.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Outlet 2</text>
+  <circle cx="2038.5" cy="955.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1768.5" y1="966.0" x2="2038.5" y2="966.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="2025.5" y="980.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Outlet 3</text>
+  <circle cx="2038.5" cy="977.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1768.5" y1="988.0" x2="2038.5" y2="988.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="2025.5" y="1002.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Outlet 4</text>
+  <circle cx="2038.5" cy="999.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1768.5" y1="1010.0" x2="2038.5" y2="1010.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="2025.5" y="1024.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Outlet 5</text>
+  <circle cx="2038.5" cy="1021.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="2338.5" y="170.0" width="279.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="2338.5" y="170.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="2338.5" y1="206.0" x2="2617.5" y2="206.0" stroke="#334155" stroke-width="1"/>
+  <text x="2348.5" y="184.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2607.5" y="184.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="2478.0" y="190.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Allen &amp; Heath GS3000</text>
+  <text x="2478.0" y="201.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="2351.5" y="220.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">RPS11 DC In</text>
+  <circle cx="2338.5" cy="217.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="2338.5" y="302.0" width="279.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="2338.5" y="302.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="2338.5" y1="338.0" x2="2617.5" y2="338.0" stroke="#334155" stroke-width="1"/>
+  <text x="2348.5" y="316.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2607.5" y="316.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="2478.0" y="322.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">TC Electronic Clarity M ...</text>
+  <text x="2478.0" y="333.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="2351.5" y="352.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="2338.5" cy="349.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="2338.5" y="434.0" width="279.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="2338.5" y="434.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="2338.5" y1="470.0" x2="2617.5" y2="470.0" stroke="#334155" stroke-width="1"/>
+  <text x="2348.5" y="448.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2607.5" y="448.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="2478.0" y="454.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Mac mini</text>
+  <text x="2478.0" y="465.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="2351.5" y="484.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="2338.5" cy="481.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="2338.5" y="566.0" width="279.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="2338.5" y="566.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="2338.5" y1="602.0" x2="2617.5" y2="602.0" stroke="#334155" stroke-width="1"/>
+  <text x="2348.5" y="580.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2607.5" y="580.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="2478.0" y="586.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Power Strip Rack 3 AN</text>
+  <text x="2478.0" y="597.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="2351.5" y="616.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">AC In</text>
+  <circle cx="2338.5" cy="613.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="26.0" y="149.0" width="69.6" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="28.0" y="158.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Power Source</text>
+  <rect x="596.0" y="149.0" width="133.4" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="598.0" y="158.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Preamps / Channel Strip</text>
+  <rect x="596.0" y="375.0" width="104.4" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="598.0" y="384.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Power Distribution</text>
+  <rect x="1194.5" y="149.0" width="104.4" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="1196.5" y="158.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Power Distribution</text>
+  <rect x="1764.5" y="149.0" width="69.6" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="1766.5" y="158.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Tape Machine</text>
+  <rect x="1764.5" y="281.0" width="156.6" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="1766.5" y="290.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Amplifier / Monitor Control</text>
+  <rect x="1764.5" y="507.0" width="52.2" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="1766.5" y="516.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Converter</text>
+  <rect x="1764.5" y="733.0" width="121.8" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="1766.5" y="742.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">External Power Supply</text>
+  <rect x="1764.5" y="865.0" width="104.4" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="1766.5" y="874.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Power Distribution</text>
+  <rect x="2334.5" y="149.0" width="87.0" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="2336.5" y="158.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Console / Mixer</text>
+  <rect x="2334.5" y="281.0" width="75.4" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="2336.5" y="290.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Outboard / FX</text>
+  <rect x="2334.5" y="413.0" width="104.4" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#0891b2" stroke-width="0.6"/>
+  <text x="2336.5" y="422.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0e7490">Computer / Control</text>
+  <rect x="2334.5" y="545.0" width="104.4" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="2336.5" y="554.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Power Distribution</text>
+  <rect x="2347.5" y="26.0" width="280" height="76.0" rx="8" ry="8" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="2357.5" y="38.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#475569">Connection Types</text>
+  <rect x="2357.5" y="45.0" width="9" height="9" fill="#a16207" rx="1" ry="1"/>
+  <text x="2371.5" y="53.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Power (16)</text>
+  <text x="2357.5" y="80.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">IN ports are left, OUT ports are right</text>
+  <text x="2357.5" y="93.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">Unwired ports are light gray</text>
+</svg>

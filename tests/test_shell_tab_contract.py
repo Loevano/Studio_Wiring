@@ -66,7 +66,15 @@ class ShellTabManifestContractTests(unittest.TestCase):
         self.assertEqual(self.manifest["default_tab"], "routing")
         self.assertEqual(
             set(self.by_key),
-            {"routing", "connection-overview", "devices", "rack-editor", "visibility", "visuals"},
+            {
+                "routing",
+                "audio-routing",
+                "connection-overview",
+                "devices",
+                "rack-editor",
+                "visibility",
+                "visuals",
+            },
         )
         canonical_hosts = [
             tab["key"]
@@ -77,8 +85,13 @@ class ShellTabManifestContractTests(unittest.TestCase):
         routing_url = urlsplit(str(self.by_key["routing"]["src"]))
         self.assertTrue(routing_url.path.endswith("/prototypes/routing_matrix_prototype_compact.html"))
 
+        tab_keys = [str(tab["key"]) for tab in self.tabs]
+        self.assertEqual(tab_keys.index("audio-routing"), tab_keys.index("routing") + 1)
+        audio_routing_url = urlsplit(str(self.by_key["audio-routing"]["src"]))
+        self.assertTrue(audio_routing_url.path.endswith("/routing-matrix/index.html"))
+
     def test_each_sibling_tab_selects_one_unique_embedded_panel(self) -> None:
-        sibling_keys = [key for key in self.by_key if key != "routing"]
+        sibling_keys = [key for key in self.by_key if key not in {"routing", "audio-routing"}]
         selected_panels: list[str] = []
         for key in sibling_keys:
             source = urlsplit(str(self.by_key[key]["src"]))
@@ -106,6 +119,7 @@ class ShellFrameRoutingContractTests(unittest.TestCase):
         load_tab = _function_body(self.shell_js, "loadTab")
         post_selection = _function_body(self.shell_js, "postTabSelectionToFrame")
         self.assertIn("const selection = parseEmbeddedTabSelection(src);", load_tab)
+        self.assertIn('srcUrl.searchParams.set("_shell_ui", EMBEDDED_APP_CACHE_VERSION)', load_tab)
         self.assertIn("postTabSelectionToFrame(selection.tab, selection.matrixSubTab)", load_tab)
         self.assertIn("tabFrame.src = src;", load_tab)
         self.assertIn('type: "studio-shell-main-tab-set"', post_selection)

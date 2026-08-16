@@ -4,7 +4,8 @@ Last updated: 2026-08-12
 
 This is the canonical data-flow reference for:
 - `generate_point_to_point.py` (generator)
-- `routing_matrix.html` (interactive matrix UI)
+- `routing_matrix.html` (generated editor/visual UI)
+- `web/routing-matrix/index.html` (logical audio Routing Matrix UI)
 - `routing_matrix_server.py` (save/regenerate API)
 - JSON model/patch files
 
@@ -32,13 +33,17 @@ This is the canonical data-flow reference for:
   - Provides the transactional save API (`/api/save-transaction`) and regenerate API (`/api/regenerate`).
   - Watches active config files (`model`, `connections`, `routing_rules`) and auto-regenerates visuals on file change.
   - Supports project APIs (`/api/projects`, `/api/create-project`, `/api/save-project`).
+  - Provides separate logical-route APIs (`GET /api/routing` and `POST /api/save-routing`).
   - Keeps the older per-file save and mutable-target endpoints for compatibility only.
 - `routing_matrix.html`
   - Generated device editor, overview, visibility, and visual-preview application.
   - Supports import/export and live-save when server is running.
 - `prototypes/routing_matrix_prototype_compact.html`
-  - Canonical routing-matrix application loaded directly by the shell.
+  - Canonical physical Wiring Matrix application loaded directly by the shell.
   - Owns patch editing, history, dirty state, and transactional patch saves.
+- `web/routing-matrix/index.html`
+  - Logical audio Routing Matrix loaded as its own shell tab.
+  - Owns internal and inter-device audio-route editing, history, dirty state, and route saves.
 
 ### Documentation
 - `README.md`
@@ -56,6 +61,7 @@ This is the canonical data-flow reference for:
 ### Project data (current example)
 - `projects/studio-sidecar/device-configurations/basis.json`
 - `projects/studio-sidecar/patch-configurations/basis/basis.json`
+- `projects/studio-sidecar/routing-configurations/basis/route-default.json`
 - `projects/studio-sidecar/outputs/html/*.html`
 - `projects/studio-sidecar/outputs/svgs/*.svg`
 - `json/routing_rules.json` (global routing/label policy)
@@ -68,6 +74,7 @@ This is the canonical data-flow reference for:
 
 - Studio device/port model: the selected file under `projects/<project>/device-configurations/`
 - Patch links: the selected file under `projects/<project>/patch-configurations/<model>/`
+- Logical audio routes: the selected file under `projects/<project>/routing-configurations/<model>/`
 - Routing behavior/rules: `json/routing_rules.json` (global across projects)
 - UI state persistence: stored in model under `ui_config`
   - Matrix save/pattern settings include:
@@ -82,7 +89,7 @@ This is the canonical data-flow reference for:
 ## 4. Data Flow
 
 ### A) Matrix UI runtime
-1. The shell routes the Routing Matrix tab directly to the canonical matrix application.
+1. The shell routes the Wiring Matrix tab directly to the canonical physical matrix application.
 2. The application reads `/api/config`, then loads the selected project, device config, and patch config.
 3. User edits patch links in browser memory; the generated application owns device and visibility editing.
 4. Normal saves use `POST /api/save-transaction` with an explicit `project_key`, explicit root-relative targets, and expected content hashes.
@@ -90,6 +97,14 @@ This is the canonical data-flow reference for:
 6. Configuration creation and Save As use the same transactional path after the user confirms the exact target and any overwrite.
 7. Server watcher baselines are refreshed after a successful transaction so the same request does not cause a second regeneration.
 8. If files are edited outside the UI, the watcher detects the change and regenerates visuals automatically.
+
+### A1) Logical Routing Matrix runtime
+1. The shell places Routing Matrix immediately after Wiring Matrix and loads `web/routing-matrix/index.html`.
+2. The page loads the selected project, device configuration, and routing configuration through `GET /api/routing`.
+3. A routing configuration contains `{ "version": 1, "routes": [...] }` records with `source_device`, `source_port`, `dest_device`, `dest_port`, and optional `notes`.
+4. Routing endpoints come only from a device's optional `routing_ports`. A route may go within one device from an `in`/`io` endpoint to an `out`/`io` endpoint, or between devices from `out`/`io` to `in`/`io`.
+5. `POST /api/save-routing` writes that route document atomically with an expected hash. It rejects stale, unsafe, invalid, or duplicate-destination writes and does not regenerate physical SVG outputs.
+6. Routing saves never mutate the selected physical patch file.
 
 ### Rack Editor runtime
 
@@ -136,6 +151,9 @@ projects/
       <device-config-stem>/
         patch-default.json
         patch-<variant>.json
+    routing-configurations/
+      <device-config-stem>/
+        route-default.json
     outputs/
       html/
       svgs/

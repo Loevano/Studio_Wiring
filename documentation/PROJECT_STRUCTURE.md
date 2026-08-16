@@ -21,6 +21,9 @@ projects/
         patch-tracking.json
       alt-device-config/
         patch-mixdown.json
+    routing-configurations/
+      studio-model/
+        route-default.json
     outputs/
       html/
         routing_matrix.html
@@ -60,7 +63,9 @@ routing_matrix.html
 ## Save Semantics
 - Save device edits to `device-configurations/studio-model.json`.
 - Save patch edits to one file in `patch-configurations/<device-config-stem>/`.
+- Save logical audio-route edits to one file in `routing-configurations/<device-config-stem>/`.
 - Keep multiple patch files per studio.
+- Route files are independent of patch files: physical wiring remains in patch configurations, while internal/interface routing remains in routing configurations.
 - Generated outputs go to `outputs/html` and `outputs/svgs`.
 
 ## Launch Example

@@ -5,17 +5,22 @@
     </marker>
   </defs>
   <rect x="0" y="0" width="100%" height="100%" fill="#f8fafc"/>
-  <text x="30" y="34" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#0f172a">Studio Sidecar | Computer/Data | 2026-08-12</text>
+  <text x="30" y="34" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#0f172a">Studio Sidecar | Computer/Data | 2026-08-13</text>
   <text x="30" y="54" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Devices: 6 | Cables: 5 | Ports shown: 10/12 wired</text>
   <rect x="20.0" y="176.0" width="290.0" height="102.0" rx="8" ry="8" fill="#ecfeff" fill-opacity="0.55" stroke="#0891b2" stroke-width="1" stroke-dasharray="6 4"/>
   <rect x="630.0" y="176.0" width="302.0" height="168.0" rx="8" ry="8" fill="#ecfeff" fill-opacity="0.55" stroke="#0891b2" stroke-width="1" stroke-dasharray="6 4"/>
   <rect x="1252.0" y="176.0" width="351.6" height="268.0" rx="8" ry="8" fill="#ecfeff" fill-opacity="0.55" stroke="#0891b2" stroke-width="1" stroke-dasharray="6 4"/>
   <rect x="1252.0" y="496.0" width="351.6" height="102.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <path d="M 300.0 231.0 H 407.2 H 469.6 V 319.0 H 532.0 H 640.0" fill="none" stroke="#64748b" stroke-width="1.35" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-002: Mac mini [Thunderbolt Port] -&gt; Thunderbolt Dock [Host/Upstream Port]</title></path>
-  <path d="M 922.0 253.0 H 1030.0 H 1154.0 V 231.0 H 1262.0" fill="none" stroke="#64748b" stroke-width="1.35" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-004: Thunderbolt Dock [USB Port 2] -&gt; Streamdeck #1 [USB-C]</title></path>
-  <path d="M 922.0 275.0 H 1030.0 H 1128.5 V 325.0 H 1154.0 H 1262.0" fill="none" stroke="#64748b" stroke-width="1.35" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-005: Thunderbolt Dock [USB Port 3] -&gt; Streamdeck #2 [USB-C]</title></path>
-  <path d="M 922.0 231.0 H 1030.0 H 1138.5 V 573.0 H 1154.0 H 1262.0" fill="none" stroke="#64748b" stroke-width="1.35" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-003: Thunderbolt Dock [USB Port 1] -&gt; RME UFX III [USB Host (Computer)]</title></path>
-  <path d="M 300.0 253.0 H 408.8 V 419.0 H 1154.0 H 1262.0" fill="none" stroke="#ca8a04" stroke-width="1.35" marker-end="url(#arrow)"><title>COMP-001: Mac mini [HDMI Out] -&gt; TV Screen [HDMI In]</title></path>
+  <path d="M 300.0 231.0 H 407.2 H 469.6 V 319.0 H 532.0 H 640.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 300.0 231.0 H 407.2 H 469.6 V 319.0 H 532.0 H 640.0" fill="none" stroke="#64748b" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-002: Mac mini [Thunderbolt Port] -&gt; Thunderbolt Dock [Host/Upstream Port]</title></path>
+  <path d="M 922.0 253.0 H 1030.0 H 1154.0 V 231.0 H 1262.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 922.0 253.0 H 1030.0 H 1154.0 V 231.0 H 1262.0" fill="none" stroke="#64748b" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-004: Thunderbolt Dock [USB Port 2] -&gt; Streamdeck #1 [USB-C]</title></path>
+  <path d="M 922.0 275.0 H 1030.0 H 1128.5 V 325.0 H 1154.0 H 1262.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 922.0 275.0 H 1030.0 H 1128.5 V 325.0 H 1154.0 H 1262.0" fill="none" stroke="#64748b" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-005: Thunderbolt Dock [USB Port 3] -&gt; Streamdeck #2 [USB-C]</title></path>
+  <path d="M 922.0 231.0 H 1030.0 H 1138.5 V 573.0 H 1154.0 H 1262.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 922.0 231.0 H 1030.0 H 1138.5 V 573.0 H 1154.0 H 1262.0" fill="none" stroke="#64748b" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-003: Thunderbolt Dock [USB Port 1] -&gt; RME UFX III [USB Host (Computer)]</title></path>
+  <path d="M 300.0 253.0 H 408.8 V 419.0 H 1154.0 H 1262.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 300.0 253.0 H 408.8 V 419.0 H 1154.0 H 1262.0" fill="none" stroke="#ca8a04" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>COMP-001: Mac mini [HDMI Out] -&gt; TV Screen [HDMI In]</title></path>
   <rect x="318.2" y="213.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="353.6" y="223.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#64748b">COMP-002 TB4</text>
   <rect x="550.6" y="323.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>

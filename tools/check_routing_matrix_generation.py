@@ -205,12 +205,12 @@ def normalize_matrix_structure(text: str) -> str:
     normalized = text.replace("\r\n", "\n")
     substitutions = (
         (
-            r"(?m)^(\s*<title>).*?( \| Routing Matrix</title>)$",
+            r"(?m)^(\s*<title>).*?( \| Wiring Matrix</title>)$",
             r"\1__NORMALIZED_TITLE__\2",
             "document title",
         ),
         (
-            r"(?m)^(\s*<h1>).*?( \| Routing Matrix</h1>)$",
+            r"(?m)^(\s*<h1>).*?( \| Wiring Matrix</h1>)$",
             r"\1__NORMALIZED_TITLE__\2",
             "page heading",
         ),

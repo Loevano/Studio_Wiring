@@ -8,7 +8,14 @@ from typing import Any, Callable
 
 
 SUPPORTED_VERSION = 1
-DOCUMENT_KINDS = {"project", "model", "patch", "routing_rules", "device_templates"}
+DOCUMENT_KINDS = {
+    "project",
+    "model",
+    "patch",
+    "routing",
+    "routing_rules",
+    "device_templates",
+}
 
 
 @dataclass(frozen=True)
@@ -111,6 +118,44 @@ def _validate_port(port: Any, path: str, issues: list[Issue]) -> str:
                     )
     _optional_string(item, "transport", path, issues)
     if "order" in item and (not isinstance(item["order"], int) or isinstance(item["order"], bool)):
+        _issue(issues, f"{path}.order", "type.integer", "must be an integer")
+    if "group" in item and not isinstance(item["group"], dict):
+        _issue(issues, f"{path}.group", "type.object", "must be an object")
+    _validate_boolean_fields(item, path, issues)
+    return name
+
+
+def _validate_routing_port(port: Any, path: str, issues: list[Issue]) -> str:
+    """Validate a logical routing endpoint, independent of physical wiring ports."""
+    item = _object(port, path, issues)
+    if item is None:
+        return ""
+    name = _required_string(item, "name", path, issues)
+    direction = _required_string(item, "direction", path, issues).lower()
+    if direction and direction not in {"in", "out", "io"}:
+        _issue(
+            issues,
+            f"{path}.direction",
+            "routing_port.direction",
+            "must be one of: in, out, io",
+        )
+    _optional_string(item, "transport", path, issues)
+    if "channel" in item:
+        channel = item["channel"]
+        if (
+            not isinstance(channel, (str, int))
+            or isinstance(channel, bool)
+            or (isinstance(channel, str) and not channel.strip())
+        ):
+            _issue(
+                issues,
+                f"{path}.channel",
+                "routing_port.channel",
+                "must be a non-empty string or integer",
+            )
+    if "order" in item and (
+        not isinstance(item["order"], int) or isinstance(item["order"], bool)
+    ):
         _issue(issues, f"{path}.order", "type.integer", "must be an integer")
     if "group" in item and not isinstance(item["group"], dict):
         _issue(issues, f"{path}.group", "type.object", "must be an object")
@@ -266,6 +311,27 @@ def _validate_device(
                     )
                 else:
                     seen[key] = index
+    routing_ports_value = item.get("routing_ports")
+    if routing_ports_value is not None:
+        routing_ports = _array(routing_ports_value, f"{path}.routing_ports", issues)
+        if routing_ports is not None:
+            seen_routing: dict[str, int] = {}
+            for index, port in enumerate(routing_ports):
+                port_name = _validate_routing_port(
+                    port, f"{path}.routing_ports[{index}]", issues
+                )
+                if not port_name:
+                    continue
+                key = port_name.casefold()
+                if key in seen_routing:
+                    _issue(
+                        issues,
+                        f"{path}.routing_ports[{index}].name",
+                        "routing_port.duplicate",
+                        f"duplicates routing endpoint name at index {seen_routing[key]}",
+                    )
+                else:
+                    seen_routing[key] = index
     return name
 
 
@@ -287,6 +353,8 @@ def validate_project(payload: Any) -> list[Issue]:
             "output_debug_directory",
             "routing_rules",
             "device_templates",
+            "default_routing",
+            "routing_directory",
         ):
             if key in paths:
                 _relative_path(paths[key], f"$.paths.{key}", issues)
@@ -299,6 +367,17 @@ def validate_project(payload: Any) -> list[Issue]:
             if values is not None:
                 for index, patch_path in enumerate(values):
                     _relative_path(patch_path, f"{map_path}[{index}]", issues)
+    routing_map = obj.get("device_routing_map")
+    if routing_map is not None:
+        routing_map_obj = _object(routing_map, "$.device_routing_map", issues)
+        if routing_map_obj is not None:
+            for model_path, routing_paths in routing_map_obj.items():
+                map_path = f"$.device_routing_map[{model_path!r}]"
+                _relative_path(model_path, map_path, issues)
+                values = _array(routing_paths, map_path, issues)
+                if values is not None:
+                    for index, routing_path in enumerate(values):
+                        _relative_path(routing_path, f"{map_path}[{index}]", issues)
     return issues
 
 
@@ -428,6 +507,128 @@ def validate_patch(payload: Any) -> list[Issue]:
     return issues
 
 
+def validate_routing(payload: Any) -> list[Issue]:
+    """Validate the standalone logical-routing document shape."""
+    issues: list[Issue] = []
+    obj = _object(payload, "$", issues)
+    if obj is None:
+        return issues
+    _version(obj, issues)
+    routes = _array(obj.get("routes"), "$.routes", issues)
+    if routes is None:
+        return issues
+    destinations: dict[tuple[str, str], int] = {}
+    for index, route in enumerate(routes):
+        path = f"$.routes[{index}]"
+        item = _object(route, path, issues)
+        if item is None:
+            continue
+        values: dict[str, str] = {}
+        for key in ("source_device", "source_port", "dest_device", "dest_port"):
+            values[key] = _required_string(item, key, path, issues)
+        _optional_string(item, "notes", path, issues)
+        destination = (values["dest_device"].casefold(), values["dest_port"].casefold())
+        if all(destination):
+            if destination in destinations:
+                _issue(
+                    issues,
+                    f"{path}.dest_port",
+                    "routing.destination_duplicate",
+                    "destination endpoint is already assigned at route index "
+                    f"{destinations[destination]}",
+                )
+            else:
+                destinations[destination] = index
+    return issues
+
+
+def validate_routing_against_model(payload: Any, model: Any) -> list[Issue]:
+    """Validate route references and logical direction against a device model.
+
+    Cross-device routes describe transport between devices (out/io to in/io).
+    Same-device routes describe an internal crosspoint (in/io to out/io).
+    """
+    issues = validate_routing(payload)
+    model_obj = model if isinstance(model, dict) else {}
+    endpoint_map: dict[tuple[str, str], tuple[str, str, str]] = {}
+    devices = model_obj.get("devices")
+    if isinstance(devices, list):
+        for device in devices:
+            if not isinstance(device, dict):
+                continue
+            device_name = str(device.get("name") or "").strip()
+            ports = device.get("routing_ports")
+            if not device_name or not isinstance(ports, list):
+                continue
+            for port in ports:
+                if not isinstance(port, dict):
+                    continue
+                port_name = str(port.get("name") or "").strip()
+                direction = str(port.get("direction") or "").strip().lower()
+                if port_name and direction in {"in", "out", "io"}:
+                    endpoint_map[(device_name.casefold(), port_name.casefold())] = (
+                        device_name,
+                        port_name,
+                        direction,
+                    )
+
+    routes = payload.get("routes") if isinstance(payload, dict) else None
+    if not isinstance(routes, list):
+        return issues
+    for index, route in enumerate(routes):
+        if not isinstance(route, dict):
+            continue
+        path = f"$.routes[{index}]"
+        source_key = (
+            str(route.get("source_device") or "").strip().casefold(),
+            str(route.get("source_port") or "").strip().casefold(),
+        )
+        dest_key = (
+            str(route.get("dest_device") or "").strip().casefold(),
+            str(route.get("dest_port") or "").strip().casefold(),
+        )
+        source = endpoint_map.get(source_key)
+        destination = endpoint_map.get(dest_key)
+        if all(source_key) and source is None:
+            _issue(
+                issues,
+                f"{path}.source_port",
+                "routing.endpoint_missing",
+                "source endpoint does not exist in model routing_ports",
+            )
+        if all(dest_key) and destination is None:
+            _issue(
+                issues,
+                f"{path}.dest_port",
+                "routing.endpoint_missing",
+                "destination endpoint does not exist in model routing_ports",
+            )
+        if source is None or destination is None:
+            continue
+        same_device = source_key[0] == dest_key[0]
+        source_allowed = {"in", "io"} if same_device else {"out", "io"}
+        destination_allowed = {"out", "io"} if same_device else {"in", "io"}
+        if source[2] not in source_allowed:
+            expected = "in/io" if same_device else "out/io"
+            _issue(
+                issues,
+                f"{path}.source_port",
+                "routing.source_direction",
+                f"source must be {expected} for a "
+                f"{'same-device' if same_device else 'cross-device'} route",
+            )
+        if destination[2] not in destination_allowed:
+            expected = "out/io" if same_device else "in/io"
+            _issue(
+                issues,
+                f"{path}.dest_port",
+                "routing.destination_direction",
+                f"destination must be {expected} for a "
+                f"{'same-device' if same_device else 'cross-device'} route",
+            )
+    return issues
+
+
 def validate_routing_rules(payload: Any) -> list[Issue]:
     issues: list[Issue] = []
     obj = _object(payload, "$", issues)
@@ -497,6 +698,7 @@ VALIDATORS: dict[str, Callable[[Any], list[Issue]]] = {
     "project": validate_project,
     "model": validate_model,
     "patch": validate_patch,
+    "routing": validate_routing,
     "routing_rules": validate_routing_rules,
     "device_templates": validate_device_templates,
 }

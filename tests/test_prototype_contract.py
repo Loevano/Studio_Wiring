@@ -107,6 +107,51 @@ class PrototypeContractTests(unittest.TestCase):
         )
         self.assertEqual(0, completed.returncode, completed.stderr)
 
+    def test_any_power_connector_pair_is_compatible_without_misclassifying_adc_inputs(self) -> None:
+        node = shutil.which("node")
+        if not node:
+            self.skipTest("Node.js is unavailable; power compatibility check skipped")
+        function_names = (
+            "normalizeFamily",
+            "isPowerPort",
+            "iconForPort",
+            "isSpeakerToAnalogPair",
+            "controlProtocolForPort",
+            "supportsTransportCompatibilityForFamily",
+            "sharedFamilies",
+            "computeLinkCompatibility",
+        )
+        harness = "\n".join(
+            [
+                'const FAMILY_ALL = "ALL";',
+                'const FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK", "POWER", "CONTROL"];',
+                *(extract_function(self.script, name) for name in function_names),
+                "const source = { port: 'Outlet 1', families: ['POWER'], transport: 'SCHUKO' };",
+                "const fixedLead = { port: 'AC In', families: ['AUDIO'], transport: 'CEE 7/7 FIXED' };",
+                "const dcInput = { port: 'DC In', families: [], transport: '24V DC' };",
+                "const adcInput = { port: 'ADC In 1', families: ['AUDIO'], transport: 'DB25' };",
+                "console.log(JSON.stringify({",
+                "  fixed: computeLinkCompatibility('POWER', source, fixedLead),",
+                "  dc: computeLinkCompatibility('ALL', source, dcInput),",
+                "  adcIsPower: isPowerPort(adcInput),",
+                "  adcIcon: iconForPort(adcInput).label,",
+                "}));",
+            ]
+        )
+        completed = subprocess.run(
+            [node, "-"],
+            input=harness,
+            text=True,
+            capture_output=True,
+            cwd=ROOT,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertEqual(
+            '{"fixed":{"family":"POWER","reason":""},"dc":{"family":"POWER","reason":""},"adcIsPower":false,"adcIcon":"ANA"}',
+            completed.stdout.strip(),
+        )
+
     def test_matrix_uses_one_native_scroll_viewport_inside_a_fixed_app(self) -> None:
         """The app owns vertical space; only its matrix viewport owns matrix scrolling."""
         app_rule = re.search(r"\.app\s*\{(?P<body>.*?)\}", self.html, re.DOTALL)
@@ -274,6 +319,41 @@ class PrototypeContractTests(unittest.TestCase):
         self.assertIn('data.type === "studio-shell-autosave-flush"', self.script)
         self.assertIn('type: "studio-shell-autosave-flushed"', self.script)
         self.assertIn('flushPatchAutoSave("window-hidden")', self.script)
+
+    def test_save_target_normalizer_keeps_project_paths_at_server_root(self) -> None:
+        node = shutil.which("node")
+        if not node:
+            self.skipTest("Node.js is unavailable; save-target normalization check skipped")
+        normalizer_start = self.script.index("function normalizeApiTargetPath")
+        normalizer_end = self.script.index("\n    function buildSaveTargetsPayload", normalizer_start)
+        normalizer = self.script[normalizer_start:normalizer_end].strip()
+        harness = "\n".join(
+            [
+                'const window = { location: new URL("http://127.0.0.1:8000/prototypes/routing_matrix_prototype_compact.html") };',
+                normalizer,
+                "console.log(JSON.stringify([",
+                '  normalizeApiTargetPath("projects/studio-sidecar/device-configurations/basis.json"),',
+                '  normalizeApiTargetPath("/projects/studio-sidecar/patch-configurations/basis/basis.json"),',
+                '  normalizeApiTargetPath("../projects/studio-sidecar/outputs/svgs"),',
+                '  normalizeApiTargetPath("https://example.com/projects/foreign/model.json"),',
+                "]));",
+            ]
+        )
+        completed = subprocess.run(
+            [node, "-"],
+            input=harness,
+            text=True,
+            capture_output=True,
+            cwd=ROOT,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertEqual(
+            '["projects/studio-sidecar/device-configurations/basis.json",'
+            '"projects/studio-sidecar/patch-configurations/basis/basis.json",'
+            '"projects/studio-sidecar/outputs/svgs",""]',
+            completed.stdout.strip(),
+        )
 
     def test_matrix_uses_native_table_cells_with_inner_keyboard_controls(self) -> None:
         render = extract_function(self.script, "renderMatrix")

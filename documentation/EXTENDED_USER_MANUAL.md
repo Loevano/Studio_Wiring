@@ -5,6 +5,7 @@ Last updated: 2026-08-12
 ## 1. What You Edit
 - Device model: `device-configurations/studio-model.json`
 - Connections (patch): `patch-configurations/<device-config-stem>/*.json`
+- Logical audio routes: `routing-configurations/<device-config-stem>/*.json`
 
 ## 2. Start The Local App
 From project root:
@@ -63,7 +64,21 @@ python3 generate_point_to_point.py \
 - `Save Patch`: overwrite the currently selected patch config JSON.
 - `Save Patch As` / `Save Patch Config As`: save patch to a new patch config JSON path.
 - Create and Save As actions show the exact destination and require explicit confirmation before overwriting an existing file.
-- The Routing Matrix shows Saved, Saving, or Unsaved state. Undo/redo covers patch edits, including one atomic step for stereo, range, and paint operations.
+- The Wiring Matrix shows Saved, Saving, or Unsaved state. Undo/redo covers patch edits, including one atomic step for stereo, range, and paint operations.
+
+## 6A. Logical Audio Routing
+
+Wiring Matrix documents physical cables. Routing Matrix, immediately after it in the shell, documents audio moving through routing-capable equipment. It stores route rows separately from patch rows, so saving a route never changes a physical connection or regenerates the physical wiring outputs.
+
+Routing endpoints are configured on a device's `routing_ports`. Within a device, an input (or bidirectional endpoint) can feed an output (or bidirectional endpoint). Across devices, only an output/bidirectional endpoint can feed an input/bidirectional endpoint. Sources can fan out; a destination can receive one active route.
+
+Use the span control to create matching channel runs. For example:
+
+1. `Audient ADAT 1-8 OUT` → `SSL ADAT 1-8 IN`.
+2. `SSL ADAT 1-8 IN` → `SSL MADI 25-32 OUT`.
+3. `SSL MADI 25-32 OUT` → `UFX MADI 25-32 IN`.
+
+All three logical signal links are routing entries; physical cables for the first and third hop can additionally be documented in Wiring Matrix. The route file is normally `routing-configurations/<device-config-stem>/route-default.json`. The Routing Matrix discovers route configs from the project, loads one through `GET /api/routing`, and saves its `{ version: 1, routes: [...] }` document through `POST /api/save-routing` with an expected hash. Invalid topology, duplicate destinations, unsafe paths, and stale writes are rejected; stale writes require reload and retry.
 
 ## 7. Patching Constraints
 - `Allow Double Patching` toggle in Routing controls:

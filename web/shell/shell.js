@@ -2,6 +2,7 @@
   "use strict";
 
   const MANIFEST_PATH = "../manifests/tabs.json";
+  const EMBEDDED_APP_CACHE_VERSION = "20260813-autosave-path-fix-1";
   const THEME_STORAGE_KEY = "studioWiringThemeModeV1";
   const AUTO_SAVE_STORAGE_KEY = "studioWiringAutoSaveToDiskV1";
   const AUTO_SAVE_FLUSH_TIMEOUT_MS = 8000;
@@ -321,6 +322,7 @@
       try {
         const srcUrl = new URL(srcBase);
         srcUrl.searchParams.set("theme", activeTheme);
+        srcUrl.searchParams.set("_shell_ui", EMBEDDED_APP_CACHE_VERSION);
         src = srcUrl.toString();
       } catch (_error) {
         // Keep base src.

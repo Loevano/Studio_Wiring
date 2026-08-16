@@ -6,6 +6,8 @@
     "device_model": "device-configurations/studio-model.json",
     "default_patch": "patch-configurations/studio-model/patch-default.json",
     "patch_directory": "patch-configurations",
+    "default_routing": "routing-configurations/studio-model/route-default.json",
+    "routing_directory": "routing-configurations",
     "output_html_directory": "outputs/html",
     "output_svg_directory": "outputs/svgs",
     "output_debug_directory": "outputs/debug"
@@ -13,6 +15,11 @@
   "device_patch_map": {
     "device-configurations/studio-model.json": [
       "patch-configurations/studio-model/patch-default.json"
+    ]
+  },
+  "device_routing_map": {
+    "device-configurations/studio-model.json": [
+      "routing-configurations/studio-model/route-default.json"
     ]
   }
 }

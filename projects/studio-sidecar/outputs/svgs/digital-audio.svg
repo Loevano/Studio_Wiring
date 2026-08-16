@@ -5,14 +5,17 @@
     </marker>
   </defs>
   <rect x="0" y="0" width="100%" height="100%" fill="#f8fafc"/>
-  <text x="30" y="34" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#0f172a">Studio Sidecar | Digital Audio | 2026-08-12</text>
+  <text x="30" y="34" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#0f172a">Studio Sidecar | Digital Audio | 2026-08-13</text>
   <text x="30" y="54" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Devices: 3 | Cables: 3 | Ports shown: 6/13 wired</text>
   <rect x="20.0" y="176.0" width="290.0" height="234.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
   <rect x="670.0" y="176.0" width="299.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
   <rect x="670.0" y="308.0" width="299.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <path d="M 959.0 363.0 H 1049.0 V 430.0 H 12.0 V 319.0 H 30.0" fill="none" stroke="#2563eb" stroke-width="1.35" marker-end="url(#arrow)"><title>DIGI-003: SSL AX MADI [MADI Out Optical] -&gt; RME UFX III [MADI In Optical]</title></path>
-  <path d="M 300.0 231.0 H 420.4 H 434.4 H 559.6 H 680.0" fill="none" stroke="#06b6d4" stroke-width="1.35" marker-end="url(#arrow)"><title>DIGI-001: RME UFX III [OPT 1 (S/PDIF)] -&gt; TC Electronic Clarity M Stereo [Optical In]</title></path>
-  <path d="M 300.0 319.0 H 420.4 H 545.6 V 363.0 H 559.6 H 680.0" fill="none" stroke="#2563eb" stroke-width="1.35" marker-end="url(#arrow)"><title>DIGI-002: RME UFX III [MADI Out Optical] -&gt; SSL AX MADI [MADI In Optical]</title></path>
+  <path d="M 959.0 363.0 H 1049.0 V 430.0 H 12.0 V 319.0 H 30.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 959.0 363.0 H 1049.0 V 430.0 H 12.0 V 319.0 H 30.0" fill="none" stroke="#2563eb" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-003: SSL AX MADI [MADI Out Optical] -&gt; RME UFX III [MADI In Optical]</title></path>
+  <path d="M 300.0 231.0 H 420.4 H 434.4 H 559.6 H 680.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 300.0 231.0 H 420.4 H 434.4 H 559.6 H 680.0" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-001: RME UFX III [OPT 1 (S/PDIF)] -&gt; TC Electronic Clarity M Stereo [Optical In]</title></path>
+  <path d="M 300.0 319.0 H 420.4 H 545.6 V 363.0 H 559.6 H 680.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 300.0 319.0 H 420.4 H 545.6 V 363.0 H 559.6 H 680.0" fill="none" stroke="#2563eb" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-002: RME UFX III [MADI Out Optical] -&gt; SSL AX MADI [MADI In Optical]</title></path>
   <rect x="957.8" y="345.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="1004.0" y="355.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#2563eb">DIGI-003 MADIOPT</text>
   <rect x="39.0" y="323.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>

@@ -1,5 +1,5 @@
 {
-  "generated_on": "2026-08-12",
+  "generated_on": "2026-08-13",
   "title": "Studio Sidecar",
   "rules_file": "/Users/jens/Documents/Coding/Studio_Wiring/json/routing_rules.json",
   "rules": {
@@ -3412,7 +3412,1507 @@
         }
       }
     ],
+    "Power": [
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-010",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "Outlet 2",
+          "x": 2038.5,
+          "y": 955.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "Audient ASP 880",
+          "port": "AC In",
+          "x": 600.0,
+          "y": 217.0,
+          "column": 1
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 2,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 2121.6,
+          "dst_lead_x": 510.0
+        },
+        "points": [
+          {
+            "x": 2038.5,
+            "y": 955.0
+          },
+          {
+            "x": 2121.6,
+            "y": 955.0
+          },
+          {
+            "x": 2121.6,
+            "y": 1076.0
+          },
+          {
+            "x": 490.0,
+            "y": 1076.0
+          },
+          {
+            "x": 490.0,
+            "y": 217.0
+          },
+          {
+            "x": 510.0,
+            "y": 217.0
+          },
+          {
+            "x": 600.0,
+            "y": 217.0
+          }
+        ],
+        "path": "M 2038.5 955.0 H 2121.6 V 1076.0 H 490.0 V 217.0 H 510.0 H 600.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 121.0,
+          "bend_count": 4,
+          "manhattan_length": 2804.7
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-013",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "Outlet 5",
+          "x": 2038.5,
+          "y": 1021.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "Focusrite Platinum Voice Master",
+          "port": "AC In",
+          "x": 600.0,
+          "y": 311.0,
+          "column": 1
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 2,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 2137.0,
+          "dst_lead_x": 510.0
+        },
+        "points": [
+          {
+            "x": 2038.5,
+            "y": 1021.0
+          },
+          {
+            "x": 2137.0,
+            "y": 1021.0
+          },
+          {
+            "x": 2137.0,
+            "y": 1086.0
+          },
+          {
+            "x": 490.0,
+            "y": 1086.0
+          },
+          {
+            "x": 490.0,
+            "y": 311.0
+          },
+          {
+            "x": 510.0,
+            "y": 311.0
+          },
+          {
+            "x": 600.0,
+            "y": 311.0
+          }
+        ],
+        "path": "M 2038.5 1021.0 H 2137.0 V 1086.0 H 490.0 V 311.0 H 510.0 H 600.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 765.0,
+          "outside_band_distance": 65.0,
+          "bend_count": 4,
+          "manhattan_length": 2695.5
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-006",
+        "family": "Power",
+        "source": {
+          "device": "Meterkast",
+          "port": "Groep 1",
+          "x": 300.0,
+          "y": 217.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "Black Lion Audio PG-1 Type F MKII",
+          "port": "AC In",
+          "x": 600.0,
+          "y": 443.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 408.0,
+          "dst_lead_x": 492.0
+        },
+        "points": [
+          {
+            "x": 300.0,
+            "y": 217.0
+          },
+          {
+            "x": 408.0,
+            "y": 217.0
+          },
+          {
+            "x": 450.0,
+            "y": 217.0
+          },
+          {
+            "x": 450.0,
+            "y": 443.0
+          },
+          {
+            "x": 492.0,
+            "y": 443.0
+          },
+          {
+            "x": 600.0,
+            "y": 443.0
+          }
+        ],
+        "path": "M 300.0 217.0 H 408.0 H 450.0 V 443.0 H 492.0 H 600.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 526.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-004",
+        "family": "Power",
+        "source": {
+          "device": "Black Lion Audio PG-1 Type F MKII",
+          "port": "Digital Outlet 1",
+          "x": 898.5,
+          "y": 487.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Power Strip Rack 1 DIG",
+          "port": "AC In",
+          "x": 1198.5,
+          "y": 217.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 2,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1006.5,
+          "dst_lead_x": 1090.5
+        },
+        "points": [
+          {
+            "x": 898.5,
+            "y": 487.0
+          },
+          {
+            "x": 1006.5,
+            "y": 487.0
+          },
+          {
+            "x": 1076.5,
+            "y": 487.0
+          },
+          {
+            "x": 1076.5,
+            "y": 217.0
+          },
+          {
+            "x": 1090.5,
+            "y": 217.0
+          },
+          {
+            "x": 1198.5,
+            "y": 217.0
+          }
+        ],
+        "path": "M 898.5 487.0 H 1006.5 H 1076.5 V 217.0 H 1090.5 H 1198.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 570.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-002",
+        "family": "Power",
+        "source": {
+          "device": "Black Lion Audio PG-1 Type F MKII",
+          "port": "Analog Outlet 1",
+          "x": 898.5,
+          "y": 443.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Power Switcher",
+          "port": "AC In",
+          "x": 1198.5,
+          "y": 333.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 2,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1006.5,
+          "dst_lead_x": 1090.5
+        },
+        "points": [
+          {
+            "x": 898.5,
+            "y": 443.0
+          },
+          {
+            "x": 1006.5,
+            "y": 443.0
+          },
+          {
+            "x": 1076.5,
+            "y": 443.0
+          },
+          {
+            "x": 1076.5,
+            "y": 333.0
+          },
+          {
+            "x": 1090.5,
+            "y": 333.0
+          },
+          {
+            "x": 1198.5,
+            "y": 333.0
+          }
+        ],
+        "path": "M 898.5 443.0 H 1006.5 H 1076.5 V 333.0 H 1090.5 H 1198.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 110.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 410.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-016",
+        "family": "Power",
+        "source": {
+          "device": "Power Switcher",
+          "port": "Outlet 3",
+          "x": 1468.5,
+          "y": 377.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Tascam MS-16",
+          "port": "AC In",
+          "x": 1768.5,
+          "y": 217.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 5,
+          "source_slot_idx": 2,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1576.5,
+          "dst_lead_x": 1660.5
+        },
+        "points": [
+          {
+            "x": 1468.5,
+            "y": 377.0
+          },
+          {
+            "x": 1576.5,
+            "y": 377.0
+          },
+          {
+            "x": 1639.8,
+            "y": 377.0
+          },
+          {
+            "x": 1639.8,
+            "y": 217.0
+          },
+          {
+            "x": 1660.5,
+            "y": 217.0
+          },
+          {
+            "x": 1768.5,
+            "y": 217.0
+          }
+        ],
+        "path": "M 1468.5 377.0 H 1576.5 H 1639.8 V 217.0 H 1660.5 H 1768.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 460.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-008",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 1 DIG",
+          "port": "Outlet 2",
+          "x": 1468.5,
+          "y": 239.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Lucid 88192",
+          "port": "AC In",
+          "x": 1768.5,
+          "y": 575.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 5,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1576.5,
+          "dst_lead_x": 1660.5
+        },
+        "points": [
+          {
+            "x": 1468.5,
+            "y": 239.0
+          },
+          {
+            "x": 1576.5,
+            "y": 239.0
+          },
+          {
+            "x": 1646.5,
+            "y": 239.0
+          },
+          {
+            "x": 1646.5,
+            "y": 575.0
+          },
+          {
+            "x": 1660.5,
+            "y": 575.0
+          },
+          {
+            "x": 1768.5,
+            "y": 575.0
+          }
+        ],
+        "path": "M 1468.5 239.0 H 1576.5 H 1646.5 V 575.0 H 1660.5 H 1768.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 636.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-007",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 1 DIG",
+          "port": "Outlet 1",
+          "x": 1468.5,
+          "y": 217.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "AC In",
+          "x": 1768.5,
+          "y": 669.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 5,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1576.5,
+          "dst_lead_x": 1660.5
+        },
+        "points": [
+          {
+            "x": 1468.5,
+            "y": 217.0
+          },
+          {
+            "x": 1576.5,
+            "y": 217.0
+          },
+          {
+            "x": 1646.5,
+            "y": 217.0
+          },
+          {
+            "x": 1646.5,
+            "y": 669.0
+          },
+          {
+            "x": 1660.5,
+            "y": 669.0
+          },
+          {
+            "x": 1768.5,
+            "y": 669.0
+          }
+        ],
+        "path": "M 1468.5 217.0 H 1576.5 H 1646.5 V 669.0 H 1660.5 H 1768.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 342.7,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 752.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-015",
+        "family": "Power",
+        "source": {
+          "device": "Power Switcher",
+          "port": "Outlet 2",
+          "x": 1468.5,
+          "y": 355.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Allen & Heath RPS11",
+          "port": "AC In",
+          "x": 1768.5,
+          "y": 801.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 5,
+          "source_slot_idx": 1,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1576.5,
+          "dst_lead_x": 1660.5
+        },
+        "points": [
+          {
+            "x": 1468.5,
+            "y": 355.0
+          },
+          {
+            "x": 1576.5,
+            "y": 355.0
+          },
+          {
+            "x": 1646.5,
+            "y": 355.0
+          },
+          {
+            "x": 1646.5,
+            "y": 801.0
+          },
+          {
+            "x": 1660.5,
+            "y": 801.0
+          },
+          {
+            "x": 1768.5,
+            "y": 801.0
+          }
+        ],
+        "path": "M 1468.5 355.0 H 1576.5 H 1646.5 V 801.0 H 1660.5 H 1768.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 534.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 746.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-014",
+        "family": "Power",
+        "source": {
+          "device": "Power Switcher",
+          "port": "Outlet 1",
+          "x": 1468.5,
+          "y": 333.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "AC In",
+          "x": 1768.5,
+          "y": 933.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 4,
+          "route_total": 5,
+          "source_slot_idx": 0,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1576.5,
+          "dst_lead_x": 1660.5
+        },
+        "points": [
+          {
+            "x": 1468.5,
+            "y": 333.0
+          },
+          {
+            "x": 1576.5,
+            "y": 333.0
+          },
+          {
+            "x": 1646.5,
+            "y": 333.0
+          },
+          {
+            "x": 1646.5,
+            "y": 933.0
+          },
+          {
+            "x": 1660.5,
+            "y": 933.0
+          },
+          {
+            "x": 1768.5,
+            "y": 933.0
+          }
+        ],
+        "path": "M 1468.5 333.0 H 1576.5 H 1646.5 V 933.0 H 1660.5 H 1768.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 1024.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 900.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-001",
+        "family": "Power",
+        "source": {
+          "device": "Allen & Heath RPS11",
+          "port": "Console DC Out",
+          "x": 2038.5,
+          "y": 801.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "Allen & Heath GS3000",
+          "port": "RPS11 DC In",
+          "x": 2338.5,
+          "y": 217.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 2153.5,
+          "dst_lead_x": 2223.5
+        },
+        "points": [
+          {
+            "x": 2038.5,
+            "y": 801.0
+          },
+          {
+            "x": 2153.5,
+            "y": 801.0
+          },
+          {
+            "x": 2178.9,
+            "y": 801.0
+          },
+          {
+            "x": 2178.9,
+            "y": 217.0
+          },
+          {
+            "x": 2223.5,
+            "y": 217.0
+          },
+          {
+            "x": 2338.5,
+            "y": 217.0
+          }
+        ],
+        "path": "M 2038.5 801.0 H 2153.5 H 2178.9 V 217.0 H 2223.5 H 2338.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 884.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-012",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "Outlet 4",
+          "x": 2038.5,
+          "y": 999.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "TC Electronic Clarity M Stereo",
+          "port": "AC In",
+          "x": 2338.5,
+          "y": 349.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 4,
+          "source_slot_idx": 2,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 2146.5,
+          "dst_lead_x": 2230.5
+        },
+        "points": [
+          {
+            "x": 2038.5,
+            "y": 999.0
+          },
+          {
+            "x": 2146.5,
+            "y": 999.0
+          },
+          {
+            "x": 2209.8,
+            "y": 999.0
+          },
+          {
+            "x": 2209.8,
+            "y": 349.0
+          },
+          {
+            "x": 2230.5,
+            "y": 349.0
+          },
+          {
+            "x": 2338.5,
+            "y": 349.0
+          }
+        ],
+        "path": "M 2038.5 999.0 H 2146.5 H 2209.8 V 349.0 H 2230.5 H 2338.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 950.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-011",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "Outlet 3",
+          "x": 2038.5,
+          "y": 977.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "Mac mini",
+          "port": "AC In",
+          "x": 2338.5,
+          "y": 481.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 4,
+          "source_slot_idx": 1,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 2146.5,
+          "dst_lead_x": 2230.5
+        },
+        "points": [
+          {
+            "x": 2038.5,
+            "y": 977.0
+          },
+          {
+            "x": 2146.5,
+            "y": 977.0
+          },
+          {
+            "x": 2216.5,
+            "y": 977.0
+          },
+          {
+            "x": 2216.5,
+            "y": 481.0
+          },
+          {
+            "x": 2230.5,
+            "y": 481.0
+          },
+          {
+            "x": 2338.5,
+            "y": 481.0
+          }
+        ],
+        "path": "M 2038.5 977.0 H 2146.5 H 2216.5 V 481.0 H 2230.5 H 2338.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 796.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-009",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "Outlet 1",
+          "x": 2038.5,
+          "y": 933.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "Power Strip Rack 3 AN",
+          "port": "AC In",
+          "x": 2338.5,
+          "y": 613.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 3,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 2146.5,
+          "dst_lead_x": 2230.5
+        },
+        "points": [
+          {
+            "x": 2038.5,
+            "y": 933.0
+          },
+          {
+            "x": 2146.5,
+            "y": 933.0
+          },
+          {
+            "x": 2216.5,
+            "y": 933.0
+          },
+          {
+            "x": 2216.5,
+            "y": 613.0
+          },
+          {
+            "x": 2230.5,
+            "y": 613.0
+          },
+          {
+            "x": 2338.5,
+            "y": 613.0
+          }
+        ],
+        "path": "M 2038.5 933.0 H 2146.5 H 2216.5 V 613.0 H 2230.5 H 2338.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 320.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 620.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-003",
+        "family": "Power",
+        "source": {
+          "device": "Black Lion Audio PG-1 Type F MKII",
+          "port": "High Current Outlet 1",
+          "x": 898.5,
+          "y": 465.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Behringer A800 #1",
+          "port": "AC In",
+          "x": 1768.5,
+          "y": 349.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 2,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1000.4,
+          "dst_lead_x": 1660.5
+        },
+        "points": [
+          {
+            "x": 898.5,
+            "y": 465.0
+          },
+          {
+            "x": 1000.4,
+            "y": 465.0
+          },
+          {
+            "x": 1000.4,
+            "y": 156.0
+          },
+          {
+            "x": 1660.5,
+            "y": 156.0
+          },
+          {
+            "x": 1660.5,
+            "y": 349.0
+          },
+          {
+            "x": 1768.5,
+            "y": 349.0
+          }
+        ],
+        "path": "M 898.5 465.0 H 1000.4 V 156.0 H 1660.5 V 349.0 H 1768.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 193.0,
+          "bend_count": 4,
+          "manhattan_length": 1372.0
+        }
+      },
+      {
+        "layer": "Power",
+        "overview_mode": false,
+        "cable_id": "POWER-005",
+        "family": "Power",
+        "source": {
+          "device": "Black Lion Audio PG-1 Type F MKII",
+          "port": "High Current Outlet 2",
+          "x": 898.5,
+          "y": 509.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Behringer A800 #2",
+          "port": "AC In",
+          "x": 1768.5,
+          "y": 443.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 2,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1014.2,
+          "dst_lead_x": 1660.5
+        },
+        "points": [
+          {
+            "x": 898.5,
+            "y": 509.0
+          },
+          {
+            "x": 1014.2,
+            "y": 509.0
+          },
+          {
+            "x": 1471.5,
+            "y": 509.0
+          },
+          {
+            "x": 1471.5,
+            "y": 443.0
+          },
+          {
+            "x": 1660.5,
+            "y": 443.0
+          },
+          {
+            "x": 1768.5,
+            "y": 443.0
+          }
+        ],
+        "path": "M 898.5 509.0 H 1014.2 H 1471.5 V 443.0 H 1660.5 H 1768.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 936.0
+        }
+      }
+    ],
     "All Connections": [
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-001",
+        "family": "Power",
+        "source": {
+          "device": "Allen & Heath RPS11",
+          "port": "Console DC Out",
+          "x": 1492.3,
+          "y": 943.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Allen & Heath GS3000",
+          "port": "RPS11 DC In",
+          "x": 30,
+          "y": 315.0,
+          "column": 0
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1574.3,
+          "dst_lead_x": 12.0
+        },
+        "points": [
+          {
+            "x": 1492.3,
+            "y": 943.0
+          },
+          {
+            "x": 1574.3,
+            "y": 943.0
+          },
+          {
+            "x": 1574.3,
+            "y": 998.0
+          },
+          {
+            "x": 12.0,
+            "y": 998.0
+          },
+          {
+            "x": 12.0,
+            "y": 315.0
+          },
+          {
+            "x": 12.0,
+            "y": 315.0
+          },
+          {
+            "x": 30,
+            "y": 315.0
+          }
+        ],
+        "path": "M 1492.3 943.0 H 1574.3 V 998.0 H 12.0 V 315.0 H 30.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 55.0,
+          "bend_count": 3,
+          "manhattan_length": 2400.3
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-016",
+        "family": "Power",
+        "source": {
+          "device": "Power Switcher",
+          "port": "Outlet 3",
+          "x": 1492.3,
+          "y": 1235.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Tascam MS-16",
+          "port": "AC In",
+          "x": 30,
+          "y": 953.0,
+          "column": 0
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1576.5,
+          "dst_lead_x": 12.0
+        },
+        "points": [
+          {
+            "x": 1492.3,
+            "y": 1235.0
+          },
+          {
+            "x": 1576.5,
+            "y": 1235.0
+          },
+          {
+            "x": 1576.5,
+            "y": 1522.0
+          },
+          {
+            "x": 12.0,
+            "y": 1522.0
+          },
+          {
+            "x": 12.0,
+            "y": 953.0
+          },
+          {
+            "x": 12.0,
+            "y": 953.0
+          },
+          {
+            "x": 30,
+            "y": 953.0
+          }
+        ],
+        "path": "M 1492.3 1235.0 H 1576.5 V 1522.0 H 12.0 V 953.0 H 30.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 45.0,
+          "outside_band_distance": 287.0,
+          "bend_count": 3,
+          "manhattan_length": 2522.7
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-010",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "Outlet 2",
+          "x": 1492.3,
+          "y": 1351.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Audient ASP 880",
+          "port": "AC In",
+          "x": 30,
+          "y": 1085.0,
+          "column": 0
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1566.2,
+          "dst_lead_x": 12.0
+        },
+        "points": [
+          {
+            "x": 1492.3,
+            "y": 1351.0
+          },
+          {
+            "x": 1566.2,
+            "y": 1351.0
+          },
+          {
+            "x": 1566.2,
+            "y": 1492.0
+          },
+          {
+            "x": 12.0,
+            "y": 1492.0
+          },
+          {
+            "x": 12.0,
+            "y": 1085.0
+          },
+          {
+            "x": 12.0,
+            "y": 1085.0
+          },
+          {
+            "x": 30,
+            "y": 1085.0
+          }
+        ],
+        "path": "M 1492.3 1351.0 H 1566.2 V 1492.0 H 12.0 V 1085.0 H 30.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 407.0,
+          "outside_band_distance": 141.0,
+          "bend_count": 3,
+          "manhattan_length": 2194.0999999999995
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-013",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "Outlet 5",
+          "x": 1492.3,
+          "y": 1417.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Focusrite Platinum Voice Master",
+          "port": "AC In",
+          "x": 30,
+          "y": 1179.0,
+          "column": 0
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 4,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1584.6,
+          "dst_lead_x": 12.0
+        },
+        "points": [
+          {
+            "x": 1492.3,
+            "y": 1417.0
+          },
+          {
+            "x": 1584.6,
+            "y": 1417.0
+          },
+          {
+            "x": 1584.6,
+            "y": 1502.0
+          },
+          {
+            "x": 12.0,
+            "y": 1502.0
+          },
+          {
+            "x": 12.0,
+            "y": 1179.0
+          },
+          {
+            "x": 12.0,
+            "y": 1179.0
+          },
+          {
+            "x": 30,
+            "y": 1179.0
+          }
+        ],
+        "path": "M 1492.3 1417.0 H 1584.6 V 1502.0 H 12.0 V 1179.0 H 30.0",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 636.0,
+          "outside_band_distance": 85.0,
+          "bend_count": 3,
+          "manhattan_length": 2090.9000000000005
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-011",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "Outlet 3",
+          "x": 1492.3,
+          "y": 1373.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Mac mini",
+          "port": "AC In",
+          "x": 615.5,
+          "y": 707.0,
+          "column": 1
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1574.3,
+          "dst_lead_x": 533.5
+        },
+        "points": [
+          {
+            "x": 1492.3,
+            "y": 1373.0
+          },
+          {
+            "x": 1574.3,
+            "y": 1373.0
+          },
+          {
+            "x": 1574.3,
+            "y": 1462.0
+          },
+          {
+            "x": 513.5,
+            "y": 1462.0
+          },
+          {
+            "x": 513.5,
+            "y": 707.0
+          },
+          {
+            "x": 533.5,
+            "y": 707.0
+          },
+          {
+            "x": 615.5,
+            "y": 707.0
+          }
+        ],
+        "path": "M 1492.3 1373.0 H 1574.3 V 1462.0 H 513.5 V 707.0 H 533.5 H 615.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 89.0,
+          "bend_count": 4,
+          "manhattan_length": 2088.8
+        }
+      },
       {
         "layer": "All Connections",
         "overview_mode": true,
@@ -3421,15 +4921,15 @@
         "source": {
           "device": "SSL AX MADI",
           "port": "MADI Out Optical",
-          "x": 2687.4,
-          "y": 675.0,
+          "x": 2702.9,
+          "y": 711.0,
           "column": 4
         },
         "destination": {
           "device": "RME UFX III",
           "port": "MADI In Optical",
-          "x": 1776.8,
-          "y": 411.0,
+          "x": 1792.3,
+          "y": 425.0,
           "column": 3
         },
         "route_mode": "backward_wrap_below",
@@ -3442,49 +4942,49 @@
           "dest_slot_total": 1
         },
         "anchors": {
-          "src_lead_x": 2774.9,
-          "dst_lead_x": 1695.9
+          "src_lead_x": 2790.4,
+          "dst_lead_x": 1711.4
         },
         "points": [
           {
-            "x": 2687.4,
-            "y": 675.0
+            "x": 2702.9,
+            "y": 711.0
           },
           {
-            "x": 2774.9,
-            "y": 675.0
+            "x": 2790.4,
+            "y": 711.0
           },
           {
-            "x": 2774.9,
-            "y": 1006.0
+            "x": 2790.4,
+            "y": 1064.0
           },
           {
-            "x": 1675.9,
-            "y": 1006.0
+            "x": 1691.4,
+            "y": 1064.0
           },
           {
-            "x": 1675.9,
-            "y": 411.0
+            "x": 1691.4,
+            "y": 425.0
           },
           {
-            "x": 1695.9,
-            "y": 411.0
+            "x": 1711.4,
+            "y": 425.0
           },
           {
-            "x": 1776.8,
-            "y": 411.0
+            "x": 1792.3,
+            "y": 425.0
           }
         ],
-        "path": "M 2687.4 675.0 H 2774.9 V 1006.0 H 1675.9 V 411.0 H 1695.9 H 1776.8",
+        "path": "M 2702.9 711.0 H 2790.4 V 1064.0 H 1691.4 V 425.0 H 1711.4 H 1792.3",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
           "different_family_overlap_count": 0,
           "different_family_overlap_len": 0.0,
           "same_family_overlap_len": 0.0,
-          "outside_band_distance": 331.0,
+          "outside_band_distance": 353.0,
           "bend_count": 4,
-          "manhattan_length": 2213.4
+          "manhattan_length": 2279.4
         }
       },
       {
@@ -3495,15 +4995,15 @@
         "source": {
           "device": "Mac mini",
           "port": "Thunderbolt Port",
-          "x": 906.8,
-          "y": 483.0,
+          "x": 922.3,
+          "y": 685.0,
           "column": 1
         },
         "destination": {
           "device": "Thunderbolt Dock",
           "port": "Host/Upstream Port",
-          "x": 600.0,
-          "y": 389.0,
+          "x": 615.5,
+          "y": 403.0,
           "column": 1
         },
         "route_mode": "backward_wrap_below",
@@ -3516,49 +5016,341 @@
           "dest_slot_total": 1
         },
         "anchors": {
-          "src_lead_x": 987.7,
-          "dst_lead_x": 518.0
+          "src_lead_x": 1003.2,
+          "dst_lead_x": 533.5
         },
         "points": [
           {
-            "x": 906.8,
-            "y": 483.0
+            "x": 922.3,
+            "y": 685.0
           },
           {
-            "x": 987.7,
-            "y": 483.0
+            "x": 1003.2,
+            "y": 685.0
           },
           {
-            "x": 987.7,
-            "y": 540.0
+            "x": 1003.2,
+            "y": 742.0
           },
           {
-            "x": 498.0,
-            "y": 540.0
+            "x": 513.5,
+            "y": 742.0
           },
           {
-            "x": 498.0,
-            "y": 389.0
+            "x": 513.5,
+            "y": 403.0
           },
           {
-            "x": 518.0,
-            "y": 389.0
+            "x": 533.5,
+            "y": 403.0
           },
           {
-            "x": 600.0,
-            "y": 389.0
+            "x": 615.5,
+            "y": 403.0
           }
         ],
-        "path": "M 906.8 483.0 H 987.7 V 540.0 H 498.0 V 389.0 H 518.0 H 600.0",
+        "path": "M 922.3 685.0 H 1003.2 V 742.0 H 513.5 V 403.0 H 533.5 H 615.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 1,
+          "different_family_overlap_len": 35.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 57.0,
+          "bend_count": 4,
+          "manhattan_length": 1068.6
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-008",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 1 DIG",
+          "port": "Outlet 2",
+          "x": 1492.3,
+          "y": 1097.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Lucid 88192",
+          "port": "AC In",
+          "x": 1222.3,
+          "y": 811.0,
+          "column": 2
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 3,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1575.4,
+          "dst_lead_x": 1140.3
+        },
+        "points": [
+          {
+            "x": 1492.3,
+            "y": 1097.0
+          },
+          {
+            "x": 1575.4,
+            "y": 1097.0
+          },
+          {
+            "x": 1575.4,
+            "y": 1132.0
+          },
+          {
+            "x": 1120.3,
+            "y": 1132.0
+          },
+          {
+            "x": 1120.3,
+            "y": 811.0
+          },
+          {
+            "x": 1140.3,
+            "y": 811.0
+          },
+          {
+            "x": 1222.3,
+            "y": 811.0
+          }
+        ],
+        "path": "M 1492.3 1097.0 H 1575.4 V 1132.0 H 1120.3 V 811.0 H 1140.3 H 1222.3",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
           "different_family_overlap_count": 0,
           "different_family_overlap_len": 0.0,
           "same_family_overlap_len": 0.0,
-          "outside_band_distance": 57.0,
+          "outside_band_distance": 35.0,
           "bend_count": 4,
-          "manhattan_length": 880.5999999999999
+          "manhattan_length": 996.1999999999998
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-015",
+        "family": "Power",
+        "source": {
+          "device": "Power Switcher",
+          "port": "Outlet 2",
+          "x": 1492.3,
+          "y": 1213.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Allen & Heath RPS11",
+          "port": "AC In",
+          "x": 1222.3,
+          "y": 943.0,
+          "column": 2
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 3,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1579.9,
+          "dst_lead_x": 1140.3
+        },
+        "points": [
+          {
+            "x": 1492.3,
+            "y": 1213.0
+          },
+          {
+            "x": 1579.9,
+            "y": 1213.0
+          },
+          {
+            "x": 1579.9,
+            "y": 1502.0
+          },
+          {
+            "x": 1120.3,
+            "y": 1502.0
+          },
+          {
+            "x": 1120.3,
+            "y": 943.0
+          },
+          {
+            "x": 1140.3,
+            "y": 943.0
+          },
+          {
+            "x": 1222.3,
+            "y": 943.0
+          }
+        ],
+        "path": "M 1492.3 1213.0 H 1579.9 V 1502.0 H 1120.3 V 943.0 H 1140.3 H 1222.3",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 648.6,
+          "outside_band_distance": 289.0,
+          "bend_count": 4,
+          "manhattan_length": 1497.1999999999998
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-014",
+        "family": "Power",
+        "source": {
+          "device": "Power Switcher",
+          "port": "Outlet 1",
+          "x": 1492.3,
+          "y": 1191.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "AC In",
+          "x": 1222.3,
+          "y": 1329.0,
+          "column": 2
+        },
+        "route_mode": "backward_wrap_below",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 3,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1566.5,
+          "dst_lead_x": 1140.3
+        },
+        "points": [
+          {
+            "x": 1492.3,
+            "y": 1191.0
+          },
+          {
+            "x": 1566.5,
+            "y": 1191.0
+          },
+          {
+            "x": 1566.5,
+            "y": 1462.0
+          },
+          {
+            "x": 1120.3,
+            "y": 1462.0
+          },
+          {
+            "x": 1120.3,
+            "y": 1329.0
+          },
+          {
+            "x": 1140.3,
+            "y": 1329.0
+          },
+          {
+            "x": 1222.3,
+            "y": 1329.0
+          }
+        ],
+        "path": "M 1492.3 1191.0 H 1566.5 V 1462.0 H 1120.3 V 1329.0 H 1140.3 H 1222.3",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 690.2,
+          "outside_band_distance": 133.0,
+          "bend_count": 4,
+          "manhattan_length": 1026.4
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-006",
+        "family": "Power",
+        "source": {
+          "device": "Meterkast",
+          "port": "Groep 1",
+          "x": 315.5,
+          "y": 1311.0,
+          "column": 0
+        },
+        "destination": {
+          "device": "Black Lion Audio PG-1 Type F MKII",
+          "port": "AC In",
+          "x": 615.5,
+          "y": 839.0,
+          "column": 1
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 423.5,
+          "dst_lead_x": 507.5
+        },
+        "points": [
+          {
+            "x": 315.5,
+            "y": 1311.0
+          },
+          {
+            "x": 423.5,
+            "y": 1311.0
+          },
+          {
+            "x": 465.5,
+            "y": 1311.0
+          },
+          {
+            "x": 465.5,
+            "y": 839.0
+          },
+          {
+            "x": 507.5,
+            "y": 839.0
+          },
+          {
+            "x": 615.5,
+            "y": 839.0
+          }
+        ],
+        "path": "M 315.5 1311.0 H 423.5 H 465.5 V 839.0 H 507.5 H 615.5",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 772.0
         }
       },
       {
@@ -3569,57 +5361,57 @@
         "source": {
           "device": "Thunderbolt Dock",
           "port": "USB Port 2",
-          "x": 906.8,
-          "y": 323.0,
+          "x": 922.3,
+          "y": 337.0,
           "column": 1
         },
         "destination": {
           "device": "Streamdeck #1",
           "port": "USB-C",
-          "x": 1206.8,
-          "y": 301.0,
+          "x": 1222.3,
+          "y": 315.0,
           "column": 2
         },
         "route_mode": "forward",
         "route_slots": {
           "route_pos": 0,
-          "route_total": 6,
+          "route_total": 8,
           "source_slot_idx": 0,
           "source_slot_total": 3,
           "dest_slot_idx": 0,
           "dest_slot_total": 1
         },
         "anchors": {
-          "src_lead_x": 1026.3,
-          "dst_lead_x": 1087.3
+          "src_lead_x": 1036.3,
+          "dst_lead_x": 1108.3
         },
         "points": [
           {
-            "x": 906.8,
-            "y": 323.0
+            "x": 922.3,
+            "y": 337.0
           },
           {
-            "x": 1026.3,
-            "y": 323.0
+            "x": 1036.3,
+            "y": 337.0
           },
           {
-            "x": 1038.2,
-            "y": 323.0
+            "x": 1055.6,
+            "y": 337.0
           },
           {
-            "x": 1038.2,
-            "y": 301.0
+            "x": 1055.6,
+            "y": 315.0
           },
           {
-            "x": 1087.3,
-            "y": 301.0
+            "x": 1108.3,
+            "y": 315.0
           },
           {
-            "x": 1206.8,
-            "y": 301.0
+            "x": 1222.3,
+            "y": 315.0
           }
         ],
-        "path": "M 906.8 323.0 H 1026.3 H 1038.2 V 301.0 H 1087.3 H 1206.8",
+        "path": "M 922.3 337.0 H 1036.3 H 1055.6 V 315.0 H 1108.3 H 1222.3",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
@@ -3639,57 +5431,57 @@
         "source": {
           "device": "Thunderbolt Dock",
           "port": "USB Port 3",
-          "x": 906.8,
-          "y": 345.0,
+          "x": 922.3,
+          "y": 359.0,
           "column": 1
         },
         "destination": {
           "device": "Streamdeck #2",
           "port": "USB-C",
-          "x": 1206.8,
-          "y": 395.0,
+          "x": 1222.3,
+          "y": 409.0,
           "column": 2
         },
         "route_mode": "forward",
         "route_slots": {
           "route_pos": 1,
-          "route_total": 6,
+          "route_total": 8,
           "source_slot_idx": 1,
           "source_slot_total": 3,
           "dest_slot_idx": 0,
           "dest_slot_total": 1
         },
         "anchors": {
-          "src_lead_x": 1026.3,
-          "dst_lead_x": 1087.3
+          "src_lead_x": 1036.3,
+          "dst_lead_x": 1108.3
         },
         "points": [
           {
-            "x": 906.8,
-            "y": 345.0
+            "x": 922.3,
+            "y": 359.0
           },
           {
-            "x": 1026.3,
-            "y": 345.0
+            "x": 1036.3,
+            "y": 359.0
           },
           {
-            "x": 1056.8,
-            "y": 345.0
+            "x": 1072.3,
+            "y": 359.0
           },
           {
-            "x": 1056.8,
-            "y": 395.0
+            "x": 1072.3,
+            "y": 409.0
           },
           {
-            "x": 1087.3,
-            "y": 395.0
+            "x": 1108.3,
+            "y": 409.0
           },
           {
-            "x": 1206.8,
-            "y": 395.0
+            "x": 1222.3,
+            "y": 409.0
           }
         ],
-        "path": "M 906.8 345.0 H 1026.3 H 1056.8 V 395.0 H 1087.3 H 1206.8",
+        "path": "M 922.3 359.0 H 1036.3 H 1072.3 V 409.0 H 1108.3 H 1222.3",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
@@ -3709,57 +5501,57 @@
         "source": {
           "device": "Thunderbolt Dock",
           "port": "Ethernet Port (RJ45)",
-          "x": 906.8,
-          "y": 367.0,
+          "x": 922.3,
+          "y": 381.0,
           "column": 1
         },
         "destination": {
           "device": "Netgear Unmanaged Switch",
           "port": "Port 1",
-          "x": 1206.8,
-          "y": 621.0,
+          "x": 1222.3,
+          "y": 635.0,
           "column": 2
         },
         "route_mode": "forward",
         "route_slots": {
           "route_pos": 2,
-          "route_total": 6,
+          "route_total": 8,
           "source_slot_idx": 2,
           "source_slot_total": 3,
           "dest_slot_idx": 0,
           "dest_slot_total": 3
         },
         "anchors": {
-          "src_lead_x": 1026.3,
-          "dst_lead_x": 1087.3
+          "src_lead_x": 1036.3,
+          "dst_lead_x": 1108.3
         },
         "points": [
           {
-            "x": 906.8,
-            "y": 367.0
+            "x": 922.3,
+            "y": 381.0
           },
           {
-            "x": 1026.3,
-            "y": 367.0
+            "x": 1036.3,
+            "y": 381.0
           },
           {
-            "x": 1075.4,
-            "y": 367.0
+            "x": 1089.0,
+            "y": 381.0
           },
           {
-            "x": 1075.4,
-            "y": 621.0
+            "x": 1089.0,
+            "y": 635.0
           },
           {
-            "x": 1087.3,
-            "y": 621.0
+            "x": 1108.3,
+            "y": 635.0
           },
           {
-            "x": 1206.8,
-            "y": 621.0
+            "x": 1222.3,
+            "y": 635.0
           }
         ],
-        "path": "M 906.8 367.0 H 1026.3 H 1075.4 V 621.0 H 1087.3 H 1206.8",
+        "path": "M 922.3 381.0 H 1036.3 H 1089.0 V 635.0 H 1108.3 H 1222.3",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
@@ -3774,132 +5566,62 @@
       {
         "layer": "All Connections",
         "overview_mode": true,
-        "cable_id": "COMP-001",
-        "family": "Video",
-        "source": {
-          "device": "Mac mini",
-          "port": "HDMI Out",
-          "x": 906.8,
-          "y": 505.0,
-          "column": 1
-        },
-        "destination": {
-          "device": "TV Screen",
-          "port": "HDMI In",
-          "x": 1206.8,
-          "y": 489.0,
-          "column": 2
-        },
-        "route_mode": "forward",
-        "route_slots": {
-          "route_pos": 3,
-          "route_total": 6,
-          "source_slot_idx": 0,
-          "source_slot_total": 1,
-          "dest_slot_idx": 0,
-          "dest_slot_total": 1
-        },
-        "anchors": {
-          "src_lead_x": 1015.9,
-          "dst_lead_x": 1098.8
-        },
-        "points": [
-          {
-            "x": 906.8,
-            "y": 505.0
-          },
-          {
-            "x": 1015.9,
-            "y": 505.0
-          },
-          {
-            "x": 1015.9,
-            "y": 505.0
-          },
-          {
-            "x": 1015.9,
-            "y": 489.0
-          },
-          {
-            "x": 1098.8,
-            "y": 489.0
-          },
-          {
-            "x": 1206.8,
-            "y": 489.0
-          }
-        ],
-        "path": "M 906.8 505.0 H 1015.9 V 489.0 H 1098.8 H 1206.8",
-        "score": {
-          "box_crossings": 0,
-          "endpoint_crossings": 0,
-          "different_family_overlap_count": 0,
-          "different_family_overlap_len": 0.0,
-          "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 1,
-          "manhattan_length": 316.0
-        }
-      },
-      {
-        "layer": "All Connections",
-        "overview_mode": true,
         "cable_id": "NETWORK-001",
         "family": "Network",
         "source": {
           "device": "Avid S1 #1",
           "port": "Ethernet",
-          "x": 906.8,
-          "y": 599.0,
+          "x": 922.3,
+          "y": 497.0,
           "column": 1
         },
         "destination": {
           "device": "Netgear Unmanaged Switch",
           "port": "Port 2",
-          "x": 1206.8,
-          "y": 643.0,
+          "x": 1222.3,
+          "y": 657.0,
           "column": 2
         },
         "route_mode": "forward",
         "route_slots": {
-          "route_pos": 4,
-          "route_total": 6,
+          "route_pos": 3,
+          "route_total": 8,
           "source_slot_idx": 0,
           "source_slot_total": 1,
           "dest_slot_idx": 1,
           "dest_slot_total": 3
         },
         "anchors": {
-          "src_lead_x": 1026.3,
-          "dst_lead_x": 1087.3
+          "src_lead_x": 1036.3,
+          "dst_lead_x": 1108.3
         },
         "points": [
           {
-            "x": 906.8,
-            "y": 599.0
+            "x": 922.3,
+            "y": 497.0
           },
           {
-            "x": 1026.3,
-            "y": 599.0
+            "x": 1036.3,
+            "y": 497.0
           },
           {
-            "x": 1077.3,
-            "y": 599.0
+            "x": 1070.4,
+            "y": 497.0
           },
           {
-            "x": 1077.3,
-            "y": 643.0
+            "x": 1070.4,
+            "y": 657.0
           },
           {
-            "x": 1087.3,
-            "y": 643.0
+            "x": 1108.3,
+            "y": 657.0
           },
           {
-            "x": 1206.8,
-            "y": 643.0
+            "x": 1222.3,
+            "y": 657.0
           }
         ],
-        "path": "M 906.8 599.0 H 1026.3 H 1077.3 V 643.0 H 1087.3 H 1206.8",
+        "path": "M 922.3 497.0 H 1036.3 H 1070.4 V 657.0 H 1108.3 H 1222.3",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
@@ -3908,7 +5630,77 @@
           "same_family_overlap_len": 0.0,
           "outside_band_distance": 0.0,
           "bend_count": 2,
-          "manhattan_length": 344.0
+          "manhattan_length": 460.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "COMP-001",
+        "family": "Video",
+        "source": {
+          "device": "Mac mini",
+          "port": "HDMI Out",
+          "x": 922.3,
+          "y": 707.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "TV Screen",
+          "port": "HDMI In",
+          "x": 1222.3,
+          "y": 503.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 4,
+          "route_total": 8,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1031.4,
+          "dst_lead_x": 1114.3
+        },
+        "points": [
+          {
+            "x": 922.3,
+            "y": 707.0
+          },
+          {
+            "x": 1031.4,
+            "y": 707.0
+          },
+          {
+            "x": 1031.4,
+            "y": 707.0
+          },
+          {
+            "x": 1031.4,
+            "y": 503.0
+          },
+          {
+            "x": 1114.3,
+            "y": 503.0
+          },
+          {
+            "x": 1222.3,
+            "y": 503.0
+          }
+        ],
+        "path": "M 922.3 707.0 H 1031.4 V 503.0 H 1114.3 H 1222.3",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 1,
+          "manhattan_length": 504.0
         }
       },
       {
@@ -3919,127 +5711,57 @@
         "source": {
           "device": "Avid S1 #2",
           "port": "Ethernet",
-          "x": 906.8,
-          "y": 693.0,
+          "x": 922.3,
+          "y": 591.0,
           "column": 1
         },
         "destination": {
           "device": "Netgear Unmanaged Switch",
           "port": "Port 3",
-          "x": 1206.8,
-          "y": 665.0,
+          "x": 1222.3,
+          "y": 679.0,
           "column": 2
         },
         "route_mode": "forward",
         "route_slots": {
           "route_pos": 5,
-          "route_total": 6,
+          "route_total": 8,
           "source_slot_idx": 0,
           "source_slot_total": 1,
           "dest_slot_idx": 2,
           "dest_slot_total": 3
         },
         "anchors": {
-          "src_lead_x": 1026.3,
-          "dst_lead_x": 1085.3
+          "src_lead_x": 1036.3,
+          "dst_lead_x": 1107.8
         },
         "points": [
           {
-            "x": 906.8,
-            "y": 693.0
+            "x": 922.3,
+            "y": 591.0
           },
           {
-            "x": 1026.3,
-            "y": 693.0
+            "x": 1036.3,
+            "y": 591.0
           },
           {
-            "x": 1044.3,
-            "y": 693.0
+            "x": 1054.3,
+            "y": 591.0
           },
           {
-            "x": 1044.3,
-            "y": 665.0
+            "x": 1054.3,
+            "y": 679.0
           },
           {
-            "x": 1085.3,
-            "y": 665.0
+            "x": 1107.8,
+            "y": 679.0
           },
           {
-            "x": 1206.8,
-            "y": 665.0
+            "x": 1222.3,
+            "y": 679.0
           }
         ],
-        "path": "M 906.8 693.0 H 1026.3 H 1044.3 V 665.0 H 1085.3 H 1206.8",
-        "score": {
-          "box_crossings": 0,
-          "endpoint_crossings": 0,
-          "different_family_overlap_count": 0,
-          "different_family_overlap_len": 0.0,
-          "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 2,
-          "manhattan_length": 328.0
-        }
-      },
-      {
-        "layer": "All Connections",
-        "overview_mode": true,
-        "cable_id": "DIGI-001",
-        "family": "Digital Audio",
-        "source": {
-          "device": "RME UFX III",
-          "port": "OPT 1 (S/PDIF)",
-          "x": 2108.4,
-          "y": 389.0,
-          "column": 3
-        },
-        "destination": {
-          "device": "TC Electronic Clarity M Stereo",
-          "port": "Optical In",
-          "x": 2408.4,
-          "y": 301.0,
-          "column": 4
-        },
-        "route_mode": "forward",
-        "route_slots": {
-          "route_pos": 0,
-          "route_total": 2,
-          "source_slot_idx": 0,
-          "source_slot_total": 2,
-          "dest_slot_idx": 0,
-          "dest_slot_total": 1
-        },
-        "anchors": {
-          "src_lead_x": 2228.8,
-          "dst_lead_x": 2288.0
-        },
-        "points": [
-          {
-            "x": 2108.4,
-            "y": 389.0
-          },
-          {
-            "x": 2228.8,
-            "y": 389.0
-          },
-          {
-            "x": 2234.8,
-            "y": 389.0
-          },
-          {
-            "x": 2234.8,
-            "y": 301.0
-          },
-          {
-            "x": 2288.0,
-            "y": 301.0
-          },
-          {
-            "x": 2408.4,
-            "y": 301.0
-          }
-        ],
-        "path": "M 2108.4 389.0 H 2228.8 H 2234.8 V 301.0 H 2288.0 H 2408.4",
+        "path": "M 922.3 591.0 H 1036.3 H 1054.3 V 679.0 H 1107.8 H 1222.3",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
@@ -4054,62 +5776,62 @@
       {
         "layer": "All Connections",
         "overview_mode": true,
-        "cable_id": "DIGI-002",
-        "family": "MADI",
+        "cable_id": "POWER-004",
+        "family": "Power",
         "source": {
-          "device": "RME UFX III",
-          "port": "MADI Out Optical",
-          "x": 2108.4,
-          "y": 411.0,
-          "column": 3
+          "device": "Black Lion Audio PG-1 Type F MKII",
+          "port": "Digital Outlet 1",
+          "x": 922.3,
+          "y": 883.0,
+          "column": 1
         },
         "destination": {
-          "device": "SSL AX MADI",
-          "port": "MADI In Optical",
-          "x": 2408.4,
-          "y": 433.0,
-          "column": 4
+          "device": "Power Strip Rack 1 DIG",
+          "port": "AC In",
+          "x": 1222.3,
+          "y": 1075.0,
+          "column": 2
         },
         "route_mode": "forward",
         "route_slots": {
-          "route_pos": 1,
-          "route_total": 2,
+          "route_pos": 6,
+          "route_total": 8,
           "source_slot_idx": 1,
           "source_slot_total": 2,
           "dest_slot_idx": 0,
           "dest_slot_total": 1
         },
         "anchors": {
-          "src_lead_x": 2228.8,
-          "dst_lead_x": 2288.0
+          "src_lead_x": 1030.3,
+          "dst_lead_x": 1114.3
         },
         "points": [
           {
-            "x": 2108.4,
-            "y": 411.0
+            "x": 922.3,
+            "y": 883.0
           },
           {
-            "x": 2228.8,
-            "y": 411.0
+            "x": 1030.3,
+            "y": 883.0
           },
           {
-            "x": 2282.0,
-            "y": 411.0
+            "x": 1100.3,
+            "y": 883.0
           },
           {
-            "x": 2282.0,
-            "y": 433.0
+            "x": 1100.3,
+            "y": 1075.0
           },
           {
-            "x": 2288.0,
-            "y": 433.0
+            "x": 1114.3,
+            "y": 1075.0
           },
           {
-            "x": 2408.4,
-            "y": 433.0
+            "x": 1222.3,
+            "y": 1075.0
           }
         ],
-        "path": "M 2108.4 411.0 H 2228.8 H 2282.0 V 433.0 H 2288.0 H 2408.4",
+        "path": "M 922.3 883.0 H 1030.3 H 1100.3 V 1075.0 H 1114.3 H 1222.3",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
@@ -4118,656 +5840,96 @@
           "same_family_overlap_len": 0.0,
           "outside_band_distance": 0.0,
           "bend_count": 2,
-          "manhattan_length": 322.0
+          "manhattan_length": 492.0
         }
       },
       {
         "layer": "All Connections",
         "overview_mode": true,
-        "cable_id": "AUDIO-033",
-        "family": "Analog Audio",
+        "cable_id": "POWER-002",
+        "family": "Power",
         "source": {
-          "device": "SSL AX MADI",
-          "port": "Line Out 1+Line Out 2",
-          "x": 2687.4,
-          "y": 466.0,
-          "column": 4
-        },
-        "destination": {
-          "device": "IMG STAGELINE PPA-100/SW",
-          "port": "HA In 1",
-          "x": 2987.4,
-          "y": 533.0,
-          "column": 5
-        },
-        "route_mode": "forward",
-        "route_slots": {
-          "route_pos": 0,
-          "route_total": 5,
-          "source_slot_idx": 0,
-          "source_slot_total": 5,
-          "dest_slot_idx": 0,
-          "dest_slot_total": 5
-        },
-        "anchors": {
-          "src_lead_x": 2795.4,
-          "dst_lead_x": 2879.4
-        },
-        "points": [
-          {
-            "x": 2687.4,
-            "y": 466.0
-          },
-          {
-            "x": 2795.4,
-            "y": 466.0
-          },
-          {
-            "x": 2815.7,
-            "y": 466.0
-          },
-          {
-            "x": 2815.7,
-            "y": 533.0
-          },
-          {
-            "x": 2879.4,
-            "y": 533.0
-          },
-          {
-            "x": 2987.4,
-            "y": 533.0
-          }
-        ],
-        "path": "M 2687.4 466.0 H 2795.4 H 2815.7 V 533.0 H 2879.4 H 2987.4",
-        "score": {
-          "box_crossings": 0,
-          "endpoint_crossings": 0,
-          "different_family_overlap_count": 0,
-          "different_family_overlap_len": 0.0,
-          "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 2,
-          "manhattan_length": 367.0
-        }
-      },
-      {
-        "layer": "All Connections",
-        "overview_mode": true,
-        "cable_id": "AUDIO-035",
-        "family": "Analog Audio",
-        "source": {
-          "device": "SSL AX MADI",
-          "port": "Line Out 3+Line Out 4",
-          "x": 2687.4,
-          "y": 510.0,
-          "column": 4
-        },
-        "destination": {
-          "device": "IMG STAGELINE PPA-100/SW",
-          "port": "HA In 2",
-          "x": 2987.4,
-          "y": 555.0,
-          "column": 5
-        },
-        "route_mode": "forward",
-        "route_slots": {
-          "route_pos": 1,
-          "route_total": 5,
-          "source_slot_idx": 1,
-          "source_slot_total": 5,
-          "dest_slot_idx": 1,
-          "dest_slot_total": 5
-        },
-        "anchors": {
-          "src_lead_x": 2795.4,
-          "dst_lead_x": 2879.4
-        },
-        "points": [
-          {
-            "x": 2687.4,
-            "y": 510.0
-          },
-          {
-            "x": 2795.4,
-            "y": 510.0
-          },
-          {
-            "x": 2826.6,
-            "y": 510.0
-          },
-          {
-            "x": 2826.6,
-            "y": 555.0
-          },
-          {
-            "x": 2879.4,
-            "y": 555.0
-          },
-          {
-            "x": 2987.4,
-            "y": 555.0
-          }
-        ],
-        "path": "M 2687.4 510.0 H 2795.4 H 2826.6 V 555.0 H 2879.4 H 2987.4",
-        "score": {
-          "box_crossings": 0,
-          "endpoint_crossings": 0,
-          "different_family_overlap_count": 0,
-          "different_family_overlap_len": 0.0,
-          "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 2,
-          "manhattan_length": 345.0
-        }
-      },
-      {
-        "layer": "All Connections",
-        "overview_mode": true,
-        "cable_id": "AUDIO-037",
-        "family": "Analog Audio",
-        "source": {
-          "device": "SSL AX MADI",
-          "port": "Line Out 5+Line Out 6",
-          "x": 2687.4,
-          "y": 554.0,
-          "column": 4
-        },
-        "destination": {
-          "device": "IMG STAGELINE PPA-100/SW",
-          "port": "HA In 3",
-          "x": 2987.4,
-          "y": 577.0,
-          "column": 5
-        },
-        "route_mode": "forward",
-        "route_slots": {
-          "route_pos": 2,
-          "route_total": 5,
-          "source_slot_idx": 2,
-          "source_slot_total": 5,
-          "dest_slot_idx": 2,
-          "dest_slot_total": 5
-        },
-        "anchors": {
-          "src_lead_x": 2795.4,
-          "dst_lead_x": 2879.4
-        },
-        "points": [
-          {
-            "x": 2687.4,
-            "y": 554.0
-          },
-          {
-            "x": 2795.4,
-            "y": 554.0
-          },
-          {
-            "x": 2837.4,
-            "y": 554.0
-          },
-          {
-            "x": 2837.4,
-            "y": 577.0
-          },
-          {
-            "x": 2879.4,
-            "y": 577.0
-          },
-          {
-            "x": 2987.4,
-            "y": 577.0
-          }
-        ],
-        "path": "M 2687.4 554.0 H 2795.4 H 2837.4 V 577.0 H 2879.4 H 2987.4",
-        "score": {
-          "box_crossings": 0,
-          "endpoint_crossings": 0,
-          "different_family_overlap_count": 0,
-          "different_family_overlap_len": 0.0,
-          "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 2,
-          "manhattan_length": 323.0
-        }
-      },
-      {
-        "layer": "All Connections",
-        "overview_mode": true,
-        "cable_id": "AUDIO-039",
-        "family": "Analog Audio",
-        "source": {
-          "device": "SSL AX MADI",
-          "port": "Line Out 7+Line Out 8",
-          "x": 2687.4,
-          "y": 598.0,
-          "column": 4
-        },
-        "destination": {
-          "device": "IMG STAGELINE PPA-100/SW",
-          "port": "HA In 4",
-          "x": 2987.4,
-          "y": 599.0,
-          "column": 5
-        },
-        "route_mode": "forward",
-        "route_slots": {
-          "route_pos": 3,
-          "route_total": 5,
-          "source_slot_idx": 3,
-          "source_slot_total": 5,
-          "dest_slot_idx": 3,
-          "dest_slot_total": 5
-        },
-        "anchors": {
-          "src_lead_x": 2795.4,
-          "dst_lead_x": 2879.4
-        },
-        "points": [
-          {
-            "x": 2687.4,
-            "y": 598.0
-          },
-          {
-            "x": 2795.4,
-            "y": 598.0
-          },
-          {
-            "x": 2848.2,
-            "y": 598.0
-          },
-          {
-            "x": 2848.2,
-            "y": 599.0
-          },
-          {
-            "x": 2879.4,
-            "y": 599.0
-          },
-          {
-            "x": 2987.4,
-            "y": 599.0
-          }
-        ],
-        "path": "M 2687.4 598.0 H 2795.4 H 2848.2 V 599.0 H 2879.4 H 2987.4",
-        "score": {
-          "box_crossings": 0,
-          "endpoint_crossings": 0,
-          "different_family_overlap_count": 0,
-          "different_family_overlap_len": 0.0,
-          "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 2,
-          "manhattan_length": 301.0
-        }
-      },
-      {
-        "layer": "All Connections",
-        "overview_mode": true,
-        "cable_id": "AUDIO-041",
-        "family": "Analog Audio",
-        "source": {
-          "device": "SSL AX MADI",
-          "port": "Line Out 9+Line Out 10",
-          "x": 2687.4,
-          "y": 642.0,
-          "column": 4
-        },
-        "destination": {
-          "device": "IMG STAGELINE PPA-100/SW",
-          "port": "HA In 5",
-          "x": 2987.4,
-          "y": 621.0,
-          "column": 5
-        },
-        "route_mode": "forward",
-        "route_slots": {
-          "route_pos": 4,
-          "route_total": 5,
-          "source_slot_idx": 4,
-          "source_slot_total": 5,
-          "dest_slot_idx": 4,
-          "dest_slot_total": 5
-        },
-        "anchors": {
-          "src_lead_x": 2795.4,
-          "dst_lead_x": 2879.4
-        },
-        "points": [
-          {
-            "x": 2687.4,
-            "y": 642.0
-          },
-          {
-            "x": 2795.4,
-            "y": 642.0
-          },
-          {
-            "x": 2859.1,
-            "y": 642.0
-          },
-          {
-            "x": 2859.1,
-            "y": 621.0
-          },
-          {
-            "x": 2879.4,
-            "y": 621.0
-          },
-          {
-            "x": 2987.4,
-            "y": 621.0
-          }
-        ],
-        "path": "M 2687.4 642.0 H 2795.4 H 2859.1 V 621.0 H 2879.4 H 2987.4",
-        "score": {
-          "box_crossings": 0,
-          "endpoint_crossings": 0,
-          "different_family_overlap_count": 0,
-          "different_family_overlap_len": 0.0,
-          "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 2,
-          "manhattan_length": 321.0
-        }
-      },
-      {
-        "layer": "All Connections",
-        "overview_mode": true,
-        "cable_id": "AUDIO-025",
-        "family": "Speaker",
-        "source": {
-          "device": "Behringer A800 #1",
-          "port": "Speaker Out L",
-          "x": 3257.4,
-          "y": 301.0,
-          "column": 5
-        },
-        "destination": {
-          "device": "Tannoy System 10",
-          "port": "Speaker Input L",
-          "x": 3557.4,
-          "y": 301.0,
-          "column": 6
-        },
-        "route_mode": "forward",
-        "route_slots": {
-          "route_pos": 0,
-          "route_total": 4,
-          "source_slot_idx": 0,
-          "source_slot_total": 2,
-          "dest_slot_idx": 0,
-          "dest_slot_total": 2
-        },
-        "anchors": {
-          "src_lead_x": 3367.0,
-          "dst_lead_x": 3447.8
-        },
-        "points": [
-          {
-            "x": 3257.4,
-            "y": 301.0
-          },
-          {
-            "x": 3367.0,
-            "y": 301.0
-          },
-          {
-            "x": 3381.0,
-            "y": 301.0
-          },
-          {
-            "x": 3381.0,
-            "y": 301.0
-          },
-          {
-            "x": 3447.8,
-            "y": 301.0
-          },
-          {
-            "x": 3557.4,
-            "y": 301.0
-          }
-        ],
-        "path": "M 3257.4 301.0 H 3367.0 H 3381.0 H 3447.8 H 3557.4",
-        "score": {
-          "box_crossings": 0,
-          "endpoint_crossings": 0,
-          "different_family_overlap_count": 0,
-          "different_family_overlap_len": 0.0,
-          "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 0,
-          "manhattan_length": 300.0
-        }
-      },
-      {
-        "layer": "All Connections",
-        "overview_mode": true,
-        "cable_id": "AUDIO-026",
-        "family": "Speaker",
-        "source": {
-          "device": "Behringer A800 #1",
-          "port": "Speaker Out R",
-          "x": 3257.4,
-          "y": 323.0,
-          "column": 5
-        },
-        "destination": {
-          "device": "Tannoy System 10",
-          "port": "Speaker Input R",
-          "x": 3557.4,
-          "y": 323.0,
-          "column": 6
-        },
-        "route_mode": "forward",
-        "route_slots": {
-          "route_pos": 1,
-          "route_total": 4,
-          "source_slot_idx": 1,
-          "source_slot_total": 2,
-          "dest_slot_idx": 1,
-          "dest_slot_total": 2
-        },
-        "anchors": {
-          "src_lead_x": 3367.0,
-          "dst_lead_x": 3447.8
-        },
-        "points": [
-          {
-            "x": 3257.4,
-            "y": 323.0
-          },
-          {
-            "x": 3367.0,
-            "y": 323.0
-          },
-          {
-            "x": 3433.8,
-            "y": 323.0
-          },
-          {
-            "x": 3433.8,
-            "y": 323.0
-          },
-          {
-            "x": 3447.8,
-            "y": 323.0
-          },
-          {
-            "x": 3557.4,
-            "y": 323.0
-          }
-        ],
-        "path": "M 3257.4 323.0 H 3367.0 H 3433.8 H 3447.8 H 3557.4",
-        "score": {
-          "box_crossings": 0,
-          "endpoint_crossings": 0,
-          "different_family_overlap_count": 0,
-          "different_family_overlap_len": 0.0,
-          "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 0,
-          "manhattan_length": 300.0
-        }
-      },
-      {
-        "layer": "All Connections",
-        "overview_mode": true,
-        "cable_id": "AUDIO-027",
-        "family": "Speaker",
-        "source": {
-          "device": "Behringer A800 #2",
-          "port": "Speaker Out L",
-          "x": 3257.4,
-          "y": 417.0,
-          "column": 5
-        },
-        "destination": {
-          "device": "ATC SCM 11",
-          "port": "Speaker Input L",
-          "x": 3557.4,
-          "y": 417.0,
-          "column": 6
-        },
-        "route_mode": "forward",
-        "route_slots": {
-          "route_pos": 2,
-          "route_total": 4,
-          "source_slot_idx": 0,
-          "source_slot_total": 2,
-          "dest_slot_idx": 0,
-          "dest_slot_total": 2
-        },
-        "anchors": {
-          "src_lead_x": 3367.0,
-          "dst_lead_x": 3447.8
-        },
-        "points": [
-          {
-            "x": 3257.4,
-            "y": 417.0
-          },
-          {
-            "x": 3367.0,
-            "y": 417.0
-          },
-          {
-            "x": 3381.0,
-            "y": 417.0
-          },
-          {
-            "x": 3381.0,
-            "y": 417.0
-          },
-          {
-            "x": 3447.8,
-            "y": 417.0
-          },
-          {
-            "x": 3557.4,
-            "y": 417.0
-          }
-        ],
-        "path": "M 3257.4 417.0 H 3367.0 H 3381.0 H 3447.8 H 3557.4",
-        "score": {
-          "box_crossings": 0,
-          "endpoint_crossings": 0,
-          "different_family_overlap_count": 0,
-          "different_family_overlap_len": 0.0,
-          "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 0,
-          "manhattan_length": 300.0
-        }
-      },
-      {
-        "layer": "All Connections",
-        "overview_mode": true,
-        "cable_id": "AUDIO-028",
-        "family": "Speaker",
-        "source": {
-          "device": "Behringer A800 #2",
-          "port": "Speaker Out R",
-          "x": 3257.4,
-          "y": 439.0,
-          "column": 5
-        },
-        "destination": {
-          "device": "ATC SCM 11",
-          "port": "Speaker Input R",
-          "x": 3557.4,
-          "y": 439.0,
-          "column": 6
-        },
-        "route_mode": "forward",
-        "route_slots": {
-          "route_pos": 3,
-          "route_total": 4,
-          "source_slot_idx": 1,
-          "source_slot_total": 2,
-          "dest_slot_idx": 1,
-          "dest_slot_total": 2
-        },
-        "anchors": {
-          "src_lead_x": 3367.0,
-          "dst_lead_x": 3447.8
-        },
-        "points": [
-          {
-            "x": 3257.4,
-            "y": 439.0
-          },
-          {
-            "x": 3367.0,
-            "y": 439.0
-          },
-          {
-            "x": 3433.8,
-            "y": 439.0
-          },
-          {
-            "x": 3433.8,
-            "y": 439.0
-          },
-          {
-            "x": 3447.8,
-            "y": 439.0
-          },
-          {
-            "x": 3557.4,
-            "y": 439.0
-          }
-        ],
-        "path": "M 3257.4 439.0 H 3367.0 H 3433.8 H 3447.8 H 3557.4",
-        "score": {
-          "box_crossings": 0,
-          "endpoint_crossings": 0,
-          "different_family_overlap_count": 0,
-          "different_family_overlap_len": 0.0,
-          "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 0,
-          "manhattan_length": 300.0
-        }
-      },
-      {
-        "layer": "All Connections",
-        "overview_mode": true,
-        "cable_id": "COMP-003",
-        "family": "Computer/Data",
-        "source": {
-          "device": "Thunderbolt Dock",
-          "port": "USB Port 1",
-          "x": 906.8,
-          "y": 301.0,
+          "device": "Black Lion Audio PG-1 Type F MKII",
+          "port": "Analog Outlet 1",
+          "x": 922.3,
+          "y": 839.0,
           "column": 1
         },
         "destination": {
-          "device": "RME UFX III",
-          "port": "USB Host (Computer)",
-          "x": 1776.8,
-          "y": 433.0,
+          "device": "Power Switcher",
+          "port": "AC In",
+          "x": 1222.3,
+          "y": 1191.0,
+          "column": 2
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 7,
+          "route_total": 8,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1030.3,
+          "dst_lead_x": 1114.3
+        },
+        "points": [
+          {
+            "x": 922.3,
+            "y": 839.0
+          },
+          {
+            "x": 1030.3,
+            "y": 839.0
+          },
+          {
+            "x": 1100.3,
+            "y": 839.0
+          },
+          {
+            "x": 1100.3,
+            "y": 1191.0
+          },
+          {
+            "x": 1114.3,
+            "y": 1191.0
+          },
+          {
+            "x": 1222.3,
+            "y": 1191.0
+          }
+        ],
+        "path": "M 922.3 839.0 H 1030.3 H 1100.3 V 1191.0 H 1114.3 H 1222.3",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 192.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 652.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-009",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "Outlet 1",
+          "x": 1492.3,
+          "y": 1329.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "Power Strip Rack 3 AN",
+          "port": "AC In",
+          "x": 1792.3,
+          "y": 579.0,
           "column": 3
         },
         "route_mode": "forward",
@@ -4780,36 +5942,876 @@
           "dest_slot_total": 1
         },
         "anchors": {
-          "src_lead_x": 1011.5,
-          "dst_lead_x": 1667.7
+          "src_lead_x": 1595.9,
+          "dst_lead_x": 1684.3
         },
         "points": [
           {
-            "x": 906.8,
-            "y": 301.0
+            "x": 1492.3,
+            "y": 1329.0
           },
           {
-            "x": 1011.5,
-            "y": 301.0
+            "x": 1595.9,
+            "y": 1329.0
           },
           {
-            "x": 1011.5,
-            "y": 252.0
+            "x": 1640.1,
+            "y": 1329.0
           },
           {
-            "x": 1667.7,
-            "y": 252.0
+            "x": 1640.1,
+            "y": 579.0
           },
           {
-            "x": 1667.7,
-            "y": 433.0
+            "x": 1684.3,
+            "y": 579.0
           },
           {
-            "x": 1776.8,
-            "y": 433.0
+            "x": 1792.3,
+            "y": 579.0
           }
         ],
-        "path": "M 906.8 301.0 H 1011.5 V 252.0 H 1667.7 V 433.0 H 1776.8",
+        "path": "M 1492.3 1329.0 H 1595.9 H 1640.1 V 579.0 H 1684.3 H 1792.3",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 1050.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "DIGI-001",
+        "family": "Digital Audio",
+        "source": {
+          "device": "RME UFX III",
+          "port": "OPT 1 (S/PDIF)",
+          "x": 2123.9,
+          "y": 403.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "TC Electronic Clarity M Stereo",
+          "port": "Optical In",
+          "x": 2423.9,
+          "y": 337.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 2,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 2244.3,
+          "dst_lead_x": 2303.5
+        },
+        "points": [
+          {
+            "x": 2123.9,
+            "y": 403.0
+          },
+          {
+            "x": 2244.3,
+            "y": 403.0
+          },
+          {
+            "x": 2250.3,
+            "y": 403.0
+          },
+          {
+            "x": 2250.3,
+            "y": 337.0
+          },
+          {
+            "x": 2303.5,
+            "y": 337.0
+          },
+          {
+            "x": 2423.9,
+            "y": 337.0
+          }
+        ],
+        "path": "M 2123.9 403.0 H 2244.3 H 2250.3 V 337.0 H 2303.5 H 2423.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 366.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "DIGI-002",
+        "family": "MADI",
+        "source": {
+          "device": "RME UFX III",
+          "port": "MADI Out Optical",
+          "x": 2123.9,
+          "y": 425.0,
+          "column": 3
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "MADI In Optical",
+          "x": 2423.9,
+          "y": 469.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 2,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 2244.3,
+          "dst_lead_x": 2303.5
+        },
+        "points": [
+          {
+            "x": 2123.9,
+            "y": 425.0
+          },
+          {
+            "x": 2244.3,
+            "y": 425.0
+          },
+          {
+            "x": 2297.5,
+            "y": 425.0
+          },
+          {
+            "x": 2297.5,
+            "y": 469.0
+          },
+          {
+            "x": 2303.5,
+            "y": 469.0
+          },
+          {
+            "x": 2423.9,
+            "y": 469.0
+          }
+        ],
+        "path": "M 2123.9 425.0 H 2244.3 H 2297.5 V 469.0 H 2303.5 H 2423.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 344.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-033",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 1+Line Out 2",
+          "x": 2702.9,
+          "y": 502.0,
+          "column": 4
+        },
+        "destination": {
+          "device": "IMG STAGELINE PPA-100/SW",
+          "port": "HA In 1",
+          "x": 3002.9,
+          "y": 315.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 5,
+          "source_slot_idx": 0,
+          "source_slot_total": 5,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 2810.9,
+          "dst_lead_x": 2894.9
+        },
+        "points": [
+          {
+            "x": 2702.9,
+            "y": 502.0
+          },
+          {
+            "x": 2810.9,
+            "y": 502.0
+          },
+          {
+            "x": 2831.2,
+            "y": 502.0
+          },
+          {
+            "x": 2831.2,
+            "y": 315.0
+          },
+          {
+            "x": 2894.9,
+            "y": 315.0
+          },
+          {
+            "x": 3002.9,
+            "y": 315.0
+          }
+        ],
+        "path": "M 2702.9 502.0 H 2810.9 H 2831.2 V 315.0 H 2894.9 H 3002.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 487.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-035",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 3+Line Out 4",
+          "x": 2702.9,
+          "y": 546.0,
+          "column": 4
+        },
+        "destination": {
+          "device": "IMG STAGELINE PPA-100/SW",
+          "port": "HA In 2",
+          "x": 3002.9,
+          "y": 337.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 5,
+          "source_slot_idx": 1,
+          "source_slot_total": 5,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 2810.9,
+          "dst_lead_x": 2894.9
+        },
+        "points": [
+          {
+            "x": 2702.9,
+            "y": 546.0
+          },
+          {
+            "x": 2810.9,
+            "y": 546.0
+          },
+          {
+            "x": 2842.1,
+            "y": 546.0
+          },
+          {
+            "x": 2842.1,
+            "y": 337.0
+          },
+          {
+            "x": 2894.9,
+            "y": 337.0
+          },
+          {
+            "x": 3002.9,
+            "y": 337.0
+          }
+        ],
+        "path": "M 2702.9 546.0 H 2810.9 H 2842.1 V 337.0 H 2894.9 H 3002.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 509.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-037",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 5+Line Out 6",
+          "x": 2702.9,
+          "y": 590.0,
+          "column": 4
+        },
+        "destination": {
+          "device": "IMG STAGELINE PPA-100/SW",
+          "port": "HA In 3",
+          "x": 3002.9,
+          "y": 359.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 5,
+          "source_slot_idx": 2,
+          "source_slot_total": 5,
+          "dest_slot_idx": 2,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 2810.9,
+          "dst_lead_x": 2894.9
+        },
+        "points": [
+          {
+            "x": 2702.9,
+            "y": 590.0
+          },
+          {
+            "x": 2810.9,
+            "y": 590.0
+          },
+          {
+            "x": 2852.9,
+            "y": 590.0
+          },
+          {
+            "x": 2852.9,
+            "y": 359.0
+          },
+          {
+            "x": 2894.9,
+            "y": 359.0
+          },
+          {
+            "x": 3002.9,
+            "y": 359.0
+          }
+        ],
+        "path": "M 2702.9 590.0 H 2810.9 H 2852.9 V 359.0 H 2894.9 H 3002.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 531.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-039",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 7+Line Out 8",
+          "x": 2702.9,
+          "y": 634.0,
+          "column": 4
+        },
+        "destination": {
+          "device": "IMG STAGELINE PPA-100/SW",
+          "port": "HA In 4",
+          "x": 3002.9,
+          "y": 381.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 5,
+          "source_slot_idx": 3,
+          "source_slot_total": 5,
+          "dest_slot_idx": 3,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 2810.9,
+          "dst_lead_x": 2894.9
+        },
+        "points": [
+          {
+            "x": 2702.9,
+            "y": 634.0
+          },
+          {
+            "x": 2810.9,
+            "y": 634.0
+          },
+          {
+            "x": 2863.7,
+            "y": 634.0
+          },
+          {
+            "x": 2863.7,
+            "y": 381.0
+          },
+          {
+            "x": 2894.9,
+            "y": 381.0
+          },
+          {
+            "x": 3002.9,
+            "y": 381.0
+          }
+        ],
+        "path": "M 2702.9 634.0 H 2810.9 H 2863.7 V 381.0 H 2894.9 H 3002.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 553.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-041",
+        "family": "Analog Audio",
+        "source": {
+          "device": "SSL AX MADI",
+          "port": "Line Out 9+Line Out 10",
+          "x": 2702.9,
+          "y": 678.0,
+          "column": 4
+        },
+        "destination": {
+          "device": "IMG STAGELINE PPA-100/SW",
+          "port": "HA In 5",
+          "x": 3002.9,
+          "y": 403.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 4,
+          "route_total": 5,
+          "source_slot_idx": 4,
+          "source_slot_total": 5,
+          "dest_slot_idx": 4,
+          "dest_slot_total": 5
+        },
+        "anchors": {
+          "src_lead_x": 2810.9,
+          "dst_lead_x": 2894.9
+        },
+        "points": [
+          {
+            "x": 2702.9,
+            "y": 678.0
+          },
+          {
+            "x": 2810.9,
+            "y": 678.0
+          },
+          {
+            "x": 2874.6,
+            "y": 678.0
+          },
+          {
+            "x": 2874.6,
+            "y": 403.0
+          },
+          {
+            "x": 2894.9,
+            "y": 403.0
+          },
+          {
+            "x": 3002.9,
+            "y": 403.0
+          }
+        ],
+        "path": "M 2702.9 678.0 H 2810.9 H 2874.6 V 403.0 H 2894.9 H 3002.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 575.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-025",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #1",
+          "port": "Speaker Out L",
+          "x": 3272.9,
+          "y": 497.0,
+          "column": 5
+        },
+        "destination": {
+          "device": "Tannoy System 10",
+          "port": "Speaker Input L",
+          "x": 3572.9,
+          "y": 315.0,
+          "column": 6
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 3382.5,
+          "dst_lead_x": 3463.3
+        },
+        "points": [
+          {
+            "x": 3272.9,
+            "y": 497.0
+          },
+          {
+            "x": 3382.5,
+            "y": 497.0
+          },
+          {
+            "x": 3396.5,
+            "y": 497.0
+          },
+          {
+            "x": 3396.5,
+            "y": 315.0
+          },
+          {
+            "x": 3463.3,
+            "y": 315.0
+          },
+          {
+            "x": 3572.9,
+            "y": 315.0
+          }
+        ],
+        "path": "M 3272.9 497.0 H 3382.5 H 3396.5 V 315.0 H 3463.3 H 3572.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 482.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-026",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #1",
+          "port": "Speaker Out R",
+          "x": 3272.9,
+          "y": 519.0,
+          "column": 5
+        },
+        "destination": {
+          "device": "Tannoy System 10",
+          "port": "Speaker Input R",
+          "x": 3572.9,
+          "y": 337.0,
+          "column": 6
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 4,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 3382.5,
+          "dst_lead_x": 3463.3
+        },
+        "points": [
+          {
+            "x": 3272.9,
+            "y": 519.0
+          },
+          {
+            "x": 3382.5,
+            "y": 519.0
+          },
+          {
+            "x": 3449.3,
+            "y": 519.0
+          },
+          {
+            "x": 3449.3,
+            "y": 337.0
+          },
+          {
+            "x": 3463.3,
+            "y": 337.0
+          },
+          {
+            "x": 3572.9,
+            "y": 337.0
+          }
+        ],
+        "path": "M 3272.9 519.0 H 3382.5 H 3449.3 V 337.0 H 3463.3 H 3572.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 482.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-027",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #2",
+          "port": "Speaker Out L",
+          "x": 3272.9,
+          "y": 635.0,
+          "column": 5
+        },
+        "destination": {
+          "device": "ATC SCM 11",
+          "port": "Speaker Input L",
+          "x": 3572.9,
+          "y": 431.0,
+          "column": 6
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 2,
+          "route_total": 4,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 3382.5,
+          "dst_lead_x": 3463.3
+        },
+        "points": [
+          {
+            "x": 3272.9,
+            "y": 635.0
+          },
+          {
+            "x": 3382.5,
+            "y": 635.0
+          },
+          {
+            "x": 3396.5,
+            "y": 635.0
+          },
+          {
+            "x": 3396.5,
+            "y": 431.0
+          },
+          {
+            "x": 3463.3,
+            "y": 431.0
+          },
+          {
+            "x": 3572.9,
+            "y": 431.0
+          }
+        ],
+        "path": "M 3272.9 635.0 H 3382.5 H 3396.5 V 431.0 H 3463.3 H 3572.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 66.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 504.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "AUDIO-028",
+        "family": "Speaker",
+        "source": {
+          "device": "Behringer A800 #2",
+          "port": "Speaker Out R",
+          "x": 3272.9,
+          "y": 657.0,
+          "column": 5
+        },
+        "destination": {
+          "device": "ATC SCM 11",
+          "port": "Speaker Input R",
+          "x": 3572.9,
+          "y": 453.0,
+          "column": 6
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 3,
+          "route_total": 4,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 1,
+          "dest_slot_total": 2
+        },
+        "anchors": {
+          "src_lead_x": 3382.5,
+          "dst_lead_x": 3463.3
+        },
+        "points": [
+          {
+            "x": 3272.9,
+            "y": 657.0
+          },
+          {
+            "x": 3382.5,
+            "y": 657.0
+          },
+          {
+            "x": 3449.3,
+            "y": 657.0
+          },
+          {
+            "x": 3449.3,
+            "y": 453.0
+          },
+          {
+            "x": 3463.3,
+            "y": 453.0
+          },
+          {
+            "x": 3572.9,
+            "y": 453.0
+          }
+        ],
+        "path": "M 3272.9 657.0 H 3382.5 H 3449.3 V 453.0 H 3463.3 H 3572.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 66.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 504.0
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "COMP-003",
+        "family": "Computer/Data",
+        "source": {
+          "device": "Thunderbolt Dock",
+          "port": "USB Port 1",
+          "x": 922.3,
+          "y": 315.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "RME UFX III",
+          "port": "USB Host (Computer)",
+          "x": 1792.3,
+          "y": 447.0,
+          "column": 3
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 1,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1027.0,
+          "dst_lead_x": 1683.2
+        },
+        "points": [
+          {
+            "x": 922.3,
+            "y": 315.0
+          },
+          {
+            "x": 1027.0,
+            "y": 315.0
+          },
+          {
+            "x": 1027.0,
+            "y": 266.0
+          },
+          {
+            "x": 1683.2,
+            "y": 266.0
+          },
+          {
+            "x": 1683.2,
+            "y": 447.0
+          },
+          {
+            "x": 1792.3,
+            "y": 447.0
+          }
+        ],
+        "path": "M 922.3 315.0 H 1027.0 V 266.0 H 1683.2 V 447.0 H 1792.3",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
@@ -4824,20 +6826,160 @@
       {
         "layer": "All Connections",
         "overview_mode": true,
+        "cable_id": "POWER-012",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 2 AN",
+          "port": "Outlet 4",
+          "x": 1492.3,
+          "y": 1395.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "TC Electronic Clarity M Stereo",
+          "port": "AC In",
+          "x": 2423.9,
+          "y": 315.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 2,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1602.5,
+          "dst_lead_x": 2317.0
+        },
+        "points": [
+          {
+            "x": 1492.3,
+            "y": 1395.0
+          },
+          {
+            "x": 1602.5,
+            "y": 1395.0
+          },
+          {
+            "x": 1602.5,
+            "y": 1446.0
+          },
+          {
+            "x": 2317.0,
+            "y": 1446.0
+          },
+          {
+            "x": 2317.0,
+            "y": 315.0
+          },
+          {
+            "x": 2423.9,
+            "y": 315.0
+          }
+        ],
+        "path": "M 1492.3 1395.0 H 1602.5 V 1446.0 H 2317.0 V 315.0 H 2423.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 51.0,
+          "bend_count": 4,
+          "manhattan_length": 2113.6000000000004
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-007",
+        "family": "Power",
+        "source": {
+          "device": "Power Strip Rack 1 DIG",
+          "port": "Outlet 1",
+          "x": 1492.3,
+          "y": 1075.0,
+          "column": 2
+        },
+        "destination": {
+          "device": "SSL AX MADI",
+          "port": "AC In",
+          "x": 2423.9,
+          "y": 1019.0,
+          "column": 4
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 2,
+          "source_slot_idx": 0,
+          "source_slot_total": 1,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1599.2,
+          "dst_lead_x": 2313.7
+        },
+        "points": [
+          {
+            "x": 1492.3,
+            "y": 1075.0
+          },
+          {
+            "x": 1599.2,
+            "y": 1075.0
+          },
+          {
+            "x": 2126.9,
+            "y": 1075.0
+          },
+          {
+            "x": 2126.9,
+            "y": 1019.0
+          },
+          {
+            "x": 2313.7,
+            "y": 1019.0
+          },
+          {
+            "x": 2423.9,
+            "y": 1019.0
+          }
+        ],
+        "path": "M 1492.3 1075.0 H 1599.2 H 2126.9 V 1019.0 H 2313.7 H 2423.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 0.0,
+          "bend_count": 2,
+          "manhattan_length": 987.6000000000001
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
         "cable_id": "AUDIO-029",
         "family": "Analog Audio",
         "source": {
           "device": "RME UFX III",
           "port": "Line Out 1 (XLR)",
-          "x": 2108.4,
-          "y": 301.0,
+          "x": 2123.9,
+          "y": 315.0,
           "column": 3
         },
         "destination": {
           "device": "Behringer A800 #1",
           "port": "Input L",
-          "x": 2987.4,
-          "y": 301.0,
+          "x": 3002.9,
+          "y": 519.0,
           "column": 5
         },
         "route_mode": "forward",
@@ -4850,36 +6992,36 @@
           "dest_slot_total": 2
         },
         "anchors": {
-          "src_lead_x": 2194.8,
-          "dst_lead_x": 2884.8
+          "src_lead_x": 2210.3,
+          "dst_lead_x": 2899.2
         },
         "points": [
           {
-            "x": 2108.4,
-            "y": 301.0
+            "x": 2123.9,
+            "y": 315.0
           },
           {
-            "x": 2194.8,
-            "y": 301.0
+            "x": 2210.3,
+            "y": 315.0
           },
           {
-            "x": 2194.8,
-            "y": 252.0
+            "x": 2210.3,
+            "y": 266.0
           },
           {
-            "x": 2884.8,
-            "y": 252.0
+            "x": 2899.2,
+            "y": 266.0
           },
           {
-            "x": 2884.8,
-            "y": 301.0
+            "x": 2899.2,
+            "y": 519.0
           },
           {
-            "x": 2987.4,
-            "y": 301.0
+            "x": 3002.9,
+            "y": 519.0
           }
         ],
-        "path": "M 2108.4 301.0 H 2194.8 V 252.0 H 2884.8 V 301.0 H 2987.4",
+        "path": "M 2123.9 315.0 H 2210.3 V 266.0 H 2899.2 V 519.0 H 3002.9",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
@@ -4888,7 +7030,7 @@
           "same_family_overlap_len": 0.0,
           "outside_band_distance": 49.0,
           "bend_count": 4,
-          "manhattan_length": 977.0
+          "manhattan_length": 1181.0
         }
       },
       {
@@ -4899,15 +7041,15 @@
         "source": {
           "device": "RME UFX III",
           "port": "Line Out 2 (XLR)",
-          "x": 2108.4,
-          "y": 323.0,
+          "x": 2123.9,
+          "y": 337.0,
           "column": 3
         },
         "destination": {
           "device": "Behringer A800 #1",
           "port": "Input R",
-          "x": 2987.4,
-          "y": 323.0,
+          "x": 3002.9,
+          "y": 541.0,
           "column": 5
         },
         "route_mode": "forward",
@@ -4920,45 +7062,45 @@
           "dest_slot_total": 2
         },
         "anchors": {
-          "src_lead_x": 2208.8,
-          "dst_lead_x": 2870.8
+          "src_lead_x": 2224.3,
+          "dst_lead_x": 2885.2
         },
         "points": [
           {
-            "x": 2108.4,
-            "y": 323.0
+            "x": 2123.9,
+            "y": 337.0
           },
           {
-            "x": 2208.8,
-            "y": 323.0
+            "x": 2224.3,
+            "y": 337.0
           },
           {
-            "x": 2405.4,
-            "y": 323.0
+            "x": 2224.3,
+            "y": 254.0
           },
           {
-            "x": 2405.4,
-            "y": 323.0
+            "x": 2885.2,
+            "y": 254.0
           },
           {
-            "x": 2870.8,
-            "y": 323.0
+            "x": 2885.2,
+            "y": 541.0
           },
           {
-            "x": 2987.4,
-            "y": 323.0
+            "x": 3002.9,
+            "y": 541.0
           }
         ],
-        "path": "M 2108.4 323.0 H 2208.8 H 2405.4 H 2870.8 H 2987.4",
+        "path": "M 2123.9 337.0 H 2224.3 V 254.0 H 2885.2 V 541.0 H 3002.9",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
           "different_family_overlap_count": 0,
           "different_family_overlap_len": 0.0,
           "same_family_overlap_len": 0.0,
-          "outside_band_distance": 0.0,
-          "bend_count": 0,
-          "manhattan_length": 879.0
+          "outside_band_distance": 83.0,
+          "bend_count": 4,
+          "manhattan_length": 1249.0
         }
       },
       {
@@ -4969,15 +7111,15 @@
         "source": {
           "device": "RME UFX III",
           "port": "Line Out 3",
-          "x": 2108.4,
-          "y": 345.0,
+          "x": 2123.9,
+          "y": 359.0,
           "column": 3
         },
         "destination": {
           "device": "Behringer A800 #2",
           "port": "Input L",
-          "x": 2987.4,
-          "y": 417.0,
+          "x": 3002.9,
+          "y": 657.0,
           "column": 5
         },
         "route_mode": "forward",
@@ -4990,36 +7132,36 @@
           "dest_slot_total": 2
         },
         "anchors": {
-          "src_lead_x": 2222.8,
-          "dst_lead_x": 2884.8
+          "src_lead_x": 2238.3,
+          "dst_lead_x": 2899.2
         },
         "points": [
           {
-            "x": 2108.4,
-            "y": 345.0
+            "x": 2123.9,
+            "y": 359.0
           },
           {
-            "x": 2222.8,
-            "y": 345.0
+            "x": 2238.3,
+            "y": 359.0
           },
           {
-            "x": 2690.4,
-            "y": 345.0
+            "x": 2705.9,
+            "y": 359.0
           },
           {
-            "x": 2690.4,
-            "y": 417.0
+            "x": 2705.9,
+            "y": 657.0
           },
           {
-            "x": 2884.8,
-            "y": 417.0
+            "x": 2899.2,
+            "y": 657.0
           },
           {
-            "x": 2987.4,
-            "y": 417.0
+            "x": 3002.9,
+            "y": 657.0
           }
         ],
-        "path": "M 2108.4 345.0 H 2222.8 H 2690.4 V 417.0 H 2884.8 H 2987.4",
+        "path": "M 2123.9 359.0 H 2238.3 H 2705.9 V 657.0 H 2899.2 H 3002.9",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
@@ -5028,7 +7170,7 @@
           "same_family_overlap_len": 0.0,
           "outside_band_distance": 0.0,
           "bend_count": 2,
-          "manhattan_length": 951.0
+          "manhattan_length": 1177.0
         }
       },
       {
@@ -5039,15 +7181,15 @@
         "source": {
           "device": "RME UFX III",
           "port": "Line Out 4",
-          "x": 2108.4,
-          "y": 367.0,
+          "x": 2123.9,
+          "y": 381.0,
           "column": 3
         },
         "destination": {
           "device": "Behringer A800 #2",
           "port": "Input R",
-          "x": 2987.4,
-          "y": 439.0,
+          "x": 3002.9,
+          "y": 679.0,
           "column": 5
         },
         "route_mode": "forward",
@@ -5060,36 +7202,36 @@
           "dest_slot_total": 2
         },
         "anchors": {
-          "src_lead_x": 2236.8,
-          "dst_lead_x": 2870.8
+          "src_lead_x": 2252.3,
+          "dst_lead_x": 2885.2
         },
         "points": [
           {
-            "x": 2108.4,
-            "y": 367.0
+            "x": 2123.9,
+            "y": 381.0
           },
           {
-            "x": 2236.8,
-            "y": 367.0
+            "x": 2252.3,
+            "y": 381.0
           },
           {
-            "x": 2706.4,
-            "y": 367.0
+            "x": 2721.9,
+            "y": 381.0
           },
           {
-            "x": 2706.4,
-            "y": 439.0
+            "x": 2721.9,
+            "y": 679.0
           },
           {
-            "x": 2870.8,
-            "y": 439.0
+            "x": 2885.2,
+            "y": 679.0
           },
           {
-            "x": 2987.4,
-            "y": 439.0
+            "x": 3002.9,
+            "y": 679.0
           }
         ],
-        "path": "M 2108.4 367.0 H 2236.8 H 2706.4 V 439.0 H 2870.8 H 2987.4",
+        "path": "M 2123.9 381.0 H 2252.3 H 2721.9 V 679.0 H 2885.2 H 3002.9",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
@@ -5098,7 +7240,7 @@
           "same_family_overlap_len": 0.0,
           "outside_band_distance": 0.0,
           "bend_count": 2,
-          "manhattan_length": 951.0
+          "manhattan_length": 1177.0
         }
       },
       {
@@ -5109,15 +7251,15 @@
         "source": {
           "device": "Allen & Heath GS3000",
           "port": "Tape Out 1+Tape Out 2+Tape Out 3+Tape Out 4+Tape Out 5+Tape Out 6+Tape Out 7+Tape Out 8+Tape Out 9+Tape Out 10+Tape Out 11+Tape Out 12+Tape Out 13+Tape Out 14+Tape Out 15+Tape Out 16+Tape Out 17+Tape Out 18+Tape Out 19+Tape Out 20+Tape Out 21+Tape Out 22+Tape Out 23+Tape Out 24",
-          "x": 300.0,
-          "y": 554.0,
+          "x": 315.5,
+          "y": 568.0,
           "column": 0
         },
         "destination": {
           "device": "SSL AX MADI",
           "port": "Line In 1+Line In 2+Line In 3+Line In 4+Line In 5+Line In 6+Line In 7+Line In 8+Line In 9+Line In 10+Line In 11+Line In 12+Line In 13+Line In 14+Line In 15+Line In 16+Line In 17+Line In 18+Line In 19+Line In 20+Line In 21+Line In 22+Line In 23+Line In 24",
-          "x": 2408.4,
-          "y": 708.0,
+          "x": 2423.9,
+          "y": 744.0,
           "column": 4
         },
         "route_mode": "forward",
@@ -5130,45 +7272,185 @@
           "dest_slot_total": 1
         },
         "anchors": {
-          "src_lead_x": 431.2,
-          "dst_lead_x": 2276.1
+          "src_lead_x": 446.7,
+          "dst_lead_x": 2292.7
         },
         "points": [
           {
-            "x": 300.0,
-            "y": 554.0
+            "x": 315.5,
+            "y": 568.0
           },
           {
-            "x": 431.2,
-            "y": 554.0
+            "x": 446.7,
+            "y": 568.0
           },
           {
-            "x": 431.2,
-            "y": 990.0
+            "x": 446.7,
+            "y": 242.0
           },
           {
-            "x": 2276.1,
-            "y": 990.0
+            "x": 2292.7,
+            "y": 242.0
           },
           {
-            "x": 2276.1,
-            "y": 708.0
+            "x": 2292.7,
+            "y": 744.0
           },
           {
-            "x": 2408.4,
-            "y": 708.0
+            "x": 2423.9,
+            "y": 744.0
           }
         ],
-        "path": "M 300.0 554.0 H 431.2 V 990.0 H 2276.1 V 708.0 H 2408.4",
+        "path": "M 315.5 568.0 H 446.7 V 242.0 H 2292.7 V 744.0 H 2423.9",
         "score": {
           "box_crossings": 0,
           "endpoint_crossings": 0,
           "different_family_overlap_count": 0,
           "different_family_overlap_len": 0.0,
           "same_family_overlap_len": 0.0,
-          "outside_band_distance": 282.0,
+          "outside_band_distance": 326.0,
           "bend_count": 4,
-          "manhattan_length": 2826.4
+          "manhattan_length": 2936.4
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-003",
+        "family": "Power",
+        "source": {
+          "device": "Black Lion Audio PG-1 Type F MKII",
+          "port": "High Current Outlet 1",
+          "x": 922.3,
+          "y": 861.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Behringer A800 #1",
+          "port": "AC In",
+          "x": 3002.9,
+          "y": 497.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 0,
+          "route_total": 2,
+          "source_slot_idx": 0,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1023.9,
+          "dst_lead_x": 2897.1
+        },
+        "points": [
+          {
+            "x": 922.3,
+            "y": 861.0
+          },
+          {
+            "x": 1023.9,
+            "y": 861.0
+          },
+          {
+            "x": 1023.9,
+            "y": 230.0
+          },
+          {
+            "x": 2897.1,
+            "y": 230.0
+          },
+          {
+            "x": 2897.1,
+            "y": 497.0
+          },
+          {
+            "x": 3002.9,
+            "y": 497.0
+          }
+        ],
+        "path": "M 922.3 861.0 H 1023.9 V 230.0 H 2897.1 V 497.0 H 3002.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 267.0,
+          "bend_count": 4,
+          "manhattan_length": 2978.6
+        }
+      },
+      {
+        "layer": "All Connections",
+        "overview_mode": true,
+        "cable_id": "POWER-005",
+        "family": "Power",
+        "source": {
+          "device": "Black Lion Audio PG-1 Type F MKII",
+          "port": "High Current Outlet 2",
+          "x": 922.3,
+          "y": 905.0,
+          "column": 1
+        },
+        "destination": {
+          "device": "Behringer A800 #2",
+          "port": "AC In",
+          "x": 3002.9,
+          "y": 635.0,
+          "column": 5
+        },
+        "route_mode": "forward",
+        "route_slots": {
+          "route_pos": 1,
+          "route_total": 2,
+          "source_slot_idx": 1,
+          "source_slot_total": 2,
+          "dest_slot_idx": 0,
+          "dest_slot_total": 1
+        },
+        "anchors": {
+          "src_lead_x": 1038.9,
+          "dst_lead_x": 2897.1
+        },
+        "points": [
+          {
+            "x": 922.3,
+            "y": 905.0
+          },
+          {
+            "x": 1038.9,
+            "y": 905.0
+          },
+          {
+            "x": 1038.9,
+            "y": 1458.0
+          },
+          {
+            "x": 2897.1,
+            "y": 1458.0
+          },
+          {
+            "x": 2897.1,
+            "y": 635.0
+          },
+          {
+            "x": 3002.9,
+            "y": 635.0
+          }
+        ],
+        "path": "M 922.3 905.0 H 1038.9 V 1458.0 H 2897.1 V 635.0 H 3002.9",
+        "score": {
+          "box_crossings": 0,
+          "endpoint_crossings": 0,
+          "different_family_overlap_count": 0,
+          "different_family_overlap_len": 0.0,
+          "same_family_overlap_len": 0.0,
+          "outside_band_distance": 553.0,
+          "bend_count": 4,
+          "manhattan_length": 3456.6000000000004
         }
       }
     ]

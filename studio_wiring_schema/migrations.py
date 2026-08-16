@@ -141,6 +141,10 @@ def _migrate_routing_rules_v0(payload: dict[str, Any], changes: list[str]) -> No
         _normalize_booleans(routing, ("fifo_forward_turns", "video_early_turn"), "$.routing", changes)
 
 
+def _migrate_routing_v0(payload: dict[str, Any], changes: list[str]) -> None:
+    """Version-zero routing documents already used the canonical route fields."""
+
+
 def _migrate_device_templates_v0(payload: dict[str, Any], changes: list[str]) -> None:
     templates = payload.get("templates")
     if isinstance(templates, list):
@@ -153,6 +157,7 @@ MIGRATIONS: dict[str, dict[int, MigrationFunction]] = {
     "project": {0: _migrate_project_v0},
     "model": {0: _migrate_model_v0},
     "patch": {0: _migrate_patch_v0},
+    "routing": {0: _migrate_routing_v0},
     "routing_rules": {0: _migrate_routing_rules_v0},
     "device_templates": {0: _migrate_device_templates_v0},
 }

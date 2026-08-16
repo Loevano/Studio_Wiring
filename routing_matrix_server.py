@@ -18,8 +18,13 @@ from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Callable
+from urllib.parse import parse_qs, urlsplit
 
-from studio_wiring_schema.validation import Issue, validate_document
+from studio_wiring_schema.validation import (
+    Issue,
+    validate_document,
+    validate_routing_against_model,
+)
 
 
 def write_json_atomic(path: Path, payload: object) -> None:
@@ -108,6 +113,12 @@ def validate_save_transaction_changes(changes: dict[str, object]) -> None:
                     severity=issue.severity,
                 )
             )
+    if issues:
+        raise SchemaValidationError(issues)
+
+
+def validate_routing_save(routes: object, model: object) -> None:
+    issues = validate_routing_against_model(routes, model)
     if issues:
         raise SchemaValidationError(issues)
 
@@ -214,6 +225,7 @@ def discover_projects(
             project_meta_path.exists()
             or (project_dir / "device-configurations").exists()
             or (project_dir / "patch-configurations").exists()
+            or (project_dir / "routing-configurations").exists()
         )
         if not has_project_marker:
             continue
@@ -231,9 +243,14 @@ def discover_projects(
         paths_meta = paths_meta if isinstance(paths_meta, dict) else {}
         device_patch_map_meta = project_meta.get("device_patch_map")
         device_patch_map_meta = device_patch_map_meta if isinstance(device_patch_map_meta, dict) else {}
+        device_routing_map_meta = project_meta.get("device_routing_map")
+        device_routing_map_meta = (
+            device_routing_map_meta if isinstance(device_routing_map_meta, dict) else {}
+        )
 
         device_dir = project_dir / "device-configurations"
         patch_dir = project_dir / "patch-configurations"
+        routing_dir = project_dir / "routing-configurations"
         output_dir = project_dir / "outputs"
         output_html_dir = output_dir / "html"
         output_svg_dir = output_dir / "svgs"
@@ -252,9 +269,14 @@ def discover_projects(
             [p for p in patch_dir.rglob("*.json") if p.is_file()],
             key=lambda p: str(p.relative_to(patch_dir)).replace(os.sep, "/").lower(),
         )
+        routing_files = sorted(
+            [p for p in routing_dir.rglob("*.json") if p.is_file()],
+            key=lambda p: str(p.relative_to(routing_dir)).replace(os.sep, "/").lower(),
+        )
 
         default_model_path = None
         default_patch_path = None
+        default_routing_path = None
         if paths_meta:
             if "device_model" in paths_meta:
                 try:
@@ -266,12 +288,25 @@ def discover_projects(
                     default_patch_path = resolve_path_within_root(project_dir, paths_meta.get("default_patch"))
                 except Exception:
                     default_patch_path = None
+            if "default_routing" in paths_meta:
+                try:
+                    default_routing_path = resolve_path_within_root(
+                        project_dir, paths_meta.get("default_routing")
+                    )
+                except Exception:
+                    default_routing_path = None
 
         default_model_path = default_model_path if default_model_path and default_model_path.exists() else (device_files[0] if device_files else None)
         default_patch_path = default_patch_path if default_patch_path and default_patch_path.exists() else (patch_files[0] if patch_files else None)
+        default_routing_path = (
+            default_routing_path
+            if default_routing_path and default_routing_path.exists()
+            else (routing_files[0] if routing_files else None)
+        )
 
         device_file_set = {path.resolve() for path in device_files}
         patch_file_set = {path.resolve() for path in patch_files}
+        routing_file_set = {path.resolve() for path in routing_files}
         normalized_device_patch_map: dict[str, list[str]] = {}
         for raw_device_path, raw_patch_paths in device_patch_map_meta.items():
             try:
@@ -293,6 +328,31 @@ def discover_projects(
                     patch_values.append(rel)
             normalized_device_patch_map[to_posix_rel(resolved_device, root)] = patch_values
 
+        normalized_device_routing_map: dict[str, list[str]] = {}
+        for raw_device_path, raw_routing_paths in device_routing_map_meta.items():
+            try:
+                resolved_device = resolve_path_within_project(project_dir, raw_device_path)
+            except Exception:
+                continue
+            if resolved_device not in device_file_set:
+                continue
+            routing_values: list[str] = []
+            for raw_routing_path in (
+                raw_routing_paths if isinstance(raw_routing_paths, list) else []
+            ):
+                try:
+                    resolved_routing = resolve_path_within_project(
+                        project_dir, raw_routing_path
+                    )
+                except Exception:
+                    continue
+                if resolved_routing not in routing_file_set:
+                    continue
+                rel = to_posix_rel(resolved_routing, root)
+                if rel not in routing_values:
+                    routing_values.append(rel)
+            normalized_device_routing_map[to_posix_rel(resolved_device, root)] = routing_values
+
         project_item = {
             "key": project_dir.name,
             "name": project_name,
@@ -300,10 +360,15 @@ def discover_projects(
             "project_file": to_posix_rel(project_meta_path, root),
             "device_configs": [str(path.relative_to(root)).replace(os.sep, "/") for path in device_files],
             "patch_configs": [str(path.relative_to(root)).replace(os.sep, "/") for path in patch_files],
+            "routing_configs": [
+                str(path.relative_to(root)).replace(os.sep, "/") for path in routing_files
+            ],
             "default_device_config": str(default_model_path.relative_to(root)).replace(os.sep, "/")
             if default_model_path else "",
             "default_patch_config": str(default_patch_path.relative_to(root)).replace(os.sep, "/")
             if default_patch_path else "",
+            "default_routing_config": str(default_routing_path.relative_to(root)).replace(os.sep, "/")
+            if default_routing_path else "",
             "output_html_directory": str(output_html_dir.relative_to(root)).replace(os.sep, "/")
             if output_html_dir.exists() else "",
             "output_svg_directory": str(output_svg_dir.relative_to(root)).replace(os.sep, "/")
@@ -311,6 +376,7 @@ def discover_projects(
             "output_debug_directory": str(output_debug_dir.relative_to(root)).replace(os.sep, "/")
             if output_debug_dir.exists() else "",
             "device_patch_map": normalized_device_patch_map,
+            "device_routing_map": normalized_device_routing_map,
         }
         items.append(project_item)
 
@@ -372,6 +438,41 @@ def ensure_project_from_template(root: Path, project_name: str) -> str:
     project_meta.setdefault("device_patch_map", {})
     write_json_atomic(project_meta_path, project_meta)
     return project_key
+
+
+def routing_endpoints_from_model(model: object) -> list[dict[str, object]]:
+    """Return logical endpoints; physical `ports` are deliberately ignored."""
+    endpoints: list[dict[str, object]] = []
+    devices = model.get("devices") if isinstance(model, dict) else None
+    if not isinstance(devices, list):
+        return endpoints
+    for device in devices:
+        if not isinstance(device, dict):
+            continue
+        device_name = str(device.get("name") or "").strip()
+        routing_ports = device.get("routing_ports")
+        if not device_name or not isinstance(routing_ports, list):
+            continue
+        for port in routing_ports:
+            if not isinstance(port, dict):
+                continue
+            port_name = str(port.get("name") or "").strip()
+            direction = str(port.get("direction") or "").strip().lower()
+            if not port_name or direction not in {"in", "out", "io"}:
+                continue
+            endpoint: dict[str, object] = {
+                "id": f"{device_name}::{port_name}",
+                "device": device_name,
+                "port": port_name,
+                "direction": direction,
+                "transport": str(port.get("transport") or "").strip(),
+                "enabled": port.get("enabled") is not False,
+            }
+            for optional in ("channel", "group", "order"):
+                if optional in port:
+                    endpoint[optional] = port[optional]
+            endpoints.append(endpoint)
+    return endpoints
 
 
 def ensure_global_routing_rules(root: Path, target_path: Path) -> None:
@@ -486,6 +587,7 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             str(preview_svg_dir),
             "--debug-routes-json",
             str(route_debug_path),
+            "--show-power",
         ]
         completed = subprocess.run(
             command,
@@ -685,6 +787,7 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             "computerData": f"{svg_dir_rel}/computer-data.svg",
             "digitalAudio": f"{svg_dir_rel}/digital-audio.svg",
             "network": f"{svg_dir_rel}/network.svg",
+            "power": f"{svg_dir_rel}/power.svg",
             "allConnections": f"{svg_dir_rel}/all-connections.svg",
         }
 
@@ -698,13 +801,65 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             payload["active_project_key"] = ""
         return payload
 
+    def _routing_targets(
+        self,
+        *,
+        project_key: object,
+        model_path: object = "",
+        routing_path: object = "",
+    ) -> tuple[dict[str, object], Path, Path]:
+        projects_payload = self._projects_payload()
+        project_item = find_project_item(projects_payload, str(project_key or ""))
+        if project_item is None:
+            raise ValueError(f"Project not found: {project_key}")
+        project_dir = self._project_dir_from_key(project_key)
+
+        model_rel = str(model_path or project_item.get("default_device_config") or "").strip()
+        routing_rel = str(
+            routing_path or project_item.get("default_routing_config") or ""
+        ).strip()
+        if not model_rel:
+            raise ValueError("model_path is required")
+        if not routing_rel:
+            raise ValueError("routing_path is required")
+        if Path(model_rel).is_absolute() or Path(routing_rel).is_absolute():
+            raise ValueError("Routing targets must be root-relative paths")
+        model_target = resolve_path_within_root(self.root_path, model_rel)
+        routing_target = resolve_path_within_root(self.root_path, routing_rel)
+        for label, target in (
+            ("model_path", model_target),
+            ("routing_path", routing_target),
+        ):
+            if project_dir not in target.parents:
+                raise ValueError(f"{label} must be inside selected project")
+            if target.suffix.lower() != ".json":
+                raise ValueError(f"{label} must be a .json file")
+            if target.exists() and not target.is_file():
+                raise ValueError(f"{label} must be a file path")
+
+        allowed_models = set(project_item.get("device_configs") or [])
+        allowed_routing = set(project_item.get("routing_configs") or [])
+        canonical_model_rel = self._relative_path(model_target)
+        canonical_routing_rel = self._relative_path(routing_target)
+        if canonical_model_rel not in allowed_models:
+            raise ValueError("model_path is not a discovered device configuration")
+        if canonical_routing_rel not in allowed_routing:
+            raise ValueError("routing_path is not a discovered routing configuration")
+        routing_map = project_item.get("device_routing_map")
+        if isinstance(routing_map, dict):
+            mapped = routing_map.get(canonical_model_rel)
+            if isinstance(mapped, list) and canonical_routing_rel not in mapped:
+                raise ValueError("routing_path is not assigned to the selected device model")
+        return project_item, model_target, routing_target
+
     def _project_dir_from_key(self, project_key: object) -> Path:
         key = str(project_key or "").strip()
         if not key:
             raise ValueError("Project key is required")
-        project_dir = (self.root_path / "projects" / key).resolve()
-        if self.root_path not in project_dir.parents:
-            raise ValueError("Project path is outside root")
+        projects_root = (self.root_path / "projects").resolve()
+        project_dir = (projects_root / key).resolve()
+        if projects_root not in project_dir.parents:
+            raise ValueError("Project path is outside projects directory")
         if not project_dir.exists() or not project_dir.is_dir():
             raise ValueError(f"Project not found: {key}")
         return project_dir
@@ -790,6 +945,7 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
                 "computerData": f"{svg_dir_rel}/computer-data.svg",
                 "digitalAudio": f"{svg_dir_rel}/digital-audio.svg",
                 "network": f"{svg_dir_rel}/network.svg",
+                "power": f"{svg_dir_rel}/power.svg",
                 "allConnections": f"{svg_dir_rel}/all-connections.svg",
             },
             "route_debug_path": self._relative_path(targets["route_debug_path"]),
@@ -798,7 +954,7 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
     def _config_payload(self) -> dict[str, object]:
         projects_payload = self._projects_payload()
         expose_targets = bool(self.targets_selected)
-        return {
+        payload: dict[str, object] = {
             "ok": True,
             "model_path": self._relative_path(self.model_path) if expose_targets else "",
             "connections_path": self._relative_path(self.connections_path) if expose_targets else "",
@@ -815,6 +971,38 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             "projects": projects_payload.get("projects", []),
             "active_project_key": projects_payload.get("active_project_key", "") if expose_targets else "",
         }
+        if expose_targets:
+            active = find_project_item(
+                projects_payload,
+                str(projects_payload.get("active_project_key") or ""),
+            )
+            if active is not None:
+                model_rel = self._relative_path(self.model_path)
+                routing_rel = ""
+                route_map = active.get("device_routing_map")
+                if isinstance(route_map, dict):
+                    candidates = route_map.get(model_rel)
+                    if isinstance(candidates, list) and candidates:
+                        routing_rel = str(candidates[0])
+                if not routing_rel:
+                    routing_rel = str(active.get("default_routing_config") or "")
+                routing_target = (
+                    resolve_path_within_root(self.root_path, routing_rel)
+                    if routing_rel
+                    else None
+                )
+                payload.update(
+                    {
+                        "routing_path": routing_rel,
+                        "routing_hash": read_json_hash(routing_target)
+                        if routing_target and routing_target.exists()
+                        else "",
+                        "model_hash": read_json_hash(self.model_path)
+                        if self.model_path.exists()
+                        else "",
+                    }
+                )
+        return payload
 
     def _read_json_body(self) -> object:
         raw_length = self.headers.get("Content-Length", "0")
@@ -840,11 +1028,62 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             self.rfile.read(length)
 
     def do_GET(self) -> None:  # noqa: N802
-        if self.path == "/api/config":
+        request = urlsplit(self.path)
+        if request.path == "/api/config":
             self._send_json(self._config_payload())
             return
-        if self.path == "/api/projects":
+        if request.path == "/api/projects":
             self._send_json({"ok": True, **self._projects_payload()})
+            return
+        if request.path == "/api/routing":
+            try:
+                query = parse_qs(request.query, keep_blank_values=True)
+                first = lambda key: query.get(key, [""])[0]
+                project_item, model_path, routing_path = self._routing_targets(
+                    project_key=first("project_key"),
+                    model_path=first("model_path"),
+                    routing_path=first("routing_path"),
+                )
+                model = json.loads(model_path.read_text(encoding="utf-8"))
+                routes = json.loads(routing_path.read_text(encoding="utf-8"))
+                try:
+                    validate_routing_save(routes, model)
+                except SchemaValidationError as validation_error:
+                    self._send_json(
+                        {
+                            "ok": False,
+                            "error": str(validation_error),
+                            "validation_issues": [
+                                {
+                                    "severity": issue.severity,
+                                    "path": issue.path,
+                                    "code": issue.code,
+                                    "message": issue.message,
+                                }
+                                for issue in validation_error.issues
+                            ],
+                        },
+                        status=HTTPStatus.UNPROCESSABLE_ENTITY,
+                    )
+                    return
+                self._send_json(
+                    {
+                        "ok": True,
+                        "project_key": project_item.get("key", ""),
+                        "model_path": self._relative_path(model_path),
+                        "routing_path": self._relative_path(routing_path),
+                        "model_hash": canonical_json_hash(model),
+                        "routing_hash": canonical_json_hash(routes),
+                        "endpoints": routing_endpoints_from_model(model),
+                        "routes": routes,
+                        "document": routes,
+                    }
+                )
+            except Exception as exc:
+                self._send_json(
+                    {"ok": False, "error": str(exc)},
+                    status=HTTPStatus.BAD_REQUEST,
+                )
             return
         super().do_GET()
 
@@ -858,10 +1097,85 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             "/api/create-project",
             "/api/save-project",
             "/api/save-device-template",
+            "/api/save-routing",
         }:
             self._send_json({"ok": False, "error": "Not found"}, status=HTTPStatus.NOT_FOUND)
             return
         try:
+            if self.path == "/api/save-routing":
+                payload = self._read_json_body()
+                if not isinstance(payload, dict):
+                    raise ValueError("Payload must be a JSON object")
+                _project_item, model_path, routing_path = self._routing_targets(
+                    project_key=payload.get("project_key"),
+                    model_path=payload.get("model_path"),
+                    routing_path=payload.get("routing_path"),
+                )
+                routes = payload.get("routes")
+                if not isinstance(routes, dict):
+                    raise ValueError("routes must be a routing document object")
+                expected_hash = str(payload.get("expected_hash") or "").strip().lower()
+                if "expected_hash" not in payload:
+                    raise ValueError("expected_hash is required")
+                try:
+                    model = json.loads(model_path.read_text(encoding="utf-8"))
+                except Exception as exc:
+                    raise ValueError(f"Invalid model JSON: {self._relative_path(model_path)}") from exc
+                try:
+                    validate_routing_save(routes, model)
+                except SchemaValidationError as validation_error:
+                    self._send_json(
+                        {
+                            "ok": False,
+                            "error": str(validation_error),
+                            "validation_issues": [
+                                {
+                                    "severity": issue.severity,
+                                    "path": issue.path,
+                                    "code": issue.code,
+                                    "message": issue.message,
+                                }
+                                for issue in validation_error.issues
+                            ],
+                        },
+                        status=HTTPStatus.UNPROCESSABLE_ENTITY,
+                    )
+                    return
+                try:
+                    saved_hashes, _regenerate_ok, _regenerate_message = (
+                        execute_json_save_transaction(
+                            requested=[("routing", routing_path, routes)],
+                            expected_hashes={"routing": expected_hash},
+                            lock=self.__class__._save_transaction_lock,
+                            regenerate=False,
+                            regenerate_callback=lambda: (True, ""),
+                        )
+                    )
+                except SaveConflictError as conflict_error:
+                    current_hash = conflict_error.conflicts.get("routing", "")
+                    self._send_json(
+                        {
+                            "ok": False,
+                            "error": str(conflict_error),
+                            "conflict": "routing",
+                            "current_hash": current_hash,
+                            "current_hashes": conflict_error.conflicts,
+                        },
+                        status=HTTPStatus.CONFLICT,
+                    )
+                    return
+                self._send_json(
+                    {
+                        "ok": True,
+                        "saved": {
+                            "path": self._relative_path(routing_path),
+                            "hash": saved_hashes["routing"],
+                        },
+                        "regeneration": {"attempted": False},
+                    }
+                )
+                return
+
             if self.path == "/api/save-transaction":
                 payload = self._read_json_body()
                 if not isinstance(payload, dict):
@@ -1008,6 +1322,10 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
                     project_paths["device_model"] = to_project_rel(payload.get("default_device_config"))
                 if "default_patch_config" in payload and str(payload.get("default_patch_config") or "").strip():
                     project_paths["default_patch"] = to_project_rel(payload.get("default_patch_config"))
+                if "default_routing_config" in payload and str(payload.get("default_routing_config") or "").strip():
+                    project_paths["default_routing"] = to_project_rel(
+                        payload.get("default_routing_config")
+                    )
 
                 device_patch_map_raw = payload.get("device_patch_map")
                 if device_patch_map_raw is not None:
@@ -1025,6 +1343,23 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
                                 normalized_patch_list.append(patch_rel)
                         normalized_map[device_rel] = normalized_patch_list
                     project_meta["device_patch_map"] = normalized_map
+
+                device_routing_map_raw = payload.get("device_routing_map")
+                if device_routing_map_raw is not None:
+                    if not isinstance(device_routing_map_raw, dict):
+                        raise ValueError("device_routing_map must be an object")
+                    normalized_routing_map: dict[str, list[str]] = {}
+                    for raw_device_path, raw_routing_list in device_routing_map_raw.items():
+                        device_rel = to_project_rel(raw_device_path)
+                        if not isinstance(raw_routing_list, list):
+                            continue
+                        normalized_routing_list: list[str] = []
+                        for raw_routing_path in raw_routing_list:
+                            routing_rel = to_project_rel(raw_routing_path)
+                            if routing_rel not in normalized_routing_list:
+                                normalized_routing_list.append(routing_rel)
+                        normalized_routing_map[device_rel] = normalized_routing_list
+                    project_meta["device_routing_map"] = normalized_routing_map
 
                 write_json_atomic(project_meta_path, project_meta)
                 self._send_json({"ok": True, "saved": "project", **self._config_payload()})
@@ -1460,7 +1795,8 @@ def main() -> int:
     print(
         "Save API endpoints: /api/config, /api/projects, /api/set-targets, "
         "/api/create-project, /api/save-project, /api/save-model, "
-        "/api/save-connections, /api/save-transaction, /api/regenerate"
+        "/api/save-connections, /api/save-routing, /api/save-transaction, "
+        "/api/routing, /api/regenerate"
     )
     try:
         httpd.serve_forever()

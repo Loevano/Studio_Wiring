@@ -22,8 +22,9 @@ The normal workflow is:
 2. Select or create a device configuration.
 3. Select or create a patch configuration.
 4. Add devices and ports; optionally mark equipment as Rack-mounted and drag it into place in the Rack Editor.
-5. Create crosspoint connections.
-6. Save the configuration and inspect the generated visuals.
+5. Create physical crosspoint connections in the Wiring Matrix.
+6. Create logical audio routes in the Routing Matrix when an interface, console, or converter routes audio internally.
+7. Save the configuration and inspect the generated visuals.
 
 ## Data model
 
@@ -32,11 +33,29 @@ The normal workflow is:
   Devices may optionally include `rack_mountable`, `location`, `rack_units`, and
   `rack_position` for physical rack eligibility and layout.
 - `patch-configurations/<device-config-stem>/*.json` stores connections.
+- `routing-configurations/<device-config-stem>/*.json` stores logical audio routes;
+  these are separate from physical cable connections.
 - `json/routing_rules.json` controls global routing and labeling behavior.
 - `outputs/` contains generated HTML, SVG, and route-debug artifacts.
 
 See [DATA_FLOW.md](DATA_FLOW.md) for the technical data-flow contract and
 [USER_MANUAL.md](USER_MANUAL.md) for day-to-day usage.
+
+## Power schematics
+
+Power ports and connections are hidden in the default diagram. Add
+`--show-power` to include them in generated diagrams and, when exporting SVGs,
+the all-connections SVG. To also export a POWER-only SVG as `power.svg`, run:
+
+```bash
+python3 generate_point_to_point.py --show-power --layer Power --svg-dir projects/studio-sidecar/outputs/svgs
+```
+
+`--layer Power` selects only the Power layer; without it, `--show-power` also
+includes power in the all-connections SVG. POWER routes document the intended
+connection topology, not electrical load calculations or circuit certification.
+Before wiring, verify every `TBD` connector or rating against the equipment
+label and manufacturer manual.
 
 ## Development checks
 
@@ -53,7 +72,8 @@ The check suite uses dedicated fixtures and must not rewrite files in `projects/
 - `routing_matrix_server.py`: local static server and persistence API.
 - `generate_point_to_point.py`: wiring-diagram and matrix generator.
 - `routing_matrix.html`: generated editor and visual-preview application.
-- `prototypes/routing_matrix_prototype_compact.html`: canonical routing-matrix application.
+- `prototypes/routing_matrix_prototype_compact.html`: canonical physical Wiring Matrix application.
+- `web/routing-matrix/index.html`: logical audio Routing Matrix application.
 - `web/`: shell, tab manifest, and shared styles.
 - `defaults/`: clean project and reusable device templates.
 - `projects/`: user-owned project inputs and generated outputs.

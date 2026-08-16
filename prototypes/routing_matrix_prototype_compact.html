@@ -6,7 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>Prototype Lab (Sandbox) | Routing Matrix Prototype (Compact)</title>
+  <title>Prototype Lab (Sandbox) | Wiring Matrix Prototype (Compact)</title>
   <style>
     :root {
       color-scheme: light dark;
@@ -708,6 +708,7 @@
     .conn-icon.usb { color: #4b5563; }
     .conn-icon.tb { color: #7c3aed; }
     .conn-icon.midi { color: #db2777; }
+    .conn-icon.power { color: #b45309; }
     .conn-icon.unknown { color: var(--muted); }
     .port-with-icon {
       display: inline-flex;
@@ -875,7 +876,7 @@
       );
     }
     const FAMILY_ALL = "ALL";
-    const FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK", "CONTROL"];
+    const FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK", "POWER", "CONTROL"];
     const PORT_FOLDER_THRESHOLD = 8;
     const PATCH_MODE_SINGLE = "single";
     const PATCH_MODE_STEREO = "stereo";
@@ -1467,6 +1468,7 @@
       if (["COMP", "COMPUTER", "DATA", "VIDEO", "USB", "TB4", "HDMI"].includes(token)) return "COMP";
       if (["DIGI", "DIGITAL", "MADI", "SPDIF", "ADAT", "AES"].includes(token)) return "DIGI";
       if (["NETWORK", "NET", "ETH", "ETHERNET", "RJ45", "CAT", "CAT6"].includes(token)) return "NETWORK";
+      if (["POWER", "PWR", "MAINS", "AC POWER"].includes(token)) return "POWER";
       if (["CONTROL", "CTRL", "MIDI", "OSC", "DANTE"].includes(token)) return "CONTROL";
       return token;
     }
@@ -1546,6 +1548,13 @@
           const enabled = parseBoolLike(port.enabled, true) && !parseBoolLike(port.disabled, false);
           const familiesRaw = Array.isArray(port.families) ? port.families : [];
           const families = familiesRaw.map((entry) => normalizeFamily(entry)).filter(Boolean);
+          if (!families.includes("POWER") && isPowerPort({
+            name: portName,
+            families,
+            transport: port.transport,
+          })) {
+            families.push("POWER");
+          }
           if (!families.length) continue;
           const group = port.group && typeof port.group === "object" ? port.group : {};
           list.push({
@@ -1897,6 +1906,13 @@
     }
 
     function computeLinkCompatibility(selectedFamily, sourcePort, destPort) {
+      if (
+        (selectedFamily === FAMILY_ALL || normalizeFamily(selectedFamily) === "POWER")
+        && isPowerPort(sourcePort)
+        && isPowerPort(destPort)
+      ) {
+        return { family: "POWER", reason: "" };
+      }
       const shared = sharedFamilies(sourcePort, destPort);
       if (!shared.length) return { family: "", reason: "Incompatible port families" };
       const candidates = selectedFamily === FAMILY_ALL
@@ -2011,10 +2027,24 @@
       return null;
     }
 
+    function isPowerPort(port) {
+      const families = Array.isArray(port?.families)
+        ? port.families.map((family) => normalizeFamily(family))
+        : [];
+      if (families.includes("POWER")) return true;
+
+      const transport = String(port?.transport || "").trim().toUpperCase();
+      const portName = String(port?.port || port?.name || "").trim().toUpperCase();
+      const powerTransport = /\b(?:SCHUKO|CEE|IEC|MAINS|POWER|AC|DC)\b|\b\d+(?:\.\d+)?\s*V\b/.test(transport);
+      const powerName = /\b(?:POWER|MAINS|OUTLET)\b|\b(?:AC|DC)\s+(?:POWER\s+)?(?:IN|OUT)\b/.test(portName);
+      return powerTransport || powerName;
+    }
+
     function iconForPort(port) {
       const transport = String(port?.transport || "").trim().toUpperCase();
       const portName = String(port?.port || "").trim().toUpperCase();
       const families = Array.isArray(port?.families) ? port.families : [];
+      if (isPowerPort(port)) return { label: "PWR", cls: "power", title: transport || "Power" };
       if (/THUNDERBOLT|(^|[^A-Z])TB(4)?([^A-Z]|$)/.test(transport)) return { label: "TBT", cls: "tb", title: transport || "Thunderbolt" };
       if (/USB/.test(transport)) return { label: "USB", cls: "usb", title: transport || "USB" };
       if (/MIDI/.test(transport) || /MIDI/.test(portName)) return { label: "MID", cls: "midi", title: transport || "MIDI" };
@@ -2027,6 +2057,7 @@
       if (families.includes("DIGI")) return { label: "DIG", cls: "digi", title: "Digital" };
       if (families.includes("NETWORK")) return { label: "NET", cls: "net", title: "Network" };
       if (families.includes("COMP")) return { label: "USB", cls: "usb", title: "Computer/Data" };
+      if (families.includes("POWER")) return { label: "PWR", cls: "power", title: "Power" };
       return { label: "?", cls: "unknown", title: transport || "Connector" };
     }
 
@@ -3546,14 +3577,19 @@
     function normalizeApiTargetPath(rawPath) {
       let token = String(rawPath || "").trim();
       if (!token) return "";
-      try {
-        const parsed = new URL(token, window.location.href);
-        if (/^[a-z][a-z0-9+.-]*:/i.test(token) && parsed.origin !== window.location.origin) {
-          return "";
+      const rootRelativeToken = token.split("?")[0].split("#")[0].trim().replace(/^\.\/+/, "");
+      if (/^(?:projects|json|defaults|prototypes)\//.test(rootRelativeToken)) {
+        token = rootRelativeToken;
+      } else {
+        try {
+          const parsed = new URL(token, window.location.href);
+          if (/^[a-z][a-z0-9+.-]*:/i.test(token) && parsed.origin !== window.location.origin) {
+            return "";
+          }
+          token = String(parsed.pathname || "").trim();
+        } catch (_error) {
+          // Keep raw token.
         }
-        token = String(parsed.pathname || "").trim();
-      } catch (_error) {
-        // Keep raw token.
       }
       token = token.split("?")[0].split("#")[0].trim();
       if (!token) return "";

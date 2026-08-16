@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <title>Routing Matrix</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main id="routingMatrixApp" class="app" data-routing-matrix-version="1">
+    <header class="panel toolbar" aria-labelledby="pageTitle">
+      <div class="heading-row">
+        <div>
+          <h1 id="pageTitle">Routing Matrix</h1>
+          <p class="subtitle">Make logical audio routes between device channels. These routes are separate from Wiring Matrix cables.</p>
+        </div>
+        <div id="saveState" class="save-state" data-state="loading" role="status" aria-live="polite">Loading…</div>
+      </div>
+
+      <div id="routingContext" class="routing-context" role="status" aria-live="polite">Using the Wiring Matrix selection…</div>
+
+      <div class="action-row" aria-label="Routing actions">
+        <div class="action-group">
+          <label for="routeModeSelect">Action</label>
+          <select id="routeModeSelect">
+            <option value="add">Connect / replace</option>
+            <option value="remove">Remove</option>
+            <option value="toggle">Toggle</option>
+          </select>
+        </div>
+        <div class="action-group">
+          <label for="routeSpanSelect">Channels</label>
+          <select id="routeSpanSelect">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="8" selected>8</option>
+            <option value="all">Bundle</option>
+          </select>
+        </div>
+        <button id="undoButton" type="button" disabled>Undo</button>
+        <button id="redoButton" type="button" disabled>Redo</button>
+        <button id="reloadButton" type="button">Reload</button>
+        <button id="saveButton" class="primary" type="button" disabled>Save Routes</button>
+        <span class="hint">Select a cell to apply the chosen action diagonally from that channel.</span>
+      </div>
+    </header>
+
+    <section class="panel matrix-panel" aria-labelledby="matrixHeading">
+      <div class="matrix-heading-row">
+        <div>
+          <h2 id="matrixHeading">Audio routes</h2>
+          <p id="matrixSummary" class="matrix-summary">Loading routing endpoints…</p>
+        </div>
+        <div class="legend" aria-label="Matrix legend">
+          <span><i class="legend-dot connected"></i>Connected</span>
+          <span><i class="legend-dot available"></i>Available</span>
+          <span><i class="legend-dot unavailable"></i>Not valid</span>
+        </div>
+      </div>
+      <div id="routingEmptyState" class="empty-state" hidden></div>
+      <div id="matrixScroller" class="matrix-scroller" tabindex="0" aria-label="Scrollable routing matrix">
+        <table id="routingMatrixTable" class="routing-table">
+          <caption class="sr-only">Logical audio routing matrix. Sources are rows and destinations are columns.</caption>
+          <thead id="matrixHead"></thead>
+          <tbody id="matrixBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div id="routingStatus" class="status-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>

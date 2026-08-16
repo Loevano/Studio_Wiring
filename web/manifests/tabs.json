@@ -4,8 +4,13 @@
   "tabs": [
     {
       "key": "routing",
-      "label": "Routing Matrix",
+      "label": "Wiring Matrix",
       "src": "../../prototypes/routing_matrix_prototype_compact.html?use_save_api=1"
+    },
+    {
+      "key": "audio-routing",
+      "label": "Routing Matrix",
+      "src": "../routing-matrix/index.html"
     },
     {
       "key": "connection-overview",

@@ -23,6 +23,8 @@ This file is the canonical rule set for SVG wire rendering. The generator reads:
 - Unidirectional links show arrow at destination end.
 - Bidirectional links (USB/Ethernet/HDMI/etc.) show arrows on both ends.
 - Color comes from resolved connection family/type.
+- Crossings use a narrow background under-stroke so the upper wire remains distinct.
+- In the overview, power wires are painted after signal wires and therefore form the top wire layer.
 
 ## 3. Label Placement
 

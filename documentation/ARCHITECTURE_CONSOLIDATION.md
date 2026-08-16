@@ -1,6 +1,6 @@
 # Architecture consolidation
 
-The shell now routes its **Routing Matrix** tab directly to the canonical compact matrix application. The active path is therefore:
+The shell now routes its **Wiring Matrix** tab directly to the canonical compact matrix application. The active path is therefore:
 
 `web/shell/index.html` → `prototypes/routing_matrix_prototype_compact.html`
 

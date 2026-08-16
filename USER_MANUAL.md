@@ -76,7 +76,7 @@ Use `Save Device Config As` if you want a copy/version.
 
 ## 6. Build Your Patch Config
 
-Go to the `Routing Matrix` tab:
+Go to the `Wiring Matrix` tab:
 
 - click a `+` cell to connect
 - click again to disconnect
@@ -104,12 +104,27 @@ Open the `Rack Editor` tab to describe where equipment is physically installed.
 
 The editor shows U16 at the top and U1 at the bottom. It rejects placements that extend beyond U16 or overlap another device. Rack changes are part of the device configuration, so save the device config afterward. See [the Rack Editor reference](documentation/RACK_EDITOR.md) for the exact JSON fields.
 
+## 6B. Route Audio Inside and Between Devices
+
+The Wiring Matrix records physical cables and patch points. Use the separate `Routing Matrix` tab, immediately after Wiring Matrix, for logical audio paths inside interfaces, consoles, and converters. It only shows devices that expose routing endpoints.
+
+Choose the source row and destination column, select a span (including 8 channels), then add, remove, or toggle the route. A source may feed more than one destination, but each destination can have only one active route.
+
+For example, an eight-channel path can be expressed as:
+
+1. `Audient ADAT 1-8 OUT` → `SSL ADAT 1-8 IN`
+2. `SSL ADAT 1-8 IN` → `SSL MADI 25-32 OUT`
+3. `SSL MADI 25-32 OUT` → `UFX MADI 25-32 IN`
+
+All three logical signal links can be entered in Routing Matrix. If the studio also needs to document the physical cables for the first and third hop, record those separately in Wiring Matrix. Routing Matrix saves are stored separately from patch configs. They do not alter physical cables or regenerate wiring diagrams. Use Save or Auto Save as appropriate; a stale save reports a conflict rather than replacing a newer route configuration.
+
 ## 7. Auto Save Configs
 
-If `Auto Save` is ON in the shell bar, edits are saved automatically. This is one global browser preference: it stays enabled when you switch between Routing Matrix, Devices & Ports, Rack Editor, Visibility, and Visuals, and it is restored after a reload.
+If `Auto Save` is ON in the shell bar, edits are saved automatically. This is one global browser preference: it stays enabled when you switch between Wiring Matrix, Routing Matrix, Devices & Ports, Rack Editor, Visibility, and Visuals, and it is restored after a reload.
 
 - Device edits save to the selected device config
 - Patch edits save to the selected patch config
+- Logical route edits save to the selected routing config
 - Switching tabs or leaving the application window flushes pending edits immediately instead of waiting for the normal debounce.
 - If that flush fails or times out, the tab switch is cancelled so unsaved work is not silently discarded.
 - With Auto Save off, navigation within the same application preserves edits in the current browser session but does not write them to disk.

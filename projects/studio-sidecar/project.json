@@ -6,6 +6,8 @@
     "device_model": "device-configurations/basis.json",
     "default_patch": "patch-configurations/basis/basis.json",
     "patch_directory": "patch-configurations",
+    "default_routing": "routing-configurations/basis/route-default.json",
+    "routing_directory": "routing-configurations",
     "output_html_directory": "outputs/html",
     "output_svg_directory": "outputs/svgs",
     "output_debug_directory": "outputs/debug"
@@ -13,6 +15,11 @@
   "device_patch_map": {
     "device-configurations/basis.json": [
       "patch-configurations/basis/basis.json"
+    ]
+  },
+  "device_routing_map": {
+    "device-configurations/basis.json": [
+      "routing-configurations/basis/route-default.json"
     ]
   }
 }

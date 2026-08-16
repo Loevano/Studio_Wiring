@@ -7,6 +7,7 @@
       "name": "Allen & Heath GS3000",
       "device_type": "Console / Mixer",
       "layout_group": "Analog Front End",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Mic In 1",
@@ -3483,6 +3484,16 @@
             "name": "Phones Out"
           },
           "order": 229
+        },
+        {
+          "name": "RPS11 DC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "A&H RPS11 DC",
+          "order": 230,
+          "notes": "Console low-voltage feed from the external Allen & Heath RPS11 power supply."
         }
       ],
       "matrix_order": 0,
@@ -3493,6 +3504,7 @@
       "name": "ATC SCM 11",
       "device_type": "Speaker / Monitor",
       "layout_group": "Monitoring",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Speaker Input L",
@@ -3533,6 +3545,9 @@
       "name": "Audient ASP 880",
       "device_type": "Preamps / Channel Strip",
       "layout_group": "Analog Front End",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
       "ports": [
         {
           "name": "Instrument In 1",
@@ -3962,16 +3977,31 @@
             "name": "AES/SPDIF Out"
           },
           "order": 28
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "IEC C14",
+          "order": 29,
+          "notes": "90–264 V AC internal supply."
         }
       ],
       "matrix_order": 2,
       "visible": true,
-      "hidden": false
+      "hidden": false,
+      "rack_position": {
+        "rack": 3,
+        "start_u": 14
+      }
     },
     {
       "name": "Avid S1 #1",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Footswitch In",
@@ -4008,6 +4038,16 @@
             "name": "USB Service"
           },
           "order": 2
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "AVID 12V DC",
+          "order": 3,
+          "notes": "12 V DC, 2.8 A external adapter with Avid connector."
         }
       ],
       "matrix_order": 3,
@@ -4018,6 +4058,7 @@
       "name": "Avid S1 #2",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Footswitch In",
@@ -4054,6 +4095,16 @@
             "name": "USB Service"
           },
           "order": 2
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "AVID 12V DC",
+          "order": 3,
+          "notes": "12 V DC, 2.8 A external adapter with Avid connector."
         }
       ],
       "matrix_order": 4,
@@ -4064,6 +4115,9 @@
       "name": "Behringer A800 #1",
       "device_type": "Amplifier / Monitor Control",
       "layout_group": "Monitoring",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 2,
       "ports": [
         {
           "name": "Input L",
@@ -4124,16 +4178,33 @@
             "size": 2
           },
           "order": 3
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "IEC C14",
+          "order": 4,
+          "notes": "Protective-earth IEC mains inlet."
         }
       ],
       "matrix_order": 5,
       "visible": true,
-      "hidden": false
+      "hidden": false,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 3
+      }
     },
     {
       "name": "Behringer A800 #2",
       "device_type": "Amplifier / Monitor Control",
       "layout_group": "Monitoring",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 2,
       "ports": [
         {
           "name": "Input L",
@@ -4194,16 +4265,33 @@
             "size": 2
           },
           "order": 3
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "IEC C14",
+          "order": 4,
+          "notes": "Protective-earth IEC mains inlet."
         }
       ],
       "matrix_order": 6,
       "visible": true,
-      "hidden": false
+      "hidden": false,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 1
+      }
     },
     {
       "name": "Focusrite Platinum Voice Master",
       "device_type": "Preamps / Channel Strip",
       "layout_group": "Analog Front End",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
       "ports": [
         {
           "name": "Mic In",
@@ -4288,9 +4376,23 @@
             "name": "Main Out"
           },
           "order": 6
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "IEC C14",
+          "order": 7,
+          "notes": "Protective-earth IEC mains inlet."
         }
       ],
-      "matrix_order": 7
+      "matrix_order": 7,
+      "rack_position": {
+        "rack": 3,
+        "start_u": 13
+      }
     },
     {
       "name": "Future Preamp Slots",
@@ -4365,6 +4467,7 @@
       "device_type": "Amplifier / Monitor Control",
       "layout_group": "Monitoring",
       "rack_mountable": true,
+      "location": "Rack",
       "rack_units": 1,
       "ports": [
         {
@@ -4558,14 +4661,29 @@
             "size": 6
           },
           "order": 12
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "CEE 7/7 FIXED",
+          "order": 13,
+          "notes": "Fixed 230 V mains cable."
         }
       ],
-      "matrix_order": 9
+      "matrix_order": 8,
+      "rack_position": {
+        "rack": 4,
+        "start_u": 1
+      }
     },
     {
       "name": "Mac mini",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Thunderbolt Port",
@@ -4602,14 +4720,25 @@
             "name": "HDMI Out"
           },
           "order": 2
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "IEC C8",
+          "order": 3,
+          "notes": "Two-pin figure-8 appliance inlet."
         }
       ],
-      "matrix_order": 10
+      "matrix_order": 9
     },
     {
       "name": "MAO Preamp (confirm model)",
       "device_type": "Preamps / Channel Strip",
       "layout_group": "Analog Front End",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Mic In 1",
@@ -4730,14 +4859,25 @@
             "size": 1
           },
           "order": 7
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "TBD",
+          "order": 8,
+          "notes": "Exact model is still unknown; verify inlet and adapter before cabling."
         }
       ],
-      "matrix_order": 11
+      "matrix_order": 10
     },
     {
       "name": "Netgear Unmanaged Switch",
       "device_type": "Network",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Port 1",
@@ -4858,14 +4998,27 @@
             "size": 1
           },
           "order": 7
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "DC BARREL",
+          "order": 8,
+          "notes": "External adapter; verify voltage and barrel polarity against the installed model."
         }
       ],
-      "matrix_order": 12
+      "matrix_order": 11
     },
     {
       "name": "RME UFX III",
-      "device_type": "Interface / Converter",
+      "device_type": "Interface",
       "layout_group": "Digital Core",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
       "ports": [
         {
           "name": "MADI In Optical",
@@ -5351,14 +5504,27 @@
             "name": "Word Clock Out"
           },
           "order": 35
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "IEC C14",
+          "order": 36,
+          "notes": "100–240 V AC internal switching supply, 36 W."
         }
       ],
-      "matrix_order": 13
+      "matrix_order": 12
     },
     {
       "name": "SSL AX MADI",
-      "device_type": "Interface / Converter",
+      "device_type": "Converter",
       "layout_group": "Digital Core",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 2,
       "ports": [
         {
           "name": "MADI In Optical",
@@ -6142,14 +6308,50 @@
             "name": "MADI Out Optical"
           },
           "order": 50
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "IEC C14",
+          "order": 51,
+          "notes": "100–240 V AC IEC320 inlet."
         }
       ],
-      "matrix_order": 14
+      "matrix_order": 13,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 9
+      }
     },
     {
       "name": "Streamdeck #1",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
+      "ports": [
+        {
+          "name": "USB-C",
+          "direction": "in",
+          "families": [
+            "COMP"
+          ],
+          "transport": "USB-C",
+          "group": {
+            "name": "USB-C"
+          },
+          "order": 0
+        }
+      ],
+      "matrix_order": 14
+    },
+    {
+      "name": "Streamdeck #2",
+      "device_type": "Computer / Control",
+      "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "USB-C",
@@ -6167,29 +6369,10 @@
       "matrix_order": 15
     },
     {
-      "name": "Streamdeck #2",
-      "device_type": "Computer / Control",
-      "layout_group": "Computer / Control",
-      "ports": [
-        {
-          "name": "USB-C",
-          "direction": "in",
-          "families": [
-            "COMP"
-          ],
-          "transport": "USB-C",
-          "group": {
-            "name": "USB-C"
-          },
-          "order": 0
-        }
-      ],
-      "matrix_order": 16
-    },
-    {
       "name": "Talkback Mic",
       "device_type": "Microphone / DI",
       "layout_group": "Analog Front End",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Output",
@@ -6204,12 +6387,13 @@
           "order": 0
         }
       ],
-      "matrix_order": 17
+      "matrix_order": 16
     },
     {
       "name": "Tannoy System 10",
       "device_type": "Speaker / Monitor",
       "layout_group": "Monitoring",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Speaker Input L",
@@ -6242,12 +6426,13 @@
           "order": 1
         }
       ],
-      "matrix_order": 18
+      "matrix_order": 17
     },
     {
       "name": "Tascam MS-16",
       "device_type": "Tape Machine",
       "layout_group": "Analog Front End",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "XLR In 1",
@@ -6728,14 +6913,25 @@
             "size": 16
           },
           "order": 31
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "TBD",
+          "order": 32,
+          "notes": "Verify the installed machine's mains lead and voltage setting before connection."
         }
       ],
-      "matrix_order": 19
+      "matrix_order": 18
     },
     {
       "name": "TC Electronic Clarity M Stereo",
       "device_type": "Outboard / FX",
       "layout_group": "Digital Core",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "Optical In",
@@ -6760,14 +6956,25 @@
             "name": "USB"
           },
           "order": 1
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "DC BARREL",
+          "order": 2,
+          "notes": "12 V DC, 0.5 A external adapter."
         }
       ],
-      "matrix_order": 20
+      "matrix_order": 19
     },
     {
       "name": "Thunderbolt Dock",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "USB Port 1",
@@ -6852,14 +7059,25 @@
             "name": "Host/Upstream Port"
           },
           "order": 5
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "DC POWER",
+          "order": 6,
+          "notes": "External adapter; verify connector and rating against the installed dock model."
         }
       ],
-      "matrix_order": 21
+      "matrix_order": 20
     },
     {
       "name": "TV Screen",
       "device_type": "Computer / Control",
       "layout_group": "Computer / Control",
+      "rack_mountable": false,
       "ports": [
         {
           "name": "HDMI In",
@@ -6872,9 +7090,1656 @@
             "name": "HDMI In"
           },
           "order": 0
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "TBD",
+          "order": 1,
+          "notes": "Screen model is unspecified; verify IEC C8/C14 or external adapter before cabling."
         }
       ],
-      "matrix_order": 22
+      "matrix_order": 21
+    },
+    {
+      "name": "TC Electronic Finalizer 48K",
+      "device_type": "Outboard / FX",
+      "layout_group": "Digital Core",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
+      "ports": [
+        {
+          "name": "S/PDIF In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "SPDIF",
+          "group": {
+            "name": "S/PDIF In"
+          },
+          "order": 0
+        },
+        {
+          "name": "MIDI In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In"
+          },
+          "order": 1
+        },
+        {
+          "name": "Analog In L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 2
+        },
+        {
+          "name": "Analog In R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 3
+        },
+        {
+          "name": "AES/EBU In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU In"
+          },
+          "order": 4
+        },
+        {
+          "name": "Pedal/Fader In",
+          "direction": "in",
+          "families": [
+            "COMP"
+          ],
+          "transport": "TRS",
+          "group": {
+            "name": "Pedal/Fader In"
+          },
+          "order": 5
+        },
+        {
+          "name": "Analog Out L",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 6
+        },
+        {
+          "name": "Analog Out R",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 7
+        },
+        {
+          "name": "AES/EBU Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU Out"
+          },
+          "order": 8
+        },
+        {
+          "name": "S/PDIF Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "SPDIF",
+          "group": {
+            "name": "S/PDIF Out"
+          },
+          "order": 9
+        },
+        {
+          "name": "MIDI Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Out"
+          },
+          "order": 10
+        },
+        {
+          "name": "MIDI Thru",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI Thru"
+          },
+          "order": 11
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "IEC C14",
+          "order": 12,
+          "notes": "Three-pin protective-earth IEC inlet."
+        }
+      ],
+      "matrix_order": 26,
+      "rack_position": {
+        "rack": 2,
+        "start_u": 14
+      }
+    },
+    {
+      "name": "Sony DPS-R7 Reverb",
+      "device_type": "Outboard / FX",
+      "layout_group": "Digital Core",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
+      "ports": [
+        {
+          "name": "MIDI In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "MIDI",
+          "group": {
+            "name": "MIDI In"
+          },
+          "order": 0
+        },
+        {
+          "name": "Balanced In L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Balanced In",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 1
+        },
+        {
+          "name": "Unbalanced In L",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TS",
+          "group": {
+            "name": "Unbalanced In",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 2
+        },
+        {
+          "name": "Balanced In R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Balanced In",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 3
+        },
+        {
+          "name": "Unbalanced In R",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TS",
+          "group": {
+            "name": "Unbalanced In",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 4
+        },
+        {
+          "name": "Remote In",
+          "direction": "in",
+          "families": [
+            "COMP"
+          ],
+          "transport": "REMOTE",
+          "group": {
+            "name": "Remote In"
+          },
+          "order": 5
+        },
+        {
+          "name": "Balanced Out L",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Balanced Out",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 6
+        },
+        {
+          "name": "Unbalanced Out L",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TS",
+          "group": {
+            "name": "Unbalanced Out",
+            "member": "L",
+            "index": 1,
+            "size": 2
+          },
+          "order": 7
+        },
+        {
+          "name": "Balanced Out R",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Balanced Out",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 8
+        },
+        {
+          "name": "Unbalanced Out R",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "TS",
+          "group": {
+            "name": "Unbalanced Out",
+            "member": "R",
+            "index": 2,
+            "size": 2
+          },
+          "order": 9
+        },
+        {
+          "name": "Remote Thru",
+          "direction": "out",
+          "families": [
+            "COMP"
+          ],
+          "transport": "REMOTE",
+          "group": {
+            "name": "Remote Thru"
+          },
+          "order": 10
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "IEC C14",
+          "order": 11,
+          "notes": "Protective-earth IEC mains inlet."
+        }
+      ],
+      "matrix_order": 27,
+      "rack_position": {
+        "rack": 2,
+        "start_u": 13
+      }
+    },
+    {
+      "name": "Lucid 88192",
+      "device_type": "Converter",
+      "layout_group": "Digital Core",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 2,
+      "ports": [
+        {
+          "name": "Analog In 1",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          },
+          "order": 0
+        },
+        {
+          "name": "Analog In 2",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          },
+          "order": 1
+        },
+        {
+          "name": "Analog In 3",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          },
+          "order": 2
+        },
+        {
+          "name": "Analog In 4",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          },
+          "order": 3
+        },
+        {
+          "name": "Analog In 5",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          },
+          "order": 4
+        },
+        {
+          "name": "Analog In 6",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          },
+          "order": 5
+        },
+        {
+          "name": "Analog In 7",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          },
+          "order": 6
+        },
+        {
+          "name": "Analog In 8",
+          "direction": "in",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog In",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          },
+          "order": 7
+        },
+        {
+          "name": "AES/EBU In 1-2",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU In",
+            "member": "1-2",
+            "index": 1,
+            "size": 4
+          },
+          "order": 8
+        },
+        {
+          "name": "ADAT In 1-8 / SMUX2 1-4",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "ADAT",
+          "group": {
+            "name": "ADAT In",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          },
+          "order": 9
+        },
+        {
+          "name": "AES/EBU In 3-4",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU In",
+            "member": "3-4",
+            "index": 2,
+            "size": 4
+          },
+          "order": 10
+        },
+        {
+          "name": "ADAT In SMUX2 5-8",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "ADAT",
+          "group": {
+            "name": "ADAT In",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          },
+          "order": 11
+        },
+        {
+          "name": "AES/EBU In 5-6",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU In",
+            "member": "5-6",
+            "index": 3,
+            "size": 4
+          },
+          "order": 12
+        },
+        {
+          "name": "AES/EBU In 7-8",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU In",
+            "member": "7-8",
+            "index": 4,
+            "size": 4
+          },
+          "order": 13
+        },
+        {
+          "name": "Word Clock In",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "CLOCK",
+          "group": {
+            "name": "Word Clock In"
+          },
+          "order": 14
+        },
+        {
+          "name": "Analog Out 1",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          },
+          "order": 15
+        },
+        {
+          "name": "Analog Out 2",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          },
+          "order": 16
+        },
+        {
+          "name": "Analog Out 3",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          },
+          "order": 17
+        },
+        {
+          "name": "Analog Out 4",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          },
+          "order": 18
+        },
+        {
+          "name": "Analog Out 5",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          },
+          "order": 19
+        },
+        {
+          "name": "Analog Out 6",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          },
+          "order": 20
+        },
+        {
+          "name": "Analog Out 7",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          },
+          "order": 21
+        },
+        {
+          "name": "Analog Out 8",
+          "direction": "out",
+          "families": [
+            "AUDIO"
+          ],
+          "transport": "XLR",
+          "group": {
+            "name": "Analog Out",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          },
+          "order": 22
+        },
+        {
+          "name": "AES/EBU Out 1-2",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU Out",
+            "member": "1-2",
+            "index": 1,
+            "size": 4
+          },
+          "order": 23
+        },
+        {
+          "name": "ADAT Out 1-8 / SMUX2 1-4",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "ADAT",
+          "group": {
+            "name": "ADAT Out",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          },
+          "order": 24
+        },
+        {
+          "name": "AES/EBU Out 3-4",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU Out",
+            "member": "3-4",
+            "index": 2,
+            "size": 4
+          },
+          "order": 25
+        },
+        {
+          "name": "ADAT Out SMUX2 5-8",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "ADAT",
+          "group": {
+            "name": "ADAT Out",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          },
+          "order": 26
+        },
+        {
+          "name": "AES/EBU Out 5-6",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU Out",
+            "member": "5-6",
+            "index": 3,
+            "size": 4
+          },
+          "order": 27
+        },
+        {
+          "name": "AES/EBU Out 7-8",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "AES",
+          "group": {
+            "name": "AES/EBU Out",
+            "member": "7-8",
+            "index": 4,
+            "size": 4
+          },
+          "order": 28
+        },
+        {
+          "name": "Word Clock Out",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "CLOCK",
+          "group": {
+            "name": "Word Clock Out"
+          },
+          "order": 29
+        },
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "IEC C14",
+          "order": 30,
+          "notes": "100–240 V AC IEC inlet."
+        }
+      ],
+      "matrix_order": 33,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 7
+      }
+    },
+    {
+      "name": "the t.racks Power MS6",
+      "device_type": "Power Distribution",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
+      "ports": [
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "CEE 7/7 FIXED",
+          "order": 0,
+          "notes": "Fixed Type F mains lead."
+        },
+        {
+          "name": "Outlet 1",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 1,
+          "group": {
+            "name": "Outlet",
+            "member": "1",
+            "index": 1,
+            "size": 6
+          }
+        },
+        {
+          "name": "Outlet 2",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 2,
+          "group": {
+            "name": "Outlet",
+            "member": "2",
+            "index": 2,
+            "size": 6
+          }
+        },
+        {
+          "name": "Outlet 3",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 3,
+          "group": {
+            "name": "Outlet",
+            "member": "3",
+            "index": 3,
+            "size": 6
+          }
+        },
+        {
+          "name": "Outlet 4",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 4,
+          "group": {
+            "name": "Outlet",
+            "member": "4",
+            "index": 4,
+            "size": 6
+          }
+        },
+        {
+          "name": "Outlet 5",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 5,
+          "group": {
+            "name": "Outlet",
+            "member": "5",
+            "index": 5,
+            "size": 6
+          }
+        },
+        {
+          "name": "Outlet 6",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 6,
+          "group": {
+            "name": "Outlet",
+            "member": "6",
+            "index": 6,
+            "size": 6
+          }
+        }
+      ],
+      "matrix_order": 22,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 15
+      }
+    },
+    {
+      "name": "the t.racks Power 8 #1",
+      "device_type": "Power Distribution",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
+      "ports": [
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "CEE 7/7 FIXED",
+          "order": 0,
+          "notes": "Fixed Type F mains lead."
+        },
+        {
+          "name": "Outlet 1",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 1,
+          "group": {
+            "name": "Outlet",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 2",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 2,
+          "group": {
+            "name": "Outlet",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 3",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 3,
+          "group": {
+            "name": "Outlet",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 4",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 4,
+          "group": {
+            "name": "Outlet",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 5",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 5,
+          "group": {
+            "name": "Outlet",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 6",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 6,
+          "group": {
+            "name": "Outlet",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 7",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 7,
+          "group": {
+            "name": "Outlet",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 8",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 8,
+          "group": {
+            "name": "Outlet",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        }
+      ],
+      "matrix_order": 23,
+      "rack_position": {
+        "rack": 2,
+        "start_u": 16
+      }
+    },
+    {
+      "name": "the t.racks Power 8 #2",
+      "device_type": "Power Distribution",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
+      "ports": [
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "CEE 7/7 FIXED",
+          "order": 0,
+          "notes": "Fixed Type F mains lead."
+        },
+        {
+          "name": "Outlet 1",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 1,
+          "group": {
+            "name": "Outlet",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 2",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 2,
+          "group": {
+            "name": "Outlet",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 3",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 3,
+          "group": {
+            "name": "Outlet",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 4",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 4,
+          "group": {
+            "name": "Outlet",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 5",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 5,
+          "group": {
+            "name": "Outlet",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 6",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 6,
+          "group": {
+            "name": "Outlet",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 7",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 7,
+          "group": {
+            "name": "Outlet",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 8",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 8,
+          "group": {
+            "name": "Outlet",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        }
+      ],
+      "matrix_order": 24,
+      "rack_position": {
+        "rack": 3,
+        "start_u": 16
+      }
+    },
+    {
+      "name": "the t.racks Power 8 #3",
+      "device_type": "Power Distribution",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Desk",
+      "rack_units": 1,
+      "ports": [
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "CEE 7/7 FIXED",
+          "order": 0,
+          "notes": "Fixed Type F mains lead."
+        },
+        {
+          "name": "Outlet 1",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 1,
+          "group": {
+            "name": "Outlet",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 2",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 2,
+          "group": {
+            "name": "Outlet",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 3",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 3,
+          "group": {
+            "name": "Outlet",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 4",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 4,
+          "group": {
+            "name": "Outlet",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 5",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 5,
+          "group": {
+            "name": "Outlet",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 6",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 6,
+          "group": {
+            "name": "Outlet",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 7",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 7,
+          "group": {
+            "name": "Outlet",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          }
+        },
+        {
+          "name": "Outlet 8",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 8,
+          "group": {
+            "name": "Outlet",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          }
+        }
+      ],
+      "matrix_order": 25
+    },
+    {
+      "name": "Black Lion Audio PG-1 Type F MKII",
+      "device_type": "Power Distribution",
+      "layout_group": "Rack Infrastructure",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 1,
+      "ports": [
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "CEE 7/7 FIXED",
+          "order": 0,
+          "notes": "Integrated heavy-duty Type F mains cable."
+        },
+        {
+          "name": "Digital Outlet 1",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 1,
+          "group": {
+            "name": "Digital Outlet",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          }
+        },
+        {
+          "name": "Digital Outlet 2",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 2,
+          "group": {
+            "name": "Digital Outlet",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          }
+        },
+        {
+          "name": "Analog Outlet 1",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 3,
+          "group": {
+            "name": "Analog Outlet",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          }
+        },
+        {
+          "name": "Analog Outlet 2",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 4,
+          "group": {
+            "name": "Analog Outlet",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          }
+        },
+        {
+          "name": "High Current Outlet 1",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 5,
+          "group": {
+            "name": "High Current Outlet",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          }
+        },
+        {
+          "name": "High Current Outlet 2",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 6,
+          "group": {
+            "name": "High Current Outlet",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          }
+        },
+        {
+          "name": "Front Unswitched Outlet 1",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 7,
+          "group": {
+            "name": "Front Unswitched Outlet",
+            "member": "1",
+            "index": 1,
+            "size": 2
+          }
+        },
+        {
+          "name": "Front Unswitched Outlet 2",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 8,
+          "group": {
+            "name": "Front Unswitched Outlet",
+            "member": "2",
+            "index": 2,
+            "size": 2
+          }
+        }
+      ],
+      "matrix_order": 32,
+      "rack_position": {
+        "rack": 1,
+        "start_u": 16
+      }
+    },
+    {
+      "name": "Studio Wall Power",
+      "device_type": "Power Source",
+      "layout_group": "Power Infrastructure",
+      "rack_mountable": false,
+      "ports": [
+        {
+          "name": "Wall Outlet 1",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 0,
+          "group": {
+            "name": "Wall Outlet",
+            "member": "1",
+            "index": 1,
+            "size": 5
+          }
+        },
+        {
+          "name": "Wall Outlet 2",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 1,
+          "group": {
+            "name": "Wall Outlet",
+            "member": "2",
+            "index": 2,
+            "size": 5
+          }
+        },
+        {
+          "name": "Wall Outlet 3",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 2,
+          "group": {
+            "name": "Wall Outlet",
+            "member": "3",
+            "index": 3,
+            "size": 5
+          }
+        },
+        {
+          "name": "Wall Outlet 4",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 3,
+          "group": {
+            "name": "Wall Outlet",
+            "member": "4",
+            "index": 4,
+            "size": 5
+          }
+        },
+        {
+          "name": "Wall Outlet 5",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 4,
+          "group": {
+            "name": "Wall Outlet",
+            "member": "5",
+            "index": 5,
+            "size": 5
+          }
+        }
+      ],
+      "matrix_order": 34
+    },
+    {
+      "name": "Allen & Heath RPS11",
+      "device_type": "External Power Supply",
+      "layout_group": "Analog Front End",
+      "rack_mountable": true,
+      "location": "Rack",
+      "rack_units": 3,
+      "ports": [
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "IEC C14",
+          "order": 0,
+          "notes": "Set voltage selector and fuse for 230 V operation."
+        },
+        {
+          "name": "Console DC Out",
+          "direction": "out",
+          "families": [
+            "POWER"
+          ],
+          "transport": "A&H RPS11 DC",
+          "order": 1,
+          "notes": "Dedicated GS3000 DC cable; do not extend."
+        }
+      ],
+      "matrix_order": 35
     }
   ]
 }
