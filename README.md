@@ -14,6 +14,12 @@ From a terminal:
 python3 routing_matrix_server.py --host 127.0.0.1 --port 8000
 ```
 
+To stop a server launched by `start_routing_shell.sh`, run:
+
+```bash
+./stopserver.sh
+```
+
 Then open <http://127.0.0.1:8000/web/shell/index.html>.
 
 The normal workflow is:

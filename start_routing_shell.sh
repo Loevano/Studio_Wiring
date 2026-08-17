@@ -6,6 +6,7 @@ HOST="127.0.0.1"
 PORT="8000"
 URL="http://${HOST}:${PORT}/web/shell/index.html"
 LOG_FILE="${ROOT_DIR}/.routing_matrix_server.log"
+PID_FILE="${ROOT_DIR}/.routing_matrix_server.pid"
 
 is_port_listening() {
   if command -v lsof >/dev/null 2>&1; then
@@ -22,6 +23,7 @@ start_server() {
     --port "${PORT}" \
     --root "${ROOT_DIR}" \
     > "${LOG_FILE}" 2>&1 &
+  echo $! > "${PID_FILE}"
 }
 
 wait_for_server() {
@@ -69,4 +71,3 @@ else
 fi
 
 open_browser
-
