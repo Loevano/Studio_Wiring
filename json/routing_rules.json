@@ -9,6 +9,12 @@
     "fifo_forward_turns": true,
     "backward_out_to_in_wrap": "below",
     "video_early_turn": true,
-    "video_vertical_rows_threshold": 6.0
+    "video_vertical_rows_threshold": 6.0,
+    "forward_turn_edge_margin": 0.12,
+    "wire_clearance_px": 12.0,
+    "power_wire_clearance_px": 18.0,
+    "power_lane_spacing_px": 18.0,
+    "power_column_gap_px": 420.0,
+    "left_route_gutter_px": 108.0
   }
 }

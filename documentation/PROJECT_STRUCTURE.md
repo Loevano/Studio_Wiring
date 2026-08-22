@@ -30,6 +30,7 @@ projects/
         studio_wiring_point_to_point.html
       svgs/
         audio-analog.svg
+        all-audio.svg
         digital-audio.svg
         computer-data.svg
         network.svg

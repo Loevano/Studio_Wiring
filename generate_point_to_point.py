@@ -28,6 +28,9 @@ BOX_MIN_WIDTH = 270.0
 BOX_MAX_WIDTH = 520.0
 CONNECTION_LABEL_FONT_SIZE = 7.0
 CONNECTION_LABEL_CHAR_PX = 5.4
+GROUP_LABEL_TOP_OFFSET = 13.0
+GROUP_ROUTE_CLEARANCE = 8.0
+GROUP_FRAME_HORIZONTAL_PADDING = 10.0
 
 # ---------------------------------------------------------------------------
 # Matrix family defaults (shared by SVG generation + routing UI)
@@ -138,6 +141,11 @@ DEFAULT_ROUTING_RULES: dict[str, object] = {
         "video_early_turn": True,
         "video_vertical_rows_threshold": 6.0,
         "forward_turn_edge_margin": 0.12,
+        "wire_clearance_px": 12.0,
+        "power_wire_clearance_px": 18.0,
+        "power_lane_spacing_px": 18.0,
+        "power_column_gap_px": 420.0,
+        "left_route_gutter_px": 108.0,
     },
 }
 
@@ -152,6 +160,29 @@ DEFAULT_LAYER_COLORS = {
     "MIDI": "#9333ea",
     "Power": "#b45309",
     "Spare / Planned": "#64748b",
+}
+
+# Distinct, high-contrast circuit colours used only by the dedicated Power SVG.
+# Additional circuit numbers wrap through the palette deterministically.
+POWER_GROUP_COLORS = [
+    "#1d4ed8",  # blue
+    "#b45309",  # amber
+    "#15803d",  # green
+    "#7e22ce",  # purple
+    "#b91c1c",  # red
+    "#0e7490",  # cyan
+]
+
+POWER_BRANCH_COLORS = {
+    "Low": "#0e7490",
+    "High": "#be123c",
+    "Digital": "#7e22ce",
+}
+
+POWER_BRANCH_LABELS = {
+    "Digital": "Digital",
+    "High": "Hi",
+    "Low": "Lo",
 }
 
 FALLBACK_LAYER_COLORS = [
@@ -581,6 +612,131 @@ def resolve_connection_family_and_color(connection: Connection) -> tuple[str, st
     return (connection.layer, resolve_layer_color(connection.layer))
 
 
+def explicit_power_group(connection: Connection) -> str | None:
+    """Return a normalized electrical circuit label when one is documented."""
+    group_text = " ".join(
+        [
+            connection.notes,
+            connection.source_jack,
+            connection.dest_jack,
+        ]
+    )
+    match = re.search(r"\b(?:group|groep)\s*[-#:]*\s*(\d+)\b", group_text, flags=re.IGNORECASE)
+    if not match:
+        return None
+    return f"Group {int(match.group(1))}"
+
+
+def resolve_power_groups(connections: list[Connection]) -> dict[Connection, str]:
+    """Resolve circuit groups and carry them through downstream power devices."""
+    groups = {
+        connection: group
+        for connection in connections
+        if (group := explicit_power_group(connection)) is not None
+    }
+
+    # A downstream supply (PDU, external PSU, switcher, etc.) belongs to the
+    # single circuit feeding it. Repeat because a chain can contain several
+    # distribution stages. Devices fed by multiple circuits remain unassigned.
+    while True:
+        incoming_groups: dict[str, set[str]] = defaultdict(set)
+        for connection, group in groups.items():
+            incoming_groups[connection.dest_device].add(group)
+
+        added = False
+        for connection in connections:
+            if connection in groups:
+                continue
+            candidates = incoming_groups.get(connection.source_device, set())
+            if len(candidates) == 1:
+                groups[connection] = next(iter(candidates))
+                added = True
+        if not added:
+            break
+
+    return groups
+
+
+def explicit_power_branch(connection: Connection) -> str | None:
+    """Recognize the Low, High, and Digital banks on a power sequencer."""
+    branch_text = " ".join([connection.source_jack, connection.notes]).lower()
+    if "high current" in branch_text or re.search(r"(?:^|/)\s*(?:high|amp)\b", branch_text):
+        return "High"
+    if "digital outlet" in branch_text or re.search(r"(?:^|/)\s*(?:digital|dig)\b", branch_text):
+        return "Digital"
+    if "analog outlet" in branch_text or re.search(r"(?:^|/)\s*low\b", branch_text):
+        return "Low"
+    return None
+
+
+def resolve_power_branches(connections: list[Connection]) -> dict[Connection, str]:
+    """Carry sequencer-bank labels through downstream distribution stages."""
+    branches = {
+        connection: branch
+        for connection in connections
+        if (branch := explicit_power_branch(connection)) is not None
+    }
+    while True:
+        incoming_branches: dict[str, set[str]] = defaultdict(set)
+        for connection, branch in branches.items():
+            incoming_branches[connection.dest_device].add(branch)
+
+        added = False
+        for connection in connections:
+            if connection in branches:
+                continue
+            candidates = incoming_branches.get(connection.source_device, set())
+            if len(candidates) == 1:
+                branches[connection] = next(iter(candidates))
+                added = True
+        if not added:
+            break
+    return branches
+
+
+def power_group_color(group: str) -> str:
+    match = re.fullmatch(r"Group (\d+)", group)
+    if not match:
+        return DEFAULT_LAYER_COLORS["Power"]
+    group_number = max(1, int(match.group(1)))
+    return POWER_GROUP_COLORS[(group_number - 1) % len(POWER_GROUP_COLORS)]
+
+
+def power_visual_styles(connections: list[Connection]) -> dict[Connection, tuple[str, str]]:
+    """Return dedicated Power-SVG legend labels and colours for each route."""
+    groups = resolve_power_groups(connections)
+    branches = resolve_power_branches(connections)
+    styles: dict[Connection, tuple[str, str]] = {}
+    for connection, group in groups.items():
+        branch = branches.get(connection)
+        if group == "Group 1" and branch in POWER_BRANCH_COLORS:
+            styles[connection] = (
+                f"{group} · {POWER_BRANCH_LABELS[branch]}",
+                POWER_BRANCH_COLORS[branch],
+            )
+        else:
+            styles[connection] = (group, power_group_color(group))
+    return styles
+
+
+def power_groups_by_device(connections: list[Connection]) -> dict[str, str]:
+    """Return the single inherited power circuit feeding each destination device."""
+    power_connections = [
+        connection
+        for connection in connections
+        if resolve_connection_family_and_color(connection)[0] == "Power"
+    ]
+    groups_by_connection = resolve_power_groups(power_connections)
+    candidates_by_device: dict[str, set[str]] = defaultdict(set)
+    for connection, group in groups_by_connection.items():
+        candidates_by_device[connection.dest_device].add(group)
+    return {
+        device: next(iter(groups))
+        for device, groups in candidates_by_device.items()
+        if len(groups) == 1
+    }
+
+
 def normalize_matrix_family(value: str) -> str:
     token = value.strip().upper()
     if token in {"AUDIO", "COMP", "DIGI", "NETWORK"}:
@@ -906,6 +1062,121 @@ def collapse_stereo_headphone_connections_for_render(
 
     rendered.sort(key=lambda item: item[0])
     return [item[1] for item in rendered]
+
+
+def reciprocal_single_link_protocol(connection: Connection) -> str:
+    """Return a physical-link key for transports drawn as one duplex cable."""
+    haystack = " ".join(
+        [
+            connection.connection_type,
+            connection.cable_type,
+            connection.signal_type,
+            connection.source_jack,
+            connection.dest_jack,
+        ]
+    ).lower()
+    if "madi" in haystack:
+        if any(token in haystack for token in ("optical", "fiber", "fibre", "madi-opt")):
+            return "MADI-OPTICAL"
+        if any(token in haystack for token in ("coax", "bnc")):
+            return "MADI-COAX"
+        return "MADI"
+    if "thunderbolt" in haystack or re.search(r"\btb\s*[2345]\b", haystack):
+        return "THUNDERBOLT"
+    if "hdmi" in haystack:
+        return "HDMI"
+    if re.search(r"\busb(?:\s*[- ]?[abc]|\s*\d)?\b", haystack):
+        return "USB"
+    if any(token in haystack for token in ("ethernet", "rj45", "cat5", "cat6")):
+        return "ETHERNET"
+    return ""
+
+
+def reciprocal_port_signature(port: str) -> str:
+    """Remove direction words while retaining connector/medium identity."""
+    normalized = port.lower().replace("s/pdif", "spdif")
+    normalized = re.sub(r"\b(?:inputs?|outputs?|in|out|upstream|downstream)\b", " ", normalized)
+    normalized = re.sub(r"[^a-z0-9]+", " ", normalized)
+    return re.sub(r"\s+", " ", normalized).strip()
+
+
+def combined_reciprocal_cable_id(first: str, second: str) -> str:
+    first_series = parse_cable_series(first)
+    second_series = parse_cable_series(second)
+    if first_series and second_series and first_series[0] == second_series[0]:
+        prefix, first_number, width = first_series
+        second_number = second_series[1]
+        return f"{prefix}-{first_number:0{width}d}↔{second_number:0{width}d}"
+    return f"{first}↔{second}"
+
+
+def collapse_reciprocal_single_links_for_render(
+    connections: list[Connection],
+) -> tuple[list[Connection], set[str]]:
+    """Collapse matching A→B/B→A rows into one bidirectional visual link.
+
+    Patch data remains directional and untouched. The collapse applies only
+    when the transport and direction-neutral port identities match at both
+    devices, so two unrelated cables between the same hosts stay separate.
+    """
+    consumed: set[int] = set()
+    collapsed_ids: set[str] = set()
+    rendered: list[Connection] = []
+
+    for index, first in enumerate(connections):
+        if index in consumed:
+            continue
+        protocol = reciprocal_single_link_protocol(first)
+        if not protocol or first.source_device == first.dest_device:
+            rendered.append(first)
+            continue
+
+        first_source_signature = reciprocal_port_signature(first.source_jack)
+        first_dest_signature = reciprocal_port_signature(first.dest_jack)
+        partner_index: int | None = None
+        for candidate_index in range(index + 1, len(connections)):
+            if candidate_index in consumed:
+                continue
+            second = connections[candidate_index]
+            if reciprocal_single_link_protocol(second) != protocol:
+                continue
+            if (
+                second.source_device != first.dest_device
+                or second.dest_device != first.source_device
+            ):
+                continue
+            if reciprocal_port_signature(second.dest_jack) != first_source_signature:
+                continue
+            if reciprocal_port_signature(second.source_jack) != first_dest_signature:
+                continue
+            partner_index = candidate_index
+            break
+
+        if partner_index is None:
+            rendered.append(first)
+            continue
+
+        second = connections[partner_index]
+        consumed.add(partner_index)
+        combined_id = combined_reciprocal_cable_id(first.cable_id, second.cable_id)
+        collapsed_ids.add(combined_id)
+        rendered.append(
+            Connection(
+                cable_id=combined_id,
+                source_device=first.source_device,
+                source_jack=first.source_jack,
+                dest_device=first.dest_device,
+                dest_jack=first.dest_jack,
+                layer=first.layer,
+                signal_type=first.signal_type,
+                status=first.status,
+                cable_type=first.cable_type,
+                connection_type=first.connection_type,
+                notes=first.notes,
+            )
+        )
+
+    return rendered, collapsed_ids
 
 
 def collapse_multichannel_connections_for_overview(
@@ -1450,7 +1721,12 @@ def generic_signal_flow_rank(port: str, side: str) -> tuple[int, int]:
             return (2.5, numeric)
         if "mic" in text:
             return (0, numeric)
-        if any(token in text for token in ("inst", "instrument", "hi-z", "hiz", "di")):
+        # "di" must be matched as a complete token: a substring check also
+        # classifies MADI and MIDI ports as instrument/DI inputs.
+        if (
+            any(token in text for token in ("inst", "instrument", "hi-z", "hiz"))
+            or re.search(r"\bdi\b", text)
+        ):
             return (1, numeric)
         if "line in" in text or "an in" in text or "analog in" in text:
             return (2, numeric)
@@ -1508,14 +1784,37 @@ def generic_signal_flow_rank(port: str, side: str) -> tuple[int, int]:
     return (11, numeric)
 
 
+def device_port_group_rank(device: str, port: str, side: str) -> tuple[int, int] | None:
+    """Keep numbered output banks together when the device exposes named groups."""
+    if side != "out" or "black lion" not in device.lower():
+        return None
+
+    text = port.lower()
+    bank_order = (
+        "analog outlet",
+        "digital outlet",
+        "high current outlet",
+        "front unswitched outlet",
+    )
+    for bank_index, bank_name in enumerate(bank_order):
+        if bank_name in text:
+            return (bank_index, port_numeric_anchor(port))
+    return None
+
+
 def sort_ports(device: str, ports: list[str], port_roles: dict[str, str], side: str) -> list[str]:
     role_rank = {"in": 0, "io": 1, "out": 2, "unknown": 3}
 
     def port_sort_key(port: str) -> tuple[object, ...]:
+        grouped_rank = device_port_group_rank(device, port, side)
+        if grouped_rank is not None:
+            return (0, grouped_rank[0], grouped_rank[1], natural_key(port))
+
         desk_rank = desk_signal_flow_rank(device, port, side)
         flow_key = desk_rank if desk_rank is not None else generic_signal_flow_rank(port, side)
         range_parts = port_range_sort_parts(port)
         return (
+            1,
             flow_key[0],
             flow_key[1],
             port_signal_group(port),
@@ -1561,6 +1860,119 @@ def split_ports_for_device(device: str, port_roles: dict[str, str]) -> tuple[lis
         sort_ports(device, in_ports, port_roles, side="in"),
         sort_ports(device, out_ports, port_roles, side="out"),
     )
+
+
+def assign_bidirectional_port_sides(
+    columns: list[list[str]],
+    connections: list[Connection],
+    device_port_roles: dict[str, dict[str, str]],
+) -> set[str]:
+    """Render each physical ``io`` socket once, on the side facing its peer.
+
+    The matrix role ``io`` means that a socket can carry traffic in both
+    directions; it does not mean that the device owns two physical sockets.
+    Device boxes historically placed those ports in both their IN and OUT
+    lists. Besides duplicating the label and terminal dot, that could force a
+    right-to-left connection onto the long return route.
+
+    Returns the cable IDs whose two endpoints are bidirectional. The caller
+    uses that set to make their drawing direction independent of the stored
+    source/destination order.
+    """
+    column_by_device = {
+        device: column_index
+        for column_index, column in enumerate(columns)
+        for device in column
+    }
+    side_score: defaultdict[tuple[str, str], float] = defaultdict(float)
+    bidirectional_connection_ids: set[str] = set()
+
+    for connection in connections:
+        source_key = (connection.source_device, connection.source_jack)
+        dest_key = (connection.dest_device, connection.dest_jack)
+        source_is_io = (
+            device_port_roles.get(connection.source_device, {}).get(connection.source_jack)
+            == "io"
+        )
+        dest_is_io = (
+            device_port_roles.get(connection.dest_device, {}).get(connection.dest_jack)
+            == "io"
+        )
+        if source_is_io and dest_is_io:
+            bidirectional_connection_ids.add(connection.cable_id)
+
+        source_col = column_by_device.get(connection.source_device, 0)
+        dest_col = column_by_device.get(connection.dest_device, 0)
+        delta = dest_col - source_col
+        if delta > 0:
+            # Peer is to the right: use this device's right edge and the
+            # peer's left edge. Distance weights make the choice stable if a
+            # (normally one-to-one) socket appears in more than one route.
+            weight = float(delta)
+            if source_is_io:
+                side_score[source_key] += weight
+            if dest_is_io:
+                side_score[dest_key] -= weight
+        elif delta < 0:
+            weight = float(-delta)
+            if source_is_io:
+                side_score[source_key] -= weight
+            if dest_is_io:
+                side_score[dest_key] += weight
+        else:
+            # Vertically stacked devices share an X column. Put both ends on
+            # the same outer edge so the route can run straight alongside the
+            # boxes instead of crossing their full widths.
+            if source_is_io:
+                side_score[source_key] += 1.0
+            if dest_is_io:
+                side_score[dest_key] += 1.0
+
+    for device, port_roles in device_port_roles.items():
+        for port, role in list(port_roles.items()):
+            if role != "io":
+                continue
+            # Positive/right becomes an OUT-side visual slot; negative becomes
+            # an IN-side slot. Unwired and perfectly tied ports default right.
+            port_roles[port] = "out" if side_score[(device, port)] >= 0.0 else "in"
+
+    return bidirectional_connection_ids
+
+
+def orient_bidirectional_connections_for_layout(
+    connections: list[Connection],
+    boxes: dict[str, DeviceBox],
+    bidirectional_connection_ids: set[str],
+) -> list[Connection]:
+    """Orient physical bidirectional links left-to-right for compact routing."""
+    oriented: list[Connection] = []
+    for connection in connections:
+        if connection.cable_id not in bidirectional_connection_ids:
+            oriented.append(connection)
+            continue
+
+        source_box = boxes.get(connection.source_device)
+        dest_box = boxes.get(connection.dest_device)
+        if source_box is None or dest_box is None or source_box.x <= dest_box.x:
+            oriented.append(connection)
+            continue
+
+        oriented.append(
+            Connection(
+                cable_id=connection.cable_id,
+                source_device=connection.dest_device,
+                source_jack=connection.dest_jack,
+                dest_device=connection.source_device,
+                dest_jack=connection.source_jack,
+                layer=connection.layer,
+                signal_type=connection.signal_type,
+                status=connection.status,
+                cable_type=connection.cable_type,
+                connection_type=connection.connection_type,
+                notes=connection.notes,
+            )
+        )
+    return oriented
 
 
 def pairing_base_for_side(text: str, side: str) -> str:
@@ -1737,9 +2149,22 @@ def parse_bool(value: object, default: bool = False) -> bool:
     return text in {"1", "true", "yes", "y", "on"}
 
 
-def is_model_device_visible(device: object) -> bool:
+DEVICE_VISIBILITY_TARGETS = (
+    "wiring_matrix",
+    "routing_matrix",
+    "connection_overview",
+    "visuals",
+)
+
+
+def is_model_device_visible(device: object, target: str = "visuals") -> bool:
     if not isinstance(device, dict):
         return False
+    visibility = device.get("visibility")
+    if isinstance(visibility, dict):
+        target_value = visibility.get(target)
+        if isinstance(target_value, bool):
+            return target_value
     if parse_bool(device.get("hidden"), default=False):
         return False
     visible_value = device.get("visible")
@@ -2249,6 +2674,7 @@ def assign_columns(
     dest_count: Counter[str],
     connections: list[Connection],
     device_types: dict[str, str],
+    layer: str = "",
 ) -> tuple[list[list[str]], dict[str, int]]:
     def preferred_column_for_type(device_type: str, num_cols: int) -> int | None:
         if num_cols <= 1:
@@ -2294,18 +2720,26 @@ def assign_columns(
             if preferred is not None:
                 mapped = preferred
 
-        if device_type == "Microphone / DI":
-            mapped = 0
-        elif "streamdeck" in device.lower():
-            mapped = num_columns - 1
-        elif device_type == "Preamps / Channel Strip" and num_columns >= 4:
-            mapped = min(mapped, 1)
-        elif device_type == "Interface / Converter" and num_columns >= 4:
-            mapped = max(mapped, 2)
-        elif device_type == "Speaker / Monitor":
-            mapped = num_columns - 1
-        elif device_type == "Amplifier / Monitor Control" and num_columns >= 2:
-            mapped = min(max(mapped, num_columns - 2), num_columns - 2)
+        # Device-type lanes are only a fallback when the visible graph has no
+        # directed topology. Applying them to connected devices after stage
+        # assignment can collapse consecutive stages into one column (for
+        # example converter -> monitor amp). That turns an ordinary forward
+        # link into a same-column right-to-left return which must wrap around
+        # the destination box.
+        use_type_lane_hint = max_stage == 0 or visible_degree == 0
+        if layer.strip().lower() != "power" and use_type_lane_hint:
+            if device_type == "Microphone / DI":
+                mapped = 0
+            elif "streamdeck" in device.lower():
+                mapped = num_columns - 1
+            elif device_type == "Preamps / Channel Strip" and num_columns >= 4:
+                mapped = min(mapped, 1)
+            elif device_type == "Interface / Converter" and num_columns >= 4:
+                mapped = max(mapped, 2)
+            elif device_type == "Speaker / Monitor":
+                mapped = num_columns - 1
+            elif device_type == "Amplifier / Monitor Control" and num_columns >= 2:
+                mapped = min(max(mapped, num_columns - 2), num_columns - 2)
 
         mapped = max(0, min(mapped, num_columns - 1))
         columns[mapped].append(device)
@@ -2319,7 +2753,11 @@ def assign_columns(
     return non_empty, stage_map
 
 
-def apply_layer_column_overrides(layer: str, columns: list[list[str]]) -> list[list[str]]:
+def apply_layer_column_overrides(
+    layer: str,
+    columns: list[list[str]],
+    device_types: dict[str, str] | None = None,
+) -> list[list[str]]:
     def move_device(cols: list[list[str]], device: str, target_col: int) -> None:
         present = any(device in col for col in cols)
         if not present:
@@ -2337,8 +2775,12 @@ def apply_layer_column_overrides(layer: str, columns: list[list[str]]) -> list[l
     if layer_l == "computer/data":
         move_device(updated, "Mac mini", 0)
         move_device(updated, "Thunderbolt Dock", 1)
+        # HDMI is a direct Mac -> display link, so the TV belongs in the same
+        # next-stage column as the dock rather than behind it. Keeping the TV
+        # first aligns its HDMI row with the Mac and avoids a needless outer
+        # route around the dock.
+        move_device(updated, "TV Screen", 1)
         for endpoint in [
-            "TV Screen",
             "Streamdeck #1",
             "Streamdeck #2",
             "RME UFX III",
@@ -2346,9 +2788,12 @@ def apply_layer_column_overrides(layer: str, columns: list[list[str]]) -> list[l
             move_device(updated, endpoint, 2)
 
     if layer_l == "digital audio":
-        move_device(updated, "RME UFX III", 0)
-        move_device(updated, "SSL AX MADI", 1)
-        move_device(updated, "TC Electronic Clarity M Stereo", 1)
+        # Keep the digital signal chain in real stage order. Putting Audient
+        # and RME in one column forced the ADAT cable around the full diagram.
+        move_device(updated, "Audient ASP 880", 0)
+        move_device(updated, "RME UFX III", 1)
+        move_device(updated, "SSL AX MADI", 2)
+        move_device(updated, "TC Electronic Clarity M Stereo", 2)
 
     if layer_l == "network":
         # Keep network links visually top-to-bottom: dock uplink first, then surfaces.
@@ -2357,12 +2802,17 @@ def apply_layer_column_overrides(layer: str, columns: list[list[str]]) -> list[l
         move_device(updated, "Avid S1 #2", 0)
         move_device(updated, "Netgear Unmanaged Switch", 1)
 
-    if layer_l == "audio analog":
+    if layer_l in {"audio analog", "all audio"}:
         # Enforce analog flow left->right:
         # mics -> outboard/preamp/fx -> AD conversion + tape -> amps -> speakers/headphones.
         all_devices = sorted({device for col in updated for device in col}, key=natural_key)
         for device in all_devices:
-            device_type = classify_device_type(device)
+            configured_type = str((device_types or {}).get(device) or "").strip()
+            device_type = (
+                configured_type
+                if configured_type in DEVICE_TYPE_ORDER
+                else classify_device_type(device)
+            )
             name_l = device.lower()
             if device_type == "Microphone / DI":
                 move_device(updated, device, 0)
@@ -2449,7 +2899,8 @@ def apply_layer_column_overrides(layer: str, columns: list[list[str]]) -> list[l
         # Col 4: speakers/monitors
         "Tannoy System 10": 40,
         "ATC SCM 11": 41,
-        "Auratone 5C": 42,
+        "TC Electronic Clarity M Stereo": 42,
+        "Auratone 5C": 43,
     }
     all_connections_priority = {
         "Talkback Mic": 0,
@@ -2462,23 +2913,34 @@ def apply_layer_column_overrides(layer: str, columns: list[list[str]]) -> list[l
         "Mac mini": 7,
         "Avid S1 #1": 8,
         "Avid S1 #2": 9,
-        "Netgear Unmanaged Switch": 10,
-        "TV Screen": 11,
-        "Streamdeck #1": 12,
-        "Streamdeck #2": 13,
+        "TV Screen": 10,
+        "Streamdeck #1": 11,
+        "Streamdeck #2": 12,
+        "Netgear Unmanaged Switch": 13,
         "RME UFX III": 14,
         "SSL AX MADI": 15,
         "TC Electronic Clarity M Stereo": 16,
-        "IMG STAGELINE PPA-100/SW": 17,
-        "Behringer A800 #1": 18,
-        "Behringer A800 #2": 19,
+        "Behringer A800 #1": 17,
+        "Behringer A800 #2": 18,
+        "IMG STAGELINE PPA-100/SW": 19,
         "Tannoy System 10": 20,
         "ATC SCM 11": 21,
         "Auratone 5C": 22,
     }
+    computer_data_priority = {
+        "Mac mini": 0,
+        "TV Screen": 1,
+        "Thunderbolt Dock": 2,
+        # Match the Dock's USB port order in the destination column. Keeping
+        # RME (USB 1) above the Streamdecks (USB 2/3) prevents the three related
+        # routes from crossing one another just outside the Dock.
+        "RME UFX III": 3,
+        "Streamdeck #1": 4,
+        "Streamdeck #2": 5,
+    }
     for col in updated:
         if col:
-            if layer_l == "audio analog":
+            if layer_l in {"audio analog", "all audio"}:
                 cleaned.append(
                     sorted(
                         col,
@@ -2491,6 +2953,16 @@ def apply_layer_column_overrides(layer: str, columns: list[list[str]]) -> list[l
                         col,
                         key=lambda name: (
                             all_connections_priority.get(name, 999),
+                            natural_key(name),
+                        ),
+                    )
+                )
+            elif layer_l == "computer/data":
+                cleaned.append(
+                    sorted(
+                        col,
+                        key=lambda name: (
+                            computer_data_priority.get(name, 999),
                             natural_key(name),
                         ),
                     )
@@ -2602,14 +3074,86 @@ def build_boxes(
         groups.append(
             GroupBlock(
                 device_type=device_type,
-                x=start_x - 10,
+                x=start_x - GROUP_FRAME_HORIZONTAL_PADDING,
                 y=group_top,
-                width=column_width + 20,
+                width=column_width + (GROUP_FRAME_HORIZONTAL_PADDING * 2.0),
                 height=max(30.0, group_bottom - group_top),
             )
         )
 
     return boxes, column_width, groups
+
+
+def place_device_below_intervening_columns(
+    boxes: dict[str, DeviceBox],
+    groups: list[GroupBlock],
+    device_column: dict[str, int],
+    source_device: str,
+    destination_device: str,
+) -> None:
+    """Lower a destination so its incoming route can use a clear bottom rail."""
+    source_col = device_column.get(source_device)
+    destination_col = device_column.get(destination_device)
+    destination_box = boxes.get(destination_device)
+    if source_col is None or destination_col is None or destination_box is None:
+        return
+
+    low_col, high_col = sorted((source_col, destination_col))
+    blockers = [
+        box
+        for name, box in boxes.items()
+        if low_col < device_column.get(name, low_col) < high_col
+    ]
+    if not blockers:
+        return
+
+    minimum_y = max(box.y + box.height for box in blockers) + BOX_GAP
+    if destination_box.y >= minimum_y:
+        return
+
+    move_device_box_down(
+        boxes,
+        groups,
+        destination_device,
+        minimum_y,
+    )
+
+
+def move_device_box_down(
+    boxes: dict[str, DeviceBox],
+    groups: list[GroupBlock],
+    device_name: str,
+    minimum_y: float,
+) -> None:
+    """Move one laid-out device down and keep its anchors/group in sync."""
+    destination_box = boxes.get(device_name)
+    if destination_box is None or destination_box.y >= minimum_y:
+        return
+
+    old_bottom = destination_box.y + destination_box.height
+    delta_y = minimum_y - destination_box.y
+    destination_box.y += delta_y
+    destination_box.in_port_y = {
+        port: y + delta_y for port, y in destination_box.in_port_y.items()
+    }
+    destination_box.out_port_y = {
+        port: y + delta_y for port, y in destination_box.out_port_y.items()
+    }
+
+    for group in groups:
+        group_right = group.x + group.width
+        group_bottom = group.y + group.height
+        if group.device_type != destination_box.device_type:
+            continue
+        if not (group.x <= destination_box.x <= group_right):
+            continue
+        if old_bottom > group_bottom + 0.5:
+            continue
+        group.height = max(
+            group.height,
+            destination_box.y + destination_box.height + 8.0 - group.y,
+        )
+        break
 
 
 def merge_port_maps_for_layer(
@@ -2737,13 +3281,50 @@ def draw_group_blocks(
         if draw_labels:
             label_x = block.x + 8.0
             label_y = max(12.0, block.y - 4.0)
+            label_rect_y = block.y - GROUP_LABEL_TOP_OFFSET
             label_w = max(42.0, len(block.device_type) * 5.8)
             svg_lines.append(
-                f'  <rect x="{label_x - 2.0:.1f}" y="{label_y - 9.0:.1f}" width="{label_w:.1f}" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="{stroke}" stroke-width="0.6"/>'
+                f'  <rect x="{label_x - 2.0:.1f}" y="{label_rect_y:.1f}" width="{label_w:.1f}" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="{stroke}" stroke-width="0.6"/>'
             )
             svg_lines.append(
                 f'  <text x="{label_x:.1f}" y="{label_y:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="{text}">{label}</text>'
             )
+
+
+def compute_route_top_base(
+    boxes: dict[str, DeviceBox],
+    group_blocks: list[GroupBlock],
+    margin_y: float,
+) -> float:
+    """Return a top routing lane that clears boxes and group captions."""
+    device_lane = min(
+        (box.y for box in boxes.values()),
+        default=(margin_y + 40.0),
+    ) - 14.0
+    if not group_blocks:
+        return max(margin_y + 8.0, device_lane)
+
+    # A group caption sits above its frame: its background starts 13 px above
+    # the frame's top edge. Reserve that full band plus breathing room so an
+    # outer wire cannot run through the caption or hug the dashed border.
+    caption_lane = min(
+        block.y - GROUP_LABEL_TOP_OFFSET - GROUP_ROUTE_CLEARANCE
+        for block in group_blocks
+    )
+    return max(margin_y + 8.0, min(device_lane, caption_lane))
+
+
+def stacked_top_route_lane(
+    route_top_base: float,
+    route_position: int,
+    lane_spacing: float,
+    margin_y: float,
+) -> float:
+    """Stack outer top routes upward, away from group frames and captions."""
+    return max(
+        margin_y + 8.0,
+        route_top_base - (max(0, route_position) * lane_spacing),
+    )
 
 
 def build_overview_functional_groups(boxes: dict[str, DeviceBox]) -> list[GroupBlock]:
@@ -2868,6 +3449,26 @@ def compute_clear_x_intervals(
     return clear
 
 
+def containing_group_bottom(
+    box: DeviceBox,
+    group_blocks: list[GroupBlock],
+) -> float:
+    """Return the bottom of the smallest displayed group containing a box."""
+    candidates = [
+        group
+        for group in group_blocks
+        if group.device_type == box.device_type
+        and group.x <= box.x + 0.5
+        and (box.x + box.width) <= (group.x + group.width + 0.5)
+        and group.y <= box.y + 0.5
+        and (box.y + box.height) <= (group.y + group.height + 0.5)
+    ]
+    if not candidates:
+        return box.y + box.height
+    containing = min(candidates, key=lambda group: group.width * group.height)
+    return containing.y + containing.height
+
+
 def pick_clear_x(
     desired_x: float,
     low_x: float,
@@ -2913,13 +3514,23 @@ def render_svg(
     device_type_overrides: dict[str, str] | None = None,
     drawing_rules: dict[str, object] | None = None,
     route_debug_records: list[dict[str, object]] | None = None,
+    overview_power_groups: dict[str, str] | None = None,
 ) -> str:
-    margin_x = 30
+    routing_rules = drawing_rules.get("routing", {}) if isinstance(drawing_rules, dict) else {}
+    power_group_by_connection = resolve_power_groups(connections) if layer.strip().lower() == "power" else {}
+    power_style_by_connection = power_visual_styles(connections) if layer.strip().lower() == "power" else {}
+    margin_x = max(30.0, min(180.0, float(routing_rules.get("left_route_gutter_px", 72.0))))
+    if overview_mode:
+        margin_x = max(margin_x, 160.0)
     margin_y = 34
     planned_family_counts: Counter[str] = Counter()
     for connection in connections:
         family, _ = resolve_connection_family_and_color(connection)
-        planned_family_counts[family] += 1
+        legend_family = power_style_by_connection.get(
+            connection,
+            (power_group_by_connection.get(connection, family), ""),
+        )[0]
+        planned_family_counts[legend_family] += 1
     planned_legend_items = sorted(planned_family_counts.items(), key=lambda item: natural_key(item[0]))
     planned_legend_height = 28.0 + (len(planned_legend_items) * 14.0) + 34.0
     top_reserved = planned_legend_height + 10.0
@@ -2940,7 +3551,6 @@ def render_svg(
     )
 
     labels_rules = drawing_rules.get("labels", {}) if isinstance(drawing_rules, dict) else {}
-    routing_rules = drawing_rules.get("routing", {}) if isinstance(drawing_rules, dict) else {}
     source_label_side = str(labels_rules.get("source_side", "above")).strip().lower()
     dest_label_side = str(labels_rules.get("destination_side", "below")).strip().lower()
     label_font_size = float(labels_rules.get("font_size", CONNECTION_LABEL_FONT_SIZE))
@@ -2954,6 +3564,19 @@ def render_svg(
     video_vertical_rows_threshold = float(routing_rules.get("video_vertical_rows_threshold", 6.0))
     forward_turn_edge_margin = float(routing_rules.get("forward_turn_edge_margin", 0.12))
     forward_turn_edge_margin = max(0.0, min(0.35, forward_turn_edge_margin))
+    wire_clearance = max(4.0, min(40.0, float(routing_rules.get("wire_clearance_px", 12.0))))
+    power_wire_clearance = max(
+        wire_clearance,
+        min(56.0, float(routing_rules.get("power_wire_clearance_px", 18.0))),
+    )
+    power_lane_spacing = max(
+        power_wire_clearance,
+        min(64.0, float(routing_rules.get("power_lane_spacing_px", 18.0))),
+    )
+    power_column_gap = max(
+        300.0,
+        min(700.0, float(routing_rules.get("power_column_gap_px", 420.0))),
+    )
 
     filter_ports_for_layer(
         layer=layer,
@@ -2982,10 +3605,18 @@ def render_svg(
         dest_count,
         connections,
         device_types,
+        layer,
     )
-    columns = apply_layer_column_overrides(layer, columns)
+    columns = apply_layer_column_overrides(layer, columns, device_types)
+    bidirectional_connection_ids = assign_bidirectional_port_sides(
+        columns,
+        connections,
+        device_port_roles,
+    )
 
-    if overview_mode:
+    if layer.lower() == "power":
+        column_gap = power_column_gap
+    elif overview_mode:
         if len(columns) >= 6:
             column_gap = 300
         elif len(columns) == 5:
@@ -2998,6 +3629,45 @@ def render_svg(
         column_gap = 340
     else:
         column_gap = 380
+
+    column_gap_by_boundary: dict[int, float] = {}
+    if not overview_mode:
+        preliminary_column = {
+            device: column_index
+            for column_index, column_devices in enumerate(columns)
+            for device in column_devices
+        }
+        forward_fanout_counts: Counter[tuple[str, int, int]] = Counter()
+        forward_fanout_clearance: dict[tuple[str, int, int], float] = {}
+        for connection in connections:
+            source_col = preliminary_column.get(connection.source_device, 0)
+            dest_col = preliminary_column.get(connection.dest_device, 0)
+            if dest_col != source_col + 1:
+                continue
+            key = (connection.source_device, source_col, dest_col)
+            forward_fanout_counts[key] += 1
+            family, _ = resolve_connection_family_and_color(connection)
+            target = power_lane_spacing if family == "Power" else wire_clearance
+            forward_fanout_clearance[key] = max(
+                target,
+                forward_fanout_clearance.get(key, 0.0),
+            )
+        required_fanout_gaps = [
+            (
+                key[1],
+                (2.0 * 108.0)
+                + ((count - 1) * forward_fanout_clearance[key])
+                + 24.0,
+            )
+            for key, count in forward_fanout_counts.items()
+            if count > 1
+        ]
+        for boundary, required_gap in required_fanout_gaps:
+            column_gap_by_boundary[boundary] = max(
+                column_gap,
+                required_gap,
+                column_gap_by_boundary.get(boundary, 0.0),
+            )
 
     boxes: dict[str, DeviceBox] = {}
     all_groups: list[GroupBlock] = []
@@ -3013,14 +3683,54 @@ def render_svg(
             stage_map,
             start_x=cursor_x,
             start_y=margin_y + 50 + top_reserved,
-            preserve_column_order=(layer.lower() in {"audio analog"}),
+            preserve_column_order=(
+                layer.lower()
+                in {"audio analog", "all audio", "all connections", "computer/data"}
+            ),
         )
         boxes.update(column_boxes)
         all_groups.extend(column_groups)
         for device in column_devices:
             device_column[device] = column_index
         rightmost_x = max(rightmost_x, cursor_x + column_width)
-        cursor_x += column_width + column_gap
+        cursor_x += column_width + column_gap_by_boundary.get(column_index, column_gap)
+
+    if layer.lower() == "all audio":
+        place_device_below_intervening_columns(
+            boxes,
+            all_groups,
+            device_column,
+            "RME UFX III",
+            "TC Electronic Clarity M Stereo",
+        )
+    elif layer.lower() == "all connections":
+        power_amp_bottom = max(
+            (
+                boxes[name].y + boxes[name].height
+                for name in ("Behringer A800 #1", "Behringer A800 #2")
+                if name in boxes
+            ),
+            default=0.0,
+        )
+        if power_amp_bottom:
+            move_device_box_down(
+                boxes,
+                all_groups,
+                "SSL AX MADI",
+                power_amp_bottom + BOX_GAP,
+            )
+            ssl_box = boxes.get("SSL AX MADI")
+            tc_minimum_y = (
+                ssl_box.y + ssl_box.height + BOX_GAP
+                if ssl_box is not None
+                else power_amp_bottom + BOX_GAP
+            )
+            move_device_box_down(
+                boxes,
+                all_groups,
+                "TC Electronic Clarity M Stereo",
+                tc_minimum_y,
+            )
 
     display_groups = all_groups
     if overview_mode and layer.lower() == "all connections":
@@ -3034,6 +3744,8 @@ def render_svg(
     # Extra bottom room allows backward/outer routes to stay in distinct lanes.
     # The overview carries every family, so it needs a larger shared gutter.
     route_gutter = 180.0 if overview_mode else 70.0
+    if layer.lower() == "power":
+        route_gutter = max(route_gutter, power_lane_spacing * (len(connections) + 2))
     height = max_bottom + margin_y + route_gutter
 
     total_ports = sum(len(box.port_roles) for box in boxes.values())
@@ -3044,18 +3756,27 @@ def render_svg(
         if box.port_connected.get(port, False)
     )
     render_connections = collapse_stereo_headphone_connections_for_render(connections)
-    if overview_mode and layer.lower() == "all connections":
+    render_connections, collapsed_bidirectional_ids = collapse_reciprocal_single_links_for_render(
+        render_connections
+    )
+    bidirectional_connection_ids.update(collapsed_bidirectional_ids)
+    if overview_mode and layer.lower() in {"all connections", "all audio"}:
         render_connections = collapse_multichannel_connections_for_overview(
             render_connections,
             min_channels=4,
         )
+    render_connections = orient_bidirectional_connections_for_layout(
+        render_connections,
+        boxes,
+        bidirectional_connection_ids,
+    )
 
     generated_iso = generated_on.isoformat()
 
     svg_lines: list[str] = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{int(width)}" height="{int(height)}" viewBox="0 0 {int(width)} {int(height)}">',
         '  <defs>',
-        '    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">',
+        '    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto-start-reverse">',
         '      <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>',
         "    </marker>",
         "  </defs>",
@@ -3070,15 +3791,19 @@ def render_svg(
     family_counts: Counter[str] = Counter()
     family_colors: dict[str, str] = {}
     route_bottom_base = max_bottom + 26.0
-    top_lane = min((box.y for box in boxes.values()), default=(margin_y + 40.0)) - 14.0
-    route_top_base = max(margin_y + 8.0, top_lane)
+    route_top_base = compute_route_top_base(boxes, display_groups, margin_y)
+    clear_x_padding = GROUP_FRAME_HORIZONTAL_PADDING + GROUP_ROUTE_CLEARANCE
     clear_x_intervals = compute_clear_x_intervals(
         boxes,
         width,
         min_x=12.0,
         max_x=width - 12.0,
-        padding=3.0,
+        padding=clear_x_padding,
     )
+    group_bottom_by_device = {
+        name: containing_group_bottom(box, display_groups)
+        for name, box in boxes.items()
+    }
 
     preordered_connections = sorted(render_connections, key=lambda item: natural_key(item.cable_id))
 
@@ -3093,14 +3818,17 @@ def render_svg(
         span = abs(dest_col - source_col)
         avg_y = (sy + dy) / 2.0
         # Draw long/backward routes first so shorter forward links stay visible.
+        # Forward FIFO bundles must be processed in source-row order; sorting
+        # them by average Y lets a low destination consume a late turn lane
+        # before earlier source rows and collapses the remaining fan-out.
         return (
             0 if backward else 1,
             -span if backward else span,
             min(source_col, dest_col),
             max(source_col, dest_col),
-            avg_y,
-            sy,
-            dy,
+            avg_y if backward else sy,
+            sy if backward else dy,
+            dy if backward else avg_y,
             natural_key(item.cable_id),
         )
 
@@ -3171,6 +3899,20 @@ def render_svg(
         dest_col = device_column.get(conn.dest_device, 0)
         source_groups[(conn.source_device, source_col, dest_col)].append(idx)
         dest_groups[(conn.dest_device, source_col, dest_col)].append(idx)
+
+    # A descending route that spans a later sibling's source row needs the
+    # upper cable to turn farther right. Otherwise that later horizontal cable
+    # must cross the earlier vertical drop (for example AUDIO-035/036).
+    fifo_reverse_groups: set[tuple[str, int, int]] = set()
+    for group_key, idx_list in source_groups.items():
+        source_rows = sorted(anchor_cache[idx][1] for idx in idx_list)
+        for idx in idx_list:
+            _sx, sy, _dx, dy = anchor_cache[idx]
+            if dy <= sy + 0.5:
+                continue
+            if any((sy + 0.5) < sibling_y < (dy - 0.5) for sibling_y in source_rows):
+                fifo_reverse_groups.add(group_key)
+                break
 
     source_slot: dict[int, tuple[int, int]] = {}
     dest_slot: dict[int, tuple[int, int]] = {}
@@ -3469,6 +4211,24 @@ def render_svg(
                 commands.append(f"L {x:.1f} {y:.1f}")
         return " ".join(commands)
 
+    def simplify_orthogonal_route(
+        points: list[tuple[float, float]],
+    ) -> list[tuple[float, float]]:
+        """Remove duplicate, collinear, and out-and-back route vertices."""
+        simplified: list[tuple[float, float]] = []
+        for point in points:
+            if simplified and abs(point[0] - simplified[-1][0]) < 0.05 and abs(point[1] - simplified[-1][1]) < 0.05:
+                continue
+            simplified.append(point)
+            while len(simplified) >= 3:
+                first, middle, last = simplified[-3:]
+                same_x = abs(first[0] - middle[0]) < 0.05 and abs(middle[0] - last[0]) < 0.05
+                same_y = abs(first[1] - middle[1]) < 0.05 and abs(middle[1] - last[1]) < 0.05
+                if not (same_x or same_y):
+                    break
+                simplified.pop(-2)
+        return simplified
+
     def route_cross_count(
         points: list[tuple[float, float]],
         source_device: str,
@@ -3502,6 +4262,56 @@ def render_svg(
                         continue
                     count += 1
         return count
+
+    def route_group_cross_count(
+        points: list[tuple[float, float]],
+        source_box: DeviceBox,
+        dest_box: DeviceBox,
+    ) -> int:
+        """Count unrelated functional groups whose interior a route enters."""
+        if len(points) < 2:
+            return 0
+
+        def group_contains_box(group: GroupBlock, box: DeviceBox) -> bool:
+            center_x = box.x + (box.width / 2.0)
+            center_y = box.y + (box.height / 2.0)
+            return (
+                group.x <= center_x <= (group.x + group.width)
+                and group.y <= center_y <= (group.y + group.height)
+            )
+
+        crossed_groups = 0
+        for group in display_groups:
+            # Let a cable leave its source group and enter its destination
+            # group. Only unrelated groups are routing obstacles.
+            if group_contains_box(group, source_box) or group_contains_box(group, dest_box):
+                continue
+
+            left = group.x + 1.0
+            right = group.x + group.width - 1.0
+            top = group.y + 1.0
+            bottom = group.y + group.height - 1.0
+            crosses = False
+            for point_index in range(1, len(points)):
+                x1, y1 = points[point_index - 1]
+                x2, y2 = points[point_index]
+                if abs(x1 - x2) < 0.05:
+                    low_y, high_y = sorted((y1, y2))
+                    crosses = (
+                        left < x1 < right
+                        and min(high_y, bottom) - max(low_y, top) > 0.5
+                    )
+                elif abs(y1 - y2) < 0.05:
+                    low_x, high_x = sorted((x1, x2))
+                    crosses = (
+                        top < y1 < bottom
+                        and min(high_x, right) - max(low_x, left) > 0.5
+                    )
+                if crosses:
+                    break
+            if crosses:
+                crossed_groups += 1
+        return crossed_groups
 
     def route_manhattan_length(points: list[tuple[float, float]]) -> float:
         if len(points) < 2:
@@ -3586,6 +4396,25 @@ def render_svg(
 
     routed_segments: list[tuple[str, float, float, float, str]] = []
 
+    def vertical_rail_needs_clearance(
+        candidate_x: float,
+        y1: float,
+        y2: float,
+        source_device: str,
+        dest_device: str,
+        minimum_clearance: float,
+    ) -> bool:
+        """Return whether a vertical rail must move for a box or prior rail."""
+        if vertical_crosses_other_boxes(candidate_x, y1, y2, source_device, dest_device):
+            return True
+        vertical_low, vertical_high = sorted((y1, y2))
+        return any(
+            axis == "V"
+            and abs(candidate_x - existing_x) < minimum_clearance
+            and min(vertical_high, existing_end) - max(vertical_low, existing_start) > 2.0
+            for axis, existing_x, existing_start, existing_end, _protocol in routed_segments
+        )
+
     def route_segments(points: list[tuple[float, float]]) -> list[tuple[str, float, float, float]]:
         segments: list[tuple[str, float, float, float]] = []
         if len(points) < 2:
@@ -3619,30 +4448,90 @@ def render_svg(
                 overlap += inter
         return overlap
 
+    def pick_route_clear_x(
+        desired_x: float,
+        low_x: float,
+        high_x: float,
+        y1: float,
+        y2: float,
+        minimum_clearance: float,
+    ) -> float | None:
+        """Pick a box-free vertical rail that also clears routed vertical rails."""
+        base = pick_clear_x(
+            desired_x=desired_x,
+            low_x=low_x,
+            high_x=high_x,
+            clear_intervals=clear_x_intervals,
+        )
+        if base is None:
+            return None
+        vertical_low, vertical_high = sorted((y1, y2))
+
+        def clears_routes(candidate: float) -> bool:
+            for axis, existing_x, existing_start, existing_end, _protocol in routed_segments:
+                if axis != "V" or abs(candidate - existing_x) >= minimum_clearance:
+                    continue
+                overlap_len = min(vertical_high, existing_end) - max(vertical_low, existing_start)
+                if overlap_len > 2.0:
+                    return False
+            return True
+
+        if clears_routes(base):
+            return base
+        best: tuple[float, float] | None = None
+        for interval_start, interval_end in clear_x_intervals:
+            start = max(low_x, interval_start)
+            end = min(high_x, interval_end)
+            probe = math.ceil(start)
+            while probe <= end:
+                candidate = float(probe)
+                probe += 1
+                if not clears_routes(candidate):
+                    continue
+                score = abs(candidate - desired_x)
+                if best is None or score < best[0]:
+                    best = (score, candidate)
+        return best[1] if best is not None else base
+
     def route_overlap_metrics(
         points: list[tuple[float, float]],
-        family: str,
-    ) -> tuple[int, float, float]:
-        diff_family_count = 0
-        diff_family_len = 0.0
-        same_family_len = 0.0
+        route_protocol: str,
+        minimum_clearance: float,
+    ) -> tuple[int, float, float, int, float]:
+        diff_protocol_count = 0
+        diff_protocol_len = 0.0
+        same_protocol_len = 0.0
+        clearance_count = 0
+        clearance_len = 0.0
         for seg_axis, seg_const, seg_start, seg_end in route_segments(points):
-            for ex_axis, ex_const, ex_start, ex_end, ex_family in routed_segments:
+            for ex_axis, ex_const, ex_start, ex_end, ex_protocol in routed_segments:
                 if seg_axis != ex_axis:
                     continue
-                if abs(seg_const - ex_const) > 0.55:
+                separation = abs(seg_const - ex_const)
+                if separation >= minimum_clearance:
                     continue
                 overlap_start = max(seg_start, ex_start)
                 overlap_end = min(seg_end, ex_end)
                 overlap_len = overlap_end - overlap_start
                 if overlap_len <= 2.0:
                     continue
-                if ex_family == family:
-                    same_family_len += overlap_len
-                else:
-                    diff_family_count += 1
-                    diff_family_len += overlap_len
-        return diff_family_count, diff_family_len, same_family_len
+                if separation > 0.55 and (
+                    ex_protocol != route_protocol or route_protocol == "POWER"
+                ):
+                    clearance_count += 1
+                    clearance_len += overlap_len
+                elif separation <= 0.55 and ex_protocol == route_protocol:
+                    same_protocol_len += overlap_len
+                elif separation <= 0.55:
+                    diff_protocol_count += 1
+                    diff_protocol_len += overlap_len
+        return (
+            diff_protocol_count,
+            diff_protocol_len,
+            same_protocol_len,
+            clearance_count,
+            clearance_len,
+        )
 
     def route_candidate_score(
         points: list[tuple[float, float]],
@@ -3652,36 +4541,55 @@ def render_svg(
         dest_box: DeviceBox,
         y_start: float,
         y_end: float,
-        family: str,
+        route_protocol: str,
+        minimum_clearance: float,
     ) -> tuple[object, ...]:
-        overlap_count, overlap_len, same_family_overlap_len = route_overlap_metrics(points, family)
+        (
+            overlap_count,
+            overlap_len,
+            same_protocol_overlap_len,
+            clearance_count,
+            clearance_len,
+        ) = route_overlap_metrics(points, route_protocol, minimum_clearance)
         return (
             route_cross_count(points, source_device, dest_device),
             route_endpoint_cross_count(points, source_box, dest_box),
+            route_group_cross_count(points, source_box, dest_box),
             overlap_count,
-            round(overlap_len, 1),
-            round(same_family_overlap_len, 1),
             route_outside_band_distance(points, y_start, y_end),
             route_bend_count(points),
+            clearance_count,
+            round(overlap_len, 1),
+            round(clearance_len, 1),
+            round(same_protocol_overlap_len, 1),
             route_manhattan_length(points),
         )
 
     score_labels = (
         "box_crossings",
         "endpoint_crossings",
+        "unrelated_group_crossings",
         "different_family_overlap_count",
-        "different_family_overlap_len",
-        "same_family_overlap_len",
         "outside_band_distance",
         "bend_count",
+        "parallel_clearance_violation_count",
+        "different_family_overlap_len",
+        "parallel_clearance_violation_len",
+        "same_family_overlap_len",
         "manhattan_length",
     )
 
     def serialize_route_score(score: tuple[object, ...]) -> dict[str, object]:
-        return {
+        payload = {
             label: score[idx] if idx < len(score) else None
             for idx, label in enumerate(score_labels)
         }
+        # Keep the historical family keys while exposing their refined meaning:
+        # routing now distinguishes HDMI, Thunderbolt, ADAT, MADI, clock, etc.
+        payload["different_protocol_overlap_count"] = payload["different_family_overlap_count"]
+        payload["different_protocol_overlap_len"] = payload["different_family_overlap_len"]
+        payload["same_protocol_overlap_len"] = payload["same_family_overlap_len"]
+        return payload
 
     def bounded_slot_shift(slot_idx: int, slot_total: int, step: float, max_abs: float) -> float:
         if slot_total <= 1:
@@ -3707,6 +4615,22 @@ def render_svg(
         source_col = device_column.get(connection.source_device, 0)
         dest_col = device_column.get(connection.dest_device, 0)
         family, wire_color = resolve_connection_family_and_color(connection)
+        legend_family, power_style_color = power_style_by_connection.get(
+            connection,
+            (power_group_by_connection.get(connection, family), ""),
+        )
+        if power_style_color:
+            wire_color = power_style_color
+        cable_namespace = connection.cable_id.partition("-")[0].strip().upper()
+        if cable_namespace == "AUDIO":
+            route_protocol = "ANALOG"
+        elif cable_namespace == "POWER":
+            route_protocol = "POWER"
+        elif cable_namespace == "NETWORK":
+            route_protocol = "NETWORK"
+        else:
+            route_protocol = normalize_connection_type(connection.connection_type or family).upper()
+        minimum_clearance = power_wire_clearance if family == "Power" else wire_clearance
 
         raw_label = raw_label_by_index.get(index, "")
         cable_label = html.escape(raw_label)
@@ -3764,9 +4688,23 @@ def render_svg(
         src_device_slot_idx, src_device_slot_total = source_device_slot.get(index, (0, 1))
         if src_device_slot_total > 1 and not potential_fifo_turn:
             src_device_center = (src_device_slot_total - 1) / 2.0
-            src_device_step = 2.2 if overview_mode else 1.6
+            # Backward routes need visibly separate departure rails. Tiny
+            # per-device offsets made unrelated protocols look like one line.
+            src_device_step = (
+                minimum_clearance
+                if dx < sx - 1.0
+                else (2.2 if overview_mode else 1.6)
+            )
             src_device_offset = (src_device_slot_idx - src_device_center) * src_device_step
-            src_lead_x += source_dir * max(-18.0, min(18.0, src_device_offset))
+            src_device_max_abs = (
+                min(60.0, max(18.0, src_device_center * minimum_clearance))
+                if dx < sx - 1.0
+                else 18.0
+            )
+            src_lead_x += source_dir * max(
+                -src_device_max_abs,
+                min(src_device_max_abs, src_device_offset),
+            )
         dst_slot_idx, dst_slot_total = dest_slot.get(index, (0, 1))
         if dst_slot_total > 1 and not potential_fifo_turn:
             dst_slot_step = 10.0 + min(4.0, max(route_total - 1, 0) * 0.6)
@@ -3780,11 +4718,36 @@ def render_svg(
         dst_device_slot_idx, dst_device_slot_total = dest_device_slot.get(index, (0, 1))
         if dst_device_slot_total > 1 and not potential_fifo_turn:
             dst_device_center = (dst_device_slot_total - 1) / 2.0
-            dst_device_step = 2.2 if overview_mode else 1.6
+            dst_device_step = (
+                minimum_clearance
+                if dx < sx - 1.0
+                else (2.2 if overview_mode else 1.6)
+            )
             dst_device_offset = (dst_device_slot_idx - dst_device_center) * dst_device_step
-            dst_lead_x += dest_dir * max(-18.0, min(18.0, dst_device_offset))
+            dst_device_max_abs = (
+                min(60.0, max(18.0, dst_device_center * minimum_clearance))
+                if dx < sx - 1.0
+                else 18.0
+            )
+            dst_lead_x += dest_dir * max(
+                -dst_device_max_abs,
+                min(dst_device_max_abs, dst_device_offset),
+            )
         src_lead_x = max(12.0, min(width - 12.0, src_lead_x))
         dst_lead_x = max(12.0, min(width - 12.0, dst_lead_x))
+
+        # Preserve actual gutter space for multiple right-to-left returns. A
+        # destination lead that consumes the whole left margin forces every
+        # return onto x=12 and makes unrelated protocols share one rail.
+        if dx < sx - 1.0 and dest_dir < 0 and dx <= (dst_box.x + 0.5):
+            _back_slot_idx, back_slot_total = backward_slot.get(index, (0, 1))
+            available_left_gutter = max(0.0, dx - 12.0)
+            reserved_return_lanes = 20.0 + (back_slot_total * wire_clearance)
+            max_destination_lead = max(
+                18.0,
+                available_left_gutter - reserved_return_lanes,
+            )
+            dst_lead_x = max(dst_lead_x, dx - max_destination_lead)
 
         # Keep forward routes monotonic in X so they don't "wiggle" backward
         # when lead lengths overlap in tight column spacing.
@@ -3854,6 +4817,7 @@ def render_svg(
             source_col,
             dest_col,
         )
+        turn_order_direction = -1 if fifo_group_key in fifo_reverse_groups else 1
         prev_fifo_turn_x = fifo_last_mx.get(fifo_group_key) if fifo_turn else None
 
         lane_shift = route_spread
@@ -3900,41 +4864,61 @@ def render_svg(
             # Keep the outer-left turn safely left of both lead segments so the
             # return path doesn't create a vertical "stub" near the destination port.
             lead_left_bound = min(src_lead_x, dst_lead_x) - 20.0
-            desired_outer_left = min(src_left, dst_left) - 26.0 - (back_shift * 11.0) - (span_columns * 4.0)
-            desired_outer_left = min(desired_outer_left, lead_left_bound)
+            backward_lane_step = power_lane_spacing if family == "Power" else max(11.0, wire_clearance)
+            desired_outer_left = min(src_left, dst_left) - 26.0 - (back_shift * backward_lane_step) - (span_columns * 4.0)
+            desired_outer_left = min(
+                desired_outer_left,
+                lead_left_bound - (back_slot_idx * backward_lane_step),
+            )
             outer_left = max(12.0, desired_outer_left)
             snap_outer_max = max(12.0, lead_left_bound)
             if snap_outer_max > 12.0:
-                snapped_outer = pick_clear_x(
+                snapped_outer = pick_route_clear_x(
                     desired_x=outer_left,
                     low_x=12.0,
                     high_x=snap_outer_max,
-                    clear_intervals=clear_x_intervals,
+                    y1=0.0,
+                    y2=height,
+                    minimum_clearance=minimum_clearance,
                 )
                 if snapped_outer is not None:
                     outer_left = snapped_outer
             def build_backward_points(turn_y: float) -> list[tuple[float, float]]:
                 src_turn_x = src_lead_x
                 dst_turn_x = dst_lead_x
-                if abs(turn_y - sy) > 0.05 and vertical_crosses_other_boxes(
-                    src_turn_x, sy, turn_y, connection.source_device, connection.dest_device
+                if abs(turn_y - sy) > 0.05 and vertical_rail_needs_clearance(
+                    src_turn_x,
+                    sy,
+                    turn_y,
+                    connection.source_device,
+                    connection.dest_device,
+                    minimum_clearance,
                 ):
-                    snap = pick_clear_x(
+                    snap = pick_route_clear_x(
                         desired_x=src_turn_x,
                         low_x=12.0,
                         high_x=width - 12.0,
-                        clear_intervals=clear_x_intervals,
+                        y1=sy,
+                        y2=turn_y,
+                        minimum_clearance=minimum_clearance,
                     )
                     if snap is not None:
                         src_turn_x = snap
-                if abs(turn_y - dy) > 0.05 and vertical_crosses_other_boxes(
-                    dst_turn_x, dy, turn_y, connection.source_device, connection.dest_device
+                if abs(turn_y - dy) > 0.05 and vertical_rail_needs_clearance(
+                    dst_turn_x,
+                    dy,
+                    turn_y,
+                    connection.source_device,
+                    connection.dest_device,
+                    minimum_clearance,
                 ):
-                    snap = pick_clear_x(
+                    snap = pick_route_clear_x(
                         desired_x=dst_turn_x,
                         low_x=12.0,
                         high_x=width - 12.0,
-                        clear_intervals=clear_x_intervals,
+                        y1=dy,
+                        y2=turn_y,
+                        minimum_clearance=minimum_clearance,
                     )
                     if snap is not None:
                         dst_turn_x = snap
@@ -3961,11 +4945,25 @@ def render_svg(
             src_top = src_box.y
             dst_top = dst_box.y
 
-            legacy_bottom = route_bottom_base + (span_columns * 18.0) + (back_slot_idx * 16.0)
+            backward_vertical_step = power_lane_spacing if family == "Power" else 16.0
+            legacy_bottom = route_bottom_base + (span_columns * 18.0) + (back_slot_idx * backward_vertical_step)
             legacy_bottom = min(legacy_bottom, height - 14.0)
-            compact_bottom = min(
-                height - 14.0,
-                max(src_bottom, dst_bottom) + 18.0 + (span_columns * 10.0) + (back_slot_idx * 10.0),
+            group_safe_bottom = (
+                max(
+                    group_bottom_by_device.get(connection.source_device, src_bottom),
+                    group_bottom_by_device.get(connection.dest_device, dst_bottom),
+                )
+                + GROUP_ROUTE_CLEARANCE
+            )
+            compact_bottom = max(
+                group_safe_bottom,
+                min(
+                    height - 14.0,
+                    max(src_bottom, dst_bottom)
+                    + 18.0
+                    + (span_columns * 10.0)
+                    + (back_slot_idx * (power_lane_spacing if family == "Power" else 10.0)),
+                ),
             )
             # Keep top-turn lanes actually above endpoint boxes.
             top_limit = min(src_top, dst_top) - 18.0
@@ -3975,6 +4973,21 @@ def render_svg(
             )
 
             candidate_turns: list[float] = [compact_bottom]
+            # Probe neighbouring bottom lanes. This is essential when return
+            # routes from different protocols would otherwise share the exact
+            # same outer horizontal rail.
+            for delta in (
+                minimum_clearance,
+                -minimum_clearance,
+                minimum_clearance * 2.0,
+                -(minimum_clearance * 2.0),
+            ):
+                candidate = compact_bottom + delta
+                if candidate < group_safe_bottom:
+                    continue
+                if candidate >= height - 14.0:
+                    continue
+                candidate_turns.append(candidate)
             # Right-to-left output->input links default to wrapping below.
             allow_top_wrap = not (
                 backward_out_to_in
@@ -3994,9 +5007,12 @@ def render_svg(
                 dst_box,
                 sy,
                 dy,
-                family,
+                route_protocol,
+                minimum_clearance,
             )
-            if overview_mode and int(best_score[0]) > 0:
+            if overview_mode and (
+                int(best_score[0]) > 0 or int(best_score[2]) > 0
+            ):
                 legacy_points = build_backward_points(legacy_bottom)
                 legacy_score = route_candidate_score(
                     legacy_points,
@@ -4006,7 +5022,8 @@ def render_svg(
                     dst_box,
                     sy,
                     dy,
-                    family,
+                    route_protocol,
+                    minimum_clearance,
                 )
                 if legacy_score < best_score:
                     best_points = legacy_points
@@ -4021,7 +5038,8 @@ def render_svg(
                     dst_box,
                     sy,
                     dy,
-                    family,
+                    route_protocol,
+                    minimum_clearance,
                 )
                 if candidate_score < best_score:
                     best_points = candidate_points
@@ -4049,6 +5067,19 @@ def render_svg(
                         edge_pad = min(edge_cap, span * edge_ratio)
                     else:
                         edge_pad = min(14.0, span * 0.22)
+                    if fifo_turn and src_slot_total > 1:
+                        fifo_clearance_target = (
+                            power_lane_spacing if family == "Power" else minimum_clearance
+                        )
+                        required_fifo_span = (src_slot_total - 1) * fifo_clearance_target
+                        if span >= required_fifo_span:
+                            # Do not spend corridor width on decorative edge
+                            # padding when that would squeeze an otherwise
+                            # comfortably spaced fan-out.
+                            edge_pad = min(
+                                edge_pad,
+                                max(0.0, (span - required_fifo_span) / 2.0),
+                            )
                     corridor_min = low_x + edge_pad
                     corridor_max = high_x - edge_pad
                 else:
@@ -4069,6 +5100,8 @@ def render_svg(
 
                     # Distribute lanes across the available corridor to prevent stacked rails.
                     desired_frac = route_frac
+                    if turn_order_direction < 0:
+                        desired_frac = 1.0 - desired_frac
                     if (not fifo_turn) and span_columns >= 2:
                         # For long single-lane forward runs with strong vertical travel,
                         # bias the elbow earlier so the drop doesn't happen "too late".
@@ -4089,7 +5122,7 @@ def render_svg(
                         fine_shift = (slot - slot_center) * min(
                             6.0, (corridor_max - corridor_min) / (slot_count + 1)
                         )
-                        desired_mx += fine_shift
+                        desired_mx += fine_shift * turn_order_direction
 
                     if corridor_segments:
                         if fifo_turn:
@@ -4100,13 +5133,22 @@ def render_svg(
                                 uniform_frac = src_slot_idx / max(1, (src_slot_total - 1))
                             else:
                                 uniform_frac = 0.5
+                            if turn_order_direction < 0:
+                                uniform_frac = 1.0 - uniform_frac
+                            uniform_edge_margin = effective_turn_edge_margin
+                            fifo_clearance_target = (
+                                power_lane_spacing if family == "Power" else minimum_clearance
+                            )
+                            required_fifo_span = max(0, src_slot_total - 1) * fifo_clearance_target
+                            if (corridor_max - corridor_min) >= required_fifo_span:
+                                uniform_edge_margin = 0.0
                             if (
                                 src_slot_total > 2
-                                and effective_turn_edge_margin > 0.0
+                                and uniform_edge_margin > 0.0
                             ):
                                 uniform_frac = (
-                                    effective_turn_edge_margin
-                                    + (uniform_frac * (1.0 - (2.0 * effective_turn_edge_margin)))
+                                    uniform_edge_margin
+                                    + (uniform_frac * (1.0 - (2.0 * uniform_edge_margin)))
                                 )
                                 uniform_frac = max(0.0, min(1.0, uniform_frac))
                             mx = corridor_min + (uniform_frac * (corridor_max - corridor_min))
@@ -4142,9 +5184,13 @@ def render_svg(
                     )
                     used_mx = route_used_mx[lane_usage_key]
                     global_used_mx: list[float] = route_used_mx[global_lane_usage_key]
-                    min_gap = 16.0 if route_total > 1 else 12.0
-                    min_global_gap = 10.0 if overview_mode else 8.0
-                    fifo_min_gap_base = 8.0 if overview_mode else 10.0
+                    min_gap = max(minimum_clearance, 16.0 if route_total > 1 else 12.0)
+                    min_global_gap = max(minimum_clearance, 10.0 if overview_mode else 8.0)
+                    fifo_min_gap_base = (
+                        power_lane_spacing
+                        if family == "Power"
+                        else max(minimum_clearance, 8.0 if overview_mode else 10.0)
+                    )
                     fifo_min_gap = fifo_min_gap_base
                     if fifo_turn and src_slot_total > 1:
                         corridor_span = max(0.0, corridor_max - corridor_min)
@@ -4162,12 +5208,24 @@ def render_svg(
                     # later slot to "jump left" and create backwards-looking elbows.
                     if fifo_turn:
                         if prev_fifo_turn_x is not None:
-                            mx = max(mx, min(corridor_max, prev_fifo_turn_x + fifo_min_gap))
+                            if turn_order_direction > 0:
+                                mx = max(mx, min(corridor_max, prev_fifo_turn_x + fifo_min_gap))
+                            else:
+                                mx = min(mx, max(corridor_min, prev_fifo_turn_x - fifo_min_gap))
 
                     def mx_is_clear(candidate: float) -> bool:
                         if fifo_turn:
-                            if prev_fifo_turn_x is not None and candidate < (prev_fifo_turn_x + fifo_min_gap - 0.01):
-                                return False
+                            if prev_fifo_turn_x is not None:
+                                if (
+                                    turn_order_direction > 0
+                                    and candidate < (prev_fifo_turn_x + fifo_min_gap - 0.01)
+                                ):
+                                    return False
+                                if (
+                                    turn_order_direction < 0
+                                    and candidate > (prev_fifo_turn_x - fifo_min_gap + 0.01)
+                                ):
+                                    return False
                             if any(abs(candidate - prev) < fifo_min_gap for prev in used_mx):
                                 return False
                         else:
@@ -4179,22 +5237,24 @@ def render_svg(
 
                     if not mx_is_clear(mx):
                         if fifo_turn:
-                            # Preserve FIFO ordering by searching only to the right.
+                            # Preserve the group's crossing-free turn order by
+                            # searching only in its configured direction.
                             probe = mx
                             found = False
-                            while probe <= corridor_max:
+                            while corridor_min <= probe <= corridor_max:
                                 if mx_is_clear(probe):
                                     mx = probe
                                     found = True
                                     break
-                                probe += 1.0
+                                probe += float(turn_order_direction)
                             if not found:
-                                min_fifo_x = (
-                                    (prev_fifo_turn_x + fifo_min_gap)
-                                    if prev_fifo_turn_x is not None
-                                    else corridor_min
-                                )
-                                mx = max(corridor_min, min(corridor_max, min_fifo_x))
+                                if prev_fifo_turn_x is None:
+                                    mx = corridor_min if turn_order_direction > 0 else corridor_max
+                                else:
+                                    directed_x = prev_fifo_turn_x + (
+                                        turn_order_direction * fifo_min_gap
+                                    )
+                                    mx = max(corridor_min, min(corridor_max, directed_x))
                         else:
                             best_candidate = mx
                             best_score = float("inf")
@@ -4241,9 +5301,12 @@ def render_svg(
                 forward_min_x = min(src_lead_x, dst_lead_x)
                 forward_max_x = max(src_lead_x, dst_lead_x)
                 mx = max(forward_min_x, min(forward_max_x, mx))
-            if fifo_turn and prev_fifo_turn_x is not None and mx < prev_fifo_turn_x:
-                # Last-resort guard: later FIFO routes should not turn left of earlier ones.
-                mx = prev_fifo_turn_x
+            if fifo_turn and prev_fifo_turn_x is not None:
+                # Last-resort guard: retain the selected monotonic direction.
+                if turn_order_direction > 0 and mx < prev_fifo_turn_x:
+                    mx = prev_fifo_turn_x
+                elif turn_order_direction < 0 and mx > prev_fifo_turn_x:
+                    mx = prev_fifo_turn_x
             # Long HDMI/video links are clearer when they drop near the source
             # rather than carrying a long top rail before the first turn.
             if (
@@ -4290,17 +5353,29 @@ def render_svg(
                     mx = src_lead_x
                 elif abs(dst_lead_x - mx) < 10.0:
                     mx = dst_lead_x
-            if vertical_crosses_other_boxes(mx, sy, dy, connection.source_device, connection.dest_device):
-                snap = pick_clear_x(
+            if (not fifo_turn or family == "Power") and vertical_rail_needs_clearance(
+                mx,
+                sy,
+                dy,
+                connection.source_device,
+                connection.dest_device,
+                minimum_clearance,
+            ):
+                snap = pick_route_clear_x(
                     desired_x=mx,
                     low_x=12.0,
                     high_x=width - 12.0,
-                    clear_intervals=clear_x_intervals,
+                    y1=sy,
+                    y2=dy,
+                    minimum_clearance=minimum_clearance,
                 )
                 if snap is not None:
                     mx = snap
-            if fifo_turn and prev_fifo_turn_x is not None and mx < prev_fifo_turn_x:
-                mx = prev_fifo_turn_x
+            if fifo_turn and prev_fifo_turn_x is not None:
+                if turn_order_direction > 0 and mx < prev_fifo_turn_x:
+                    mx = prev_fifo_turn_x
+                elif turn_order_direction < 0 and mx > prev_fifo_turn_x:
+                    mx = prev_fifo_turn_x
 
             # Resolve same-row horizontal overlaps by re-selecting turn X within
             # lead bounds. This avoids branch-like merges while preserving clean
@@ -4386,6 +5461,30 @@ def render_svg(
                                         best_escape_dist = distance_score
                                 mx = min(lead_high, max(lead_low, best_escape_mx))
 
+            # Re-snap the final turn because the row-overlap adjustment above
+            # can otherwise move it back beside an existing rail. FIFO signal
+            # bundles have already been spaced together as a group; power keeps
+            # this final safeguard because its clearance is safety-significant.
+            if family == "Power" or not fifo_turn:
+                final_low_x = 12.0
+                final_high_x = width - 12.0
+                if dx >= sx - 1.0 and overlap <= 0:
+                    final_low_x = min(src_lead_x, dst_lead_x)
+                    final_high_x = max(src_lead_x, dst_lead_x)
+                if fifo_turn and prev_fifo_turn_x is not None:
+                    final_low_x = max(final_low_x, prev_fifo_turn_x)
+                if final_high_x >= final_low_x:
+                    snap = pick_route_clear_x(
+                        desired_x=mx,
+                        low_x=final_low_x,
+                        high_x=final_high_x,
+                        y1=sy,
+                        y2=dy,
+                        minimum_clearance=minimum_clearance,
+                    )
+                    if snap is not None:
+                        mx = snap
+
             direct_points = [
                 (sx, sy),
                 (src_lead_x, sy),
@@ -4404,11 +5503,31 @@ def render_svg(
                 dst_box,
                 sy,
                 dy,
-                family,
+                route_protocol,
+                minimum_clearance,
             )
 
-            if span_columns >= 2 and not fifo_turn:
-                lane_spacing = 12.0 if overview_mode else 10.0
+            needs_clearance_detour = bool(
+                int(best_score[2]) > 0
+                or int(best_score[3]) > 0
+                or int(best_score[4]) > 0
+                or float(best_score[7]) > 0.0
+            )
+            # A single HDMI cable should stay in the endpoint band whenever
+            # its compact route clears device boxes. Wire crossings already
+            # have a white under-stroke and are less distracting than sending
+            # one cable up to a remote outer lane and back down again.
+            compact_video_route = (
+                family == "Video"
+                and int(best_score[0]) == 0
+                and int(best_score[2]) == 0
+            )
+            if (
+                (span_columns >= 2 or needs_clearance_detour)
+                and not fifo_turn
+                and not compact_video_route
+            ):
+                lane_spacing = power_lane_spacing if family == "Power" else (12.0 if overview_mode else 10.0)
                 base_bottom = route_bottom_base + (route_pos * lane_spacing)
                 if route_total > 1:
                     # Keep a reserved lane budget for later routes so high-index
@@ -4434,25 +5553,39 @@ def render_svg(
                     seen_bottoms.add(lane_key)
                     src_drop_x = src_lead_x
                     dst_rise_x = dst_lead_x
-                    if vertical_crosses_other_boxes(
-                        src_drop_x, sy, outer_bottom, connection.source_device, connection.dest_device
+                    if abs(outer_bottom - sy) > 0.05 and vertical_rail_needs_clearance(
+                        src_drop_x,
+                        sy,
+                        outer_bottom,
+                        connection.source_device,
+                        connection.dest_device,
+                        minimum_clearance,
                     ):
-                        snap = pick_clear_x(
+                        snap = pick_route_clear_x(
                             desired_x=src_drop_x,
                             low_x=12.0,
                             high_x=width - 12.0,
-                            clear_intervals=clear_x_intervals,
+                            y1=sy,
+                            y2=outer_bottom,
+                            minimum_clearance=minimum_clearance,
                         )
                         if snap is not None:
                             src_drop_x = snap
-                    if vertical_crosses_other_boxes(
-                        dst_rise_x, dy, outer_bottom, connection.source_device, connection.dest_device
+                    if abs(outer_bottom - dy) > 0.05 and vertical_rail_needs_clearance(
+                        dst_rise_x,
+                        dy,
+                        outer_bottom,
+                        connection.source_device,
+                        connection.dest_device,
+                        minimum_clearance,
                     ):
-                        snap = pick_clear_x(
+                        snap = pick_route_clear_x(
                             desired_x=dst_rise_x,
                             low_x=12.0,
                             high_x=width - 12.0,
-                            clear_intervals=clear_x_intervals,
+                            y1=dy,
+                            y2=outer_bottom,
+                            minimum_clearance=minimum_clearance,
                         )
                         if snap is not None:
                             dst_rise_x = snap
@@ -4482,16 +5615,26 @@ def render_svg(
                         dst_box,
                         sy,
                         dy,
-                        family,
+                        route_protocol,
+                        minimum_clearance,
                     )
                     if detour_score < best_score:
                         best_points = detour_points
                         best_score = detour_score
 
             top_lane_limit = min(sy, dy) - 4.0
-            if span_columns >= 2 and not fifo_turn:
-                lane_spacing = 12.0 if overview_mode else 10.0
-                base_top = route_top_base + (route_pos * lane_spacing)
+            if (
+                (span_columns >= 2 or needs_clearance_detour)
+                and not fifo_turn
+                and not compact_video_route
+            ):
+                lane_spacing = power_lane_spacing if family == "Power" else (12.0 if overview_mode else 10.0)
+                base_top = stacked_top_route_lane(
+                    route_top_base,
+                    route_pos,
+                    lane_spacing,
+                    margin_y,
+                )
                 if route_total > 1:
                     # Keep enough vertical budget so each earlier/later route can
                     # still have a distinct top lane near the destination side.
@@ -4501,10 +5644,15 @@ def render_svg(
                 base_top = max(margin_y + 8.0, base_top)
             else:
                 base_top = route_top_base
-            if span_columns >= 2 and not fifo_turn and base_top < top_lane_limit:
+            if (
+                span_columns >= 2
+                and not fifo_turn
+                and not compact_video_route
+                and base_top < top_lane_limit
+            ):
                 top_candidates: list[float] = [base_top]
                 if overview_mode:
-                    for delta in (-12.0, 12.0, -24.0, 24.0):
+                    for delta in (-12.0, -24.0, -36.0, -48.0):
                         candidate_top = base_top + delta
                         if candidate_top < margin_y + 8.0:
                             continue
@@ -4519,25 +5667,39 @@ def render_svg(
                     seen_tops.add(lane_key)
                     src_rise_x = src_lead_x
                     dst_drop_x = dst_lead_x
-                    if vertical_crosses_other_boxes(
-                        src_rise_x, sy, top_lane, connection.source_device, connection.dest_device
+                    if abs(top_lane - sy) > 0.05 and vertical_rail_needs_clearance(
+                        src_rise_x,
+                        sy,
+                        top_lane,
+                        connection.source_device,
+                        connection.dest_device,
+                        minimum_clearance,
                     ):
-                        snap = pick_clear_x(
+                        snap = pick_route_clear_x(
                             desired_x=src_rise_x,
                             low_x=12.0,
                             high_x=width - 12.0,
-                            clear_intervals=clear_x_intervals,
+                            y1=sy,
+                            y2=top_lane,
+                            minimum_clearance=minimum_clearance,
                         )
                         if snap is not None:
                             src_rise_x = snap
-                    if vertical_crosses_other_boxes(
-                        dst_drop_x, dy, top_lane, connection.source_device, connection.dest_device
+                    if abs(top_lane - dy) > 0.05 and vertical_rail_needs_clearance(
+                        dst_drop_x,
+                        dy,
+                        top_lane,
+                        connection.source_device,
+                        connection.dest_device,
+                        minimum_clearance,
                     ):
-                        snap = pick_clear_x(
+                        snap = pick_route_clear_x(
                             desired_x=dst_drop_x,
                             low_x=12.0,
                             high_x=width - 12.0,
-                            clear_intervals=clear_x_intervals,
+                            y1=dy,
+                            y2=top_lane,
+                            minimum_clearance=minimum_clearance,
                         )
                         if snap is not None:
                             dst_drop_x = snap
@@ -4567,7 +5729,8 @@ def render_svg(
                         dst_box,
                         sy,
                         dy,
-                        family,
+                        route_protocol,
+                        minimum_clearance,
                     )
                     if top_score < best_score:
                         best_points = top_points
@@ -4575,14 +5738,21 @@ def render_svg(
 
             # Overview safety fallback: if a forward route still crosses other
             # device boxes, try explicit outer-lane routes above/below all boxes.
-            if overview_mode and best_score and int(best_score[0]) > 0:
-                outer_lane_spacing = 12.0
+            if overview_mode and best_score and (
+                int(best_score[0]) > 0 or int(best_score[2]) > 0
+            ):
+                outer_lane_spacing = power_lane_spacing if family == "Power" else 12.0
                 reserve_for_later = (
                     max(0.0, (route_total - 1 - route_pos) * outer_lane_spacing)
                     if route_total > 1
                     else 0.0
                 )
-                top_outer = max(margin_y + 8.0, (route_top_base - 8.0) + (route_pos * outer_lane_spacing))
+                top_outer = stacked_top_route_lane(
+                    route_top_base - 8.0,
+                    route_pos,
+                    outer_lane_spacing,
+                    margin_y,
+                )
                 top_outer_cap = min(sy, dy) - 6.0 - reserve_for_later
                 top_outer = min(top_outer, top_outer_cap)
 
@@ -4597,7 +5767,7 @@ def render_svg(
                     outer_lanes.append(bottom_outer)
                 # Probe nearby lanes to reduce residual rail stacking when many
                 # routes are forced into fallback mode.
-                for delta in (12.0, -12.0, 24.0, -24.0):
+                for delta in (-12.0, -24.0, -36.0, -48.0):
                     candidate_top = top_outer + delta
                     if margin_y + 8.0 <= candidate_top < (min(sy, dy) - 4.0):
                         outer_lanes.append(candidate_top)
@@ -4615,25 +5785,39 @@ def render_svg(
 
                     src_outer_x = src_lead_x
                     dst_outer_x = dst_lead_x
-                    if vertical_crosses_other_boxes(
-                        src_outer_x, sy, outer_lane, connection.source_device, connection.dest_device
+                    if abs(outer_lane - sy) > 0.05 and vertical_rail_needs_clearance(
+                        src_outer_x,
+                        sy,
+                        outer_lane,
+                        connection.source_device,
+                        connection.dest_device,
+                        minimum_clearance,
                     ):
-                        snap = pick_clear_x(
+                        snap = pick_route_clear_x(
                             desired_x=src_outer_x,
                             low_x=12.0,
                             high_x=width - 12.0,
-                            clear_intervals=clear_x_intervals,
+                            y1=sy,
+                            y2=outer_lane,
+                            minimum_clearance=minimum_clearance,
                         )
                         if snap is not None:
                             src_outer_x = snap
-                    if vertical_crosses_other_boxes(
-                        dst_outer_x, dy, outer_lane, connection.source_device, connection.dest_device
+                    if abs(outer_lane - dy) > 0.05 and vertical_rail_needs_clearance(
+                        dst_outer_x,
+                        dy,
+                        outer_lane,
+                        connection.source_device,
+                        connection.dest_device,
+                        minimum_clearance,
                     ):
-                        snap = pick_clear_x(
+                        snap = pick_route_clear_x(
                             desired_x=dst_outer_x,
                             low_x=12.0,
                             high_x=width - 12.0,
-                            clear_intervals=clear_x_intervals,
+                            y1=dy,
+                            y2=outer_lane,
+                            minimum_clearance=minimum_clearance,
                         )
                         if snap is not None:
                             dst_outer_x = snap
@@ -4663,11 +5847,101 @@ def render_svg(
                         dst_box,
                         sy,
                         dy,
-                        family,
+                        route_protocol,
+                        minimum_clearance,
                     )
                     if outer_score < best_score:
                         best_points = outer_points
                         best_score = outer_score
+        # A collapsed multichannel trunk starts and ends on its dotted
+        # collector rails. Starting at the averaged device anchor would make
+        # the dashed trunk overshoot through the collector toward the device.
+        multichannel_source_bundle_x: float | None = None
+        multichannel_dest_bundle_x: float | None = None
+        if connection.connection_type.strip().upper().startswith("MC"):
+            source_parts = [
+                part.strip()
+                for part in connection.source_jack.split("+")
+                if part.strip()
+            ]
+            source_part_ys = sorted(
+                {
+                    y
+                    for part in source_parts
+                    for y in [src_box.out_port_y.get(part, src_box.in_port_y.get(part))]
+                    if y is not None
+                }
+            )
+            if len(source_part_ys) >= 2:
+                multichannel_source_bundle_x = max(
+                    8.0,
+                    min(width - 8.0, sx + (source_dir * 14.0)),
+                )
+                if best_points:
+                    best_points[0] = (multichannel_source_bundle_x, sy)
+
+            dest_parts = [
+                part.strip()
+                for part in connection.dest_jack.split("+")
+                if part.strip()
+            ]
+            dest_part_ys = sorted(
+                {
+                    y
+                    for part in dest_parts
+                    for y in [dst_box.in_port_y.get(part, dst_box.out_port_y.get(part))]
+                    if y is not None
+                }
+            )
+            if len(dest_part_ys) >= 2:
+                multichannel_dest_bundle_x = max(
+                    8.0,
+                    min(width - 8.0, dx + (dest_dir * 14.0)),
+                )
+                if best_points:
+                    best_points[-1] = (multichannel_dest_bundle_x, dy)
+
+        # A collapsed stereo source must still show both physical mono outputs.
+        # Start the trunk at a small collector outside the device instead of at
+        # the averaged (and therefore non-existent) port position between them.
+        stereo_source_collector: tuple[float, list[float]] | None = None
+        if connection.connection_type.strip().upper() == "ST" and "+" in connection.source_jack:
+            source_parts = [
+                part.strip()
+                for part in connection.source_jack.split("+")
+                if part.strip()
+            ]
+            source_part_ys: list[float] = []
+            for part in source_parts:
+                part_y = src_box.out_port_y.get(part)
+                if part_y is None:
+                    part_y = src_box.in_port_y.get(part)
+                if part_y is not None and not any(abs(part_y - seen_y) < 0.05 for seen_y in source_part_ys):
+                    source_part_ys.append(part_y)
+            source_part_ys.sort()
+            if len(source_part_ys) >= 2:
+                available_lead = abs(src_lead_x - sx)
+                collector_offset = max(6.0, min(14.0, available_lead * 0.5))
+                collector_x = max(
+                    8.0,
+                    min(width - 8.0, sx + (source_dir * collector_offset)),
+                )
+                stereo_source_collector = (collector_x, source_part_ys)
+                if best_points:
+                    best_points[0] = (collector_x, sy)
+
+        best_points = simplify_orthogonal_route(best_points)
+        best_score = route_candidate_score(
+            best_points,
+            connection.source_device,
+            connection.dest_device,
+            src_box,
+            dst_box,
+            sy,
+            dy,
+            route_protocol,
+            minimum_clearance,
+        )
         path = route_to_path(best_points)
         if fifo_turn:
             final_turn_x = first_vertical_turn_x(best_points)
@@ -4675,7 +5949,7 @@ def render_svg(
                 fifo_last_mx[fifo_group_key] = final_turn_x
 
         for seg_axis, seg_const, seg_start, seg_end in route_segments(best_points):
-            routed_segments.append((seg_axis, seg_const, seg_start, seg_end, family))
+            routed_segments.append((seg_axis, seg_const, seg_start, seg_end, route_protocol))
 
         if route_debug_records is not None:
             route_debug_records.append(
@@ -4684,6 +5958,7 @@ def render_svg(
                     "overview_mode": overview_mode,
                     "cable_id": connection.cable_id,
                     "family": family,
+                    "protocol": route_protocol,
                     "source": {
                         "device": connection.source_device,
                         "port": connection.source_jack,
@@ -4724,9 +5999,12 @@ def render_svg(
                 }
             )
 
-        family_counts[family] += 1
-        family_colors[family] = wire_color
-        bidirectional = is_bidirectional_connection(connection)
+        family_counts[legend_family] += 1
+        family_colors[legend_family] = wire_color
+        bidirectional = (
+            connection.cable_id in bidirectional_connection_ids
+            or is_bidirectional_connection(connection)
+        )
         is_multichannel = connection.connection_type.upper().startswith("MC")
         stroke_width = 1.8 if "normalled" in connection.status.lower() else 1.35
         if is_multichannel:
@@ -4742,42 +6020,33 @@ def render_svg(
             else ' marker-end="url(#arrow)"'
         )
 
-        detail = html.escape(
-            f"{connection.cable_id}: {connection.source_device} [{connection.source_jack}] -> {connection.dest_device} [{connection.dest_jack}]"
-        )
+        def part_anchor_y(box: DeviceBox, part: str, prefer: str) -> float | None:
+            if prefer == "out":
+                if part in box.out_port_y:
+                    return box.out_port_y[part]
+                if part in box.in_port_y:
+                    return box.in_port_y[part]
+            else:
+                if part in box.in_port_y:
+                    return box.in_port_y[part]
+                if part in box.out_port_y:
+                    return box.out_port_y[part]
+            return None
 
-        connection_wire_lines = [
-            f'  <path d="{path}" fill="none" stroke="#f8fafc" stroke-width="{stroke_width + 2.4:.2f}"{stroke_dash} stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>',
-            f'  <path d="{path}" fill="none" stroke="{wire_color}" stroke-width="{stroke_width}"{stroke_dash} stroke-linecap="round" stroke-linejoin="round"{marker_attrs}><title>{detail}</title></path>',
-        ]
+        def unique_sorted(values: list[float]) -> list[float]:
+            seen: set[int] = set()
+            result: list[float] = []
+            for value in sorted(values):
+                key = int(round(value * 10.0))
+                if key in seen:
+                    continue
+                seen.add(key)
+                result.append(value)
+            return result
 
-        # Multichannel links get explicit fan-in / fan-out collectors so it's
-        # clear that multiple channel ports feed one bundled trunk.
+        src_ys: list[float] = []
+        dst_ys: list[float] = []
         if is_multichannel:
-            def part_anchor_y(box: DeviceBox, part: str, prefer: str) -> float | None:
-                if prefer == "out":
-                    if part in box.out_port_y:
-                        return box.out_port_y[part]
-                    if part in box.in_port_y:
-                        return box.in_port_y[part]
-                else:
-                    if part in box.in_port_y:
-                        return box.in_port_y[part]
-                    if part in box.out_port_y:
-                        return box.out_port_y[part]
-                return None
-
-            def unique_sorted(values: list[float]) -> list[float]:
-                seen: set[int] = set()
-                result: list[float] = []
-                for value in sorted(values):
-                    key = int(round(value * 10.0))
-                    if key in seen:
-                        continue
-                    seen.add(key)
-                    result.append(value)
-                return result
-
             src_parts = [part.strip() for part in connection.source_jack.split("+") if part.strip()]
             dst_parts = [part.strip() for part in connection.dest_jack.split("+") if part.strip()]
             src_ys = unique_sorted(
@@ -4801,28 +6070,82 @@ def render_svg(
                 ]
             )
 
+            # The breakout branches carry the endpoint arrows for a snake.
+            # Avoid leaving an extra arrow on the bundled trunk between ports.
+            main_marker_parts: list[str] = []
+            if bidirectional and len(src_ys) < 2:
+                main_marker_parts.append('marker-start="url(#arrow)"')
+            if len(dst_ys) < 2:
+                main_marker_parts.append('marker-end="url(#arrow)"')
+            marker_attrs = (
+                f" {' '.join(main_marker_parts)}"
+                if main_marker_parts
+                else ""
+            )
+
+        detail = html.escape(
+            f"{connection.cable_id}: {connection.source_device} [{connection.source_jack}] -> {connection.dest_device} [{connection.dest_jack}]"
+        )
+
+        connection_wire_lines = [
+            f'  <path d="{path}" fill="none" stroke="#f8fafc" stroke-width="{stroke_width + 2.4:.2f}"{stroke_dash} stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>',
+            f'  <path d="{path}" fill="none" stroke="{wire_color}" stroke-width="{stroke_width}"{stroke_dash} stroke-linecap="round" stroke-linejoin="round"{marker_attrs}><title>{detail}</title></path>',
+        ]
+
+        if stereo_source_collector is not None:
+            collector_x, source_part_ys = stereo_source_collector
+            collector_stroke = max(1.35, stroke_width)
+            connection_wire_lines.append(
+                f'  <line class="stereo-source-collector" x1="{collector_x:.1f}" y1="{source_part_ys[0]:.1f}" x2="{collector_x:.1f}" y2="{source_part_ys[-1]:.1f}" stroke="#f8fafc" stroke-width="{collector_stroke + 2.4:.2f}" stroke-linecap="round" aria-hidden="true"/>'
+            )
+            connection_wire_lines.append(
+                f'  <line class="stereo-source-collector" x1="{collector_x:.1f}" y1="{source_part_ys[0]:.1f}" x2="{collector_x:.1f}" y2="{source_part_ys[-1]:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round"/>'
+            )
+            for part_y in source_part_ys:
+                connection_wire_lines.append(
+                    f'  <line class="stereo-source-branch" x1="{sx:.1f}" y1="{part_y:.1f}" x2="{collector_x:.1f}" y2="{part_y:.1f}" stroke="#f8fafc" stroke-width="{collector_stroke + 2.4:.2f}" stroke-linecap="round" aria-hidden="true"/>'
+                )
+                connection_wire_lines.append(
+                    f'  <line class="stereo-source-branch" x1="{sx:.1f}" y1="{part_y:.1f}" x2="{collector_x:.1f}" y2="{part_y:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round"/>'
+                )
+            connection_wire_lines.append(
+                f'  <circle class="stereo-source-merge" cx="{collector_x:.1f}" cy="{sy:.1f}" r="2.8" fill="{wire_color}" stroke="#f8fafc" stroke-width="1.1"/>'
+            )
+
+        # Multichannel links get explicit fan-in / fan-out collectors so it's
+        # clear that multiple channel ports feed one bundled trunk.
+        if is_multichannel:
             collector_offset = 14.0
             collector_stroke = max(1.25, stroke_width - 0.25)
             collector_dash = ' stroke-dasharray="2 2"'
 
             if len(src_ys) >= 2:
-                src_bundle_x = max(8.0, min(width - 8.0, sx + (source_dir * collector_offset)))
+                src_bundle_x = (
+                    multichannel_source_bundle_x
+                    if multichannel_source_bundle_x is not None
+                    else max(8.0, min(width - 8.0, sx + (source_dir * collector_offset)))
+                )
                 connection_wire_lines.append(
-                    f'  <line x1="{src_bundle_x:.1f}" y1="{src_ys[0]:.1f}" x2="{src_bundle_x:.1f}" y2="{src_ys[-1]:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round"{collector_dash}/>'
+                    f'  <line class="multichannel-source-collector" x1="{src_bundle_x:.1f}" y1="{src_ys[0]:.1f}" x2="{src_bundle_x:.1f}" y2="{src_ys[-1]:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round"{collector_dash}/>'
                 )
                 for y in src_ys:
+                    source_marker = ' marker-start="url(#arrow)"' if bidirectional else ""
                     connection_wire_lines.append(
-                        f'  <line x1="{sx:.1f}" y1="{y:.1f}" x2="{src_bundle_x:.1f}" y2="{y:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round" opacity="0.95"/>'
+                        f'  <line class="multichannel-source-branch" x1="{sx:.1f}" y1="{y:.1f}" x2="{src_bundle_x:.1f}" y2="{y:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round" opacity="0.95"{source_marker}/>'
                     )
 
             if len(dst_ys) >= 2:
-                dst_bundle_x = max(8.0, min(width - 8.0, dx + (dest_dir * collector_offset)))
+                dst_bundle_x = (
+                    multichannel_dest_bundle_x
+                    if multichannel_dest_bundle_x is not None
+                    else max(8.0, min(width - 8.0, dx + (dest_dir * collector_offset)))
+                )
                 connection_wire_lines.append(
-                    f'  <line x1="{dst_bundle_x:.1f}" y1="{dst_ys[0]:.1f}" x2="{dst_bundle_x:.1f}" y2="{dst_ys[-1]:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round"{collector_dash}/>'
+                    f'  <line class="multichannel-destination-collector" x1="{dst_bundle_x:.1f}" y1="{dst_ys[0]:.1f}" x2="{dst_bundle_x:.1f}" y2="{dst_ys[-1]:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round"{collector_dash}/>'
                 )
                 for y in dst_ys:
                     connection_wire_lines.append(
-                        f'  <line x1="{dst_bundle_x:.1f}" y1="{y:.1f}" x2="{dx:.1f}" y2="{y:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round" opacity="0.95"/>'
+                        f'  <line class="multichannel-destination-branch" x1="{dst_bundle_x:.1f}" y1="{y:.1f}" x2="{dx:.1f}" y2="{y:.1f}" stroke="{wire_color}" stroke-width="{collector_stroke:.2f}" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>'
                     )
 
         pending_connection_wire_lines.append((family == "Power", connection_wire_lines))
@@ -4916,6 +6239,23 @@ def render_svg(
             ]
         )
 
+        # The combined overview summarizes mains power as a compact input-side
+        # circuit badge instead of drawing power routes, ports, or distributor
+        # devices through the signal-flow diagram.
+        power_group = (overview_power_groups or {}).get(box.name)
+        if overview_mode and power_group:
+            badge_width = 48.0
+            badge_height = 16.0
+            badge_x = box.x - badge_width + 3.0
+            badge_y = box.y + 10.0
+            badge_color = power_group_color(power_group)
+            svg_lines.extend(
+                [
+                    f'  <rect data-power-group="{html.escape(power_group)}" x="{badge_x:.1f}" y="{badge_y:.1f}" width="{badge_width:.1f}" height="{badge_height:.1f}" rx="3" ry="3" fill="{badge_color}" stroke="#ffffff" stroke-width="1.2"><title>Power circuit: {html.escape(power_group)}</title></rect>',
+                    f'  <text x="{badge_x + badge_width / 2.0:.1f}" y="{badge_y + 11.2:.1f}" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="700" fill="#ffffff">{html.escape(power_group)}</text>',
+                ]
+            )
+
         for index in range(row_count):
             py = box.y + HEADER_HEIGHT + index * ROW_HEIGHT + (ROW_HEIGHT / 2.0)
             if index > 0:
@@ -4964,8 +6304,9 @@ def render_svg(
     svg_lines.append(
         f'  <rect x="{legend_x - 10:.1f}" y="{legend_y - 14:.1f}" width="280" height="{legend_height:.1f}" rx="8" ry="8" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1"/>'
     )
+    legend_title = "Power Groups" if power_group_by_connection else "Connection Types"
     svg_lines.append(
-        f'  <text x="{legend_x:.1f}" y="{legend_y - 2:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#475569">Connection Types</text>'
+        f'  <text x="{legend_x:.1f}" y="{legend_y - 2:.1f}" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#475569">{legend_title}</text>'
     )
     for index, (family, count) in enumerate(legend_items):
         y = legend_y + 13 + (index * 14)
@@ -6445,6 +7786,11 @@ def build_routing_matrix_html(
       font-weight: 700;
       color: #0f172a;
     }
+    .preview-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     .preview-open-link {
       color: #2563eb;
       text-decoration: none;
@@ -6453,6 +7799,12 @@ def build_routing_matrix_html(
     }
     .preview-open-link:hover {
       text-decoration: underline;
+    }
+    .preview-download-button {
+      min-width: 0;
+      height: auto;
+      padding: 3px 7px;
+      font-size: 0.72rem;
     }
     .preview-image {
       width: 100%;
@@ -6483,16 +7835,40 @@ def build_routing_matrix_html(
       background: #fff;
       padding: 4px;
     }
+    .visibility-list-header,
     .visibility-item {
       display: grid;
-      grid-template-columns: auto auto minmax(0, 1fr) auto;
+      grid-template-columns: 18px minmax(180px, 1fr) repeat(4, minmax(72px, 0.35fr)) auto;
       gap: 8px;
       align-items: center;
+      min-width: 680px;
+    }
+    .visibility-list-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      padding: 7px 8px;
+      background: #e2e8f0;
+      border-radius: 6px;
+      color: #334155;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .visibility-list-header .visibility-device-heading {
+      text-align: left;
+    }
+    .visibility-item {
       border: 1px solid #e2e8f0;
       border-radius: 6px;
       padding: 6px 8px;
       margin: 6px 2px;
       background: #f8fafc;
+    }
+    .visibility-item.selected {
+      border-color: #3b82f6;
+      background: #eff6ff;
+      box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.18);
     }
     .visibility-item.dragging {
       opacity: 0.55;
@@ -6506,6 +7882,20 @@ def build_routing_matrix_html(
     .visibility-item.off {
       opacity: 0.75;
       background: #f8fafc;
+    }
+    .visibility-device-info {
+      min-width: 0;
+      cursor: default;
+    }
+    .visibility-toggle-cell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .visibility-toggle-cell input {
+      width: 17px;
+      height: 17px;
+      cursor: pointer;
     }
     .visibility-drag-grip {
       font-size: 0.84rem;
@@ -6990,6 +8380,14 @@ def build_routing_matrix_html(
       border-color: #334155;
       background: #0f172a;
     }
+    body.theme-dark .visibility-list-header {
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+    body.theme-dark .visibility-item.selected {
+      border-color: #60a5fa;
+      background: #172554;
+    }
     body.theme-dark .visibility-item.drag-over-before {
       box-shadow: inset 0 3px 0 #60a5fa;
     }
@@ -7036,6 +8434,11 @@ def build_routing_matrix_html(
     }
     body.theme-dark .preview-open-link {
       color: #93c5fd;
+    }
+    body.theme-dark .preview-download-button {
+      border-color: #475569;
+      background: #172033;
+      color: #dbeafe;
     }
     body.theme-dark .resize-handle::after {
       background: rgba(147, 197, 253, 0.28);
@@ -7335,9 +8738,10 @@ def build_routing_matrix_html(
 
     <div id="panelVisibility" class="tab-panel hidden">
       <div class="panel controls">
-        <button id="showAllDevicesBtn" type="button">Show All Devices</button>
-        <button id="hideAllDevicesBtn" type="button">Hide All Devices</button>
-        <button id="invertVisibleDevicesBtn" type="button">Invert Selection</button>
+        <button id="showAllDevicesBtn" type="button">Show Everywhere</button>
+        <button id="hideAllDevicesBtn" type="button">Hide Everywhere</button>
+        <button id="invertVisibleDevicesBtn" type="button">Invert All Visibility</button>
+        <span class="muted-note">Option-click a checkbox for all devices. Shift-click selects a range; Command-click adds or removes devices. A toggle on a selected device applies to the group.</span>
       </div>
       <div id="visibilitySummary" class="status panel"></div>
       <div class="panel">
@@ -7353,7 +8757,7 @@ def build_routing_matrix_html(
               <div class="results-title">Finished Results: Visual Representation (live)</div>
               <div class="results-actions">
                 <button id="regeneratePreviewsBtn" type="button">Regenerate Visuals</button>
-                <button id="downloadSvgsBtn" type="button">Download SVGs</button>
+                <button id="downloadSvgsBtn" type="button">Save SVG Folder</button>
                 <button id="openRouteDebugBtn" type="button">Open Route Debug JSON</button>
               </div>
             </div>
@@ -7362,42 +8766,49 @@ def build_routing_matrix_html(
               <div class="preview-card">
                 <div class="preview-card-head">
                   <span class="preview-card-title">Audio Analog</span>
-                  <a id="previewLinkAudioAnalog" class="preview-open-link" href="../svgs/audio-analog.svg" target="_blank" rel="noopener noreferrer">Open</a>
+                  <span class="preview-card-actions"><a id="previewLinkAudioAnalog" class="preview-open-link" href="../svgs/audio-analog.svg" target="_blank" rel="noopener noreferrer">Open</a><button class="preview-download-button" type="button" data-preview-download="audioAnalog">Download</button></span>
                 </div>
                 <object id="previewAudioAnalog" class="preview-image" data="../svgs/audio-analog.svg" type="image/svg+xml" aria-label="Audio Analog preview"></object>
               </div>
               <div class="preview-card">
                 <div class="preview-card-head">
                   <span class="preview-card-title">Computer/Data</span>
-                  <a id="previewLinkComputerData" class="preview-open-link" href="../svgs/computer-data.svg" target="_blank" rel="noopener noreferrer">Open</a>
+                  <span class="preview-card-actions"><a id="previewLinkComputerData" class="preview-open-link" href="../svgs/computer-data.svg" target="_blank" rel="noopener noreferrer">Open</a><button class="preview-download-button" type="button" data-preview-download="computerData">Download</button></span>
                 </div>
                 <object id="previewComputerData" class="preview-image" data="../svgs/computer-data.svg" type="image/svg+xml" aria-label="Computer/Data preview"></object>
               </div>
               <div class="preview-card">
                 <div class="preview-card-head">
                   <span class="preview-card-title">Digital Audio</span>
-                  <a id="previewLinkDigitalAudio" class="preview-open-link" href="../svgs/digital-audio.svg" target="_blank" rel="noopener noreferrer">Open</a>
+                  <span class="preview-card-actions"><a id="previewLinkDigitalAudio" class="preview-open-link" href="../svgs/digital-audio.svg" target="_blank" rel="noopener noreferrer">Open</a><button class="preview-download-button" type="button" data-preview-download="digitalAudio">Download</button></span>
                 </div>
                 <object id="previewDigitalAudio" class="preview-image" data="../svgs/digital-audio.svg" type="image/svg+xml" aria-label="Digital Audio preview"></object>
               </div>
               <div class="preview-card">
                 <div class="preview-card-head">
+                  <span class="preview-card-title">All Audio</span>
+                  <span class="preview-card-actions"><a id="previewLinkAllAudio" class="preview-open-link" href="../svgs/all-audio.svg" target="_blank" rel="noopener noreferrer">Open</a><button class="preview-download-button" type="button" data-preview-download="allAudio">Download</button></span>
+                </div>
+                <object id="previewAllAudio" class="preview-image" data="../svgs/all-audio.svg" type="image/svg+xml" aria-label="All Audio preview"></object>
+              </div>
+              <div class="preview-card">
+                <div class="preview-card-head">
                   <span class="preview-card-title">Network</span>
-                  <a id="previewLinkNetwork" class="preview-open-link" href="../svgs/network.svg" target="_blank" rel="noopener noreferrer">Open</a>
+                  <span class="preview-card-actions"><a id="previewLinkNetwork" class="preview-open-link" href="../svgs/network.svg" target="_blank" rel="noopener noreferrer">Open</a><button class="preview-download-button" type="button" data-preview-download="network">Download</button></span>
                 </div>
                 <object id="previewNetwork" class="preview-image" data="../svgs/network.svg" type="image/svg+xml" aria-label="Network preview"></object>
               </div>
               <div class="preview-card">
                 <div class="preview-card-head">
                   <span class="preview-card-title">Power</span>
-                  <a id="previewLinkPower" class="preview-open-link" href="../svgs/power.svg" target="_blank" rel="noopener noreferrer">Open</a>
+                  <span class="preview-card-actions"><a id="previewLinkPower" class="preview-open-link" href="../svgs/power.svg" target="_blank" rel="noopener noreferrer">Open</a><button class="preview-download-button" type="button" data-preview-download="power">Download</button></span>
                 </div>
                 <object id="previewPower" class="preview-image" data="../svgs/power.svg" type="image/svg+xml" aria-label="Power preview"></object>
               </div>
               <div class="preview-card">
                 <div class="preview-card-head">
                   <span class="preview-card-title">All Connections</span>
-                  <a id="previewLinkAllConnections" class="preview-open-link" href="../svgs/all-connections.svg" target="_blank" rel="noopener noreferrer">Open</a>
+                  <span class="preview-card-actions"><a id="previewLinkAllConnections" class="preview-open-link" href="../svgs/all-connections.svg" target="_blank" rel="noopener noreferrer">Open</a><button class="preview-download-button" type="button" data-preview-download="allConnections">Download</button></span>
                 </div>
                 <object id="previewAllConnections" class="preview-image" data="../svgs/all-connections.svg" type="image/svg+xml" aria-label="All Connections preview"></object>
               </div>
@@ -7516,12 +8927,14 @@ def build_routing_matrix_html(
     const previewAudioAnalog = document.getElementById("previewAudioAnalog");
     const previewComputerData = document.getElementById("previewComputerData");
     const previewDigitalAudio = document.getElementById("previewDigitalAudio");
+    const previewAllAudio = document.getElementById("previewAllAudio");
     const previewNetwork = document.getElementById("previewNetwork");
     const previewPower = document.getElementById("previewPower");
     const previewAllConnections = document.getElementById("previewAllConnections");
     const previewLinkAudioAnalog = document.getElementById("previewLinkAudioAnalog");
     const previewLinkComputerData = document.getElementById("previewLinkComputerData");
     const previewLinkDigitalAudio = document.getElementById("previewLinkDigitalAudio");
+    const previewLinkAllAudio = document.getElementById("previewLinkAllAudio");
     const previewLinkNetwork = document.getElementById("previewLinkNetwork");
     const previewLinkPower = document.getElementById("previewLinkPower");
     const previewLinkAllConnections = document.getElementById("previewLinkAllConnections");
@@ -7552,6 +8965,7 @@ def build_routing_matrix_html(
       audioAnalog: { img: previewAudioAnalog, link: previewLinkAudioAnalog },
       computerData: { img: previewComputerData, link: previewLinkComputerData },
       digitalAudio: { img: previewDigitalAudio, link: previewLinkDigitalAudio },
+      allAudio: { img: previewAllAudio, link: previewLinkAllAudio },
       network: { img: previewNetwork, link: previewLinkNetwork },
       power: { img: previewPower, link: previewLinkPower },
       allConnections: { img: previewAllConnections, link: previewLinkAllConnections },
@@ -7669,6 +9083,7 @@ def build_routing_matrix_html(
       audioAnalog: `${DEFAULT_PREVIEW_DIRECTORY}/audio-analog.svg`,
       computerData: `${DEFAULT_PREVIEW_DIRECTORY}/computer-data.svg`,
       digitalAudio: `${DEFAULT_PREVIEW_DIRECTORY}/digital-audio.svg`,
+      allAudio: `${DEFAULT_PREVIEW_DIRECTORY}/all-audio.svg`,
       network: `${DEFAULT_PREVIEW_DIRECTORY}/network.svg`,
       power: `${DEFAULT_PREVIEW_DIRECTORY}/power.svg`,
       allConnections: `${DEFAULT_PREVIEW_DIRECTORY}/all-connections.svg`,
@@ -7680,6 +9095,7 @@ def build_routing_matrix_html(
       { key: "audioAnalog", label: "Audio Analog", file: "audio-analog.svg" },
       { key: "computerData", label: "Computer/Data", file: "computer-data.svg" },
       { key: "digitalAudio", label: "Digital Audio", file: "digital-audio.svg" },
+      { key: "allAudio", label: "All Audio", file: "all-audio.svg" },
       { key: "network", label: "Network", file: "network.svg" },
       { key: "power", label: "Power", file: "power.svg" },
       { key: "allConnections", label: "All Connections", file: "all-connections.svg" },
@@ -7698,6 +9114,12 @@ def build_routing_matrix_html(
     const DEFAULT_PATCH_MODE = "single";
     const DEFAULT_PAIR_COUNT = 8;
     const PATCH_MODE_OPTIONS = new Set(["single", "paint", "range", "stereo", "multi"]);
+    const DEVICE_VISIBILITY_TARGETS = [
+      { key: "wiring_matrix", label: "Wiring Matrix", shortLabel: "Wiring" },
+      { key: "routing_matrix", label: "Routing Matrix", shortLabel: "Routing" },
+      { key: "connection_overview", label: "Connection Overview", shortLabel: "Overview" },
+      { key: "visuals", label: "Visuals", shortLabel: "Visuals" },
+    ];
     const prefersDarkMedia = (window.matchMedia && typeof window.matchMedia === "function")
       ? window.matchMedia("(prefers-color-scheme: dark)")
       : null;
@@ -7741,7 +9163,8 @@ def build_routing_matrix_html(
     let lastPortCheckboxClickMeta = null;
     const lastPortToggleAnchorByKey = new Map();
     let lastVisibilityCheckboxClickMeta = null;
-    let lastVisibilityToggleAnchor = -1;
+    let lastVisibilitySelectionAnchor = "";
+    const selectedVisibilityDevices = new Set();
     const DEBUG_HISTORY_LIMIT = 80;
     const debugRuntime = {
       session_started_at: new Date().toISOString(),
@@ -8116,14 +9539,15 @@ def build_routing_matrix_html(
       return changedCount;
     }
 
-    function consumeVisibilityCheckboxShift(deviceName) {
-      if (!lastVisibilityCheckboxClickMeta || typeof lastVisibilityCheckboxClickMeta !== "object") return false;
+    function consumeVisibilityCheckboxClickMeta(deviceName, targetName) {
+      if (!lastVisibilityCheckboxClickMeta || typeof lastVisibilityCheckboxClickMeta !== "object") return {};
       const ageMs = Date.now() - Number(lastVisibilityCheckboxClickMeta.ts || 0);
-      if (ageMs > 1500) return false;
-      if (String(lastVisibilityCheckboxClickMeta.device || "") !== String(deviceName || "")) return false;
-      const shift = Boolean(lastVisibilityCheckboxClickMeta.shiftKey);
+      if (ageMs > 1500) return {};
+      if (String(lastVisibilityCheckboxClickMeta.device || "") !== String(deviceName || "")) return {};
+      if (String(lastVisibilityCheckboxClickMeta.target || "") !== String(targetName || "")) return {};
+      const meta = { ...lastVisibilityCheckboxClickMeta };
       lastVisibilityCheckboxClickMeta = null;
-      return shift;
+      return meta;
     }
 
     // ----- Theme + display preferences -----
@@ -8583,7 +10007,7 @@ def build_routing_matrix_html(
         a.href = objectUrl;
         a.download = String(filename || "diagram.svg");
         a.click();
-        URL.revokeObjectURL(objectUrl);
+        window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
         return true;
       } catch (error) {
         return false;
@@ -8591,19 +10015,60 @@ def build_routing_matrix_html(
     }
 
     async function downloadAllSvgPreviews() {
-      let okCount = 0;
-      for (const spec of PREVIEW_SPECS) {
-        const path = resolvePreviewBasePath(spec.key);
-        if (!path) continue;
-        // Stagger browser download prompts so they are reliable.
-        const success = await downloadPreviewSvg(path, spec.file);
-        if (success) okCount += 1;
-        await new Promise((resolve) => window.setTimeout(resolve, 120));
+      if (!saveApiEnabled || !selectedProjectKey) {
+        setStatus("Saving an SVG folder requires the local server and a selected project.", true);
+        return false;
       }
-      if (okCount > 0) {
-        setStatus(`Downloaded ${okCount} SVG file(s).`);
-      } else {
-        setStatus("Failed to download SVGs. Refresh visuals and try again.", true);
+      if (typeof window.showDirectoryPicker !== "function") {
+        setStatus("Saving a folder requires a browser with folder access, such as Chrome or Edge.", true);
+        return false;
+      }
+      let parentDirectory;
+      try {
+        parentDirectory = await window.showDirectoryPicker({
+          id: "studio-wiring-svg-export",
+          mode: "readwrite",
+        });
+      } catch (error) {
+        if (error && error.name === "AbortError") {
+          setStatus("SVG folder save cancelled.");
+          return false;
+        }
+        setStatus(`Could not open the folder picker: ${String(error)}`, true);
+        return false;
+      }
+      setStatus("Updating visuals and preparing SVG folder…");
+      const current = await saveJsonToDisk("save-svg-folder", true, true);
+      if (!current) {
+        setStatus("Could not update visuals before saving the SVG folder.", true);
+        return false;
+      }
+      try {
+        const query = new URLSearchParams({
+          project_key: selectedProjectKey,
+          _dl: String(Date.now()),
+        });
+        const response = await fetch(`/api/svg-files?${query.toString()}`, { cache: "no-store" });
+        if (!response.ok) {
+          const details = await parseApiError(response, `HTTP ${response.status}`);
+          throw new Error(details);
+        }
+        const payload = await response.json();
+        const files = Array.isArray(payload.files) ? payload.files : [];
+        if (!files.length) throw new Error("No SVG files were returned");
+        const folderName = String(payload.folder_name || "studio-project-svgs");
+        const outputDirectory = await parentDirectory.getDirectoryHandle(folderName, { create: true });
+        for (const file of files) {
+          const fileHandle = await outputDirectory.getFileHandle(String(file.name), { create: true });
+          const writable = await fileHandle.createWritable();
+          await writable.write(String(file.content || ""));
+          await writable.close();
+        }
+        setStatus(`Saved ${folderName} (${files.length} SVGs).`);
+        return true;
+      } catch (error) {
+        setStatus(`Failed to save SVG folder: ${String(error)}`, true);
+        return false;
       }
     }
 
@@ -9873,6 +11338,34 @@ def build_routing_matrix_html(
     const UI_CONFIG_VERSION = 1;
     let preferredFamilyFromConfig = "";
 
+    function carryCollapsedKeysBetweenFamilies(keys, previousFamily, nextFamily) {
+      const previous = String(previousFamily || "").trim();
+      const next = String(nextFamily || "").trim();
+      if (!(keys instanceof Set) || !previous || !next || previous === next) return;
+      const previousPrefix = `${previous}::`;
+      const nextPrefix = `${next}::`;
+      const carriedSuffixes = Array.from(keys)
+        .filter((key) => String(key || "").startsWith(previousPrefix))
+        .map((key) => String(key).slice(previousPrefix.length));
+      for (const key of Array.from(keys)) {
+        if (String(key || "").startsWith(nextPrefix)) keys.delete(key);
+      }
+      for (const suffix of carriedSuffixes) keys.add(`${nextPrefix}${suffix}`);
+    }
+
+    function carryCollapseStateBetweenFamilies(previousFamily, nextFamily) {
+      const previous = String(previousFamily || "").trim();
+      const next = String(nextFamily || "").trim();
+      if (!previous || !next || previous === next) return;
+      carryCollapsedKeysBetweenFamilies(collapsedSourceDevices, previous, next);
+      carryCollapsedKeysBetweenFamilies(collapsedDestDevices, previous, next);
+      carryCollapsedKeysBetweenFamilies(collapsedSourceGroups, previous, next);
+      carryCollapsedKeysBetweenFamilies(collapsedDestGroups, previous, next);
+      // Treat the copied state as the destination family's explicit initial
+      // state so its first render cannot collapse folders the user left open.
+      autoCollapsedFamilies.add(next);
+    }
+
     function setBaselineConnections(rows) {
       baselineConnections = Array.isArray(rows)
         ? rows.map((row) => ({ ...row }))
@@ -9906,7 +11399,7 @@ def build_routing_matrix_html(
         const name = String(device?.name || "").trim();
         if (!name) continue;
         orderedDeviceNames.push(name);
-        if (Boolean(device?.hidden) || device?.visible === false) hiddenDeviceNames.push(name);
+        if (!deviceVisibleForTarget(device, "wiring_matrix")) hiddenDeviceNames.push(name);
       }
       MODEL.ui_config = {
         version: UI_CONFIG_VERSION,
@@ -10248,7 +11741,7 @@ def build_routing_matrix_html(
     function portsForFamily(family, sourceSide) {
       const output = [];
       for (const device of modelDevices) {
-        if (!isDeviceVisible(device)) continue;
+        if (!deviceVisibleForTarget(device, "wiring_matrix")) continue;
         const deviceName = String(device?.name || "").trim();
         if (!deviceName) continue;
         if (isPatchbayDeviceName(deviceName)) continue;
@@ -10280,11 +11773,57 @@ def build_routing_matrix_html(
       return FAMILY_ORDER.filter((family) => src.includes(family) && dst.includes(family));
     }
 
+    function digitalProtocolForPort(port) {
+      const transport = String(port?.transport || "").trim().toUpperCase();
+      const portName = String(port?.port || port?.name || "").trim().toUpperCase();
+      const classify = (value) => {
+        const token = String(value || "").toUpperCase();
+        if (/MADI/.test(token)) {
+          if (/OPT|OPTICAL|FIBER|FIBRE/.test(token)) return "MADI-OPTICAL";
+          if (/COAX|BNC/.test(token) || token.trim() === "MADI") return "MADI-COAX";
+          return "MADI";
+        }
+        if (/S\/?P[.-]?DIF|SPDIF/.test(token)) return "SPDIF";
+        if (/ADAT|SMUX/.test(token)) return "ADAT";
+        if (/AES(?:\/EBU)?/.test(token)) return "AES";
+        if (/WORD\s*CLOCK|(^|[^A-Z])CLOCK([^A-Z]|$)/.test(token)) return "WORD-CLOCK";
+        if (/MIDI/.test(token)) return "MIDI";
+        if (/DANTE/.test(token)) return "DANTE";
+        if (/HDMI/.test(token)) return "HDMI";
+        return "";
+      };
+      return classify(transport) || classify(portName);
+    }
+
+    function supportsTransportCompatibilityForFamily(family, sourcePort, destPort) {
+      if (normalizeFamily(family) !== "DIGI") return true;
+      const sourceProtocol = digitalProtocolForPort(sourcePort);
+      const destProtocol = digitalProtocolForPort(destPort);
+      return Boolean(sourceProtocol && destProtocol && sourceProtocol === destProtocol);
+    }
+
     function resolveLinkFamily(selectedFamily, sourcePort, destPort) {
       const shared = sharedFamiliesForPorts(sourcePort, destPort);
       if (!shared.length) return "";
-      if (selectedFamily === FAMILY_ALL) return shared[0];
-      return shared.includes(selectedFamily) ? selectedFamily : "";
+      const candidates = selectedFamily === FAMILY_ALL
+        ? shared
+        : (shared.includes(selectedFamily) ? [selectedFamily] : []);
+      return candidates.find((family) => supportsTransportCompatibilityForFamily(family, sourcePort, destPort)) || "";
+    }
+
+    function linkCompatibilityReason(selectedFamily, sourcePort, destPort) {
+      const shared = sharedFamiliesForPorts(sourcePort, destPort);
+      if (!shared.length) return "Incompatible port families";
+      const candidates = selectedFamily === FAMILY_ALL
+        ? shared
+        : (shared.includes(selectedFamily) ? [selectedFamily] : []);
+      if (!candidates.length) return `No shared family for ${selectedFamily}`;
+      if (candidates.includes("DIGI")) {
+        const sourceProtocol = digitalProtocolForPort(sourcePort) || "unknown";
+        const destProtocol = digitalProtocolForPort(destPort) || "unknown";
+        return `DIGI protocol mismatch: ${sourceProtocol} -> ${destProtocol}`;
+      }
+      return "Unavailable connection";
     }
 
     function powerConnectorAdvisory(linkFamily, sourcePort, destPort) {
@@ -10638,10 +12177,37 @@ def build_routing_matrix_html(
       return true;
     }
 
-    function visibleDeviceNameSet() {
+    function deviceVisibleForTarget(device, targetName) {
+      if (!device || typeof device !== "object") return false;
+      const visibility = device.visibility;
+      if (
+        visibility
+        && typeof visibility === "object"
+        && !Array.isArray(visibility)
+        && typeof visibility[targetName] === "boolean"
+      ) {
+        return visibility[targetName];
+      }
+      return isDeviceVisible(device);
+    }
+
+    function setDeviceVisibilityForTarget(device, targetName, visible) {
+      if (!device || typeof device !== "object") return false;
+      if (!DEVICE_VISIBILITY_TARGETS.some((target) => target.key === targetName)) return false;
+      if (!device.visibility || typeof device.visibility !== "object" || Array.isArray(device.visibility)) {
+        device.visibility = {};
+      }
+      const next = Boolean(visible);
+      const changed = deviceVisibleForTarget(device, targetName) !== next
+        || device.visibility[targetName] !== next;
+      device.visibility[targetName] = next;
+      return changed;
+    }
+
+    function visibleDeviceNameSet(targetName = "wiring_matrix") {
       const visible = new Set();
       for (const device of modelDevices) {
-        if (!isDeviceVisible(device)) continue;
+        if (!deviceVisibleForTarget(device, targetName)) continue;
         const name = String(device?.name || "").trim();
         if (name) visible.add(name);
       }
@@ -10874,7 +12440,7 @@ def build_routing_matrix_html(
         return {
           changed: false,
           action,
-          error: `Incompatible port families: ${source.device} [${source.port}] -> ${dest.device} [${dest.port}]`,
+          error: `${linkCompatibilityReason(selectedFamily, source, dest)}: ${source.device} [${source.port}] -> ${dest.device} [${dest.port}]`,
         };
       }
       if (connected) {
@@ -11424,6 +12990,56 @@ def build_routing_matrix_html(
       return true;
     }
 
+    function visibilityDeviceNamesInOrder() {
+      return devicesInMatrixOrder()
+        .map((device) => String(device?.name || "").trim())
+        .filter(Boolean);
+    }
+
+    function syncVisibilitySelectionClasses() {
+      if (!visibilityListPanel) return;
+      for (const row of Array.from(visibilityListPanel.querySelectorAll("[data-visibility-row]"))) {
+        const name = String(row.getAttribute("data-visibility-row") || "").trim();
+        row.classList.toggle("selected", selectedVisibilityDevices.has(name));
+        row.setAttribute("aria-selected", selectedVisibilityDevices.has(name) ? "true" : "false");
+      }
+    }
+
+    function updateVisibilitySelection(deviceName, modifiers = {}) {
+      const name = String(deviceName || "").trim();
+      const names = visibilityDeviceNamesInOrder();
+      if (!name || !names.includes(name)) return;
+
+      const validNames = new Set(names);
+      for (const selectedName of Array.from(selectedVisibilityDevices)) {
+        if (!validNames.has(selectedName)) selectedVisibilityDevices.delete(selectedName);
+      }
+
+      if (modifiers.altKey) {
+        selectedVisibilityDevices.clear();
+        for (const candidate of names) selectedVisibilityDevices.add(candidate);
+      } else if (modifiers.shiftKey && lastVisibilitySelectionAnchor && names.includes(lastVisibilitySelectionAnchor)) {
+        const anchorIndex = names.indexOf(lastVisibilitySelectionAnchor);
+        const currentIndex = names.indexOf(name);
+        const start = Math.min(anchorIndex, currentIndex);
+        const end = Math.max(anchorIndex, currentIndex);
+        if (!modifiers.metaKey) selectedVisibilityDevices.clear();
+        for (let index = start; index <= end; index += 1) {
+          selectedVisibilityDevices.add(names[index]);
+        }
+      } else if (modifiers.metaKey) {
+        if (selectedVisibilityDevices.has(name)) selectedVisibilityDevices.delete(name);
+        else selectedVisibilityDevices.add(name);
+        lastVisibilitySelectionAnchor = name;
+      } else if (!selectedVisibilityDevices.has(name) || selectedVisibilityDevices.size <= 1) {
+        selectedVisibilityDevices.clear();
+        selectedVisibilityDevices.add(name);
+        lastVisibilitySelectionAnchor = name;
+      }
+      if (!lastVisibilitySelectionAnchor) lastVisibilitySelectionAnchor = name;
+      syncVisibilitySelectionClasses();
+    }
+
     function renderVisibilityPanel() {
       if (!visibilityListPanel || !visibilitySummary) return;
       const devices = devicesInMatrixOrder();
@@ -11434,30 +13050,54 @@ def build_routing_matrix_html(
         return;
       }
 
-      const visibleCount = devices.filter((device) => isDeviceVisible(device)).length;
-      visibilitySummary.textContent = `${visibleCount}/${devices.length} devices visible in matrix and generated visuals.`;
+      const validNames = new Set(devices.map((device) => String(device?.name || "").trim()).filter(Boolean));
+      for (const selectedName of Array.from(selectedVisibilityDevices)) {
+        if (!validNames.has(selectedName)) selectedVisibilityDevices.delete(selectedName);
+      }
+      const counts = DEVICE_VISIBILITY_TARGETS.map((target) => {
+        const count = devices.filter((device) => deviceVisibleForTarget(device, target.key)).length;
+        return `${target.shortLabel} ${count}/${devices.length}`;
+      });
+      visibilitySummary.textContent = counts.join(" | ");
       visibilitySummary.classList.remove("warn");
 
+      const headerHtml = `
+        <div class="visibility-list-header" aria-hidden="true">
+          <span></span>
+          <span class="visibility-device-heading">Device</span>
+          ${DEVICE_VISIBILITY_TARGETS.map((target) => `<span title="Show in ${esc(target.label)}">${esc(target.shortLabel)}</span>`).join("")}
+          <span></span>
+        </div>
+      `;
       const rowsHtml = devices.map((device) => {
         const name = String(device?.name || "").trim();
-        const visible = isDeviceVisible(device);
+        const targetStates = DEVICE_VISIBILITY_TARGETS.map((target) => ({
+          ...target,
+          visible: deviceVisibleForTarget(device, target.key),
+        }));
+        const allHidden = targetStates.every((target) => !target.visible);
+        const selected = selectedVisibilityDevices.has(name);
         const ports = Array.isArray(device?.ports) ? device.ports : [];
         const inCount = ports.filter((port) => tabMatchesDirection(port?.direction, "in")).length;
         const outCount = ports.filter((port) => tabMatchesDirection(port?.direction, "out")).length;
         const typeName = String(device?.device_type || "Other");
         return `
-          <div class="visibility-item${visible ? "" : " off"}" data-visibility-row="${esc(name)}">
+          <div class="visibility-item${allHidden ? " off" : ""}${selected ? " selected" : ""}" data-visibility-row="${esc(name)}" aria-selected="${selected ? "true" : "false"}">
             <span class="visibility-drag-grip" draggable="true" title="Drag to reorder devices in matrix view">::</span>
-            <input type="checkbox" data-visibility-device="${esc(name)}"${visible ? " checked" : ""} />
-            <div>
+            <div class="visibility-device-info">
               <div class="visibility-name">${esc(name)}</div>
               <div class="visibility-meta">${esc(typeName)} | IN ${inCount} / OUT ${outCount}</div>
             </div>
+            ${targetStates.map((target) => `
+              <label class="visibility-toggle-cell" title="Show ${esc(name)} in ${esc(target.label)}">
+                <input type="checkbox" data-visibility-device="${esc(name)}" data-visibility-target="${esc(target.key)}" aria-label="Show ${esc(name)} in ${esc(target.label)}"${target.visible ? " checked" : ""} />
+              </label>
+            `).join("")}
             <button type="button" class="device-action-btn" data-visibility-select="${esc(name)}">Edit</button>
           </div>
         `;
       }).join("");
-      visibilityListPanel.innerHTML = rowsHtml;
+      visibilityListPanel.innerHTML = headerHtml + rowsHtml;
     }
 
     function renderDeviceEditor() {
@@ -12018,7 +13658,7 @@ def build_routing_matrix_html(
     }
 
     function renderConnectionList() {
-      const visibleDevices = visibleDeviceNameSet();
+      const visibleDevices = visibleDeviceNameSet("connection_overview");
       const rows = resolveCableIds(
         connections.filter((row) =>
           visibleDevices.has(String(row?.source_device || ""))
@@ -12408,7 +14048,7 @@ def build_routing_matrix_html(
               ? `${row.cable_id || "(auto)"} ${row.connection_type || ""} [${row.family || "?"}]`.trim()
               : (moveTitle || (compatible
                 ? `Click to connect (${linkFamily})${connectorAdvisory ? ` — ${connectorAdvisory}` : ""}`
-                : "Incompatible port families")));
+                : linkCompatibilityReason(family, source, dest))));
           table += `<td class="${cellClasses.join(" ")}" data-hover-title="${esc(title)}" data-si="${sIdx}" data-di="${dIdx}"></td>`;
         }
         table += "</tr>";
@@ -12525,7 +14165,7 @@ def build_routing_matrix_html(
               ? `${row.cable_id || "(auto)"} ${row.connection_type || ""} [${row.family || "?"}]`.trim()
               : (moveTitle || (context.linkFamily
                 ? `Click to connect (${context.linkFamily})${connectorAdvisory ? ` — ${connectorAdvisory}` : ""}`
-                : "Incompatible port families")));
+                : linkCompatibilityReason(family, context.source, context.dest))));
           cell.dataset.hoverTitle = title;
         }
 
@@ -12935,7 +14575,7 @@ def build_routing_matrix_html(
     function initFamilySelect(preferredFamily = "") {
       const available = new Set();
       for (const device of modelDevices) {
-        if (!isDeviceVisible(device)) continue;
+        if (!deviceVisibleForTarget(device, "wiring_matrix")) continue;
         for (const port of (portsByDevice.get(String(device?.name || "").trim()) || [])) {
           if (!port.visible) continue;
           for (const family of port.families) {
@@ -12952,7 +14592,11 @@ def build_routing_matrix_html(
       } else if (defaultFamily) {
         familySelect.value = defaultFamily;
       }
+      let collapseStateFamily = String(familySelect.value || "").trim();
       familySelect.onchange = () => {
+        const nextFamily = String(familySelect.value || "AUDIO").trim();
+        carryCollapseStateBetweenFamilies(collapseStateFamily, nextFamily);
+        collapseStateFamily = nextFamily;
         setStatus(`Showing ${familySelect.value} matrix`);
         renderMatrix();
       };
@@ -13163,6 +14807,24 @@ def build_routing_matrix_html(
     if (downloadSvgsBtn) downloadSvgsBtn.onclick = async () => {
       await downloadAllSvgPreviews();
     };
+    for (const spec of PREVIEW_SPECS) {
+      const dom = PREVIEW_DOM[spec.key] || {};
+      if (dom.link) {
+        dom.link.addEventListener("click", () => {
+          const base = resolvePreviewBasePath(spec.key);
+          if (base) dom.link.href = appendCacheBuster(base, "_open", Date.now());
+        });
+      }
+      const button = document.querySelector(`[data-preview-download="${spec.key}"]`);
+      if (button) {
+        button.addEventListener("click", async () => {
+          const success = await downloadPreviewSvg(resolvePreviewBasePath(spec.key), spec.file);
+          setStatus(success
+            ? `Downloaded current ${spec.label} SVG.`
+            : `Failed to download ${spec.label} SVG.`, !success);
+        });
+      }
+    }
     if (openRouteDebugBtn) openRouteDebugBtn.onclick = () => {
       openRouteDebugJson();
     };
@@ -13245,12 +14907,22 @@ def build_routing_matrix_html(
         if (!(target instanceof HTMLInputElement)) return;
         if (target.type !== "checkbox") return;
         const deviceName = String(target.getAttribute("data-visibility-device") || "").trim();
-        if (!deviceName) return;
+        const targetName = String(target.getAttribute("data-visibility-target") || "").trim();
+        if (!deviceName || !targetName) return;
+        const metaKey = Boolean(event.metaKey || event.ctrlKey);
         lastVisibilityCheckboxClickMeta = {
           device: deviceName,
+          target: targetName,
           shiftKey: Boolean(event.shiftKey),
+          metaKey,
+          altKey: Boolean(event.altKey),
           ts: Date.now(),
         };
+        updateVisibilitySelection(deviceName, {
+          shiftKey: Boolean(event.shiftKey),
+          metaKey,
+          altKey: Boolean(event.altKey),
+        });
       }, true);
     }
 
@@ -13260,69 +14932,54 @@ def build_routing_matrix_html(
       const toggle = target.closest("[data-visibility-device]");
       if (!(toggle instanceof HTMLInputElement)) return;
       const deviceName = String(toggle.getAttribute("data-visibility-device") || "").trim();
-      if (!deviceName) return;
-      const checkboxes = Array.from(
-        visibilityListPanel.querySelectorAll('input[type="checkbox"][data-visibility-device]')
-      );
-      const currentPos = checkboxes.indexOf(toggle);
-      const shiftKey = consumeVisibilityCheckboxShift(deviceName);
-      let startPos = currentPos;
-      let endPos = currentPos;
-      if (
-        shiftKey
-        && Number.isInteger(currentPos)
-        && currentPos >= 0
-        && Number.isInteger(lastVisibilityToggleAnchor)
-        && lastVisibilityToggleAnchor >= 0
-      ) {
-        startPos = Math.min(lastVisibilityToggleAnchor, currentPos);
-        endPos = Math.max(lastVisibilityToggleAnchor, currentPos);
-      }
+      const targetName = String(toggle.getAttribute("data-visibility-target") || "").trim();
+      if (!deviceName || !targetName) return;
+      const clickMeta = consumeVisibilityCheckboxClickMeta(deviceName, targetName);
       const checked = Boolean(toggle.checked);
+      const affectedNames = clickMeta.altKey
+        ? visibilityDeviceNamesInOrder()
+        : (selectedVisibilityDevices.has(deviceName) && selectedVisibilityDevices.size > 1
+          ? Array.from(selectedVisibilityDevices)
+          : [deviceName]);
       let changed = 0;
-      if (Number.isInteger(startPos) && Number.isInteger(endPos) && startPos >= 0 && endPos >= startPos) {
-        for (let pos = startPos; pos <= endPos; pos += 1) {
-          const box = checkboxes[pos];
-          if (!(box instanceof HTMLInputElement)) continue;
-          const name = String(box.getAttribute("data-visibility-device") || "").trim();
-          if (!name) continue;
-          const device = getDeviceByName(name);
-          if (!device) continue;
-          const wasVisible = isDeviceVisible(device);
-          device.visible = checked;
-          device.hidden = !checked;
-          if (box.checked !== checked) box.checked = checked;
-          if (wasVisible !== checked) changed += 1;
-        }
-      } else {
-        const device = getDeviceByName(deviceName);
-        if (!device) return;
-        const wasVisible = isDeviceVisible(device);
-        device.visible = checked;
-        device.hidden = !checked;
-        if (wasVisible !== checked) changed += 1;
-      }
-      if (Number.isInteger(currentPos) && currentPos >= 0) {
-        lastVisibilityToggleAnchor = currentPos;
+      for (const name of affectedNames) {
+        const device = getDeviceByName(name);
+        if (!device) continue;
+        if (setDeviceVisibilityForTarget(device, targetName, checked)) changed += 1;
       }
       if (changed <= 0) {
         setStatus(`No visibility change for ${deviceName}`);
+        renderVisibilityPanel();
         return;
       }
-      const label = checked ? "Visible" : "Hidden";
-      const rangeSuffix = changed > 1 ? ` (${changed} devices)` : "";
-      refreshFromModelEdit(`${label}: ${deviceName}${rangeSuffix}`);
+      const targetLabel = DEVICE_VISIBILITY_TARGETS.find((entry) => entry.key === targetName)?.label || targetName;
+      const label = checked ? "Shown" : "Hidden";
+      const rangeSuffix = affectedNames.length > 1 ? ` (${affectedNames.length} devices)` : "";
+      refreshFromModelEdit(`${label} in ${targetLabel}: ${deviceName}${rangeSuffix}`);
     };
 
     if (visibilityListPanel) visibilityListPanel.onclick = (event) => {
       const target = event.target;
       if (!(target instanceof HTMLElement)) return;
       const editBtn = target.closest("[data-visibility-select]");
-      if (!editBtn) return;
-      const deviceName = String(editBtn.getAttribute("data-visibility-select") || "").trim();
-      if (!deviceName) return;
-      selectedDeviceName = deviceName;
-      showMainTab("devices");
+      if (editBtn) {
+        const deviceName = String(editBtn.getAttribute("data-visibility-select") || "").trim();
+        if (!deviceName) return;
+        selectedVisibilityDevices.clear();
+        lastVisibilitySelectionAnchor = "";
+        selectedDeviceName = deviceName;
+        showMainTab("devices");
+        return;
+      }
+      if (target.closest('input[type="checkbox"], .visibility-drag-grip')) return;
+      const row = target.closest("[data-visibility-row]");
+      if (!(row instanceof HTMLElement)) return;
+      const deviceName = String(row.getAttribute("data-visibility-row") || "").trim();
+      updateVisibilitySelection(deviceName, {
+        shiftKey: Boolean(event.shiftKey),
+        metaKey: Boolean(event.metaKey || event.ctrlKey),
+        altKey: Boolean(event.altKey),
+      });
     };
 
     if (visibilityListPanel) visibilityListPanel.ondragstart = (event) => {
@@ -13397,19 +15054,18 @@ def build_routing_matrix_html(
     if (showAllDevicesBtn) showAllDevicesBtn.onclick = () => {
       let changed = false;
       for (const device of ensureModelDeviceArray()) {
-        if (!isDeviceVisible(device)) {
-          device.visible = true;
-          changed = true;
-        } else if (device.visible !== true) {
-          device.visible = true;
-          changed = true;
+        for (const target of DEVICE_VISIBILITY_TARGETS) {
+          if (setDeviceVisibilityForTarget(device, target.key, true)) changed = true;
         }
+        if (device.visible !== true || device.hidden === true) changed = true;
+        device.visible = true;
+        device.hidden = false;
       }
       if (!changed) {
-        setStatus("All devices are already visible.");
+        setStatus("All devices are already shown everywhere.");
         return;
       }
-      refreshFromModelEdit("Set all devices visible");
+      refreshFromModelEdit("Showed all devices everywhere");
       renderVisibilityPanel();
     };
 
@@ -13418,16 +15074,18 @@ def build_routing_matrix_html(
       for (const device of ensureModelDeviceArray()) {
         const name = String(device?.name || "").trim();
         if (!name) continue;
-        if (isDeviceVisible(device)) {
-          device.visible = false;
-          changed = true;
+        for (const target of DEVICE_VISIBILITY_TARGETS) {
+          if (setDeviceVisibilityForTarget(device, target.key, false)) changed = true;
         }
+        if (device.visible !== false || device.hidden !== true) changed = true;
+        device.visible = false;
+        device.hidden = true;
       }
       if (!changed) {
-        setStatus("All devices are already hidden.");
+        setStatus("All devices are already hidden everywhere.");
         return;
       }
-      refreshFromModelEdit("Set all devices hidden");
+      refreshFromModelEdit("Hid all devices everywhere");
       renderVisibilityPanel();
     };
 
@@ -13438,10 +15096,11 @@ def build_routing_matrix_html(
         return;
       }
       for (const device of devices) {
-        const current = isDeviceVisible(device);
-        device.visible = !current;
+        for (const target of DEVICE_VISIBILITY_TARGETS) {
+          setDeviceVisibilityForTarget(device, target.key, !deviceVisibleForTarget(device, target.key));
+        }
       }
-      refreshFromModelEdit("Inverted device visibility");
+      refreshFromModelEdit("Inverted all device visibility targets");
       renderVisibilityPanel();
     };
     if (prefersDarkMedia && typeof prefersDarkMedia.addEventListener === "function") {
@@ -14134,19 +15793,17 @@ def main() -> int:
         print(f"Error building routing data: {exc}", file=sys.stderr)
         return 1
 
-    if visible_devices:
-        connections = [
-            connection
-            for connection in connections
-            if connection.source_device in visible_devices and connection.dest_device in visible_devices
-        ]
-    if visible_ports:
-        connections = [
-            connection
-            for connection in connections
-            if (connection.source_device, connection.source_jack) in visible_ports
-            and (connection.dest_device, connection.dest_jack) in visible_ports
-        ]
+    connections = [
+        connection
+        for connection in connections
+        if connection.source_device in visible_devices and connection.dest_device in visible_devices
+    ]
+    connections = [
+        connection
+        for connection in connections
+        if (connection.source_device, connection.source_jack) in visible_ports
+        and (connection.dest_device, connection.dest_jack) in visible_ports
+    ]
 
     if not args.show_power:
         connections = [
@@ -14183,6 +15840,21 @@ def main() -> int:
         if devices and layer not in grouped_connections:
             grouped_connections[layer] = []
 
+    # A hidden device can remove the last visible route from a layer. Still
+    # rewrite that layer's SVG so the preview/open/download controls never
+    # serve an older diagram left behind by a previous visibility state.
+    if selected_layers is None and args.svg_dir:
+        standard_layers = {
+            str(config.get("layer") or "").strip()
+            for config in DEFAULT_MATRIX_FAMILY_DEFINITIONS.values()
+            if isinstance(config, dict)
+        }
+        if not args.show_power:
+            standard_layers.discard("Power")
+        for layer in standard_layers:
+            if layer:
+                grouped_connections.setdefault(layer, [])
+
     svgs: dict[str, str] = {}
     for layer in sorted(grouped_connections, key=natural_key):
         layer_route_debug: list[dict[str, object]] = []
@@ -14217,20 +15889,80 @@ def main() -> int:
             layer_file.write_text(svgs[layer], encoding="utf-8")
             print(f"Wrote SVG: {layer_file}")
 
-        # Also export one large overview SVG with all currently selected connections.
+        # Combine analog and digital signal paths in one audio-only overview.
+        # The underlying layer names stay intact so each family keeps its own
+        # wire colour and legend entry.
+        current_family_definitions = matrix_family_definitions(model_data)
+        audio_layers = {
+            str(current_family_definitions.get(family, {}).get("layer") or "").strip()
+            for family in ("AUDIO", "DIGI")
+        }
+        audio_layers.discard("")
+        all_audio_connections = [
+            connection
+            for connection in connections
+            if connection.layer in audio_layers
+        ]
+        all_audio_extra_devices: set[str] = set()
+        for layer, devices in layer_extra_devices.items():
+            if layer in audio_layers:
+                all_audio_extra_devices |= set(devices)
+
+        all_audio_hidden_patch_connections: list[Connection] = []
+        if not args.show_patchbays:
+            for hidden in layer_hidden_patch_connections.values():
+                all_audio_hidden_patch_connections.extend(
+                    connection
+                    for connection in hidden
+                    if connection.layer in audio_layers
+                )
+
+        all_audio_route_debug: list[dict[str, object]] = []
+        all_audio_svg = render_svg(
+            layer="All Audio",
+            connections=all_audio_connections,
+            title=render_title,
+            port_inventory=port_inventory,
+            generated_on=generated_on,
+            extra_devices=all_audio_extra_devices or None,
+            hidden_patch_connections=all_audio_hidden_patch_connections or None,
+            overview_mode=True,
+            device_type_overrides=device_type_overrides,
+            drawing_rules=drawing_rules,
+            route_debug_records=all_audio_route_debug,
+        )
+        route_debug_payload["layers"]["All Audio"] = all_audio_route_debug
+        all_audio_file = args.svg_dir / "all-audio.svg"
+        all_audio_file.write_text(all_audio_svg, encoding="utf-8")
+        print(f"Wrote SVG: {all_audio_file}")
+
+        # Also export one large signal-flow overview. Power is summarized by a
+        # small input-side group badge on each powered device; dedicated power
+        # routes and infrastructure remain in power.svg only.
+        overview_connections = [
+            connection
+            for connection in connections
+            if resolve_connection_family_and_color(connection)[0] != "Power"
+        ]
+        overview_power_groups = power_groups_by_device(connections)
         all_extra_devices: set[str] = set()
-        for devices in layer_extra_devices.values():
-            all_extra_devices |= set(devices)
+        for layer, devices in layer_extra_devices.items():
+            if layer.strip().lower() != "power":
+                all_extra_devices |= set(devices)
 
         all_hidden_patch_connections: list[Connection] = []
         if not args.show_patchbays:
             for hidden in layer_hidden_patch_connections.values():
-                all_hidden_patch_connections.extend(hidden)
+                all_hidden_patch_connections.extend(
+                    connection
+                    for connection in hidden
+                    if resolve_connection_family_and_color(connection)[0] != "Power"
+                )
 
         all_route_debug: list[dict[str, object]] = []
         all_svg = render_svg(
             layer="All Connections",
-            connections=connections,
+            connections=overview_connections,
             title=render_title,
             port_inventory=port_inventory,
             generated_on=generated_on,
@@ -14240,6 +15972,7 @@ def main() -> int:
             device_type_overrides=device_type_overrides,
             drawing_rules=drawing_rules,
             route_debug_records=all_route_debug,
+            overview_power_groups=overview_power_groups,
         )
         route_debug_payload["layers"]["All Connections"] = all_route_debug
         all_file = args.svg_dir / "all-connections.svg"

@@ -1,103 +1,124 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="514" viewBox="0 0 1200 514">
+<svg xmlns="http://www.w3.org/2000/svg" width="1782" height="506" viewBox="0 0 1782 506">
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
     </marker>
   </defs>
   <rect x="0" y="0" width="100%" height="100%" fill="#f8fafc"/>
-  <text x="30" y="34" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#0f172a">Studio Sidecar | Digital Audio | 2026-08-13</text>
-  <text x="30" y="54" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Devices: 3 | Cables: 3 | Ports shown: 6/13 wired</text>
-  <rect x="20.0" y="176.0" width="290.0" height="234.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <rect x="670.0" y="176.0" width="299.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <rect x="670.0" y="308.0" width="299.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <path d="M 959.0 363.0 H 1049.0 V 430.0 H 12.0 V 319.0 H 30.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 959.0 363.0 H 1049.0 V 430.0 H 12.0 V 319.0 H 30.0" fill="none" stroke="#2563eb" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-003: SSL AX MADI [MADI Out Optical] -&gt; RME UFX III [MADI In Optical]</title></path>
-  <path d="M 300.0 231.0 H 420.4 H 434.4 H 559.6 H 680.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 300.0 231.0 H 420.4 H 434.4 H 559.6 H 680.0" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-001: RME UFX III [OPT 1 (S/PDIF)] -&gt; TC Electronic Clarity M Stereo [Optical In]</title></path>
-  <path d="M 300.0 319.0 H 420.4 H 545.6 V 363.0 H 559.6 H 680.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 300.0 319.0 H 420.4 H 545.6 V 363.0 H 559.6 H 680.0" fill="none" stroke="#2563eb" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-002: RME UFX III [MADI Out Optical] -&gt; SSL AX MADI [MADI In Optical]</title></path>
-  <rect x="957.8" y="345.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1004.0" y="355.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#2563eb">DIGI-003 MADIOPT</text>
-  <rect x="39.0" y="323.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="85.2" y="333.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#2563eb">DIGI-003 MADIOPT</text>
-  <rect x="319.4" y="213.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="360.2" y="223.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 SPDIF</text>
-  <rect x="579.0" y="235.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="619.8" y="245.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 SPDIF</text>
-  <rect x="314.0" y="301.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="360.2" y="311.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#2563eb">DIGI-002 MADIOPT</text>
-  <rect x="573.6" y="367.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="619.8" y="377.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#2563eb">DIGI-002 MADIOPT</text>
-  <rect x="30.0" y="184.0" width="270.0" height="218.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="30.0" y="184.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="30.0" y1="220.0" x2="300.0" y2="220.0" stroke="#334155" stroke-width="1"/>
-  <text x="40.0" y="198.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="290.0" y="198.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="165.0" y="204.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">RME UFX III</text>
-  <text x="165.0" y="215.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">3/10 wired ports</text>
-  <text x="43.0" y="234.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">OPT 1 (S/PDIF)</text>
-  <circle cx="30.0" cy="231.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="287.0" y="234.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">OPT 1 (S/PDIF)</text>
-  <circle cx="300.0" cy="231.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="30.0" y1="242.0" x2="300.0" y2="242.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="287.0" y="256.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">OPT 2 (ADAT)</text>
-  <circle cx="300.0" cy="253.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
-  <line x1="30.0" y1="264.0" x2="300.0" y2="264.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="287.0" y="278.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">AES Out</text>
-  <circle cx="300.0" cy="275.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
-  <line x1="30.0" y1="286.0" x2="300.0" y2="286.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="43.0" y="300.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">MADI In Coax</text>
-  <circle cx="30.0" cy="297.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
-  <text x="287.0" y="300.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">MADI Out Coax</text>
-  <circle cx="300.0" cy="297.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
-  <line x1="30.0" y1="308.0" x2="300.0" y2="308.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="43.0" y="322.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI In Opt</text>
-  <circle cx="30.0" cy="319.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="287.0" y="322.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI Out Opt</text>
-  <circle cx="300.0" cy="319.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="30.0" y1="330.0" x2="300.0" y2="330.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="43.0" y="344.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">OPT 2 (ADAT)</text>
-  <circle cx="30.0" cy="341.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
-  <line x1="30.0" y1="352.0" x2="300.0" y2="352.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="43.0" y="366.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">AES In</text>
-  <circle cx="30.0" cy="363.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
-  <line x1="30.0" y1="374.0" x2="300.0" y2="374.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="43.0" y="388.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Word Clock In</text>
-  <circle cx="30.0" cy="385.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
-  <text x="287.0" y="388.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Word Clock Out</text>
-  <circle cx="300.0" cy="385.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
-  <rect x="680.0" y="184.0" width="279.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="680.0" y="184.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="680.0" y1="220.0" x2="959.0" y2="220.0" stroke="#334155" stroke-width="1"/>
-  <text x="690.0" y="198.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="949.0" y="198.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="819.5" y="204.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">TC Electronic Clarity M ...</text>
-  <text x="819.5" y="215.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
-  <text x="693.0" y="234.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Opt In</text>
-  <circle cx="680.0" cy="231.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="680.0" y="316.0" width="279.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="680.0" y="316.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="680.0" y1="352.0" x2="959.0" y2="352.0" stroke="#334155" stroke-width="1"/>
-  <text x="690.0" y="330.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="949.0" y="330.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="819.5" y="336.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">SSL AX MADI</text>
-  <text x="819.5" y="347.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">2/2 wired ports</text>
-  <text x="693.0" y="366.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI In Opt</text>
-  <circle cx="680.0" cy="363.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="946.0" y="366.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI Out Opt</text>
-  <circle cx="959.0" cy="363.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="26.0" y="163.0" width="52.2" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
-  <text x="28.0" y="172.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Interface</text>
-  <rect x="676.0" y="163.0" width="75.4" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
-  <text x="678.0" y="172.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Outboard / FX</text>
-  <rect x="676.0" y="295.0" width="52.2" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
-  <text x="678.0" y="304.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Converter</text>
-  <rect x="900.0" y="26.0" width="280" height="90.0" rx="8" ry="8" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="910.0" y="38.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#475569">Connection Types</text>
-  <rect x="910.0" y="45.0" width="9" height="9" fill="#06b6d4" rx="1" ry="1"/>
-  <text x="924.0" y="53.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Digital Audio (1)</text>
-  <rect x="910.0" y="59.0" width="9" height="9" fill="#2563eb" rx="1" ry="1"/>
-  <text x="924.0" y="67.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">MADI (2)</text>
-  <text x="910.0" y="94.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">IN ports are left, OUT ports are right</text>
-  <text x="910.0" y="107.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">Unwired ports are light gray</text>
+  <text x="108.0" y="34" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#0f172a">Studio Sidecar | Digital Audio | 2026-08-22</text>
+  <text x="108.0" y="54" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Devices: 4 | Cables: 4 | Ports shown: 10/17 wired</text>
+  <rect x="98.0" y="190.0" width="290.0" height="102.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="708.0" y="190.0" width="357.8" height="190.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1385.8" y="190.0" width="299.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1385.8" y="322.0" width="299.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <path d="M 1055.8 355.0 H 1157.8 V 388.0 H 24.0 V 245.0 H 108.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1055.8 355.0 H 1157.8 V 388.0 H 24.0 V 245.0 H 108.0" fill="none" stroke="#14b8a6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-004: RME UFX III [Word Clock Out] -&gt; Audient ASP 880 [Word Clock In]</title></path>
+  <path d="M 378.0 245.0 H 486.0 V 267.0 H 718.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 378.0 245.0 H 486.0 V 267.0 H 718.0" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-001: Audient ASP 880 [ADAT Out 1-8] -&gt; RME UFX III [ADAT 1 In (Optical)]</title></path>
+  <path d="M 1055.8 267.0 H 1203.8 V 245.0 H 1395.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1055.8 267.0 H 1203.8 V 245.0 H 1395.8" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-002: RME UFX III [ADAT 1 Out (Optical, S/PDIF)] -&gt; TC Electronic Clarity M Stereo [Optical In]</title></path>
+  <path d="M 1055.8 333.0 H 1247.8 V 377.0 H 1395.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1055.8 333.0 H 1247.8 V 377.0 H 1395.8" fill="none" stroke="#2563eb" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>DIGI-003↔005: RME UFX III [MADI Out Optical] -&gt; SSL AX MADI [MADI In Optical]</title></path>
+  <rect x="1066.0" y="337.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1106.8" y="347.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#14b8a6">DIGI-004 CLOCK</text>
+  <rect x="117.0" y="249.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="157.8" y="259.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#14b8a6">DIGI-004 CLOCK</text>
+  <rect x="393.9" y="227.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="432.0" y="237.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 ADAT</text>
+  <rect x="625.9" y="271.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="664.0" y="281.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 ADAT</text>
+  <rect x="1086.0" y="249.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1126.8" y="259.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-002 SPDIF</text>
+  <rect x="1284.0" y="249.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1324.8" y="259.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-002 SPDIF</text>
+  <rect x="1069.8" y="315.0" width="114.0" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1126.8" y="325.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#2563eb">DIGI-003↔005 MADIOPT</text>
+  <rect x="1267.8" y="381.0" width="114.0" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1324.8" y="391.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#2563eb">DIGI-003↔005 MADIOPT</text>
+  <rect x="108.0" y="198.0" width="270.0" height="86.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="108.0" y="198.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="108.0" y1="234.0" x2="378.0" y2="234.0" stroke="#334155" stroke-width="1"/>
+  <text x="118.0" y="212.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="368.0" y="212.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="243.0" y="218.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Audient ASP 880</text>
+  <text x="243.0" y="229.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">2/3 wired ports</text>
+  <text x="121.0" y="248.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Word Clock In</text>
+  <circle cx="108.0" cy="245.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="365.0" y="248.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">ADAT Out 1-8</text>
+  <circle cx="378.0" cy="245.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="108.0" y1="256.0" x2="378.0" y2="256.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="365.0" y="270.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">AES/SPDIF Out</text>
+  <circle cx="378.0" cy="267.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <rect x="718.0" y="198.0" width="337.8" height="174.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="718.0" y="198.0" width="337.8" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="718.0" y1="234.0" x2="1055.8" y2="234.0" stroke="#334155" stroke-width="1"/>
+  <text x="728.0" y="212.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="1045.8" y="212.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="886.9" y="218.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">RME UFX III</text>
+  <text x="886.9" y="229.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">5/11 wired ports</text>
+  <text x="1042.8" y="248.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">OPT 2 (SPDIF)</text>
+  <circle cx="1055.8" cy="245.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="718.0" y1="256.0" x2="1055.8" y2="256.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="731.0" y="270.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">ADAT 1 In (Opt)</text>
+  <circle cx="718.0" cy="267.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1042.8" y="270.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">ADAT 1 Out (Opt, S/...</text>
+  <circle cx="1055.8" cy="267.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="718.0" y1="278.0" x2="1055.8" y2="278.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="731.0" y="292.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">AES In</text>
+  <circle cx="718.0" cy="289.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="1042.8" y="292.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">AES Out</text>
+  <circle cx="1055.8" cy="289.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="718.0" y1="300.0" x2="1055.8" y2="300.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="731.0" y="314.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">MADI In Coax</text>
+  <circle cx="718.0" cy="311.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="1042.8" y="314.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">MADI Out Coax</text>
+  <circle cx="1055.8" cy="311.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="718.0" y1="322.0" x2="1055.8" y2="322.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="731.0" y="336.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI In Opt</text>
+  <circle cx="718.0" cy="333.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1042.8" y="336.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI Out Opt</text>
+  <circle cx="1055.8" cy="333.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="718.0" y1="344.0" x2="1055.8" y2="344.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="731.0" y="358.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#94a3b8">Word Clock In</text>
+  <circle cx="718.0" cy="355.0" r="2.2" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+  <text x="1042.8" y="358.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Word Clock Out</text>
+  <circle cx="1055.8" cy="355.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1395.8" y="198.0" width="279.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1395.8" y="198.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1395.8" y1="234.0" x2="1674.8" y2="234.0" stroke="#334155" stroke-width="1"/>
+  <text x="1405.8" y="212.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="1664.8" y="212.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1535.3" y="218.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">TC Electronic Clarity M ...</text>
+  <text x="1535.3" y="229.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="1408.8" y="248.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Opt In</text>
+  <circle cx="1395.8" cy="245.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1395.8" y="330.0" width="279.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1395.8" y="330.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1395.8" y1="366.0" x2="1674.8" y2="366.0" stroke="#334155" stroke-width="1"/>
+  <text x="1405.8" y="344.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="1664.8" y="344.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1535.3" y="350.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">SSL AX MADI</text>
+  <text x="1535.3" y="361.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">2/2 wired ports</text>
+  <text x="1408.8" y="380.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI In Opt</text>
+  <circle cx="1395.8" cy="377.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1661.8" y="380.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI Out Opt</text>
+  <circle cx="1674.8" cy="377.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="104.0" y="177.0" width="133.4" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="106.0" y="186.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Preamps / Channel Strip</text>
+  <rect x="714.0" y="177.0" width="52.2" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="716.0" y="186.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Interface</text>
+  <rect x="1391.8" y="177.0" width="98.6" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="1393.8" y="186.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Speaker / Monitor</text>
+  <rect x="1391.8" y="309.0" width="52.2" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="1393.8" y="318.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Converter</text>
+  <rect x="1482.8" y="26.0" width="280" height="104.0" rx="8" ry="8" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1492.8" y="38.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#475569">Connection Types</text>
+  <rect x="1492.8" y="45.0" width="9" height="9" fill="#14b8a6" rx="1" ry="1"/>
+  <text x="1506.8" y="53.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Clock/Sync (1)</text>
+  <rect x="1492.8" y="59.0" width="9" height="9" fill="#06b6d4" rx="1" ry="1"/>
+  <text x="1506.8" y="67.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Digital Audio (2)</text>
+  <rect x="1492.8" y="73.0" width="9" height="9" fill="#2563eb" rx="1" ry="1"/>
+  <text x="1506.8" y="81.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">MADI (1)</text>
+  <text x="1492.8" y="108.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">IN ports are left, OUT ports are right</text>
+  <text x="1492.8" y="121.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">Unwired ports are light gray</text>
 </svg>
