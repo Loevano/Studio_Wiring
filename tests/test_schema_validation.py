@@ -7,6 +7,7 @@ import unittest
 from pathlib import Path
 from typing import Any
 
+from generate_point_to_point import is_model_device_visible
 from studio_wiring_schema.health import check_project
 from studio_wiring_schema.migrations import migrate_document
 from studio_wiring_schema.validation import validate_document
@@ -60,6 +61,11 @@ class ValidatorTests(unittest.TestCase):
                     "backward_out_to_in_wrap": "below",
                     "video_early_turn": True,
                     "video_vertical_rows_threshold": 6.0,
+                    "wire_clearance_px": 12.0,
+                    "power_wire_clearance_px": 18.0,
+                    "power_lane_spacing_px": 18.0,
+                    "power_column_gap_px": 420.0,
+                    "left_route_gutter_px": 108.0,
                 },
             },
             "device_templates": {
@@ -72,6 +78,34 @@ class ValidatorTests(unittest.TestCase):
             with self.subTest(kind=kind):
                 self.assertEqual(validate_document(kind, payload), [])
 
+    def test_routing_clearance_rules_must_be_positive_numbers(self) -> None:
+        rules = {
+            "version": 1,
+            "labels": {
+                "source_side": "above",
+                "destination_side": "below",
+                "font_size": 7.0,
+            },
+            "routing": {
+                "fifo_forward_turns": True,
+                "backward_out_to_in_wrap": "below",
+                "video_early_turn": True,
+                "video_vertical_rows_threshold": 6.0,
+                "wire_clearance_px": 0,
+                "power_wire_clearance_px": -1,
+                "power_lane_spacing_px": "wide",
+                "power_column_gap_px": False,
+                "left_route_gutter_px": None,
+            },
+        }
+
+        keyed = {(issue.path, issue.code) for issue in validate_document("routing_rules", rules)}
+        self.assertIn(("$.routing.wire_clearance_px", "number.positive"), keyed)
+        self.assertIn(("$.routing.power_wire_clearance_px", "number.positive"), keyed)
+        self.assertIn(("$.routing.power_lane_spacing_px", "number.positive"), keyed)
+        self.assertIn(("$.routing.power_column_gap_px", "number.positive"), keyed)
+        self.assertNotIn(("$.routing.left_route_gutter_px", "number.positive"), keyed)
+
     def test_issues_include_precise_field_paths_and_duplicate_details(self) -> None:
         model = load_fixture("generator/model.json")
         model["devices"][1]["name"] = model["devices"][0]["name"]
@@ -80,6 +114,27 @@ class ValidatorTests(unittest.TestCase):
         keyed = {(issue.path, issue.code) for issue in issues}
         self.assertIn(("$.devices[1].name", "device.duplicate"), keyed)
         self.assertIn(("$.devices[0].ports[0].visible", "type.boolean"), keyed)
+
+    def test_device_visibility_targets_are_optional_booleans(self) -> None:
+        model = load_fixture("generator/model.json")
+        model["devices"][0]["visibility"] = {
+            "wiring_matrix": True,
+            "routing_matrix": False,
+            "connection_overview": True,
+            "visuals": False,
+        }
+        self.assertEqual(validate_document("model", model), [])
+
+        model["devices"][0]["visibility"]["visuals"] = "no"
+        keyed = {(issue.path, issue.code) for issue in validate_document("model", model)}
+        self.assertIn(("$.devices[0].visibility.visuals", "type.boolean"), keyed)
+
+    def test_visual_visibility_target_overrides_legacy_fallback(self) -> None:
+        hidden_legacy = {"hidden": True, "visibility": {"visuals": True}}
+        visible_legacy = {"visible": True, "visibility": {"visuals": False}}
+        self.assertTrue(is_model_device_visible(hidden_legacy))
+        self.assertFalse(is_model_device_visible(visible_legacy))
+        self.assertFalse(is_model_device_visible(hidden_legacy, "wiring_matrix"))
 
     def test_patch_reports_duplicate_cable_and_endpoint_usage(self) -> None:
         patch = load_fixture("generator/connections.json")

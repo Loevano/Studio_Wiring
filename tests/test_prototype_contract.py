@@ -8,6 +8,7 @@ parent-frame dirty-state reporting.
 
 from __future__ import annotations
 
+import json
 import re
 import shutil
 import subprocess
@@ -107,6 +108,34 @@ class PrototypeContractTests(unittest.TestCase):
         )
         self.assertEqual(0, completed.returncode, completed.stderr)
 
+    def test_wiring_matrix_uses_its_own_device_visibility_target(self) -> None:
+        normalize_ports = extract_function(self.script, "normalizePorts")
+        self.assertIn('deviceVisibleForTarget(rawDevice, "wiring_matrix")', normalize_ports)
+        visibility_helper = extract_function(self.script, "deviceVisibleForTarget")
+        self.assertIn("visibility[target]", visibility_helper)
+
+    def test_control_ports_are_inferred_and_only_available_families_are_listed(self) -> None:
+        normalize_ports = extract_function(self.script, "normalizePorts")
+        self.assertIn('!families.includes("CONTROL") && controlProtocolForPort(', normalize_ports)
+        self.assertIn('families.push("CONTROL")', normalize_ports)
+        init_family = extract_function(self.script, "initFamilySelect")
+        self.assertIn("const available = new Set(normalizePorts().flatMap", init_family)
+        self.assertIn("FAMILY_ORDER.filter((family) => available.has(family))", init_family)
+
+    def test_transmitter_and_receiver_filters_are_scoped_per_family(self) -> None:
+        self.assertIn("const filtersByFamily = new Map()", self.script)
+        family_change = re.search(
+            r"familySelect\.onchange\s*=\s*\(\)\s*=>\s*\{(?P<body>.*?)\n\s*\};",
+            self.script,
+            re.DOTALL,
+        )
+        self.assertIsNotNone(family_change)
+        body = family_change.group("body")
+        self.assertIn("filtersByFamily.set(filterStateFamily", body)
+        self.assertIn("filtersByFamily.get(nextFamily)", body)
+        self.assertIn("sourceFilterInput.value = sourceFilter", body)
+        self.assertIn("destFilterInput.value = destFilter", body)
+
     def test_any_power_connector_pair_is_compatible_without_misclassifying_adc_inputs(self) -> None:
         node = shutil.which("node")
         if not node:
@@ -117,6 +146,7 @@ class PrototypeContractTests(unittest.TestCase):
             "iconForPort",
             "isSpeakerToAnalogPair",
             "controlProtocolForPort",
+            "digitalProtocolForPort",
             "supportsTransportCompatibilityForFamily",
             "sharedFamilies",
             "computeLinkCompatibility",
@@ -151,6 +181,55 @@ class PrototypeContractTests(unittest.TestCase):
             '{"fixed":{"family":"POWER","reason":""},"dc":{"family":"POWER","reason":""},"adcIsPower":false,"adcIcon":"ANA"}',
             completed.stdout.strip(),
         )
+
+    def test_digital_connections_require_the_same_protocol_and_madi_medium(self) -> None:
+        node = shutil.which("node")
+        if not node:
+            self.skipTest("Node.js is unavailable; digital compatibility check skipped")
+        function_names = (
+            "normalizeFamily",
+            "digitalProtocolForPort",
+            "supportsTransportCompatibilityForFamily",
+            "sharedFamilies",
+            "computeLinkCompatibility",
+        )
+        harness = "\n".join(
+            [
+                'const FAMILY_ALL = "ALL";',
+                'const FAMILY_ORDER = ["AUDIO", "COMP", "DIGI", "NETWORK", "POWER", "CONTROL"];',
+                "function isPowerPort() { return false; }",
+                "function isSpeakerToAnalogPair() { return false; }",
+                "function controlProtocolForPort() { return ''; }",
+                *(extract_function(self.script, name) for name in function_names),
+                "const port = (transport, name = transport) => ({ port: name, families: ['DIGI'], transport });",
+                "const result = {",
+                "  coaxToOptical: computeLinkCompatibility('DIGI', port('MADI'), port('MADI-OPT')),",
+                "  coaxToCoax: computeLinkCompatibility('DIGI', port('MADI'), port('MADI', 'MADI In Coax')),",
+                "  aesToAnalog: computeLinkCompatibility('DIGI', port('AES'), port('TRS', 'Line In 1')),",
+                "  aesToMadi: computeLinkCompatibility('DIGI', port('AES'), port('MADI')),",
+                "  aesToAes: computeLinkCompatibility('DIGI', port('AES'), port('AES/EBU')),",
+                "  spdifAlias: computeLinkCompatibility('DIGI', port('S/PDIF'), port('SPDIF')),",
+                "};",
+                "console.log(JSON.stringify(result));",
+            ]
+        )
+        completed = subprocess.run(
+            [node, "-"],
+            input=harness,
+            text=True,
+            capture_output=True,
+            cwd=ROOT,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        result = json.loads(completed.stdout)
+        self.assertEqual(result["coaxToOptical"]["family"], "")
+        self.assertIn("MADI-COAX -> MADI-OPTICAL", result["coaxToOptical"]["reason"])
+        self.assertEqual(result["coaxToCoax"]["family"], "DIGI")
+        self.assertEqual(result["aesToAnalog"]["family"], "")
+        self.assertEqual(result["aesToMadi"]["family"], "")
+        self.assertEqual(result["aesToAes"]["family"], "DIGI")
+        self.assertEqual(result["spdifAlias"]["family"], "DIGI")
 
     def test_matrix_uses_one_native_scroll_viewport_inside_a_fixed_app(self) -> None:
         """The app owns vertical space; only its matrix viewport owns matrix scrolling."""
@@ -392,6 +471,53 @@ class PrototypeContractTests(unittest.TestCase):
             sync.group(1),
             r"matrix-cell-control[\s\S]*?setAttribute\(\s*[\"']aria-checked[\"']",
             "incremental patch sync must update ARIA state on the checkbox control",
+        )
+
+    def test_family_changes_carry_open_and_closed_folder_state(self) -> None:
+        carry = extract_function(self.script, "carryCollapseStateBetweenFamilies")
+        for state_set in (
+            "collapsedSourceDevices",
+            "collapsedDestDevices",
+            "collapsedSourceGroups",
+            "collapsedDestGroups",
+        ):
+            self.assertIn(
+                f"carryCollapsedKeysBetweenFamilies({state_set}, previous, next)",
+                carry,
+            )
+        self.assertIn("autoCollapsedFamilies.add(next)", carry)
+        self.assertIn("autoCollapsedDeviceFamilies.add(next)", carry)
+        self.assertRegex(
+            self.script,
+            r"familySelect\.onchange\s*=\s*\(\)\s*=>\s*\{[\s\S]*?"
+            r"carryCollapseStateBetweenFamilies\(collapseStateFamily, nextFamily\)"
+            r"[\s\S]*?collapseStateFamily\s*=\s*nextFamily[\s\S]*?scheduleRender\(\)",
+        )
+
+        node = shutil.which("node")
+        if not node:
+            self.skipTest("Node.js is unavailable; collapse-state transfer check skipped")
+        helper = extract_function(self.script, "carryCollapsedKeysBetweenFamilies")
+        harness = "\n".join(
+            [
+                helper,
+                'const keys = new Set(["AUDIO::source::Mixer", "DIGI::source::Old"]);',
+                'carryCollapsedKeysBetweenFamilies(keys, "AUDIO", "DIGI");',
+                "console.log(JSON.stringify(Array.from(keys).sort()));",
+            ]
+        )
+        completed = subprocess.run(
+            [node, "-"],
+            input=harness,
+            text=True,
+            capture_output=True,
+            cwd=ROOT,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertEqual(
+            '["AUDIO::source::Mixer","DIGI::source::Mixer"]',
+            completed.stdout.strip(),
         )
 
     def test_accessible_controls_and_live_state_have_unique_ids(self) -> None:

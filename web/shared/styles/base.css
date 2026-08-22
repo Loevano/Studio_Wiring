@@ -141,6 +141,10 @@ body {
   background: #fff;
 }
 
+.shell-frame[hidden] {
+  display: none;
+}
+
 /* Warning text color for shell status messages. */
 .shell-warn {
   color: #b45309;

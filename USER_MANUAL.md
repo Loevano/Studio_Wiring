@@ -133,7 +133,7 @@ If `Auto Save` is ON in the shell bar, edits are saved automatically. This is on
 ## 8. Visibility + Visuals
 
 - `Visibility` tab: hide/show devices and reorder them
-- `Visuals` tab: view generated SVG previews and open them
+- `Visuals` tab: view generated SVG previews, download an individual date-stamped SVG, or download every SVG in one dated ZIP
 
 ## 9. If Something Looks Wrong
 

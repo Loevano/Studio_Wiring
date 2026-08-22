@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import importlib.util
+import itertools
 import json
 import re
 import sys
@@ -20,11 +21,15 @@ ROUTING_MATRIX_PATH = ROOT / "routing_matrix.html"
 CURRENT_HEADPHONE_AMP = "IMG STAGELINE PPA-100/SW"
 FORMER_GENERIC_NAME = "Headphone Amp"
 POWER_DISTRIBUTORS = {
-    "the t.racks Power MS6": 6,
-    "the t.racks Power 8 #1": 8,
-    "the t.racks Power 8 #2": 8,
-    "the t.racks Power 8 #3": 8,
+    "Power Switcher": 6,
+    "Power Strip Rack 1 DIG": 8,
+    "Power Strip Rack 2 AN": 8,
+    "Power Strip Rack 3 AN": 8,
     "Black Lion Audio PG-1 Type F MKII": 8,
+}
+ACTIVE_POWER_DISTRIBUTORS = {
+    "Power Switcher",
+    "Black Lion Audio PG-1 Type F MKII",
 }
 POWERED_LOADS = {
     "Allen & Heath GS3000",
@@ -49,13 +54,22 @@ POWERED_LOADS = {
     "TV Screen",
     "Thunderbolt Dock",
 }
+AGGREGATE_POWER_LOADS = {"Backline", "Lights", "Wifi", "Heating"}
+ACTIVE_POWERED_LOADS = (
+    POWERED_LOADS
+    - {"MAO Preamp (confirm model)", "Netgear Unmanaged Switch", "TC Electronic Clarity M Stereo"}
+    | AGGREGATE_POWER_LOADS
+)
 POWER_EXEMPT_DEVICES = {
     "ATC SCM 11",
     "Talkback Mic",
     "Tannoy System 10",
     "Streamdeck #1",
     "Streamdeck #2",
-    *{f"Switchcraft 1U Solder-Lug Patchbay #{index}" for index in range(1, 5)},
+    "Switchcraft A",
+    "Switchcraft B",
+    "Switchcraft C",
+    "Switchcraft D",
 }
 MODELS_WITH_UNVERIFIED_POWER_INLETS = {
     "MAO Preamp (confirm model)",
@@ -173,10 +187,10 @@ class StudioSidecarPresetTests(unittest.TestCase):
         def is_type_f(port: dict[str, object]) -> bool:
             return str(port.get("transport") or "").upper() in {"SCHUKO", "TYPE F", "CEE 7/7"}
 
-        self.assertIn("Studio Wall Power", self.devices)
+        self.assertIn("Meterkast", self.devices)
         self.assertIn("Allen & Heath RPS11", self.devices)
-        wall_outlets = power_ports(self.devices["Studio Wall Power"], "out")
-        self.assertEqual(len(wall_outlets), len(POWER_DISTRIBUTORS))
+        wall_outlets = power_ports(self.devices["Meterkast"], "out")
+        self.assertEqual(len(wall_outlets), 3)
         self.assertTrue(all(is_type_f(port) for port in wall_outlets))
 
         for name, outlet_count in POWER_DISTRIBUTORS.items():
@@ -209,7 +223,7 @@ class StudioSidecarPresetTests(unittest.TestCase):
         self.assertEqual(len(power_ports(rps11, "in")), 1)
         self.assertEqual(len(power_ports(rps11, "out")), 1)
 
-        for name in POWERED_LOADS:
+        for name in POWERED_LOADS | AGGREGATE_POWER_LOADS:
             self.assertIn(name, self.devices)
             self.assertEqual(len(power_ports(self.devices[name], "in")), 1, name)
         for name in POWER_EXEMPT_DEVICES:
@@ -228,7 +242,7 @@ class StudioSidecarPresetTests(unittest.TestCase):
             for row in self.patches["basis.json"].get("connections", [])
             if isinstance(row, dict) and row.get("family") == "POWER"
         ]
-        self.assertEqual(len(active_rows), 26, "one route per powered inlet is required")
+        self.assertEqual(len(active_rows), 24, "one route per active powered inlet is required")
         self.assertEqual(len({row.get("cable_id") for row in active_rows}), len(active_rows))
 
         upstream_by_destination = Counter(
@@ -237,7 +251,7 @@ class StudioSidecarPresetTests(unittest.TestCase):
         )
         expected_inlets = {
             (name, str(port.get("name") or ""))
-            for name in {*POWER_DISTRIBUTORS, *POWERED_LOADS}
+            for name in {*ACTIVE_POWER_DISTRIBUTORS, *ACTIVE_POWERED_LOADS}
             for port in self.devices[name].get("ports", [])
             if isinstance(port, dict)
             and port.get("direction") == "in"
@@ -246,16 +260,23 @@ class StudioSidecarPresetTests(unittest.TestCase):
         self.assertEqual(set(upstream_by_destination), expected_inlets)
         self.assertTrue(all(count == 1 for count in upstream_by_destination.values()))
 
-        wall_feeds = [row for row in active_rows if row.get("dest_device") in POWER_DISTRIBUTORS]
-        self.assertEqual(len(wall_feeds), len(POWER_DISTRIBUTORS))
-        self.assertTrue(all(row.get("source_device") == "Studio Wall Power" for row in wall_feeds))
+        wall_destinations = {
+            "Backline",
+            "Black Lion Audio PG-1 Type F MKII",
+            "Heating",
+            "Lights",
+            "Wifi",
+        }
+        wall_feeds = [row for row in active_rows if row.get("source_device") == "Meterkast"]
+        self.assertEqual({row.get("dest_device") for row in wall_feeds}, wall_destinations)
+        omitted_distributors = set(POWER_DISTRIBUTORS) - ACTIVE_POWER_DISTRIBUTORS
         self.assertFalse(
             any(
-                row.get("source_device") in POWER_DISTRIBUTORS
-                and row.get("dest_device") in POWER_DISTRIBUTORS
+                row.get("source_device") in omitted_distributors
+                or row.get("dest_device") in omitted_distributors
                 for row in active_rows
             ),
-            "power distributors must not be daisy-chained",
+            "omitted intermediate power strips must not appear in the logical topology",
         )
         self.assertTrue(
             any(
@@ -393,7 +414,7 @@ class StudioSidecarPresetTests(unittest.TestCase):
         power_svg = SIDECAR / "outputs" / "svgs" / "power.svg"
         self.assertTrue(power_svg.is_file(), "the POWER layer must ship as a dedicated SVG schematic")
         power_svg_text = power_svg.read_text(encoding="utf-8")
-        self.assertIn("Studio Wall Power", power_svg_text)
+        self.assertIn("Meterkast", power_svg_text)
         self.assertIn("Allen &amp; Heath RPS11", power_svg_text)
         self.assertIn("Black Lion Audio PG-1 Type F MKII", power_svg_text)
         visible_power_labels = re.findall(r"<text\b[^>]*>(POWER-\d{3}(?: [^<]+)?)</text>", power_svg_text)
@@ -412,14 +433,11 @@ class StudioSidecarPresetTests(unittest.TestCase):
         )
         all_svg_text = (SIDECAR / "outputs" / "svgs" / "all-connections.svg").read_text(encoding="utf-8")
         self.assertIn('stroke="#f8fafc"', all_svg_text, "wire crossings need a background under-stroke")
-        last_signal_wire = max(
-            all_svg_text.rfind("<title>AUDIO-"),
-            all_svg_text.rfind("<title>COMP-"),
-            all_svg_text.rfind("<title>DIGI-"),
-            all_svg_text.rfind("<title>NETWORK-"),
+        self.assertNotIn(
+            "<title>POWER-",
+            all_svg_text,
+            "the connection overview represents power as inlet badges, not routed wires",
         )
-        first_power_wire = all_svg_text.find("<title>POWER-")
-        self.assertGreater(first_power_wire, last_signal_wire, "power wires must be painted on top")
 
         route_debug = load_json(SIDECAR / "outputs" / "debug" / "route-debug.json")
         overview_routes = route_debug.get("layers", {}).get("All Connections", [])
@@ -445,12 +463,11 @@ class StudioSidecarPresetTests(unittest.TestCase):
 
         for name in ("ATC SCM 11", "Tannoy System 10", "Avid S1 #1", "Avid S1 #2"):
             self.assertFalse(self.devices[name].get("rack_mountable"), name)
-        for name in ("the t.racks Power MS6", "the t.racks Power 8 #1", "the t.racks Power 8 #2", "the t.racks Power 8 #3"):
+        for name in ("Power Switcher", "Power Strip Rack 1 DIG", "Power Strip Rack 2 AN", "Power Strip Rack 3 AN"):
             self.assertIn(name, self.devices)
             self.assertTrue(self.devices[name].get("rack_mountable"), name)
             self.assertEqual(self.devices[name].get("rack_units"), 1, name)
-        for index in range(1, 5):
-            name = f"Switchcraft 1U Solder-Lug Patchbay #{index}"
+        for name in ("Switchcraft A", "Switchcraft B", "Switchcraft C", "Switchcraft D"):
             self.assertIn(name, self.devices)
             self.assertEqual(self.devices[name].get("device_type"), "Patchbay", name)
             self.assertTrue(self.devices[name].get("rack_mountable"), name)
@@ -507,6 +524,39 @@ class StudioSidecarPresetTests(unittest.TestCase):
         for path in production_files:
             text = path.read_text(encoding="utf-8")
             self.assertNotRegex(text, r'"(?:name|source_device|dest_device)"\\s*:\\s*"Headphone Amp"', path)
+
+    def test_generated_routes_keep_configured_parallel_clearance_in_every_layer(self) -> None:
+        route_debug = load_json(SIDECAR / "outputs" / "debug" / "route-debug.json")
+        rules = route_debug.get("rules", {}).get("routing", {})
+        wire_clearance = float(rules.get("wire_clearance_px", 12.0))
+        power_clearance = float(rules.get("power_wire_clearance_px", 18.0))
+        cramped_parallel_routes: list[tuple[str, str, str, float]] = []
+        for layer, routes in route_debug.get("layers", {}).items():
+            vertical_segments: list[tuple[str, str, float, float, float]] = []
+            for route in routes:
+                points = route.get("points", []) if isinstance(route, dict) else []
+                cable_id = str(route.get("cable_id", ""))
+                protocol = str(route.get("protocol", ""))
+                for start, end in zip(points, points[1:]):
+                    x1, y1 = float(start["x"]), float(start["y"])
+                    x2, y2 = float(end["x"]), float(end["y"])
+                    if abs(x1 - x2) < 0.05 and abs(y1 - y2) > 2.0:
+                        vertical_segments.append((cable_id, protocol, x1, min(y1, y2), max(y1, y2)))
+            for first, second in itertools.combinations(vertical_segments, 2):
+                overlap = min(first[4], second[4]) - max(first[3], second[3])
+                clearance = power_clearance if "POWER" in {first[1], second[1]} else wire_clearance
+                separation = abs(first[2] - second[2])
+                # Coincident rails are intentional shared trunks. Clearance
+                # applies once routes split into visually distinct parallels.
+                if overlap > 2.0 and 0.75 < separation < clearance:
+                    cramped_parallel_routes.append(
+                        (str(layer), first[0], second[0], round(separation, 1))
+                    )
+        self.assertEqual(
+            cramped_parallel_routes,
+            [],
+            "vertical rails must keep the configured clearance in every generated SVG",
+        )
 
 
 if __name__ == "__main__":

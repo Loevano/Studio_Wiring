@@ -2884,9 +2884,9 @@ def apply_layer_column_overrides(
         # Col 0: microphones
         "Talkback Mic": 0,
         # Col 1: outboard / preamps / desk
-        "Audient ASP 880": 10,
-        "Focusrite Platinum Voice Master": 11,
-        "MAO Preamp (confirm model)": 12,
+        "MAO Preamp (confirm model)": 10,
+        "Audient ASP 880": 11,
+        "Focusrite Platinum Voice Master": 12,
         "Allen & Heath GS3000": 13,
         # Col 2: AD conversion + tape
         "RME UFX III": 20,
@@ -2904,18 +2904,18 @@ def apply_layer_column_overrides(
     }
     all_connections_priority = {
         "Talkback Mic": 0,
-        "Audient ASP 880": 1,
-        "Focusrite Platinum Voice Master": 2,
-        "MAO Preamp (confirm model)": 3,
+        "MAO Preamp (confirm model)": 1,
+        "Audient ASP 880": 2,
+        "Focusrite Platinum Voice Master": 3,
         "Allen & Heath GS3000": 4,
         "Tascam MS-16": 5,
         "Thunderbolt Dock": 6,
         "Mac mini": 7,
         "Avid S1 #1": 8,
         "Avid S1 #2": 9,
-        "TV Screen": 10,
-        "Streamdeck #1": 11,
-        "Streamdeck #2": 12,
+        "Streamdeck #1": 10,
+        "Streamdeck #2": 11,
+        "TV Screen": 12,
         "Netgear Unmanaged Switch": 13,
         "RME UFX III": 14,
         "SSL AX MADI": 15,
@@ -2937,6 +2937,24 @@ def apply_layer_column_overrides(
         "RME UFX III": 3,
         "Streamdeck #1": 4,
         "Streamdeck #2": 5,
+    }
+    network_priority = {
+        # Match switch ports 1/2/3 so the three Ethernet runs do not invert.
+        "Thunderbolt Dock": 0,
+        "Avid S1 #1": 1,
+        "Avid S1 #2": 2,
+        "Netgear Unmanaged Switch": 3,
+    }
+    power_priority = {
+        # Match Power Switcher outlet order. RPS11 is Outlet 1, Tascam is
+        # Outlet 2, and the remaining rack loads share Outlet 3.
+        "Allen & Heath RPS11": 0,
+        "Tascam MS-16": 1,
+        "Audient ASP 880": 2,
+        "Focusrite Platinum Voice Master": 3,
+        "Sony DPS-R7 Reverb": 4,
+        "TC Electronic Finalizer 48K": 5,
+        "IMG STAGELINE PPA-100/SW": 6,
     }
     for col in updated:
         if col:
@@ -2963,6 +2981,26 @@ def apply_layer_column_overrides(
                         col,
                         key=lambda name: (
                             computer_data_priority.get(name, 999),
+                            natural_key(name),
+                        ),
+                    )
+                )
+            elif layer_l == "network":
+                cleaned.append(
+                    sorted(
+                        col,
+                        key=lambda name: (
+                            network_priority.get(name, 999),
+                            natural_key(name),
+                        ),
+                    )
+                )
+            elif layer_l == "power":
+                cleaned.append(
+                    sorted(
+                        col,
+                        key=lambda name: (
+                            power_priority.get(name, 999),
                             natural_key(name),
                         ),
                     )
@@ -3099,10 +3137,19 @@ def place_device_below_intervening_columns(
         return
 
     low_col, high_col = sorted((source_col, destination_col))
+    source_box = boxes.get(source_device)
     blockers = [
         box
         for name, box in boxes.items()
-        if low_col < device_column.get(name, low_col) < high_col
+        if name not in {source_device, destination_device}
+        and (
+            low_col < device_column.get(name, low_col) < high_col
+            or (
+                source_box is not None
+                and device_column.get(name) == source_col
+                and box.y >= source_box.y + source_box.height
+            )
+        )
     ]
     if not blockers:
         return
@@ -3685,7 +3732,7 @@ def render_svg(
             start_y=margin_y + 50 + top_reserved,
             preserve_column_order=(
                 layer.lower()
-                in {"audio analog", "all audio", "all connections", "computer/data"}
+                in {"audio analog", "all audio", "all connections", "computer/data", "power"}
             ),
         )
         boxes.update(column_boxes)
@@ -4432,6 +4479,31 @@ def render_svg(
                     segments.append(("H", y1, start, end))
         return segments
 
+    def route_wire_cross_count(points: list[tuple[float, float]]) -> int:
+        """Count strict perpendicular intersections with already routed wires."""
+        crossings = 0
+        endpoint_margin = 0.75
+        for axis, constant, start, end in route_segments(points):
+            for ex_axis, ex_constant, ex_start, ex_end, _protocol in routed_segments:
+                if axis == ex_axis:
+                    continue
+                if axis == "H":
+                    horizontal_y = constant
+                    horizontal_start, horizontal_end = start, end
+                    vertical_x = ex_constant
+                    vertical_start, vertical_end = ex_start, ex_end
+                else:
+                    horizontal_y = ex_constant
+                    horizontal_start, horizontal_end = ex_start, ex_end
+                    vertical_x = constant
+                    vertical_start, vertical_end = start, end
+                if (
+                    horizontal_start + endpoint_margin < vertical_x < horizontal_end - endpoint_margin
+                    and vertical_start + endpoint_margin < horizontal_y < vertical_end - endpoint_margin
+                ):
+                    crossings += 1
+        return crossings
+
     def horizontal_overlap_extent(y: float, x1: float, x2: float) -> float:
         low = min(x1, x2)
         high = max(x1, x2)
@@ -4555,6 +4627,12 @@ def render_svg(
             route_cross_count(points, source_device, dest_device),
             route_endpoint_cross_count(points, source_box, dest_box),
             route_group_cross_count(points, source_box, dest_box),
+            # Dedicated channel maps already have deterministic FIFO/bundle
+            # lanes.  A sequential crossing penalty there makes an early
+            # cable improve locally at the expense of every later cable.  The
+            # two overview maps can also move blocks and use broad corridors,
+            # so crossing-aware candidate selection is safe and useful there.
+            route_wire_cross_count(points) if overview_mode else 0,
             overlap_count,
             route_outside_band_distance(points, y_start, y_end),
             route_bend_count(points),
@@ -4569,6 +4647,7 @@ def render_svg(
         "box_crossings",
         "endpoint_crossings",
         "unrelated_group_crossings",
+        "wire_crossings",
         "different_family_overlap_count",
         "outside_band_distance",
         "bend_count",
@@ -4579,7 +4658,131 @@ def render_svg(
         "manhattan_length",
     )
 
-    def serialize_route_score(score: tuple[object, ...]) -> dict[str, object]:
+    def optimize_route_turns(
+        points: list[tuple[float, float]],
+        source_device: str,
+        dest_device: str,
+        source_box: DeviceBox,
+        dest_box: DeviceBox,
+        y_start: float,
+        y_end: float,
+        route_protocol: str,
+        minimum_clearance: float,
+    ) -> tuple[list[tuple[float, float]], tuple[object, ...]]:
+        """Move one/two vertical turn rails to minimize crossings greedily."""
+        compact = simplify_orthogonal_route(points)
+        best_points = compact
+        best_score = route_candidate_score(
+            compact,
+            source_device,
+            dest_device,
+            source_box,
+            dest_box,
+            y_start,
+            y_end,
+            route_protocol,
+            minimum_clearance,
+        )
+        # Dense dedicated channel maps already use bundle/FIFO lane planning.
+        # Greedily moving their rails across the whole corridor lets an early
+        # cable improve locally while making dozens of later channels worse.
+        # Wide rail search is therefore reserved for the two overview SVGs.
+        if not overview_mode:
+            return best_points, best_score
+        vertical_indexes = [
+            idx
+            for idx in range(1, len(compact))
+            if abs(compact[idx - 1][0] - compact[idx][0]) < 0.05
+            and abs(compact[idx - 1][1] - compact[idx][1]) > 0.25
+        ]
+        if not vertical_indexes or len(vertical_indexes) > 2:
+            return best_points, best_score
+
+        source_x = compact[0][0]
+        dest_x = compact[-1][0]
+        if dest_x <= source_x + 52.0:
+            return best_points, best_score
+        low_x = source_x + 24.0
+        high_x = dest_x - 24.0
+        if high_x <= low_x:
+            return best_points, best_score
+
+        existing_vertical_xs = [
+            constant
+            for axis, constant, _start, _end, _protocol in routed_segments
+            if axis == "V" and low_x <= constant <= high_x
+        ]
+
+        def rail_candidates(current_x: float) -> list[float]:
+            base = [current_x, low_x, high_x]
+            for step in range(1, 10):
+                base.append(low_x + ((high_x - low_x) * step / 10.0))
+            nearby_existing: list[float] = []
+            for existing_x in existing_vertical_xs:
+                nearby_existing.extend(
+                    [
+                        existing_x - minimum_clearance,
+                        existing_x + minimum_clearance,
+                    ]
+                )
+            nearby_existing = sorted(
+                nearby_existing,
+                key=lambda candidate: (abs(candidate - current_x), candidate),
+            )[:16]
+            ordered = base + nearby_existing
+            unique: list[float] = []
+            seen: set[float] = set()
+            for candidate in ordered:
+                clamped = round(max(low_x, min(high_x, candidate)), 1)
+                if clamped in seen:
+                    continue
+                seen.add(clamped)
+                unique.append(clamped)
+            return unique
+
+        candidate_sets = [
+            rail_candidates(compact[idx][0])
+            for idx in vertical_indexes
+        ]
+        candidate_combinations: list[tuple[float, ...]] = []
+        if len(candidate_sets) == 1:
+            candidate_combinations = [(candidate,) for candidate in candidate_sets[0]]
+        else:
+            candidate_combinations = [
+                (first, second)
+                for first in candidate_sets[0]
+                for second in candidate_sets[1]
+                if first <= second - 2.0
+            ]
+
+        for rail_values in candidate_combinations:
+            variant = list(compact)
+            for vertical_idx, candidate_x in zip(vertical_indexes, rail_values):
+                before_x, before_y = variant[vertical_idx - 1]
+                _after_x, after_y = variant[vertical_idx]
+                variant[vertical_idx - 1] = (candidate_x, before_y)
+                variant[vertical_idx] = (candidate_x, after_y)
+            variant = simplify_orthogonal_route(variant)
+            variant_score = route_candidate_score(
+                variant,
+                source_device,
+                dest_device,
+                source_box,
+                dest_box,
+                y_start,
+                y_end,
+                route_protocol,
+                minimum_clearance,
+            )
+            if variant_score < best_score:
+                best_points = variant
+                best_score = variant_score
+        return best_points, best_score
+
+    def serialize_route_score(
+        score: tuple[object, ...],
+        points: list[tuple[float, float]] | None = None,
+    ) -> dict[str, object]:
         payload = {
             label: score[idx] if idx < len(score) else None
             for idx, label in enumerate(score_labels)
@@ -4589,6 +4792,10 @@ def render_svg(
         payload["different_protocol_overlap_count"] = payload["different_family_overlap_count"]
         payload["different_protocol_overlap_len"] = payload["different_family_overlap_len"]
         payload["same_protocol_overlap_len"] = payload["same_family_overlap_len"]
+        # Always report the real crossing count, even on dense dedicated maps
+        # where it is deliberately excluded from greedy route selection.
+        if points is not None:
+            payload["wire_crossings"] = route_wire_cross_count(points)
         return payload
 
     def bounded_slot_shift(slot_idx: int, slot_total: int, step: float, max_abs: float) -> float:
@@ -4735,6 +4942,16 @@ def render_svg(
             )
         src_lead_x = max(12.0, min(width - 12.0, src_lead_x))
         dst_lead_x = max(12.0, min(width - 12.0, dst_lead_x))
+
+        # Per-device fan-out offsets are applied after the initial backward
+        # lead cap. Re-apply that cap so a return route cannot expand past the
+        # forward vertical corridor and form a U-shape that later wires must
+        # pierce twice.
+        if dx < sx - 1.0:
+            if source_dir >= 0:
+                src_lead_x = min(src_lead_x, sx + max_backward_lead)
+            else:
+                src_lead_x = max(src_lead_x, sx - max_backward_lead)
 
         # Preserve actual gutter space for multiple right-to-left returns. A
         # destination lead that consumes the whole left margin forces every
@@ -5494,8 +5711,7 @@ def render_svg(
                 (dx, dy),
             ]
 
-            best_points = direct_points
-            best_score = route_candidate_score(
+            best_points, best_score = optimize_route_turns(
                 direct_points,
                 connection.source_device,
                 connection.dest_device,
@@ -5513,14 +5729,13 @@ def render_svg(
                 or int(best_score[4]) > 0
                 or float(best_score[7]) > 0.0
             )
-            # A single HDMI cable should stay in the endpoint band whenever
-            # its compact route clears device boxes. Wire crossings already
-            # have a white under-stroke and are less distracting than sending
-            # one cable up to a remote outer lane and back down again.
+            # A single HDMI cable should stay compact only when its route also
+            # clears other wires. Otherwise it participates in normal detours.
             compact_video_route = (
                 family == "Video"
                 and int(best_score[0]) == 0
                 and int(best_score[2]) == 0
+                and int(best_score[3]) == 0
             )
             if (
                 (span_columns >= 2 or needs_clearance_detour)
@@ -5607,7 +5822,7 @@ def render_svg(
                         detour_points.append((dst_lead_x, dy))
                     detour_points.append((dx, dy))
 
-                    detour_score = route_candidate_score(
+                    detour_points, detour_score = optimize_route_turns(
                         detour_points,
                         connection.source_device,
                         connection.dest_device,
@@ -5721,7 +5936,7 @@ def render_svg(
                         top_points.append((dst_lead_x, dy))
                     top_points.append((dx, dy))
 
-                    top_score = route_candidate_score(
+                    top_points, top_score = optimize_route_turns(
                         top_points,
                         connection.source_device,
                         connection.dest_device,
@@ -5839,7 +6054,7 @@ def render_svg(
                         outer_points.append((dst_lead_x, dy))
                     outer_points.append((dx, dy))
 
-                    outer_score = route_candidate_score(
+                    outer_points, outer_score = optimize_route_turns(
                         outer_points,
                         connection.source_device,
                         connection.dest_device,
@@ -5995,7 +6210,7 @@ def render_svg(
                         for px, py in best_points
                     ],
                     "path": path,
-                    "score": serialize_route_score(best_score),
+                    "score": serialize_route_score(best_score, best_points),
                 }
             )
 
@@ -8757,7 +8972,7 @@ def build_routing_matrix_html(
               <div class="results-title">Finished Results: Visual Representation (live)</div>
               <div class="results-actions">
                 <button id="regeneratePreviewsBtn" type="button">Regenerate Visuals</button>
-                <button id="downloadSvgsBtn" type="button">Save SVG Folder</button>
+                <button id="downloadSvgsBtn" type="button">Download SVG Folder (.zip)</button>
                 <button id="openRouteDebugBtn" type="button">Open Route Debug JSON</button>
               </div>
             </div>
@@ -9232,7 +9447,7 @@ def build_routing_matrix_html(
         }
         const name = String(target.getAttribute("name") || "").trim();
         if (name) return `name=${name}`;
-        const cls = String(target.className || "").trim().split(/\s+/).filter(Boolean).slice(0, 2).join(".");
+      const cls = String(target.className || "").trim().split(/\\s+/).filter(Boolean).slice(0, 2).join(".");
         if (cls) return `${target.tagName.toLowerCase()}.${cls}`;
         return target.tagName.toLowerCase();
       }
@@ -9993,21 +10208,31 @@ def build_routing_matrix_html(
       setPreviewStatus(`Visual previews refreshed (${reason})`);
     }
 
-    async function downloadPreviewSvg(path, filename) {
+    function currentLocalDateStamp(date = new Date()) {
+      const localDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+      return localDate.toISOString().slice(0, 10);
+    }
+
+    function datedSvgFilename(filename, dateStamp = currentLocalDateStamp()) {
+      const source = String(filename || "diagram.svg");
+      const stem = source.toLowerCase().endsWith(".svg") ? source.slice(0, -4) : source;
+      const suffix = `-${dateStamp}`;
+      return `${stem.endsWith(suffix) ? stem : stem + suffix}.svg`;
+    }
+
+    function downloadPreviewSvg(path, filename) {
       const base = String(path || "").trim();
       if (!base) return false;
       const join = base.includes("?") ? "&" : "?";
       const url = `${base}${join}_dl=${Date.now()}`;
       try {
-        const response = await fetch(url, { cache: "no-store" });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const blob = await response.blob();
-        const objectUrl = URL.createObjectURL(blob);
         const a = document.createElement("a");
-        a.href = objectUrl;
-        a.download = String(filename || "diagram.svg");
+        a.href = url;
+        a.download = datedSvgFilename(filename);
+        a.style.display = "none";
+        document.body.appendChild(a);
         a.click();
-        window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+        a.remove();
         return true;
       } catch (error) {
         return false;
@@ -10016,60 +10241,25 @@ def build_routing_matrix_html(
 
     async function downloadAllSvgPreviews() {
       if (!saveApiEnabled || !selectedProjectKey) {
-        setStatus("Saving an SVG folder requires the local server and a selected project.", true);
+        setStatus("Downloading the SVG folder requires the local server and a selected project.", true);
         return false;
       }
-      if (typeof window.showDirectoryPicker !== "function") {
-        setStatus("Saving a folder requires a browser with folder access, such as Chrome or Edge.", true);
-        return false;
-      }
-      let parentDirectory;
-      try {
-        parentDirectory = await window.showDirectoryPicker({
-          id: "studio-wiring-svg-export",
-          mode: "readwrite",
-        });
-      } catch (error) {
-        if (error && error.name === "AbortError") {
-          setStatus("SVG folder save cancelled.");
-          return false;
-        }
-        setStatus(`Could not open the folder picker: ${String(error)}`, true);
-        return false;
-      }
-      setStatus("Updating visuals and preparing SVG folder…");
+      setStatus("Updating visuals and preparing SVG folder download…");
       const current = await saveJsonToDisk("save-svg-folder", true, true);
       if (!current) {
-        setStatus("Could not update visuals before saving the SVG folder.", true);
+        setStatus("Could not update visuals before downloading the SVG folder.", true);
         return false;
       }
-      try {
-        const query = new URLSearchParams({
-          project_key: selectedProjectKey,
-          _dl: String(Date.now()),
-        });
-        const response = await fetch(`/api/svg-files?${query.toString()}`, { cache: "no-store" });
-        if (!response.ok) {
-          const details = await parseApiError(response, `HTTP ${response.status}`);
-          throw new Error(details);
-        }
-        const payload = await response.json();
-        const files = Array.isArray(payload.files) ? payload.files : [];
-        if (!files.length) throw new Error("No SVG files were returned");
-        const folderName = String(payload.folder_name || "studio-project-svgs");
-        const outputDirectory = await parentDirectory.getDirectoryHandle(folderName, { create: true });
-        for (const file of files) {
-          const fileHandle = await outputDirectory.getFileHandle(String(file.name), { create: true });
-          const writable = await fileHandle.createWritable();
-          await writable.write(String(file.content || ""));
-          await writable.close();
-        }
-        setStatus(`Saved ${folderName} (${files.length} SVGs).`);
-        return true;
-      } catch (error) {
-        setStatus(`Failed to save SVG folder: ${String(error)}`, true);
-        return false;
-      }
+      const query = new URLSearchParams({
+        project_key: selectedProjectKey,
+        _dl: String(Date.now()),
+      });
+      // Let the browser handle the server's attachment response directly.
+      // In particular, Safari may block a delayed synthetic Blob download once
+      // regeneration has consumed the original click's user-activation window.
+      window.location.assign(`/api/svg-archive?${query.toString()}`);
+      setStatus(`SVG folder download started (${currentLocalDateStamp()}).`);
+      return true;
     }
 
     function openRouteDebugJson() {
@@ -10219,7 +10409,7 @@ def build_routing_matrix_html(
           // Fall through to rooted path fallback.
         }
       }
-      return `/${token.replace(/^\/+/, "")}`;
+      return `/${token.replace(/^\\/+/, "")}`;
     }
 
     async function fetchJsonAtPath(pathValue) {
@@ -10357,13 +10547,13 @@ def build_routing_matrix_html(
       if (hasUrlScheme(raw)) {
         try {
           const parsed = new URL(raw);
-          return String(parsed.pathname || "").replace(/^\/+/, "");
+          return String(parsed.pathname || "").replace(/^\\/+/, "");
         } catch (error) {
           return "";
         }
       }
-      let token = raw.replace(/^file:\/+/, "");
-      token = token.replace(/^\/+/, "");
+      let token = raw.replace(/^file:\\/+/, "");
+      token = token.replace(/^\\/+/, "");
       if (token.startsWith("./")) token = token.slice(2);
       return token;
     }
@@ -10376,8 +10566,8 @@ def build_routing_matrix_html(
     }
 
     function joinPathParts(baseDir, fileName) {
-      const dir = String(baseDir || "").trim().replace(/\/+$/, "");
-      const name = String(fileName || "").trim().replace(/^\/+/, "");
+      const dir = String(baseDir || "").trim().replace(/\\/+$/, "");
+      const name = String(fileName || "").trim().replace(/^\\/+/, "");
       if (!dir) return name;
       if (!name) return dir;
       return `${dir}/${name}`;
@@ -10532,7 +10722,7 @@ def build_routing_matrix_html(
         )
       );
       const currentStem = stripJsonExtension(labelFromPath(currentPathValue)) || String(fallbackStem || "config");
-      const numberMatch = currentStem.match(/^(.*?)([-_ ]?)(\d+)$/);
+      const numberMatch = currentStem.match(/^(.*?)([-_ ]?)(\\d+)$/);
       let prefix = currentStem;
       let separator = "-";
       let width = 3;
@@ -10595,8 +10785,8 @@ def build_routing_matrix_html(
     }
 
     function projectOutputPath(baseDir, filename) {
-      const dir = String(baseDir || "").trim().replace(/\/+$/, "");
-      const file = String(filename || "").trim().replace(/^\/+/, "");
+      const dir = String(baseDir || "").trim().replace(/\\/+$/, "");
+      const file = String(filename || "").trim().replace(/^\\/+/, "");
       if (!dir || !file) return "";
       return `${dir}/${file}`;
     }
@@ -11519,16 +11709,16 @@ def build_routing_matrix_html(
 
     function extractPortSortNumber(name) {
       const text = String(name || "");
-      const rangeMatch = text.match(/(\d+)\s*-\s*(\d+)/);
+      const rangeMatch = text.match(/(\\d+)\\s*-\\s*(\\d+)/);
       if (rangeMatch) return Number(rangeMatch[1]);
-      const singleMatch = text.match(/(\d+)/);
+      const singleMatch = text.match(/(\\d+)/);
       if (singleMatch) return Number(singleMatch[1]);
       return 100000;
     }
 
     function extractRangeSortParts(name) {
       const text = String(name || "");
-      const rangeMatch = text.match(/(\d+)\s*-\s*(\d+)/);
+      const rangeMatch = text.match(/(\\d+)\\s*-\\s*(\\d+)/);
       if (!rangeMatch) return [0, 100000, 100000];
       let start = Number(rangeMatch[1]);
       let end = Number(rangeMatch[2]);
@@ -12299,7 +12489,7 @@ def build_routing_matrix_html(
     }
 
     function parseCableIdParts(cableId) {
-      const match = String(cableId || "").trim().match(/^([A-Za-z]+)-?(\d+)$/);
+      const match = String(cableId || "").trim().match(/^([A-Za-z]+)-?(\\d+)$/);
       if (!match) return null;
       return { prefix: match[1].toUpperCase(), number: Number(match[2]), width: match[2].length };
     }

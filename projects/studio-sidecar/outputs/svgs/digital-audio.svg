@@ -11,16 +11,16 @@
   <rect x="708.0" y="190.0" width="357.8" height="190.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
   <rect x="1385.8" y="190.0" width="299.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
   <rect x="1385.8" y="322.0" width="299.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <path d="M 1055.8 355.0 H 1157.8 V 388.0 H 24.0 V 245.0 H 108.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1055.8 355.0 H 1157.8 V 388.0 H 24.0 V 245.0 H 108.0" fill="none" stroke="#14b8a6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-004: RME UFX III [Word Clock Out] -&gt; Audient ASP 880 [Word Clock In]</title></path>
+  <path d="M 1055.8 355.0 H 1145.8 V 388.0 H 24.0 V 245.0 H 108.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1055.8 355.0 H 1145.8 V 388.0 H 24.0 V 245.0 H 108.0" fill="none" stroke="#14b8a6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-004: RME UFX III [Word Clock Out] -&gt; Audient ASP 880 [Word Clock In]</title></path>
   <path d="M 378.0 245.0 H 486.0 V 267.0 H 718.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
   <path d="M 378.0 245.0 H 486.0 V 267.0 H 718.0" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-001: Audient ASP 880 [ADAT Out 1-8] -&gt; RME UFX III [ADAT 1 In (Optical)]</title></path>
   <path d="M 1055.8 267.0 H 1203.8 V 245.0 H 1395.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
   <path d="M 1055.8 267.0 H 1203.8 V 245.0 H 1395.8" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-002: RME UFX III [ADAT 1 Out (Optical, S/PDIF)] -&gt; TC Electronic Clarity M Stereo [Optical In]</title></path>
   <path d="M 1055.8 333.0 H 1247.8 V 377.0 H 1395.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
   <path d="M 1055.8 333.0 H 1247.8 V 377.0 H 1395.8" fill="none" stroke="#2563eb" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>DIGI-003↔005: RME UFX III [MADI Out Optical] -&gt; SSL AX MADI [MADI In Optical]</title></path>
-  <rect x="1066.0" y="337.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1106.8" y="347.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#14b8a6">DIGI-004 CLOCK</text>
+  <rect x="1060.0" y="337.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1100.8" y="347.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#14b8a6">DIGI-004 CLOCK</text>
   <rect x="117.0" y="249.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="157.8" y="259.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#14b8a6">DIGI-004 CLOCK</text>
   <rect x="393.9" y="227.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>

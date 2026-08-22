@@ -11,22 +11,22 @@
   <rect x="718.0" y="258.0" width="864.0" height="476.0" rx="8" ry="8" fill="#ecfeff" fill-opacity="0.55" stroke="#0891b2" stroke-width="1" stroke-dasharray="6 4"/>
   <rect x="1858.0" y="258.0" width="965.6" height="938.0" rx="8" ry="8" fill="#eff6ff" fill-opacity="0.55" stroke="#3b82f6" stroke-width="1" stroke-dasharray="6 4"/>
   <rect x="3099.6" y="258.0" width="864.0" height="426.0" rx="8" ry="8" fill="#fff7ed" fill-opacity="0.55" stroke="#ea580c" stroke-width="1" stroke-dasharray="6 4"/>
-  <path d="M 2232.6 447.0 H 2350.6 V 1276.0 H 58.0 V 315.0 H 160.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 2232.6 447.0 H 2350.6 V 1276.0 H 58.0 V 315.0 H 160.0" fill="none" stroke="#14b8a6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-004: RME UFX III [Word Clock Out] -&gt; Audient ASP 880 [Word Clock In]</title></path>
+  <path d="M 2232.6 447.0 H 2314.6 V 1276.0 H 58.0 V 475.0 H 160.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 2232.6 447.0 H 2314.6 V 1276.0 H 58.0 V 475.0 H 160.0" fill="none" stroke="#14b8a6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-004: RME UFX III [Word Clock Out] -&gt; Audient ASP 880 [Word Clock In]</title></path>
   <path d="M 1000.0 519.0 H 1059.4 V 403.0 H 1000.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
   <path d="M 1000.0 519.0 H 1059.4 V 403.0 H 1000.0" fill="none" stroke="#64748b" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-002: Mac mini [Thunderbolt Port] -&gt; Thunderbolt Dock [Host/Upstream Port]</title></path>
-  <path d="M 1000.0 337.0 H 1174.5 V 409.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1000.0 337.0 H 1174.5 V 409.0 H 1300.0" fill="none" stroke="#64748b" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-004: Thunderbolt Dock [USB Port 2] -&gt; Streamdeck #1 [USB-C]</title></path>
-  <path d="M 1000.0 359.0 H 1150.0 V 503.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1000.0 359.0 H 1150.0 V 503.0 H 1300.0" fill="none" stroke="#64748b" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-005: Thunderbolt Dock [USB Port 3] -&gt; Streamdeck #2 [USB-C]</title></path>
+  <path d="M 1000.0 337.0 H 1174.5 V 315.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1000.0 337.0 H 1174.5 V 315.0 H 1300.0" fill="none" stroke="#64748b" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-004: Thunderbolt Dock [USB Port 2] -&gt; Streamdeck #1 [USB-C]</title></path>
+  <path d="M 1000.0 359.0 H 1150.0 V 409.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1000.0 359.0 H 1150.0 V 409.0 H 1300.0" fill="none" stroke="#64748b" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>COMP-005: Thunderbolt Dock [USB Port 3] -&gt; Streamdeck #2 [USB-C]</title></path>
   <path d="M 1000.0 381.0 H 1125.5 V 635.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
   <path d="M 1000.0 381.0 H 1125.5 V 635.0 H 1300.0" fill="none" stroke="#0f766e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>NETWORK-003: Thunderbolt Dock [Ethernet Port (RJ45)] -&gt; Netgear Unmanaged Switch [Port 1]</title></path>
-  <path d="M 1000.0 497.0 H 1106.9 V 315.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1000.0 497.0 H 1106.9 V 315.0 H 1300.0" fill="none" stroke="#ca8a04" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>COMP-001: Mac mini [HDMI Out] -&gt; TV Screen [HDMI In]</title></path>
-  <path d="M 1000.0 613.0 H 1158.0 V 657.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1000.0 613.0 H 1158.0 V 657.0 H 1300.0" fill="none" stroke="#0f766e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>NETWORK-001: Avid S1 #1 [Ethernet] -&gt; Netgear Unmanaged Switch [Port 2]</title></path>
-  <path d="M 1000.0 707.0 H 1119.5 V 679.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1000.0 707.0 H 1119.5 V 679.0 H 1300.0" fill="none" stroke="#0f766e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>NETWORK-002: Avid S1 #2 [Ethernet] -&gt; Netgear Unmanaged Switch [Port 3]</title></path>
+  <path d="M 1000.0 497.0 H 1124.8 V 503.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1000.0 497.0 H 1124.8 V 503.0 H 1300.0" fill="none" stroke="#ca8a04" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>COMP-001: Mac mini [HDMI Out] -&gt; TV Screen [HDMI In]</title></path>
+  <path d="M 1000.0 613.0 H 1024.0 V 657.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1000.0 613.0 H 1024.0 V 657.0 H 1300.0" fill="none" stroke="#0f766e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>NETWORK-001: Avid S1 #1 [Ethernet] -&gt; Netgear Unmanaged Switch [Port 2]</title></path>
+  <path d="M 1000.0 707.0 H 1129.5 V 679.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1000.0 707.0 H 1129.5 V 679.0 H 1300.0" fill="none" stroke="#0f766e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>NETWORK-002: Avid S1 #2 [Ethernet] -&gt; Netgear Unmanaged Switch [Port 3]</title></path>
   <path d="M 2232.6 403.0 H 2404.6 V 1169.0 H 2532.6" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
   <path d="M 2232.6 403.0 H 2404.6 V 1169.0 H 2532.6" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-002: RME UFX III [ADAT 1 Out (Optical, S/PDIF)] -&gt; TC Electronic Clarity M Stereo [Optical In]</title></path>
   <path d="M 2232.6 425.0 H 2360.6 V 1075.0 H 2532.6" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
@@ -103,20 +103,20 @@
   <path d="M 2232.6 359.0 H 2514.6 V 431.0 H 3111.6" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-035: RME UFX III [Line Out 3] -&gt; Behringer A800 #2 [Input L]</title></path>
   <path d="M 2232.6 381.0 H 2497.9 V 453.0 H 3111.6" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
   <path d="M 2232.6 381.0 H 2497.9 V 453.0 H 3111.6" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-036: RME UFX III [Line Out 4] -&gt; Behringer A800 #2 [Input R]</title></path>
-  <path d="M 430.0 315.0 H 538.0 V 225.0 H 1772.0 V 403.0 H 1870.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 430.0 315.0 H 538.0 V 225.0 H 1772.0 V 403.0 H 1870.0" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-001: Audient ASP 880 [ADAT Out 1-8] -&gt; RME UFX III [ADAT 1 In (Optical)]</title></path>
-  <path d="M 444.0 442.0 H 555.8 V 213.0 H 1741.1 V 348.0 H 1856.0" fill="none" stroke="#f8fafc" stroke-width="4.70" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 444.0 442.0 H 555.8 V 213.0 H 1741.1 V 348.0 H 1856.0" fill="none" stroke="#dc2626" stroke-width="2.3" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round"><title>AUDIO-029-032: MAO Preamp (confirm model) [Line Out 1+Line Out 2+Line Out 3+Line Out 4] -&gt; RME UFX III [Line In 1+Line In 2+Line In 3+Line In 4]</title></path>
-  <line class="multichannel-source-collector" x1="444.0" y1="409.0" x2="444.0" y2="475.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="2 2"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="409.0" x2="444.0" y2="409.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="431.0" x2="444.0" y2="431.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="453.0" x2="444.0" y2="453.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="475.0" x2="444.0" y2="475.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <path d="M 444.0 348.0 H 555.8 V 225.0 H 1846.0 V 348.0 H 1856.0" fill="none" stroke="#f8fafc" stroke-width="4.70" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 444.0 348.0 H 555.8 V 225.0 H 1846.0 V 348.0 H 1856.0" fill="none" stroke="#dc2626" stroke-width="2.3" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round"><title>AUDIO-029-032: MAO Preamp (confirm model) [Line Out 1+Line Out 2+Line Out 3+Line Out 4] -&gt; RME UFX III [Line In 1+Line In 2+Line In 3+Line In 4]</title></path>
+  <line class="multichannel-source-collector" x1="444.0" y1="315.0" x2="444.0" y2="381.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="2 2"/>
+  <line class="multichannel-source-branch" x1="430.0" y1="315.0" x2="444.0" y2="315.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="430.0" y1="337.0" x2="444.0" y2="337.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="430.0" y1="359.0" x2="444.0" y2="359.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="430.0" y1="381.0" x2="444.0" y2="381.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
   <line class="multichannel-destination-collector" x1="1856.0" y1="315.0" x2="1856.0" y2="381.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="2 2"/>
   <line class="multichannel-destination-branch" x1="1856.0" y1="315.0" x2="1870.0" y2="315.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
   <line class="multichannel-destination-branch" x1="1856.0" y1="337.0" x2="1870.0" y2="337.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
   <line class="multichannel-destination-branch" x1="1856.0" y1="359.0" x2="1870.0" y2="359.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
   <line class="multichannel-destination-branch" x1="1856.0" y1="381.0" x2="1870.0" y2="381.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <path d="M 430.0 475.0 H 593.2 V 225.0 H 1771.8 V 403.0 H 1870.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 430.0 475.0 H 593.2 V 225.0 H 1771.8 V 403.0 H 1870.0" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-001: Audient ASP 880 [ADAT Out 1-8] -&gt; RME UFX III [ADAT 1 In (Optical)]</title></path>
   <path d="M 444.0 860.0 H 1588.0 V 800.0 H 2518.6" fill="none" stroke="#f8fafc" stroke-width="4.70" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
   <path d="M 444.0 860.0 H 1588.0 V 800.0 H 2518.6" fill="none" stroke="#dc2626" stroke-width="2.3" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round"><title>AUDIO-001-024: Allen &amp; Heath GS3000 [Tape Out 1+Tape Out 2+Tape Out 3+Tape Out 4+Tape Out 5+Tape Out 6+Tape Out 7+Tape Out 8+Tape Out 9+Tape Out 10+Tape Out 11+Tape Out 12+Tape Out 13+Tape Out 14+Tape Out 15+Tape Out 16+Tape Out 17+Tape Out 18+Tape Out 19+Tape Out 20+Tape Out 21+Tape Out 22+Tape Out 23+Tape Out 24] -&gt; SSL AX MADI [Line In 1+Line In 2+Line In 3+Line In 4+Line In 5+Line In 6+Line In 7+Line In 8+Line In 9+Line In 10+Line In 11+Line In 12+Line In 13+Line In 14+Line In 15+Line In 16+Line In 17+Line In 18+Line In 19+Line In 20+Line In 21+Line In 22+Line In 23+Line In 24]</title></path>
   <line class="multichannel-source-collector" x1="444.0" y1="607.0" x2="444.0" y2="1113.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="2 2"/>
@@ -169,30 +169,30 @@
   <line class="multichannel-destination-branch" x1="2518.6" y1="1009.0" x2="2532.6" y2="1009.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
   <line class="multichannel-destination-branch" x1="2518.6" y1="1031.0" x2="2532.6" y2="1031.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
   <line class="multichannel-destination-branch" x1="2518.6" y1="1053.0" x2="2532.6" y2="1053.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <rect x="2250.8" y="429.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="2291.6" y="439.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#14b8a6">DIGI-004 CLOCK</text>
-  <rect x="169.0" y="319.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="209.8" y="329.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#14b8a6">DIGI-004 CLOCK</text>
+  <rect x="2232.8" y="429.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2273.6" y="439.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#14b8a6">DIGI-004 CLOCK</text>
+  <rect x="169.0" y="479.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="209.8" y="489.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#14b8a6">DIGI-004 CLOCK</text>
   <rect x="965.6" y="501.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="1001.0" y="511.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#64748b">COMP-002 TB4</text>
   <rect x="1018.6" y="407.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="1054.0" y="417.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#64748b">COMP-002 TB4</text>
   <rect x="1024.3" y="319.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="1059.8" y="329.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#64748b">COMP-004 USB</text>
-  <rect x="1204.8" y="413.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1240.2" y="423.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#64748b">COMP-004 USB</text>
+  <rect x="1204.8" y="319.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1240.2" y="329.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#64748b">COMP-004 USB</text>
   <rect x="1024.3" y="341.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="1059.8" y="351.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#64748b">COMP-005 USB</text>
-  <rect x="1204.8" y="507.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1240.2" y="517.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#64748b">COMP-005 USB</text>
+  <rect x="1204.8" y="413.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1240.2" y="423.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#64748b">COMP-005 USB</text>
   <rect x="1013.5" y="363.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="1059.8" y="373.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-003 CAT6</text>
   <rect x="1194.0" y="639.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="1240.2" y="649.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-003 CAT6</text>
   <rect x="1015.4" y="479.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="1053.5" y="489.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#ca8a04">COMP-001 HDMI</text>
-  <rect x="1207.9" y="319.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1246.0" y="329.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#ca8a04">COMP-001 HDMI</text>
+  <rect x="1207.9" y="507.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1246.0" y="517.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#ca8a04">COMP-001 HDMI</text>
   <rect x="1013.5" y="595.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="1059.8" y="605.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-001 CAT6</text>
   <rect x="1194.0" y="661.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
@@ -269,48 +269,48 @@
   <text x="2296.2" y="373.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-036 MONO</text>
   <rect x="3012.5" y="457.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="3053.3" y="467.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-036 MONO</text>
-  <rect x="445.9" y="297.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="484.0" y="307.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 ADAT</text>
-  <rect x="1780.6" y="407.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1818.7" y="417.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 ADAT</text>
-  <rect x="444.0" y="424.0" width="97.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="492.9" y="434.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-029-032 MC4</text>
-  <rect x="1756.7" y="352.0" width="97.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1805.6" y="362.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-029-032 MC4</text>
+  <rect x="444.0" y="330.0" width="97.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="492.9" y="340.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-029-032 MC4</text>
+  <rect x="1761.9" y="352.0" width="97.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1810.8" y="362.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-029-032 MC4</text>
+  <rect x="445.9" y="457.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="484.0" y="467.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 ADAT</text>
+  <rect x="1775.2" y="407.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1813.3" y="417.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 ADAT</text>
   <rect x="444.0" y="842.0" width="103.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="495.6" y="852.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-001-024 MC24</text>
   <rect x="2416.0" y="804.0" width="103.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
   <text x="2467.6" y="814.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-001-024 MC24</text>
-  <rect x="160.0" y="268.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="160.0" y="268.0" width="270.0" height="130.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
   <rect x="160.0" y="268.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
   <line x1="160.0" y1="304.0" x2="430.0" y2="304.0" stroke="#334155" stroke-width="1"/>
   <text x="170.0" y="282.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
   <text x="420.0" y="282.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="295.0" y="288.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Audient ASP 880</text>
-  <text x="295.0" y="299.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">2/2 wired ports</text>
-  <rect data-power-group="Group 1" x="115.0" y="278.0" width="48.0" height="16.0" rx="3" ry="3" fill="#1d4ed8" stroke="#ffffff" stroke-width="1.2"><title>Power circuit: Group 1</title></rect>
-  <text x="139.0" y="289.2" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="700" fill="#ffffff">Group 1</text>
-  <text x="173.0" y="318.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Word Clock In</text>
-  <circle cx="160.0" cy="315.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="417.0" y="318.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">ADAT Out 1-8</text>
+  <text x="295.0" y="288.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">MAO Preamp (confirm mo...</text>
+  <text x="295.0" y="299.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">4/4 wired ports</text>
+  <text x="417.0" y="318.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 1</text>
   <circle cx="430.0" cy="315.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="160.0" y="362.0" width="270.0" height="130.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="160.0" y="362.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="160.0" y1="398.0" x2="430.0" y2="398.0" stroke="#334155" stroke-width="1"/>
-  <text x="170.0" y="376.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="420.0" y="376.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="295.0" y="382.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">MAO Preamp (confirm mo...</text>
-  <text x="295.0" y="393.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">4/4 wired ports</text>
-  <text x="417.0" y="412.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 1</text>
-  <circle cx="430.0" cy="409.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="420.0" x2="430.0" y2="420.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="434.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 2</text>
-  <circle cx="430.0" cy="431.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="442.0" x2="430.0" y2="442.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="456.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 3</text>
-  <circle cx="430.0" cy="453.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="464.0" x2="430.0" y2="464.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="478.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 4</text>
+  <line x1="160.0" y1="326.0" x2="430.0" y2="326.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="417.0" y="340.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 2</text>
+  <circle cx="430.0" cy="337.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="160.0" y1="348.0" x2="430.0" y2="348.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="417.0" y="362.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 3</text>
+  <circle cx="430.0" cy="359.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="160.0" y1="370.0" x2="430.0" y2="370.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="417.0" y="384.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 4</text>
+  <circle cx="430.0" cy="381.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="160.0" y="428.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="160.0" y="428.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="160.0" y1="464.0" x2="430.0" y2="464.0" stroke="#334155" stroke-width="1"/>
+  <text x="170.0" y="442.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="420.0" y="442.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="295.0" y="448.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Audient ASP 880</text>
+  <text x="295.0" y="459.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">2/2 wired ports</text>
+  <rect data-power-group="Group 1" x="115.0" y="438.0" width="48.0" height="16.0" rx="3" ry="3" fill="#1d4ed8" stroke="#ffffff" stroke-width="1.2"><title>Power circuit: Group 1</title></rect>
+  <text x="139.0" y="449.2" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="700" fill="#ffffff">Group 1</text>
+  <text x="173.0" y="478.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Word Clock In</text>
+  <circle cx="160.0" cy="475.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="417.0" y="478.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">ADAT Out 1-8</text>
   <circle cx="430.0" cy="475.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
   <rect x="160.0" y="560.0" width="270.0" height="570.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
   <rect x="160.0" y="560.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
@@ -456,18 +456,16 @@
   <line x1="1300.0" y1="304.0" x2="1570.0" y2="304.0" stroke="#334155" stroke-width="1"/>
   <text x="1310.0" y="282.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
   <text x="1560.0" y="282.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="1435.0" y="288.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">TV Screen</text>
+  <text x="1435.0" y="288.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Streamdeck #1</text>
   <text x="1435.0" y="299.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
-  <rect data-power-group="Group 1" x="1255.0" y="278.0" width="48.0" height="16.0" rx="3" ry="3" fill="#1d4ed8" stroke="#ffffff" stroke-width="1.2"><title>Power circuit: Group 1</title></rect>
-  <text x="1279.0" y="289.2" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="700" fill="#ffffff">Group 1</text>
-  <text x="1313.0" y="318.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HDMI In</text>
+  <text x="1313.0" y="318.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">USB-C</text>
   <circle cx="1300.0" cy="315.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
   <rect x="1300.0" y="362.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
   <rect x="1300.0" y="362.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
   <line x1="1300.0" y1="398.0" x2="1570.0" y2="398.0" stroke="#334155" stroke-width="1"/>
   <text x="1310.0" y="376.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
   <text x="1560.0" y="376.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="1435.0" y="382.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Streamdeck #1</text>
+  <text x="1435.0" y="382.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Streamdeck #2</text>
   <text x="1435.0" y="393.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
   <text x="1313.0" y="412.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">USB-C</text>
   <circle cx="1300.0" cy="409.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
@@ -476,9 +474,11 @@
   <line x1="1300.0" y1="492.0" x2="1570.0" y2="492.0" stroke="#334155" stroke-width="1"/>
   <text x="1310.0" y="470.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
   <text x="1560.0" y="470.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="1435.0" y="476.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Streamdeck #2</text>
+  <text x="1435.0" y="476.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">TV Screen</text>
   <text x="1435.0" y="487.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
-  <text x="1313.0" y="506.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">USB-C</text>
+  <rect data-power-group="Group 1" x="1255.0" y="466.0" width="48.0" height="16.0" rx="3" ry="3" fill="#1d4ed8" stroke="#ffffff" stroke-width="1.2"><title>Power circuit: Group 1</title></rect>
+  <text x="1279.0" y="477.2" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="8.5" font-weight="700" fill="#ffffff">Group 1</text>
+  <text x="1313.0" y="506.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HDMI In</text>
   <circle cx="1300.0" cy="503.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
   <rect x="1300.0" y="588.0" width="270.0" height="108.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
   <rect x="1300.0" y="588.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>

@@ -526,9 +526,9 @@ class SvgRoutingTests(unittest.TestCase):
         self.assertEqual(
             result,
             [[
-                "TV Screen",
                 "Streamdeck #1",
                 "Streamdeck #2",
+                "TV Screen",
                 "Netgear Unmanaged Switch",
             ]],
         )
@@ -546,6 +546,37 @@ class SvgRoutingTests(unittest.TestCase):
             result[2],
             ["RME UFX III", "Streamdeck #1", "Streamdeck #2"],
         )
+
+    def test_network_devices_follow_switch_port_order(self) -> None:
+        columns = [["Avid S1 #2", "Thunderbolt Dock", "Avid S1 #1"]]
+
+        result = apply_layer_column_overrides("Network", columns)
+
+        self.assertEqual(
+            result[0],
+            ["Thunderbolt Dock", "Avid S1 #1", "Avid S1 #2"],
+        )
+
+    def test_power_destinations_follow_switcher_outlet_order(self) -> None:
+        columns = [[
+            "IMG STAGELINE PPA-100/SW",
+            "Tascam MS-16",
+            "Allen & Heath RPS11",
+            "Audient ASP 880",
+        ]]
+
+        result = apply_layer_column_overrides("Power", columns)
+
+        self.assertEqual(
+            result[0],
+            [
+                "Allen & Heath RPS11",
+                "Tascam MS-16",
+                "Audient ASP 880",
+                "IMG STAGELINE PPA-100/SW",
+            ],
+        )
+
 
     def test_all_connections_keeps_ssl_in_its_signal_stage(self) -> None:
         columns = [
@@ -635,6 +666,30 @@ class SvgRoutingTests(unittest.TestCase):
             first_vertical_x(routes["AUDIO-035"]),
             first_vertical_x(routes["AUDIO-036"]),
         )
+
+    def test_generated_layers_stay_within_crossing_budgets(self) -> None:
+        debug_path = ROOT / "projects" / "studio-sidecar" / "outputs" / "debug" / "route-debug.json"
+        payload = json.loads(debug_path.read_text(encoding="utf-8"))
+        crossing_budget = {
+            "Audio Analog": 0,
+            "Computer/Data": 0,
+            "Digital Audio": 0,
+            "Network": 0,
+            "All Audio": 0,
+            # These remaining crossings are endpoint-order conflicts under the
+            # fixed overview blocks and the direct, strip-free Power fan-outs.
+            "All Connections": 5,
+            "Power": 17,
+        }
+
+        actual = {
+            layer: sum(
+                int(route["score"].get("wire_crossings", 0))
+                for route in payload["layers"][layer]
+            )
+            for layer in crossing_budget
+        }
+        self.assertEqual(actual, crossing_budget)
 
     def test_all_audio_collapses_sequential_runs_into_multichannel_links(self) -> None:
         rows = [

@@ -9,39 +9,39 @@
   <text x="108.0" y="54" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Devices: 4 | Cables: 3 | Ports shown: 6/11 wired</text>
   <rect x="98.0" y="162.0" width="290.0" height="268.0" rx="8" ry="8" fill="#ecfeff" fill-opacity="0.55" stroke="#0891b2" stroke-width="1" stroke-dasharray="6 4"/>
   <rect x="748.0" y="162.0" width="290.0" height="168.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <path d="M 378.0 217.0 H 498.4 V 239.0 H 758.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 378.0 217.0 H 498.4 V 239.0 H 758.0" fill="none" stroke="#0f766e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>NETWORK-001: Avid S1 #1 [Ethernet] -&gt; Netgear Unmanaged Switch [Port 2]</title></path>
-  <path d="M 378.0 311.0 H 567.2 V 261.0 H 758.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 378.0 311.0 H 567.2 V 261.0 H 758.0" fill="none" stroke="#0f766e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>NETWORK-002: Avid S1 #2 [Ethernet] -&gt; Netgear Unmanaged Switch [Port 3]</title></path>
-  <path d="M 378.0 405.0 H 583.4 V 217.0 H 758.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 378.0 405.0 H 583.4 V 217.0 H 758.0" fill="none" stroke="#0f766e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>NETWORK-003: Thunderbolt Dock [Ethernet Port (RJ45)] -&gt; Netgear Unmanaged Switch [Port 1]</title></path>
+  <path d="M 378.0 217.0 H 758.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 378.0 217.0 H 758.0" fill="none" stroke="#0f766e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>NETWORK-003: Thunderbolt Dock [Ethernet Port (RJ45)] -&gt; Netgear Unmanaged Switch [Port 1]</title></path>
+  <path d="M 378.0 311.0 H 568.0 V 239.0 H 758.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 378.0 311.0 H 568.0 V 239.0 H 758.0" fill="none" stroke="#0f766e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>NETWORK-001: Avid S1 #1 [Ethernet] -&gt; Netgear Unmanaged Switch [Port 2]</title></path>
+  <path d="M 378.0 405.0 H 584.4 V 261.0 H 758.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 378.0 405.0 H 584.4 V 261.0 H 758.0" fill="none" stroke="#0f766e" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>NETWORK-002: Avid S1 #2 [Ethernet] -&gt; Netgear Unmanaged Switch [Port 3]</title></path>
   <rect x="392.0" y="199.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="438.2" y="209.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-001 CAT6</text>
-  <rect x="657.2" y="243.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="703.4" y="253.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-001 CAT6</text>
+  <text x="438.2" y="209.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-003 CAT6</text>
+  <rect x="658.0" y="221.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="704.2" y="231.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-003 CAT6</text>
   <rect x="392.0" y="293.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="438.2" y="303.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-002 CAT6</text>
-  <rect x="650.8" y="265.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="697.0" y="275.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-002 CAT6</text>
+  <text x="438.2" y="303.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-001 CAT6</text>
+  <rect x="651.6" y="243.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="697.8" y="253.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-001 CAT6</text>
   <rect x="392.0" y="387.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="438.2" y="397.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-003 CAT6</text>
-  <rect x="646.8" y="221.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="693.0" y="231.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-003 CAT6</text>
+  <text x="438.2" y="397.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-002 CAT6</text>
+  <rect x="645.2" y="265.0" width="92.4" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="691.4" y="275.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#0f766e">NETWORK-002 CAT6</text>
   <rect x="108.0" y="170.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
   <rect x="108.0" y="170.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
   <line x1="108.0" y1="206.0" x2="378.0" y2="206.0" stroke="#334155" stroke-width="1"/>
   <text x="118.0" y="184.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
   <text x="368.0" y="184.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="243.0" y="190.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Avid S1 #1</text>
+  <text x="243.0" y="190.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Thunderbolt Dock</text>
   <text x="243.0" y="201.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
-  <text x="365.0" y="220.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Ethernet</text>
+  <text x="365.0" y="220.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Ethernet P (RJ45)</text>
   <circle cx="378.0" cy="217.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
   <rect x="108.0" y="264.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
   <rect x="108.0" y="264.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
   <line x1="108.0" y1="300.0" x2="378.0" y2="300.0" stroke="#334155" stroke-width="1"/>
   <text x="118.0" y="278.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
   <text x="368.0" y="278.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="243.0" y="284.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Avid S1 #2</text>
+  <text x="243.0" y="284.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Avid S1 #1</text>
   <text x="243.0" y="295.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
   <text x="365.0" y="314.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Ethernet</text>
   <circle cx="378.0" cy="311.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
@@ -50,9 +50,9 @@
   <line x1="108.0" y1="394.0" x2="378.0" y2="394.0" stroke="#334155" stroke-width="1"/>
   <text x="118.0" y="372.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
   <text x="368.0" y="372.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="243.0" y="378.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Thunderbolt Dock</text>
+  <text x="243.0" y="378.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Avid S1 #2</text>
   <text x="243.0" y="389.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
-  <text x="365.0" y="408.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Ethernet P (RJ45)</text>
+  <text x="365.0" y="408.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Ethernet</text>
   <circle cx="378.0" cy="405.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
   <rect x="758.0" y="170.0" width="270.0" height="152.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
   <rect x="758.0" y="170.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>

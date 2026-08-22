@@ -291,7 +291,9 @@
     const name = text(raw?.name || raw?.port_name || port) || port;
     const group = normalizeGroup(raw?.group, "");
     const rawChannel = raw?.channel ?? raw?.group_index ?? group.index;
-    const channel = Number.isFinite(Number(rawChannel)) ? Number(rawChannel) : null;
+    const channel = rawChannel == null || text(rawChannel) === ""
+      ? null
+      : (Number.isFinite(Number(rawChannel)) ? Number(rawChannel) : text(rawChannel));
     return {
       id: compositeId || endpointKey(device, port),
       device,
@@ -300,6 +302,8 @@
       direction,
       roles,
       transport: text(raw?.transport),
+      hardware: text(raw?.hardware),
+      connection2: text(raw?.connection_2),
       group,
       channel,
       order: Number.isFinite(Number(raw?.order)) ? Number(raw.order) : order,
@@ -369,7 +373,7 @@
   }
 
   function endpointSearchText(endpoint) {
-    return `${endpoint.device} ${endpoint.name} ${endpoint.port} ${endpoint.transport} ${endpoint.group.name} ${endpoint.channel ?? ""}`.toLowerCase();
+    return `${endpoint.device} ${endpoint.name} ${endpoint.port} ${endpoint.transport} ${endpoint.hardware} ${endpoint.connection2} ${endpoint.group.name} ${endpoint.channel ?? ""}`.toLowerCase();
   }
 
   function visibleEndpoints(endpoints, filterValue) {
@@ -384,15 +388,17 @@
   function endpointLabel(endpoint) {
     const channel = endpoint.channel == null ? "" : ` ch ${endpoint.channel}`;
     const transport = endpoint.transport ? `, ${endpoint.transport}` : "";
-    return `${endpoint.device}, ${endpoint.name}${channel}${transport}`;
+    const details = [endpoint.hardware, endpoint.connection2].filter(Boolean).join(", ");
+    return `${endpoint.device}, ${endpoint.name}${channel}${transport}${details ? `, ${details}` : ""}`;
   }
 
   function endpointLabelHtml(endpoint, vertical = false) {
     const channel = endpoint.channel == null ? "" : ` ${endpoint.channel}`;
     const portLabel = endpoint.name + (channel && !endpoint.name.includes(String(endpoint.channel)) ? channel : "");
+    const details = [endpoint.transport, endpoint.hardware, endpoint.connection2].filter(Boolean).join(" · ");
     return `<span class="device">${escapeHtml(endpoint.device)}</span>`
       + `<span class="port">${escapeHtml(portLabel)}</span>`
-      + (endpoint.transport ? `<span class="transport">${escapeHtml(endpoint.transport)}</span>` : "")
+      + (details ? `<span class="transport">${escapeHtml(details)}</span>` : "")
       + (vertical ? "" : `<span class="sr-only">, ${escapeHtml(endpoint.direction)}</span>`);
   }
 

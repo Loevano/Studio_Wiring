@@ -293,6 +293,23 @@ def _validate_device(
     _optional_string(item, "device_type", path, issues)
     _optional_string(item, "layout_group", path, issues)
     _validate_boolean_fields(item, path, issues)
+    visibility_value = item.get("visibility")
+    if visibility_value is not None:
+        visibility = _object(visibility_value, f"{path}.visibility", issues)
+        if visibility is not None:
+            for key in (
+                "wiring_matrix",
+                "routing_matrix",
+                "connection_overview",
+                "visuals",
+            ):
+                if key in visibility and not isinstance(visibility[key], bool):
+                    _issue(
+                        issues,
+                        f"{path}.visibility.{key}",
+                        "type.boolean",
+                        "must be a boolean",
+                    )
     if validate_rack:
         _validate_rack_fields(item, path, issues)
     ports = _array(item.get("ports"), f"{path}.ports", issues)
@@ -665,6 +682,25 @@ def validate_routing_rules(payload: Any) -> list[Issue]:
                 "number.non_negative",
                 "must be a non-negative number",
             )
+        for key in (
+            "wire_clearance_px",
+            "power_wire_clearance_px",
+            "power_lane_spacing_px",
+            "power_column_gap_px",
+            "left_route_gutter_px",
+        ):
+            value = routing.get(key)
+            if value is not None and (
+                not isinstance(value, (int, float))
+                or isinstance(value, bool)
+                or value <= 0
+            ):
+                _issue(
+                    issues,
+                    f"$.routing.{key}",
+                    "number.positive",
+                    "must be a positive number",
+                )
     return issues
 
 

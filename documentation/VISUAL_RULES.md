@@ -32,6 +32,16 @@ This file is the canonical rule set for SVG wire rendering. The generator reads:
 - A route may leave its source group and enter its destination group, but it
   must pass above or below any unrelated functional group instead of using an
   apparent gap between that group's device blocks.
+- After those hard constraints, the router minimizes strict perpendicular wire
+  crossings before considering overlap, outside-band distance, bends, or
+  length. One- and two-turn candidates sample the full corridor and positions
+  beside existing vertical rails instead of accepting the first legal elbow.
+- Broad crossing-aware rail search is used in the overview maps. Dense patch
+  maps retain deterministic FIFO/bundle lanes: greedily moving one early cable
+  there can create many crossings for later members of the same channel bank.
+- Device order within a stage follows connected port order when a stable block
+  move removes endpoint inversions (for example Dock/Avid network links and
+  preamp inputs). Explicit pins such as the switch-at-bottom rule remain fixed.
 - Compact in-band paths and consistent bend grammar take priority over soft
   parallel-wire clearance, so one unrelated cable cannot send a bundle member
   around the outside of the diagram.
@@ -62,6 +72,8 @@ This file is the canonical rule set for SVG wire rendering. The generator reads:
 - Digital Audio follows Audient → RME → SSL/Clarity stage order, preventing the ADAT feed from becoming a same-column outer wrap.
 - Route scoring prefers:
   - fewer crossings through device boxes,
+  - fewer crossings through port rows or unrelated group frames,
+  - fewer perpendicular wire crossings in overview maps,
   - fewer overlaps with different-family wires,
   - less out-of-band excursion,
   - fewer bends,

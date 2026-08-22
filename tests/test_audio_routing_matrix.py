@@ -7,14 +7,24 @@ they exercise only temporary project data and never open or write a user project
 from __future__ import annotations
 
 import json
+import io
 import re
 import tempfile
 import unittest
+import zipfile
 from http import HTTPStatus
 from pathlib import Path
 from unittest.mock import patch
 
-from routing_matrix_server import RoutingMatrixHandler, canonical_json_hash
+from routing_matrix_server import (
+    RoutingMatrixHandler,
+    build_svg_archive,
+    canonical_json_hash,
+    collect_svg_files,
+    dated_svg_filename,
+    routing_endpoints_from_model,
+    svg_folder_name,
+)
 from studio_wiring_schema.validation import validate_document, validate_routing_against_model
 
 
@@ -207,6 +217,73 @@ class RoutingMatrixShellAndUiTests(unittest.TestCase):
 
 
 class RoutingSchemaTests(unittest.TestCase):
+    def test_hidden_devices_are_excluded_from_logical_matrix_endpoints(self) -> None:
+        model = routing_model()
+        devices = model["devices"]
+        assert isinstance(devices, list)
+        devices[0]["hidden"] = True
+        devices[1]["visible"] = False
+
+        endpoints = routing_endpoints_from_model(model)
+
+        self.assertEqual({endpoint["device"] for endpoint in endpoints}, {"UFX"})
+
+    def test_routing_matrix_visibility_overrides_legacy_device_visibility(self) -> None:
+        model = routing_model()
+        devices = model["devices"]
+        assert isinstance(devices, list)
+        devices[0]["hidden"] = True
+        devices[0]["visibility"] = {"routing_matrix": True, "wiring_matrix": False}
+        devices[1]["visibility"] = {"routing_matrix": False}
+
+        endpoints = routing_endpoints_from_model(model)
+
+        self.assertEqual({endpoint["device"] for endpoint in endpoints}, {"Audient", "UFX"})
+
+    def test_logical_matrix_preserves_named_channel_labels(self) -> None:
+        app = _read(ROUTING_APP)
+        self.assertIn("Number.isFinite(Number(rawChannel)) ? Number(rawChannel) : text(rawChannel)", app)
+        endpoint = routing_endpoints_from_model(
+            {
+                "devices": [
+                    {
+                        "name": "UFX",
+                        "routing_ports": [
+                            {"name": "Main L", "direction": "in", "channel": "USB 1"}
+                        ],
+                    }
+                ]
+            }
+        )[0]
+        self.assertEqual(endpoint["channel"], "USB 1")
+
+    def test_logical_matrix_exposes_roles_and_input_metadata(self) -> None:
+        app = _read(ROUTING_APP)
+        self.assertIn("hardware: text(raw?.hardware)", app)
+        self.assertIn("connection2: text(raw?.connection_2)", app)
+        endpoint = routing_endpoints_from_model(
+            {
+                "devices": [
+                    {
+                        "name": "UFX",
+                        "routing_ports": [
+                            {
+                                "name": "Input: ASP880 1",
+                                "direction": "in",
+                                "routing_roles": ["source"],
+                                "channel": "UFX ADAT 1",
+                                "hardware": "ASP 1",
+                                "connection_2": "ASP ADAT 1",
+                            }
+                        ],
+                    }
+                ]
+            }
+        )[0]
+        self.assertEqual(endpoint["routing_roles"], ["source"])
+        self.assertEqual(endpoint["hardware"], "ASP 1")
+        self.assertEqual(endpoint["connection_2"], "ASP ADAT 1")
+
     def test_three_hop_route_and_same_device_input_to_output_are_valid(self) -> None:
         model = routing_model()
         routes = route_document()
@@ -365,6 +442,47 @@ class RoutingSaveEndpointTests(unittest.TestCase):
         self.assertEqual(responses[0][0]["routes"], self.routes)
         self.assertIn("endpoints", responses[0][0])
 
+    def test_svg_files_endpoint_returns_a_named_folder_and_current_svg_contents(self) -> None:
+        svg_dir = self.project / "outputs" / "svgs"
+        svg_dir.mkdir(parents=True)
+        (svg_dir / "audio.svg").write_text("<svg id='audio'/>", encoding="utf-8")
+        (svg_dir / "notes.txt").write_text("not exported", encoding="utf-8")
+
+        _Handler, handler, responses = self._handler("/api/svg-files?project_key=alpha")
+        _Handler.do_GET(handler)
+
+        payload, status = responses[0]
+        self.assertEqual(status, HTTPStatus.OK)
+        self.assertTrue(payload["ok"])
+        self.assertRegex(payload["folder_name"], r"^Alpha-\d{4}-\d{2}-\d{2}-svgs$")
+        self.assertEqual(payload["files"], [{"name": "audio.svg", "content": "<svg id='audio'/>"}])
+
+    def test_svg_archive_endpoint_downloads_a_zip_for_the_selected_project(self) -> None:
+        svg_dir = self.project / "outputs" / "svgs"
+        svg_dir.mkdir(parents=True)
+        (svg_dir / "audio.svg").write_text("<svg id='audio'/>", encoding="utf-8")
+
+        _Handler, handler, _responses = self._handler("/api/svg-archive?project_key=alpha")
+        downloads: list[tuple[bytes, str, str]] = []
+        handler._send_bytes = lambda body, *, content_type, filename, status=HTTPStatus.OK: downloads.append(
+            (body, content_type, filename)
+        )
+        with patch("routing_matrix_server.time.strftime", return_value="2026-08-22"):
+            _Handler.do_GET(handler)
+
+        body, content_type, filename = downloads[0]
+        self.assertEqual(content_type, "application/zip")
+        self.assertEqual(filename, "Alpha-2026-08-22-svgs.zip")
+        with zipfile.ZipFile(io.BytesIO(body)) as archive:
+            self.assertEqual(
+                archive.namelist(),
+                ["Alpha-2026-08-22-svgs/audio-2026-08-22.svg"],
+            )
+            self.assertEqual(
+                archive.read(archive.namelist()[0]).decode("utf-8"),
+                "<svg id='audio'/>",
+            )
+
     def test_save_rejects_invalid_topology_stale_writes_and_paths_without_touching_files(self) -> None:
         original_routes = self.routing_path.read_bytes()
         original_patch = self.patch_path.read_bytes()
@@ -457,6 +575,85 @@ class PowerVisualPreviewContractTests(unittest.TestCase):
             self.assertTrue(ok)
             command = run.call_args.args[0]
             self.assertIn("--show-power", command)
+
+
+class AllAudioVisualPreviewContractTests(unittest.TestCase):
+    def test_all_audio_is_a_first_class_visual_preview_in_source_and_generated_app(self) -> None:
+        for path in (GENERATOR, GENERATED_APP):
+            source = _read(path)
+            with self.subTest(path=path.name):
+                self.assertRegex(
+                    source,
+                    r'\{ key: "allAudio", label: "All Audio", file: "all-audio\.svg" \}',
+                )
+                self.assertIn('id="previewAllAudio"', source)
+                self.assertIn('id="previewLinkAllAudio"', source)
+                self.assertIn('aria-label="All Audio preview"', source)
+
+    def test_server_responses_expose_all_audio_svg_path(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="all-audio-preview-contract-") as temp_dir:
+            root = Path(temp_dir).resolve()
+            handler = object.__new__(RoutingMatrixHandler)
+            handler.root_path = root
+            handler.preview_svg_dir = root / "projects/fixture/outputs/svgs"
+
+            expected = "projects/fixture/outputs/svgs/all-audio.svg"
+            self.assertEqual(handler._preview_paths_payload()["allAudio"], expected)
+            transaction = handler._transaction_preview_payload(
+                {
+                    "preview_svg_dir": handler.preview_svg_dir,
+                    "preview_html_path": root / "projects/fixture/outputs/html/preview.html",
+                    "route_debug_path": root / "projects/fixture/outputs/debug/routes.json",
+                }
+            )
+            self.assertEqual(transaction["preview_paths"]["allAudio"], expected)
+
+
+class SvgFolderContractTests(unittest.TestCase):
+    def test_payload_contains_every_svg_and_excludes_other_files(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="svg-folder-contract-") as temp_dir:
+            svg_dir = Path(temp_dir)
+            (svg_dir / "audio.svg").write_text("<svg id='audio'/>", encoding="utf-8")
+            (svg_dir / "power.svg").write_text("<svg id='power'/>", encoding="utf-8")
+            (svg_dir / "notes.txt").write_text("not an svg", encoding="utf-8")
+
+            files = collect_svg_files(svg_dir)
+
+            self.assertEqual([file["name"] for file in files], ["audio.svg", "power.svg"])
+            self.assertIn("id='power'", files[1]["content"])
+
+    def test_folder_name_uses_project_name_and_date(self) -> None:
+        with patch("routing_matrix_server.time.strftime", return_value="2026-08-22"):
+            self.assertEqual(
+                svg_folder_name("Studio Sidecar", "studio-sidecar"),
+                "Studio-Sidecar-2026-08-22-svgs",
+            )
+
+    def test_archive_dates_folder_and_every_svg_filename(self) -> None:
+        files = [
+            {"name": "audio-analog.svg", "content": "<svg>2026-08-22</svg>"},
+            {"name": "power.svg", "content": "<svg>2026-08-22</svg>"},
+        ]
+        archive_bytes = build_svg_archive(
+            files,
+            "Studio-Sidecar-2026-08-22-svgs",
+            "2026-08-22",
+        )
+
+        with zipfile.ZipFile(io.BytesIO(archive_bytes)) as archive:
+            self.assertEqual(
+                archive.namelist(),
+                [
+                    "Studio-Sidecar-2026-08-22-svgs/audio-analog-2026-08-22.svg",
+                    "Studio-Sidecar-2026-08-22-svgs/power-2026-08-22.svg",
+                ],
+            )
+
+    def test_dated_svg_filename_does_not_duplicate_an_existing_date(self) -> None:
+        self.assertEqual(
+            dated_svg_filename("power-2026-08-22.svg", "2026-08-22"),
+            "power-2026-08-22.svg",
+        )
 
 
 if __name__ == "__main__":

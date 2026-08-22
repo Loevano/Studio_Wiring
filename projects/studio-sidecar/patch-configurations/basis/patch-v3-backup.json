@@ -581,7 +581,7 @@
       "cable_id": "DIGI-001",
       "family": "DIGI",
       "source_device": "RME UFX III",
-      "source_port": "OPT 1 (S/PDIF)",
+      "source_port": "ADAT 1 Out (Optical, S/PDIF)",
       "dest_device": "TC Electronic Clarity M Stereo",
       "dest_port": "Optical In",
       "connection_type": "",

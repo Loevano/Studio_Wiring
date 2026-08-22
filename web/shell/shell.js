@@ -2,7 +2,7 @@
   "use strict";
 
   const MANIFEST_PATH = "../manifests/tabs.json";
-  const EMBEDDED_APP_CACHE_VERSION = "20260813-autosave-path-fix-1";
+  const EMBEDDED_APP_CACHE_VERSION = "20260822-family-axis-fix-1";
   const THEME_STORAGE_KEY = "studioWiringThemeModeV1";
   const AUTO_SAVE_STORAGE_KEY = "studioWiringAutoSaveToDiskV1";
   const AUTO_SAVE_FLUSH_TIMEOUT_MS = 8000;
@@ -20,9 +20,12 @@
   let activeTheme = "light";
   let autoSaveEnabled = false;
   let frameReady = false;
+  let activeTabFrame = tabFrame;
   let autoSaveFlushSequence = 0;
   let tabNavigationSequence = 0;
   const pendingAutoSaveFlushes = new Map();
+  const tabFramesByApp = new Map();
+  const readyTabFrames = new WeakSet();
 
   function reportStatus(message, warn) {
     const text = String(message || "").trim();
@@ -46,8 +49,8 @@
   }
 
   function canReuseLoadedFrame(nextSrc) {
-    if (!(tabFrame instanceof HTMLIFrameElement)) return false;
-    const currentSrc = String(tabFrame.src || "").trim();
+    if (!(activeTabFrame instanceof HTMLIFrameElement)) return false;
+    const currentSrc = String(activeTabFrame.src || "").trim();
     if (!currentSrc) return false;
     try {
       const currentUrl = new URL(currentSrc);
@@ -60,12 +63,12 @@
   }
 
   function postTabSelectionToFrame(tab, matrixSubTab) {
-    if (!(tabFrame instanceof HTMLIFrameElement)) return false;
-    if (!tabFrame.contentWindow) return false;
+    if (!(activeTabFrame instanceof HTMLIFrameElement)) return false;
+    if (!activeTabFrame.contentWindow) return false;
     const normalizedTab = String(tab || "").trim().toLowerCase();
     if (!normalizedTab) return false;
     try {
-      tabFrame.contentWindow.postMessage({
+      activeTabFrame.contentWindow.postMessage({
         type: "studio-shell-main-tab-set",
         tab: normalizedTab,
         matrix_subtab: String(matrixSubTab || "").trim().toLowerCase(),
@@ -103,6 +106,54 @@
     } catch (_error) {
       return "";
     }
+  }
+
+  function frameCacheKey(src) {
+    try {
+      const url = new URL(String(src || ""), window.location.href);
+      return `${url.origin}${url.pathname}`;
+    } catch (_error) {
+      return String(src || "").trim();
+    }
+  }
+
+  function handleTabFrameLoad(frame) {
+    if (!(frame instanceof HTMLIFrameElement)) return;
+    readyTabFrames.add(frame);
+    if (frame !== activeTabFrame) return;
+    frameReady = true;
+    postThemeToFrame(activeTheme);
+    postAutoSaveToFrame(autoSaveEnabled);
+    requestAutoSaveStateFromFrame();
+  }
+
+  function createTabFrame() {
+    const frame = document.createElement("iframe");
+    frame.className = "shell-frame";
+    frame.title = "Routing Tab Frame";
+    frame.loading = "eager";
+    frame.hidden = true;
+    frame.addEventListener("load", () => handleTabFrameLoad(frame));
+    tabFrame.parentElement?.appendChild(frame);
+    return frame;
+  }
+
+  function frameForSource(src) {
+    const key = frameCacheKey(src);
+    let frame = tabFramesByApp.get(key);
+    if (frame instanceof HTMLIFrameElement) return frame;
+    frame = tabFramesByApp.size === 0 ? tabFrame : createTabFrame();
+    tabFramesByApp.set(key, frame);
+    return frame;
+  }
+
+  function activateTabFrame(frame) {
+    if (!(frame instanceof HTMLIFrameElement)) return;
+    for (const cachedFrame of tabFramesByApp.values()) {
+      cachedFrame.hidden = cachedFrame !== frame;
+    }
+    activeTabFrame = frame;
+    frameReady = readyTabFrames.has(frame);
   }
 
   function normalizeTheme(mode) {
@@ -150,22 +201,22 @@
   }
 
   function postThemeToFrame(mode) {
-    if (!(tabFrame instanceof HTMLIFrameElement)) return;
-    if (!tabFrame.contentWindow) return;
+    if (!(activeTabFrame instanceof HTMLIFrameElement)) return;
+    if (!activeTabFrame.contentWindow) return;
     const normalized = normalizeTheme(mode);
     if (!normalized) return;
     try {
-      tabFrame.contentWindow.postMessage({ type: "studio-theme-set", mode: normalized }, "*");
+      activeTabFrame.contentWindow.postMessage({ type: "studio-theme-set", mode: normalized }, "*");
     } catch (_error) {
       // Ignore message failures.
     }
   }
 
   function postAutoSaveToFrame(enabled) {
-    if (!(tabFrame instanceof HTMLIFrameElement)) return;
-    if (!tabFrame.contentWindow) return;
+    if (!(activeTabFrame instanceof HTMLIFrameElement)) return;
+    if (!activeTabFrame.contentWindow) return;
     try {
-      tabFrame.contentWindow.postMessage({
+      activeTabFrame.contentWindow.postMessage({
         type: "studio-shell-autosave-set",
         enabled: Boolean(enabled),
       }, "*");
@@ -175,10 +226,10 @@
   }
 
   function requestAutoSaveStateFromFrame() {
-    if (!(tabFrame instanceof HTMLIFrameElement)) return;
-    if (!tabFrame.contentWindow) return;
+    if (!(activeTabFrame instanceof HTMLIFrameElement)) return;
+    if (!activeTabFrame.contentWindow) return;
     try {
-      tabFrame.contentWindow.postMessage({ type: "studio-shell-autosave-request" }, "*");
+      activeTabFrame.contentWindow.postMessage({ type: "studio-shell-autosave-request" }, "*");
     } catch (_error) {
       // Ignore message failures.
     }
@@ -186,7 +237,7 @@
 
   function requestAutoSaveFlushFromFrame(reason) {
     if (!autoSaveEnabled || !frameReady) return Promise.resolve(true);
-    if (!(tabFrame instanceof HTMLIFrameElement) || !tabFrame.contentWindow) {
+    if (!(activeTabFrame instanceof HTMLIFrameElement) || !activeTabFrame.contentWindow) {
       return Promise.resolve(true);
     }
     autoSaveFlushSequence += 1;
@@ -204,7 +255,7 @@
         },
       });
       try {
-        tabFrame.contentWindow.postMessage({
+        activeTabFrame.contentWindow.postMessage({
           type: "studio-shell-autosave-flush",
           request_id: requestId,
           reason: String(reason || "shell-navigation"),
@@ -217,10 +268,10 @@
   }
 
   function requestDebugReportCopyFromFrame() {
-    if (!(tabFrame instanceof HTMLIFrameElement)) return;
-    if (!tabFrame.contentWindow) return;
+    if (!(activeTabFrame instanceof HTMLIFrameElement)) return;
+    if (!activeTabFrame.contentWindow) return;
     try {
-      tabFrame.contentWindow.postMessage({ type: "studio-shell-copy-debug-report" }, "*");
+      activeTabFrame.contentWindow.postMessage({ type: "studio-shell-copy-debug-report" }, "*");
     } catch (_error) {
       // Ignore message failures.
     }
@@ -333,22 +384,29 @@
         return;
       }
 
+      const tabFrame = frameForSource(src);
+      activateTabFrame(tabFrame);
       const selection = parseEmbeddedTabSelection(src);
-      const reuseFrame = frameReady && canReuseLoadedFrame(src) && Boolean(selection.tab);
+      const reuseFrame = frameReady && canReuseLoadedFrame(src);
       if (reuseFrame) {
-        const routed = postTabSelectionToFrame(selection.tab, selection.matrixSubTab);
+        const routed = !selection.tab
+          || postTabSelectionToFrame(selection.tab, selection.matrixSubTab);
         if (!routed) {
           frameReady = false;
+          readyTabFrames.delete(tabFrame);
           tabFrame.src = src;
         } else {
           postThemeToFrame(activeTheme);
+          postAutoSaveToFrame(autoSaveEnabled);
           requestAutoSaveStateFromFrame();
         }
       } else if (String(tabFrame.src || "") !== src) {
         frameReady = false;
+        readyTabFrames.delete(tabFrame);
         tabFrame.src = src;
       } else {
         postThemeToFrame(activeTheme);
+        postAutoSaveToFrame(autoSaveEnabled);
         requestAutoSaveStateFromFrame();
       }
       renderButtons();
@@ -366,14 +424,11 @@
     });
 
     tabFrame.addEventListener("load", () => {
-      frameReady = true;
-      postThemeToFrame(activeTheme);
-      postAutoSaveToFrame(autoSaveEnabled);
-      requestAutoSaveStateFromFrame();
+      handleTabFrameLoad(tabFrame);
     });
 
     window.addEventListener("message", (event) => {
-      if (event.source !== tabFrame.contentWindow) return;
+      if (event.source !== activeTabFrame.contentWindow) return;
       const data = event?.data;
       if (!data || typeof data !== "object") return;
       if (data.type === "studio-shell-autosave-flushed") {

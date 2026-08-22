@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <title>Device Visibility</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main id="visibilityApp" class="app" data-visibility-version="1">
+    <header class="panel toolbar">
+      <div class="heading-row">
+        <div>
+          <h1>Device Visibility</h1>
+          <p class="subtitle">Choose where each device appears. Select rows to change several devices together.</p>
+        </div>
+        <div id="saveState" class="save-state" data-state="loading" role="status" aria-live="polite">Loading…</div>
+      </div>
+      <div id="visibilityContext" class="context">Loading the Wiring Matrix selection…</div>
+      <div class="action-row">
+        <button id="showAllButton" type="button">Show all everywhere</button>
+        <button id="hideAllButton" type="button">Hide all everywhere</button>
+        <button id="reloadButton" type="button">Reload</button>
+        <button id="saveButton" class="primary" type="button" disabled>Save Visibility</button>
+        <span class="hint">⌥-click applies a checkbox to all devices. ⇧-click selects a range. ⌘-click adds or removes devices.</span>
+      </div>
+    </header>
+
+    <section class="panel list-panel" aria-labelledby="visibilityHeading">
+      <div class="list-heading">
+        <div>
+          <h2 id="visibilityHeading">Devices</h2>
+          <p id="visibilitySummary" class="summary">Loading…</p>
+        </div>
+      </div>
+      <div class="list-scroller">
+        <div id="visibilityList" class="visibility-list" role="listbox" aria-label="Device visibility" aria-multiselectable="true"></div>
+      </div>
+    </section>
+    <div id="statusToast" class="status-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>

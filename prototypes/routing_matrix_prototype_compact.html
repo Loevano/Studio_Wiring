@@ -914,6 +914,8 @@
 
     let sourceFilter = "";
     let destFilter = "";
+    let filterStateFamily = "";
+    const filtersByFamily = new Map();
     let selectedPatchMode = PATCH_MODE_SINGLE;
     let pairCount = 8;
     let typeTagValue = "";
@@ -1004,6 +1006,36 @@
     const collapsedDestGroups = new Set();
     const autoCollapsedFamilies = new Set();
     const autoCollapsedDeviceFamilies = new Set();
+    let collapseStateFamily = "";
+
+    function carryCollapsedKeysBetweenFamilies(keys, previousFamily, nextFamily) {
+      const previous = String(previousFamily || "").trim();
+      const next = String(nextFamily || "").trim();
+      if (!(keys instanceof Set) || !previous || !next || previous === next) return;
+      const previousPrefix = `${previous}::`;
+      const nextPrefix = `${next}::`;
+      const carriedSuffixes = Array.from(keys)
+        .filter((key) => String(key || "").startsWith(previousPrefix))
+        .map((key) => String(key).slice(previousPrefix.length));
+      for (const key of Array.from(keys)) {
+        if (String(key || "").startsWith(nextPrefix)) keys.delete(key);
+      }
+      for (const suffix of carriedSuffixes) keys.add(`${nextPrefix}${suffix}`);
+    }
+
+    function carryCollapseStateBetweenFamilies(previousFamily, nextFamily) {
+      const previous = String(previousFamily || "").trim();
+      const next = String(nextFamily || "").trim();
+      if (!previous || !next || previous === next) return;
+      carryCollapsedKeysBetweenFamilies(collapsedSourceDevices, previous, next);
+      carryCollapsedKeysBetweenFamilies(collapsedDestDevices, previous, next);
+      carryCollapsedKeysBetweenFamilies(collapsedSourceGroups, previous, next);
+      carryCollapsedKeysBetweenFamilies(collapsedDestGroups, previous, next);
+      // The destination family now has an intentional state. Do not apply its
+      // first-render defaults over the folders just carried from the old view.
+      autoCollapsedFamilies.add(next);
+      autoCollapsedDeviceFamilies.add(next);
+    }
 
     function invalidatePortCaches() {
       normalizedPortsCache = null;
@@ -1496,6 +1528,15 @@
       return fallback;
     }
 
+    function deviceVisibleForTarget(device, target) {
+      if (!device || typeof device !== "object") return false;
+      const visibility = device.visibility;
+      if (visibility && typeof visibility === "object" && typeof visibility[target] === "boolean") {
+        return visibility[target];
+      }
+      return !parseBoolLike(device.hidden, false) && device.visible !== false;
+    }
+
     function compareNatural(a, b) {
       return String(a || "").localeCompare(String(b || ""), undefined, { numeric: true, sensitivity: "base" });
     }
@@ -1536,7 +1577,7 @@
         const rawDevice = devices[d] || {};
         const device = String(rawDevice.name || "").trim();
         if (!device) continue;
-        if (parseBoolLike(rawDevice.hidden, false) || rawDevice.visible === false) continue;
+        if (!deviceVisibleForTarget(rawDevice, "wiring_matrix")) continue;
         const matrixOrder = Number.isFinite(Number(rawDevice.matrix_order)) ? Number(rawDevice.matrix_order) : d;
         const rawPorts = Array.isArray(rawDevice.ports) ? rawDevice.ports : [];
         for (let p = 0; p < rawPorts.length; p += 1) {
@@ -1554,6 +1595,12 @@
             transport: port.transport,
           })) {
             families.push("POWER");
+          }
+          if (!families.includes("CONTROL") && controlProtocolForPort({
+            port: portName,
+            transport: port.transport,
+          })) {
+            families.push("CONTROL");
           }
           if (!families.length) continue;
           const group = port.group && typeof port.group === "object" ? port.group : {};
@@ -1927,6 +1974,11 @@
       if (candidates.includes("AUDIO") && isSpeakerToAnalogPair(sourcePort, destPort)) {
         return { family: "", reason: "Speaker to analog connection is not allowed" };
       }
+      if (candidates.includes("DIGI")) {
+        const sourceProtocol = digitalProtocolForPort(sourcePort) || "unknown";
+        const destProtocol = digitalProtocolForPort(destPort) || "unknown";
+        return { family: "", reason: `DIGI protocol mismatch: ${sourceProtocol} -> ${destProtocol}` };
+      }
       if (candidates.includes("CONTROL")) {
         const sourceProtocol = controlProtocolForPort(sourcePort) || "?";
         const destProtocol = controlProtocolForPort(destPort) || "?";
@@ -2077,10 +2129,37 @@
       return "";
     }
 
+    function digitalProtocolForPort(port) {
+      const transport = String(port?.transport || "").trim().toUpperCase();
+      const portName = String(port?.port || port?.name || "").trim().toUpperCase();
+      const classify = (value) => {
+        const token = String(value || "").toUpperCase();
+        if (/MADI/.test(token)) {
+          if (/OPT|OPTICAL|FIBER|FIBRE/.test(token)) return "MADI-OPTICAL";
+          if (/COAX|BNC/.test(token) || token.trim() === "MADI") return "MADI-COAX";
+          return "MADI";
+        }
+        if (/S\/?P[.-]?DIF|SPDIF/.test(token)) return "SPDIF";
+        if (/ADAT|SMUX/.test(token)) return "ADAT";
+        if (/AES(?:\/EBU)?/.test(token)) return "AES";
+        if (/WORD\s*CLOCK|(^|[^A-Z])CLOCK([^A-Z]|$)/.test(token)) return "WORD-CLOCK";
+        if (/MIDI/.test(token)) return "MIDI";
+        if (/DANTE/.test(token)) return "DANTE";
+        if (/HDMI/.test(token)) return "HDMI";
+        return "";
+      };
+      return classify(transport) || classify(portName);
+    }
+
     function supportsTransportCompatibilityForFamily(family, sourcePort, destPort) {
       const normalized = normalizeFamily(family);
       if (normalized === "AUDIO") {
         return !isSpeakerToAnalogPair(sourcePort, destPort);
+      }
+      if (normalized === "DIGI") {
+        const sourceProtocol = digitalProtocolForPort(sourcePort);
+        const destProtocol = digitalProtocolForPort(destPort);
+        return Boolean(sourceProtocol && destProtocol && sourceProtocol === destProtocol);
       }
       if (normalized === "CONTROL") {
         const sourceProtocol = controlProtocolForPort(sourcePort);
@@ -3453,10 +3532,11 @@
     function initFamilySelect() {
       const previous = String(familySelect.value || "").trim();
       const defs = MODEL && typeof MODEL.families === "object" ? MODEL.families : {};
-      const keys = [FAMILY_ALL, ...FAMILY_ORDER];
+      const available = new Set(normalizePorts().flatMap((port) => port.families));
+      const keys = [FAMILY_ALL, ...FAMILY_ORDER.filter((family) => available.has(family))];
       for (const key of Object.keys(defs)) {
         const fam = normalizeFamily(key);
-        if (fam && !keys.includes(fam)) keys.push(fam);
+        if (fam && available.has(fam) && !keys.includes(fam)) keys.push(fam);
       }
       familySelect.innerHTML = keys.map((fam) => `<option value=\"${escAttr(fam)}\">${escHtml(fam)}</option>`).join("");
       if (previous && keys.includes(previous)) {
@@ -3468,6 +3548,8 @@
       } else if (keys.length > 0) {
         familySelect.value = keys[0];
       }
+      collapseStateFamily = String(familySelect.value || "").trim();
+      filterStateFamily = collapseStateFamily;
     }
 
     function filenameFromUrl(rawUrl) {
@@ -3861,7 +3943,24 @@
       }
     }
 
-    familySelect.onchange = () => scheduleRender();
+    familySelect.onchange = () => {
+      const nextFamily = String(familySelect.value || "AUDIO").trim();
+      carryCollapseStateBetweenFamilies(collapseStateFamily, nextFamily);
+      collapseStateFamily = nextFamily;
+      if (filterStateFamily) {
+        filtersByFamily.set(filterStateFamily, {
+          source: sourceFilter,
+          dest: destFilter,
+        });
+      }
+      const nextFilters = filtersByFamily.get(nextFamily) || { source: "", dest: "" };
+      sourceFilter = String(nextFilters.source || "");
+      destFilter = String(nextFilters.dest || "");
+      if (sourceFilterInput) sourceFilterInput.value = sourceFilter;
+      if (destFilterInput) destFilterInput.value = destFilter;
+      filterStateFamily = nextFamily;
+      scheduleRender();
+    };
     if (patchModeSelect) {
       patchModeSelect.value = selectedPatchMode;
       patchModeSelect.onchange = () => {

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import io
 import json
 import os
 import re
@@ -13,6 +14,7 @@ import subprocess
 import sys
 import threading
 import time
+import zipfile
 from functools import partial
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -201,6 +203,62 @@ def resolve_path_within_project(project_root: Path, raw: object) -> Path:
     if project_root not in resolved.parents and resolved != project_root:
         raise ValueError(f"Path must be inside project: {value}")
     return resolved
+
+
+def collect_svg_files(svg_dir: Path) -> list[dict[str, str]]:
+    """Return every generated SVG as a browser-writable file payload."""
+    if not svg_dir.exists() or not svg_dir.is_dir():
+        raise ValueError("SVG output directory does not exist")
+    svg_paths = sorted(
+        (path for path in svg_dir.glob("*.svg") if path.is_file()),
+        key=lambda path: path.name.lower(),
+    )
+    if not svg_paths:
+        raise ValueError("No SVG files are available for this project")
+    return [
+        {"name": svg_path.name, "content": svg_path.read_text(encoding="utf-8")}
+        for svg_path in svg_paths
+    ]
+
+
+def svg_folder_name(
+    project_name: object,
+    project_key: object,
+    date_stamp: str | None = None,
+) -> str:
+    label = str(project_name or project_key or "studio-project").strip()
+    safe_label = re.sub(r"[^A-Za-z0-9._-]+", "-", label).strip("-._")
+    if not safe_label:
+        safe_label = "studio-project"
+    export_date = str(date_stamp or time.strftime("%Y-%m-%d"))
+    return f"{safe_label}-{export_date}-svgs"
+
+
+def dated_svg_filename(filename: object, date_stamp: str) -> str:
+    """Add the export date to an SVG filename without duplicating it."""
+    source_name = Path(str(filename or "diagram.svg")).name
+    stem = Path(source_name).stem or "diagram"
+    dated_suffix = f"-{date_stamp}"
+    if not stem.endswith(dated_suffix):
+        stem += dated_suffix
+    return f"{stem}.svg"
+
+
+def build_svg_archive(
+    files: list[dict[str, str]],
+    folder_name: str,
+    date_stamp: str,
+) -> bytes:
+    """Build a downloadable ZIP containing one dated folder of dated SVGs."""
+    output = io.BytesIO()
+    with zipfile.ZipFile(output, mode="w", compression=zipfile.ZIP_DEFLATED) as archive:
+        for file in files:
+            filename = dated_svg_filename(file.get("name"), date_stamp)
+            archive.writestr(
+                f"{folder_name}/{filename}",
+                str(file.get("content") or "").encode("utf-8"),
+            )
+    return output.getvalue()
 
 
 def discover_projects(
@@ -449,6 +507,17 @@ def routing_endpoints_from_model(model: object) -> list[dict[str, object]]:
     for device in devices:
         if not isinstance(device, dict):
             continue
+        visibility = device.get("visibility")
+        routing_visible = (
+            visibility.get("routing_matrix")
+            if isinstance(visibility, dict)
+            else None
+        )
+        if isinstance(routing_visible, bool):
+            if not routing_visible:
+                continue
+        elif device.get("hidden") is True or device.get("visible") is False:
+            continue
         device_name = str(device.get("name") or "").strip()
         routing_ports = device.get("routing_ports")
         if not device_name or not isinstance(routing_ports, list):
@@ -468,7 +537,14 @@ def routing_endpoints_from_model(model: object) -> list[dict[str, object]]:
                 "transport": str(port.get("transport") or "").strip(),
                 "enabled": port.get("enabled") is not False,
             }
-            for optional in ("channel", "group", "order"):
+            for optional in (
+                "channel",
+                "group",
+                "order",
+                "routing_roles",
+                "hardware",
+                "connection_2",
+            ):
                 if optional in port:
                     endpoint[optional] = port[optional]
             endpoints.append(endpoint)
@@ -774,6 +850,22 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _send_bytes(
+        self,
+        body: bytes,
+        *,
+        content_type: str,
+        filename: str,
+        status: int = HTTPStatus.OK,
+    ) -> None:
+        self.send_response(status)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Disposition", f'attachment; filename="{filename}"')
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(body)
+
     def _relative_path(self, path: Path) -> str:
         try:
             return str(path.relative_to(self.root_path)).replace(os.sep, "/")
@@ -786,6 +878,7 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             "audioAnalog": f"{svg_dir_rel}/audio-analog.svg",
             "computerData": f"{svg_dir_rel}/computer-data.svg",
             "digitalAudio": f"{svg_dir_rel}/digital-audio.svg",
+            "allAudio": f"{svg_dir_rel}/all-audio.svg",
             "network": f"{svg_dir_rel}/network.svg",
             "power": f"{svg_dir_rel}/power.svg",
             "allConnections": f"{svg_dir_rel}/all-connections.svg",
@@ -944,6 +1037,7 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
                 "audioAnalog": f"{svg_dir_rel}/audio-analog.svg",
                 "computerData": f"{svg_dir_rel}/computer-data.svg",
                 "digitalAudio": f"{svg_dir_rel}/digital-audio.svg",
+                "allAudio": f"{svg_dir_rel}/all-audio.svg",
                 "network": f"{svg_dir_rel}/network.svg",
                 "power": f"{svg_dir_rel}/power.svg",
                 "allConnections": f"{svg_dir_rel}/all-connections.svg",
@@ -1027,6 +1121,15 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
         if length > 0:
             self.rfile.read(length)
 
+    def end_headers(self) -> None:
+        # SVG files are regenerated in place. Prevent a previously opened tab or
+        # download from reusing bytes that predate the latest regeneration.
+        if urlsplit(self.path).path.lower().endswith(".svg"):
+            self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
+            self.send_header("Pragma", "no-cache")
+            self.send_header("Expires", "0")
+        super().end_headers()
+
     def do_GET(self) -> None:  # noqa: N802
         request = urlsplit(self.path)
         if request.path == "/api/config":
@@ -1034,6 +1137,55 @@ class RoutingMatrixHandler(SimpleHTTPRequestHandler):
             return
         if request.path == "/api/projects":
             self._send_json({"ok": True, **self._projects_payload()})
+            return
+        if request.path == "/api/svg-files":
+            try:
+                query = parse_qs(request.query, keep_blank_values=True)
+                project_key = query.get("project_key", [""])[0]
+                projects_payload = self._projects_payload()
+                project_item = find_project_item(projects_payload, project_key)
+                if project_item is None:
+                    raise ValueError(f"Project not found: {project_key}")
+                project_dir = self._project_dir_from_key(project_key)
+                svg_dir = project_dir / "outputs" / "svgs"
+                files = collect_svg_files(svg_dir)
+                self._send_json({
+                    "ok": True,
+                    "folder_name": svg_folder_name(project_item.get("name"), project_key),
+                    "files": files,
+                })
+            except Exception as exc:
+                self._send_json(
+                    {"ok": False, "error": str(exc)},
+                    status=HTTPStatus.BAD_REQUEST,
+                )
+            return
+        if request.path == "/api/svg-archive":
+            try:
+                query = parse_qs(request.query, keep_blank_values=True)
+                project_key = query.get("project_key", [""])[0]
+                projects_payload = self._projects_payload()
+                project_item = find_project_item(projects_payload, project_key)
+                if project_item is None:
+                    raise ValueError(f"Project not found: {project_key}")
+                project_dir = self._project_dir_from_key(project_key)
+                files = collect_svg_files(project_dir / "outputs" / "svgs")
+                date_stamp = time.strftime("%Y-%m-%d")
+                folder_name = svg_folder_name(
+                    project_item.get("name"),
+                    project_key,
+                    date_stamp,
+                )
+                self._send_bytes(
+                    build_svg_archive(files, folder_name, date_stamp),
+                    content_type="application/zip",
+                    filename=f"{folder_name}.zip",
+                )
+            except Exception as exc:
+                self._send_json(
+                    {"ok": False, "error": str(exc)},
+                    status=HTTPStatus.BAD_REQUEST,
+                )
             return
         if request.path == "/api/routing":
             try:

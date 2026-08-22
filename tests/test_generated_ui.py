@@ -117,6 +117,38 @@ class GeneratedConfigurationUiTests(unittest.TestCase):
             self.assertEqual(model["families"]["POWER"]["prefix"], "POWER", relative_path)
             self.assertEqual(model["families"]["POWER"]["layer"], "Power", relative_path)
 
+    def test_visibility_panel_has_independent_targets_and_group_modifiers(self) -> None:
+        for key in (
+            "wiring_matrix",
+            "routing_matrix",
+            "connection_overview",
+            "visuals",
+        ):
+            self.assertIn(f'key: "{key}"', self.html)
+        self.assertIn('data-visibility-target="${esc(target.key)}"', self.html)
+        self.assertIn("function deviceVisibleForTarget(", self.html)
+        self.assertIn("function setDeviceVisibilityForTarget(", self.html)
+        self.assertIn("function updateVisibilitySelection(", self.html)
+        self.assertIn("event.metaKey || event.ctrlKey", self.html)
+        self.assertIn("altKey: Boolean(event.altKey)", self.html)
+        self.assertIn('visibleDeviceNameSet("connection_overview")', self.html)
+        self.assertIn('deviceVisibleForTarget(device, "wiring_matrix")', self.html)
+
+    def test_svg_exports_use_current_files_and_offer_individual_downloads(self) -> None:
+        self.assertIn('id="downloadSvgsBtn"', self.html)
+        self.assertIn("Download SVG Folder (.zip)", self.html)
+        self.assertEqual(
+            len(re.findall(r'<button[^>]+data-preview-download="[^"]+"', self.html)),
+            7,
+        )
+        self.assertNotIn('window.showDirectoryPicker({', self.html)
+        self.assertIn('window.location.assign(`/api/svg-archive?${query.toString()}`)', self.html)
+        self.assertIn('saveJsonToDisk("save-svg-folder", true, true)', self.html)
+        self.assertIn("function datedSvgFilename(", self.html)
+        self.assertIn("a.download = datedSvgFilename(filename)", self.html)
+        self.assertIn("document.body.appendChild(a)", self.html)
+        self.assertIn('appendCacheBuster(base, "_open", Date.now())', self.html)
+
 
 if __name__ == "__main__":
     unittest.main()

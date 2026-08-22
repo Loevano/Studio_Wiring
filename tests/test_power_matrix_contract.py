@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CANONICAL_MATRIX = ROOT / "routing_matrix.html"
 GENERATOR = ROOT / "generate_point_to_point.py"
 TAB_MANIFEST = ROOT / "web" / "manifests" / "tabs.json"
+STUDIO_SIDECAR_MODEL = ROOT / "projects" / "studio-sidecar" / "device-configurations" / "basis.json"
 
 
 def extract_inline_script(html: str) -> str:
@@ -111,7 +112,10 @@ class PowerMatrixContractTests(unittest.TestCase):
                 "normalizeFamily",
                 "portsForFamily",
                 "sharedFamiliesForPorts",
+                "digitalProtocolForPort",
+                "supportsTransportCompatibilityForFamily",
                 "resolveLinkFamily",
+                "linkCompatibilityReason",
                 "powerConnectorAdvisory",
                 "powerPortBadge",
                 "endpointKey",
@@ -160,6 +164,44 @@ class PowerMatrixContractTests(unittest.TestCase):
             )
         )
 
+    def test_active_studio_model_exposes_power_sources_and_loads_to_wiring_matrix(self) -> None:
+        model = json.loads(STUDIO_SIDECAR_MODEL.read_text(encoding="utf-8"))
+
+        def visible_in_wiring_matrix(device: dict[str, object]) -> bool:
+            visibility = device.get("visibility")
+            if isinstance(visibility, dict) and isinstance(visibility.get("wiring_matrix"), bool):
+                return bool(visibility["wiring_matrix"])
+            return device.get("hidden") is not True and device.get("visible") is not False
+
+        visible_power_ports = [
+            (str(device.get("name") or ""), port)
+            for device in model.get("devices", [])
+            if isinstance(device, dict) and visible_in_wiring_matrix(device)
+            for port in device.get("ports", [])
+            if isinstance(port, dict) and "POWER" in port.get("families", [])
+        ]
+        sources = {
+            name
+            for name, port in visible_power_ports
+            if port.get("direction") in {"out", "io"}
+        }
+        destinations = {
+            name
+            for name, port in visible_power_ports
+            if port.get("direction") in {"in", "io"}
+        }
+        expected_sources = {
+            "Meterkast",
+            "Power Switcher",
+            "Power Strip Rack 1 DIG",
+            "Power Strip Rack 2 AN",
+            "Power Strip Rack 3 AN",
+            "Black Lion Audio PG-1 Type F MKII",
+            "Allen & Heath RPS11",
+        }
+        self.assertTrue(expected_sources.issubset(sources), expected_sources - sources)
+        self.assertTrue(destinations, "POWER requires at least one visible destination inlet")
+
     def test_manifest_serves_the_canonical_matrix_with_power_available(self) -> None:
         manifest = json.loads(TAB_MANIFEST.read_text(encoding="utf-8"))
         tabs = manifest.get("tabs", manifest)
@@ -190,7 +232,10 @@ class PowerMatrixContractTests(unittest.TestCase):
         for name in (
             "portsForFamily",
             "sharedFamiliesForPorts",
+            "digitalProtocolForPort",
+            "supportsTransportCompatibilityForFamily",
             "resolveLinkFamily",
+            "linkCompatibilityReason",
             "powerConnectorAdvisory",
             "powerPortBadge",
             "findConnectionIndex",
@@ -251,6 +296,40 @@ console.log(JSON.stringify({ resolved, action, connections }));
             )
         )
         self.assertEqual(axis_result, {"sources": ["Power Out"], "destinations": ["Power In"]})
+
+    def test_generated_matrix_rejects_cross_protocol_digital_connections(self) -> None:
+        result = self.run_node(
+            self.patch_harness(
+                """
+let connections = [];
+const port = (device, name, direction, transport) => ({
+  device, port: name, direction, families: ["DIGI"], transport, visible: true, enabled: true,
+});
+const coaxMadi = port("Source", "MADI Out Coax", "out", "MADI");
+const opticalMadi = port("Destination", "MADI In Optical", "in", "MADI-OPT");
+const coaxMadiIn = port("Destination", "MADI In Coax", "in", "MADI");
+const aes = port("Source", "AES Out", "out", "AES");
+const analog = port("Destination", "Line In", "in", "TRS");
+const madi = port("Destination", "MADI In Coax", "in", "MADI");
+const aesIn = port("Destination", "AES In", "in", "AES");
+const rejectedMadi = performPatchAction("DIGI", coaxMadi, opticalMadi, "connect");
+const acceptedMadi = performPatchAction("DIGI", coaxMadi, coaxMadiIn, "connect", { override: true });
+connections = [];
+const rejectedAnalog = performPatchAction("DIGI", aes, analog, "connect");
+const rejectedMadiProtocol = performPatchAction("DIGI", aes, madi, "connect");
+const acceptedAes = performPatchAction("DIGI", aes, aesIn, "connect", { override: true });
+console.log(JSON.stringify({ rejectedMadi, acceptedMadi, rejectedAnalog, rejectedMadiProtocol, acceptedAes }));
+"""
+            )
+        )
+        self.assertFalse(result["rejectedMadi"]["changed"])
+        self.assertIn("MADI-COAX -> MADI-OPTICAL", result["rejectedMadi"]["error"])
+        self.assertTrue(result["acceptedMadi"]["changed"])
+        self.assertFalse(result["rejectedAnalog"]["changed"])
+        self.assertIn("AES -> unknown", result["rejectedAnalog"]["error"])
+        self.assertFalse(result["rejectedMadiProtocol"]["changed"])
+        self.assertIn("AES -> MADI-COAX", result["rejectedMadiProtocol"]["error"])
+        self.assertTrue(result["acceptedAes"]["changed"])
 
     def test_power_badges_are_accessible_on_source_and_destination_labels_only(self) -> None:
         result = self.run_node(

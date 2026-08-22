@@ -3528,8 +3528,14 @@
         }
       ],
       "matrix_order": 0,
-      "visible": true,
-      "hidden": false
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "ATC SCM 11",
@@ -3570,7 +3576,13 @@
       ],
       "matrix_order": 1,
       "visible": true,
-      "hidden": false
+      "hidden": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "Audient ASP 880",
@@ -4132,6 +4144,12 @@
       "rack_position": {
         "rack": 3,
         "start_u": 14
+      },
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -4188,8 +4206,14 @@
         }
       ],
       "matrix_order": 3,
-      "visible": true,
-      "hidden": false
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "Avid S1 #2",
@@ -4245,8 +4269,14 @@
         }
       ],
       "matrix_order": 4,
-      "visible": true,
-      "hidden": false
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "Behringer A800 #1",
@@ -4333,6 +4363,12 @@
       "rack_position": {
         "rack": 1,
         "start_u": 3
+      },
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -4420,6 +4456,12 @@
       "rack_position": {
         "rack": 1,
         "start_u": 1
+      },
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -4529,6 +4571,14 @@
       "rack_position": {
         "rack": 3,
         "start_u": 13
+      },
+      "visible": true,
+      "hidden": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -4746,6 +4796,14 @@
       "rack_position": {
         "rack": 4,
         "start_u": 1
+      },
+      "visible": true,
+      "hidden": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -4801,7 +4859,15 @@
           "order": 3
         }
       ],
-      "matrix_order": 9
+      "matrix_order": 9,
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "MAO Preamp (confirm model)",
@@ -4940,13 +5006,27 @@
           "order": 8
         }
       ],
-      "matrix_order": 10
+      "matrix_order": 10,
+      "visible": true,
+      "hidden": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "Netgear Unmanaged Switch",
       "device_type": "Network",
       "layout_group": "Computer / Control",
       "rack_mountable": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      },
       "ports": [
         {
           "name": "AC In",
@@ -5079,7 +5159,9 @@
           "order": 8
         }
       ],
-      "matrix_order": 11
+      "matrix_order": 11,
+      "visible": false,
+      "hidden": true
     },
     {
       "name": "RME UFX III",
@@ -5090,108 +5172,2620 @@
       "rack_units": 1,
       "routing_ports": [
         {
-          "name": "MADI In 25",
+          "name": "Playback: Main L",
           "direction": "in",
-          "transport": "MADI",
-          "channel": 25,
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 1",
           "group": {
-            "name": "MADI In",
-            "member": "25",
-            "index": 25,
-            "size": 64
+            "name": "USB Playback",
+            "member": "1",
+            "index": 1,
+            "size": 18
           },
           "order": 0
         },
         {
-          "name": "MADI In 26",
+          "name": "Playback: Main R",
           "direction": "in",
-          "transport": "MADI",
-          "channel": 26,
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 2",
           "group": {
-            "name": "MADI In",
-            "member": "26",
-            "index": 26,
-            "size": 64
+            "name": "USB Playback",
+            "member": "2",
+            "index": 2,
+            "size": 18
           },
           "order": 1
         },
         {
-          "name": "MADI In 27",
+          "name": "Playback: HP1 L",
           "direction": "in",
-          "transport": "MADI",
-          "channel": 27,
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 9",
           "group": {
-            "name": "MADI In",
-            "member": "27",
-            "index": 27,
-            "size": 64
+            "name": "USB Playback",
+            "member": "9",
+            "index": 3,
+            "size": 18
           },
           "order": 2
         },
         {
-          "name": "MADI In 28",
+          "name": "Playback: HP1 R",
           "direction": "in",
-          "transport": "MADI",
-          "channel": 28,
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 10",
           "group": {
-            "name": "MADI In",
-            "member": "28",
-            "index": 28,
-            "size": 64
+            "name": "USB Playback",
+            "member": "10",
+            "index": 4,
+            "size": 18
           },
           "order": 3
         },
         {
-          "name": "MADI In 29",
+          "name": "Playback: HP2 L",
           "direction": "in",
-          "transport": "MADI",
-          "channel": 29,
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 11",
           "group": {
-            "name": "MADI In",
-            "member": "29",
-            "index": 29,
-            "size": 64
+            "name": "USB Playback",
+            "member": "11",
+            "index": 5,
+            "size": 18
           },
           "order": 4
         },
         {
-          "name": "MADI In 30",
+          "name": "Playback: HP2 R",
           "direction": "in",
-          "transport": "MADI",
-          "channel": 30,
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 12",
           "group": {
-            "name": "MADI In",
-            "member": "30",
-            "index": 30,
-            "size": 64
+            "name": "USB Playback",
+            "member": "12",
+            "index": 6,
+            "size": 18
           },
           "order": 5
         },
         {
-          "name": "MADI In 31",
+          "name": "Playback: Cue 1 L",
           "direction": "in",
-          "transport": "MADI",
-          "channel": 31,
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 43",
           "group": {
-            "name": "MADI In",
-            "member": "31",
-            "index": 31,
-            "size": 64
+            "name": "USB Playback",
+            "member": "43",
+            "index": 7,
+            "size": 18
           },
           "order": 6
         },
         {
-          "name": "MADI In 32",
+          "name": "Playback: Cue 1 R",
           "direction": "in",
-          "transport": "MADI",
-          "channel": 32,
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 44",
           "group": {
-            "name": "MADI In",
-            "member": "32",
-            "index": 32,
-            "size": 64
+            "name": "USB Playback",
+            "member": "44",
+            "index": 8,
+            "size": 18
           },
           "order": 7
+        },
+        {
+          "name": "Playback: Cue 2 L",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 45",
+          "group": {
+            "name": "USB Playback",
+            "member": "45",
+            "index": 9,
+            "size": 18
+          },
+          "order": 8
+        },
+        {
+          "name": "Playback: Cue 2 R",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 46",
+          "group": {
+            "name": "USB Playback",
+            "member": "46",
+            "index": 10,
+            "size": 18
+          },
+          "order": 9
+        },
+        {
+          "name": "Playback: Cue 3 L",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 47",
+          "group": {
+            "name": "USB Playback",
+            "member": "47",
+            "index": 11,
+            "size": 18
+          },
+          "order": 10
+        },
+        {
+          "name": "Playback: Cue 3 R",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 48",
+          "group": {
+            "name": "USB Playback",
+            "member": "48",
+            "index": 12,
+            "size": 18
+          },
+          "order": 11
+        },
+        {
+          "name": "Playback: Cue 4 L",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 49",
+          "group": {
+            "name": "USB Playback",
+            "member": "49",
+            "index": 13,
+            "size": 18
+          },
+          "order": 12
+        },
+        {
+          "name": "Playback: Cue 4 R",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 50",
+          "group": {
+            "name": "USB Playback",
+            "member": "50",
+            "index": 14,
+            "size": 18
+          },
+          "order": 13
+        },
+        {
+          "name": "Playback: Cue 5 L",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 51",
+          "group": {
+            "name": "USB Playback",
+            "member": "51",
+            "index": 15,
+            "size": 18
+          },
+          "order": 14
+        },
+        {
+          "name": "Playback: Cue 5 R",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 52",
+          "group": {
+            "name": "USB Playback",
+            "member": "52",
+            "index": 16,
+            "size": 18
+          },
+          "order": 15
+        },
+        {
+          "name": "Playback: Cue 6 L",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 53",
+          "group": {
+            "name": "USB Playback",
+            "member": "53",
+            "index": 17,
+            "size": 18
+          },
+          "order": 16
+        },
+        {
+          "name": "Playback: Cue 6 R",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "USB",
+          "channel": "USB 54",
+          "group": {
+            "name": "USB Playback",
+            "member": "54",
+            "index": 18,
+            "size": 18
+          },
+          "order": 17
+        },
+        {
+          "name": "Hardware: Monitor L",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX AN 1",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "AN 1",
+            "index": 1,
+            "size": 18
+          },
+          "order": 18
+        },
+        {
+          "name": "Hardware: Monitor R",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX AN 2",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "AN 2",
+            "index": 2,
+            "size": 18
+          },
+          "order": 19
+        },
+        {
+          "name": "Hardware: Headphone 1 L",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX HP1 L",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "HP1 L",
+            "index": 3,
+            "size": 18
+          },
+          "order": 20
+        },
+        {
+          "name": "Hardware: Headphone 1 R",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX HP1 R",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "HP1 R",
+            "index": 4,
+            "size": 18
+          },
+          "order": 21
+        },
+        {
+          "name": "Hardware: Headphone 2 L",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX HP2 L",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "HP2 L",
+            "index": 5,
+            "size": 18
+          },
+          "order": 22
+        },
+        {
+          "name": "Hardware: Headphone 2 R",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX HP2 R",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "HP2 R",
+            "index": 6,
+            "size": 18
+          },
+          "order": 23
+        },
+        {
+          "name": "Hardware: Cue 1 L",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 13",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 13",
+            "index": 7,
+            "size": 18
+          },
+          "order": 24
+        },
+        {
+          "name": "Hardware: Cue 1 R",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 14",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 14",
+            "index": 8,
+            "size": 18
+          },
+          "order": 25
+        },
+        {
+          "name": "Hardware: Cue 2 L",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 15",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 15",
+            "index": 9,
+            "size": 18
+          },
+          "order": 26
+        },
+        {
+          "name": "Hardware: Cue 2 R",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 16",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 16",
+            "index": 10,
+            "size": 18
+          },
+          "order": 27
+        },
+        {
+          "name": "Hardware: Cue 3 L",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 17",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 17",
+            "index": 11,
+            "size": 18
+          },
+          "order": 28
+        },
+        {
+          "name": "Hardware: Cue 3 R",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 18",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 18",
+            "index": 12,
+            "size": 18
+          },
+          "order": 29
+        },
+        {
+          "name": "Hardware: Cue 4 L",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 19",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 19",
+            "index": 13,
+            "size": 18
+          },
+          "order": 30
+        },
+        {
+          "name": "Hardware: Cue 4 R",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 20",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 20",
+            "index": 14,
+            "size": 18
+          },
+          "order": 31
+        },
+        {
+          "name": "Hardware: Cue 5 L",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 21",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 21",
+            "index": 15,
+            "size": 18
+          },
+          "order": 32
+        },
+        {
+          "name": "Hardware: Cue 5 R",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 22",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 22",
+            "index": 16,
+            "size": 18
+          },
+          "order": 33
+        },
+        {
+          "name": "Hardware: Cue 6 L",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 23",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 23",
+            "index": 17,
+            "size": 18
+          },
+          "order": 34
+        },
+        {
+          "name": "Hardware: Cue 6 R",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 24",
+          "group": {
+            "name": "Hardware Outputs",
+            "member": "MADI 24",
+            "index": 18,
+            "size": 18
+          },
+          "order": 35
+        },
+        {
+          "name": "Input: ASP880 1",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ADAT",
+          "channel": "UFX ADAT 1",
+          "hardware": "ASP 1",
+          "connection_2": "ASP ADAT 1",
+          "group": {
+            "name": "ASP880 ADAT Inputs",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          },
+          "order": 36
+        },
+        {
+          "name": "Input: ASP880 2",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ADAT",
+          "channel": "UFX ADAT 2",
+          "hardware": "ASP 2",
+          "connection_2": "ASP ADAT 2",
+          "group": {
+            "name": "ASP880 ADAT Inputs",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          },
+          "order": 37
+        },
+        {
+          "name": "Input: ASP880 3",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ADAT",
+          "channel": "UFX ADAT 3",
+          "hardware": "ASP 3",
+          "connection_2": "ASP ADAT 3",
+          "group": {
+            "name": "ASP880 ADAT Inputs",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          },
+          "order": 38
+        },
+        {
+          "name": "Input: ASP880 4",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ADAT",
+          "channel": "UFX ADAT 4",
+          "hardware": "ASP 4",
+          "connection_2": "ASP ADAT 4",
+          "group": {
+            "name": "ASP880 ADAT Inputs",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          },
+          "order": 39
+        },
+        {
+          "name": "Input: ASP880 5",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ADAT",
+          "channel": "UFX ADAT 5",
+          "hardware": "ASP 5",
+          "connection_2": "ASP ADAT 5",
+          "group": {
+            "name": "ASP880 ADAT Inputs",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          },
+          "order": 40
+        },
+        {
+          "name": "Input: ASP880 6",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ADAT",
+          "channel": "UFX ADAT 6",
+          "hardware": "ASP 6",
+          "connection_2": "ASP ADAT 6",
+          "group": {
+            "name": "ASP880 ADAT Inputs",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          },
+          "order": 41
+        },
+        {
+          "name": "Input: ASP880 7",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ADAT",
+          "channel": "UFX ADAT 7",
+          "hardware": "ASP 7",
+          "connection_2": "ASP ADAT 7",
+          "group": {
+            "name": "ASP880 ADAT Inputs",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          },
+          "order": 42
+        },
+        {
+          "name": "Input: ASP880 8",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ADAT",
+          "channel": "UFX ADAT 8",
+          "hardware": "ASP 8",
+          "connection_2": "ASP ADAT 8",
+          "group": {
+            "name": "ASP880 ADAT Inputs",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          },
+          "order": 43
+        },
+        {
+          "name": "Input: UFX MIC 9",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX MIC 9",
+          "hardware": "UFX MIC 9",
+          "connection_2": "",
+          "group": {
+            "name": "UFX Mic Inputs",
+            "member": "1",
+            "index": 1,
+            "size": 4
+          },
+          "order": 44
+        },
+        {
+          "name": "Input: UFX MIC 10",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX MIC 10",
+          "hardware": "UFX MIC 10",
+          "connection_2": "",
+          "group": {
+            "name": "UFX Mic Inputs",
+            "member": "2",
+            "index": 2,
+            "size": 4
+          },
+          "order": 45
+        },
+        {
+          "name": "Input: UFX MIC 11",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX MIC 11",
+          "hardware": "UFX MIC 11",
+          "connection_2": "",
+          "group": {
+            "name": "UFX Mic Inputs",
+            "member": "3",
+            "index": 3,
+            "size": 4
+          },
+          "order": 46
+        },
+        {
+          "name": "Input: UFX MIC 12",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX MIC 12",
+          "hardware": "UFX MIC 12",
+          "connection_2": "",
+          "group": {
+            "name": "UFX Mic Inputs",
+            "member": "4",
+            "index": 4,
+            "size": 4
+          },
+          "order": 47
+        },
+        {
+          "name": "Input: MAO 1",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX AN 1",
+          "hardware": "MAO 1",
+          "connection_2": "",
+          "group": {
+            "name": "MAO Analog Inputs",
+            "member": "1",
+            "index": 1,
+            "size": 4
+          },
+          "order": 48
+        },
+        {
+          "name": "Input: MAO 2",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX AN 2",
+          "hardware": "MAO 2",
+          "connection_2": "",
+          "group": {
+            "name": "MAO Analog Inputs",
+            "member": "2",
+            "index": 2,
+            "size": 4
+          },
+          "order": 49
+        },
+        {
+          "name": "Input: MAO 3",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX AN 3",
+          "hardware": "MAO 3",
+          "connection_2": "",
+          "group": {
+            "name": "MAO Analog Inputs",
+            "member": "3",
+            "index": 3,
+            "size": 4
+          },
+          "order": 50
+        },
+        {
+          "name": "Input: MAO 4",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX AN 4",
+          "hardware": "MAO 4",
+          "connection_2": "",
+          "group": {
+            "name": "MAO Analog Inputs",
+            "member": "4",
+            "index": 4,
+            "size": 4
+          },
+          "order": 51
+        },
+        {
+          "name": "Input: SSL 1",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 1",
+          "hardware": "Mixer Tape 1",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "1",
+            "index": 1,
+            "size": 24
+          },
+          "order": 52
+        },
+        {
+          "name": "Input: SSL 2",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 2",
+          "hardware": "Mixer Tape 2",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "2",
+            "index": 2,
+            "size": 24
+          },
+          "order": 53
+        },
+        {
+          "name": "Input: SSL 3",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 3",
+          "hardware": "Mixer Tape 3",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "3",
+            "index": 3,
+            "size": 24
+          },
+          "order": 54
+        },
+        {
+          "name": "Input: SSL 4",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 4",
+          "hardware": "Mixer Tape 4",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "4",
+            "index": 4,
+            "size": 24
+          },
+          "order": 55
+        },
+        {
+          "name": "Input: SSL 5",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 5",
+          "hardware": "Mixer Tape 5",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "5",
+            "index": 5,
+            "size": 24
+          },
+          "order": 56
+        },
+        {
+          "name": "Input: SSL 6",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 6",
+          "hardware": "Mixer Tape 6",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "6",
+            "index": 6,
+            "size": 24
+          },
+          "order": 57
+        },
+        {
+          "name": "Input: SSL 7",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 7",
+          "hardware": "Mixer Tape 7",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "7",
+            "index": 7,
+            "size": 24
+          },
+          "order": 58
+        },
+        {
+          "name": "Input: SSL 8",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 8",
+          "hardware": "Mixer Tape 8",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "8",
+            "index": 8,
+            "size": 24
+          },
+          "order": 59
+        },
+        {
+          "name": "Input: SSL 9",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 9",
+          "hardware": "Mixer Tape 9",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "9",
+            "index": 9,
+            "size": 24
+          },
+          "order": 60
+        },
+        {
+          "name": "Input: SSL 10",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 10",
+          "hardware": "Mixer Tape 10",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "10",
+            "index": 10,
+            "size": 24
+          },
+          "order": 61
+        },
+        {
+          "name": "Input: SSL 11",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 11",
+          "hardware": "Mixer Tape 11",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "11",
+            "index": 11,
+            "size": 24
+          },
+          "order": 62
+        },
+        {
+          "name": "Input: SSL 12",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 12",
+          "hardware": "Mixer Tape 12",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "12",
+            "index": 12,
+            "size": 24
+          },
+          "order": 63
+        },
+        {
+          "name": "Input: SSL 13",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 13",
+          "hardware": "Mixer Tape 13",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "13",
+            "index": 13,
+            "size": 24
+          },
+          "order": 64
+        },
+        {
+          "name": "Input: SSL 14",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 14",
+          "hardware": "Mixer Tape 14",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "14",
+            "index": 14,
+            "size": 24
+          },
+          "order": 65
+        },
+        {
+          "name": "Input: SSL 15",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 15",
+          "hardware": "Mixer Tape 15",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "15",
+            "index": 15,
+            "size": 24
+          },
+          "order": 66
+        },
+        {
+          "name": "Input: SSL 16",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 16",
+          "hardware": "Mixer Tape 16",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "16",
+            "index": 16,
+            "size": 24
+          },
+          "order": 67
+        },
+        {
+          "name": "Input: SSL 17",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 17",
+          "hardware": "Mixer Tape 17",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "17",
+            "index": 17,
+            "size": 24
+          },
+          "order": 68
+        },
+        {
+          "name": "Input: SSL 18",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 18",
+          "hardware": "Mixer Tape 18",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "18",
+            "index": 18,
+            "size": 24
+          },
+          "order": 69
+        },
+        {
+          "name": "Input: SSL 19",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 19",
+          "hardware": "Mixer Tape 19",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "19",
+            "index": 19,
+            "size": 24
+          },
+          "order": 70
+        },
+        {
+          "name": "Input: SSL 20",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 20",
+          "hardware": "Mixer Tape 20",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "20",
+            "index": 20,
+            "size": 24
+          },
+          "order": 71
+        },
+        {
+          "name": "Input: SSL 21",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 21",
+          "hardware": "Mixer Tape 21",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "21",
+            "index": 21,
+            "size": 24
+          },
+          "order": 72
+        },
+        {
+          "name": "Input: SSL 22",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 22",
+          "hardware": "Mixer Tape 22",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "22",
+            "index": 22,
+            "size": 24
+          },
+          "order": 73
+        },
+        {
+          "name": "Input: SSL 23",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 23",
+          "hardware": "Mixer Tape 23",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "23",
+            "index": 23,
+            "size": 24
+          },
+          "order": 74
+        },
+        {
+          "name": "Input: SSL 24",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 24",
+          "hardware": "Mixer Tape 24",
+          "connection_2": "",
+          "group": {
+            "name": "SSL MADI Inputs",
+            "member": "24",
+            "index": 24,
+            "size": 24
+          },
+          "order": 75
+        },
+        {
+          "name": "Input: Lucid 1",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 25",
+          "hardware": "MS16 Return 1",
+          "connection_2": "SSL ADAT 1",
+          "group": {
+            "name": "Lucid via SSL ADAT",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          },
+          "order": 76
+        },
+        {
+          "name": "Input: Lucid 2",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 26",
+          "hardware": "MS16 Return 2",
+          "connection_2": "SSL ADAT 2",
+          "group": {
+            "name": "Lucid via SSL ADAT",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          },
+          "order": 77
+        },
+        {
+          "name": "Input: Lucid 3",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 27",
+          "hardware": "MS16 Return 3",
+          "connection_2": "SSL ADAT 3",
+          "group": {
+            "name": "Lucid via SSL ADAT",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          },
+          "order": 78
+        },
+        {
+          "name": "Input: Lucid 4",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 28",
+          "hardware": "MS16 Return 4",
+          "connection_2": "SSL ADAT 4",
+          "group": {
+            "name": "Lucid via SSL ADAT",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          },
+          "order": 79
+        },
+        {
+          "name": "Input: Lucid 5",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 29",
+          "hardware": "MS16 Return 5",
+          "connection_2": "SSL ADAT 5",
+          "group": {
+            "name": "Lucid via SSL ADAT",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          },
+          "order": 80
+        },
+        {
+          "name": "Input: Lucid 6",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 30",
+          "hardware": "MS16 Return 6",
+          "connection_2": "SSL ADAT 6",
+          "group": {
+            "name": "Lucid via SSL ADAT",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          },
+          "order": 81
+        },
+        {
+          "name": "Input: Lucid 7",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 31",
+          "hardware": "MS16 Return 7",
+          "connection_2": "SSL ADAT 7",
+          "group": {
+            "name": "Lucid via SSL ADAT",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          },
+          "order": 82
+        },
+        {
+          "name": "Input: Lucid 8",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 32",
+          "hardware": "MS16 Return 8",
+          "connection_2": "SSL ADAT 8",
+          "group": {
+            "name": "Lucid via SSL ADAT",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          },
+          "order": 83
+        },
+        {
+          "name": "Input: Future ADAT AD 1",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 33",
+          "hardware": "MS16 Return 9",
+          "connection_2": "SSL ADAT 9",
+          "group": {
+            "name": "Future ADAT via SSL",
+            "member": "1",
+            "index": 1,
+            "size": 8
+          },
+          "order": 84
+        },
+        {
+          "name": "Input: Future ADAT AD 2",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 34",
+          "hardware": "MS16 Return 10",
+          "connection_2": "SSL ADAT 10",
+          "group": {
+            "name": "Future ADAT via SSL",
+            "member": "2",
+            "index": 2,
+            "size": 8
+          },
+          "order": 85
+        },
+        {
+          "name": "Input: Future ADAT AD 3",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 35",
+          "hardware": "MS16 Return 11",
+          "connection_2": "SSL ADAT 11",
+          "group": {
+            "name": "Future ADAT via SSL",
+            "member": "3",
+            "index": 3,
+            "size": 8
+          },
+          "order": 86
+        },
+        {
+          "name": "Input: Future ADAT AD 4",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 36",
+          "hardware": "MS16 Return 12",
+          "connection_2": "SSL ADAT 12",
+          "group": {
+            "name": "Future ADAT via SSL",
+            "member": "4",
+            "index": 4,
+            "size": 8
+          },
+          "order": 87
+        },
+        {
+          "name": "Input: Future ADAT AD 5",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 37",
+          "hardware": "MS16 Return 13",
+          "connection_2": "SSL ADAT 13",
+          "group": {
+            "name": "Future ADAT via SSL",
+            "member": "5",
+            "index": 5,
+            "size": 8
+          },
+          "order": 88
+        },
+        {
+          "name": "Input: Future ADAT AD 6",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 38",
+          "hardware": "MS16 Return 14",
+          "connection_2": "SSL ADAT 14",
+          "group": {
+            "name": "Future ADAT via SSL",
+            "member": "6",
+            "index": 6,
+            "size": 8
+          },
+          "order": 89
+        },
+        {
+          "name": "Input: Future ADAT AD 7",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 39",
+          "hardware": "MS16 Return 15",
+          "connection_2": "SSL ADAT 15",
+          "group": {
+            "name": "Future ADAT via SSL",
+            "member": "7",
+            "index": 7,
+            "size": 8
+          },
+          "order": 90
+        },
+        {
+          "name": "Input: Future ADAT AD 8",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "MADI",
+          "channel": "MADI 40",
+          "hardware": "MS16 Return 16",
+          "connection_2": "SSL ADAT 16",
+          "group": {
+            "name": "Future ADAT via SSL",
+            "member": "8",
+            "index": 8,
+            "size": 8
+          },
+          "order": 91
+        },
+        {
+          "name": "Input: HW FX RET 1",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX AN 5",
+          "hardware": "UAD Pedal 1L",
+          "connection_2": "",
+          "group": {
+            "name": "Hardware FX Returns",
+            "member": "1",
+            "index": 1,
+            "size": 4
+          },
+          "order": 92
+        },
+        {
+          "name": "Input: HW FX RET 2",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX AN 6",
+          "hardware": "UAD Pedal 1R",
+          "connection_2": "",
+          "group": {
+            "name": "Hardware FX Returns",
+            "member": "2",
+            "index": 2,
+            "size": 4
+          },
+          "order": 93
+        },
+        {
+          "name": "Input: HW FX RET 3",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX AN 7",
+          "hardware": "UAD Pedal 2L",
+          "connection_2": "",
+          "group": {
+            "name": "Hardware FX Returns",
+            "member": "3",
+            "index": 3,
+            "size": 4
+          },
+          "order": 94
+        },
+        {
+          "name": "Input: HW FX RET 4",
+          "direction": "in",
+          "routing_roles": [
+            "source"
+          ],
+          "transport": "ANALOG",
+          "channel": "UFX AN 8",
+          "hardware": "UAD Pedal 2R",
+          "connection_2": "",
+          "group": {
+            "name": "Hardware FX Returns",
+            "member": "4",
+            "index": 4,
+            "size": 4
+          },
+          "order": 95
+        },
+        {
+          "name": "Record: Mic 1",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 15",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "15",
+            "index": 1,
+            "size": 16
+          },
+          "order": 96
+        },
+        {
+          "name": "Record: Mic 2",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 16",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "16",
+            "index": 2,
+            "size": 16
+          },
+          "order": 97
+        },
+        {
+          "name": "Record: Mic 3",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 17",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "17",
+            "index": 3,
+            "size": 16
+          },
+          "order": 98
+        },
+        {
+          "name": "Record: Mic 4",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 18",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "18",
+            "index": 4,
+            "size": 16
+          },
+          "order": 99
+        },
+        {
+          "name": "Record: Mic 5",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 19",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "19",
+            "index": 5,
+            "size": 16
+          },
+          "order": 100
+        },
+        {
+          "name": "Record: Mic 6",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 20",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "20",
+            "index": 6,
+            "size": 16
+          },
+          "order": 101
+        },
+        {
+          "name": "Record: Mic 7",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 21",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "21",
+            "index": 7,
+            "size": 16
+          },
+          "order": 102
+        },
+        {
+          "name": "Record: Mic 8",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 22",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "22",
+            "index": 8,
+            "size": 16
+          },
+          "order": 103
+        },
+        {
+          "name": "Record: Mic 9",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 9",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "9",
+            "index": 9,
+            "size": 16
+          },
+          "order": 104
+        },
+        {
+          "name": "Record: Mic 10",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 10",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "10",
+            "index": 10,
+            "size": 16
+          },
+          "order": 105
+        },
+        {
+          "name": "Record: Mic 11",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 11",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "11",
+            "index": 11,
+            "size": 16
+          },
+          "order": 106
+        },
+        {
+          "name": "Record: Mic 12",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 12",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "12",
+            "index": 12,
+            "size": 16
+          },
+          "order": 107
+        },
+        {
+          "name": "Record: Mic 13",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 1",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "1",
+            "index": 13,
+            "size": 16
+          },
+          "order": 108
+        },
+        {
+          "name": "Record: Mic 14",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 2",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "2",
+            "index": 14,
+            "size": 16
+          },
+          "order": 109
+        },
+        {
+          "name": "Record: Mic 15",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 3",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "3",
+            "index": 15,
+            "size": 16
+          },
+          "order": 110
+        },
+        {
+          "name": "Record: Mic 16",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 4",
+          "group": {
+            "name": "USB Record - Mic",
+            "member": "4",
+            "index": 16,
+            "size": 16
+          },
+          "order": 111
+        },
+        {
+          "name": "Record: Line 1",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 31",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "31",
+            "index": 1,
+            "size": 40
+          },
+          "order": 112
+        },
+        {
+          "name": "Record: Line 2",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 32",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "32",
+            "index": 2,
+            "size": 40
+          },
+          "order": 113
+        },
+        {
+          "name": "Record: Line 3",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 33",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "33",
+            "index": 3,
+            "size": 40
+          },
+          "order": 114
+        },
+        {
+          "name": "Record: Line 4",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 34",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "34",
+            "index": 4,
+            "size": 40
+          },
+          "order": 115
+        },
+        {
+          "name": "Record: Line 5",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 35",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "35",
+            "index": 5,
+            "size": 40
+          },
+          "order": 116
+        },
+        {
+          "name": "Record: Line 6",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 36",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "36",
+            "index": 6,
+            "size": 40
+          },
+          "order": 117
+        },
+        {
+          "name": "Record: Line 7",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 37",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "37",
+            "index": 7,
+            "size": 40
+          },
+          "order": 118
+        },
+        {
+          "name": "Record: Line 8",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 38",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "38",
+            "index": 8,
+            "size": 40
+          },
+          "order": 119
+        },
+        {
+          "name": "Record: Line 9",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 39",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "39",
+            "index": 9,
+            "size": 40
+          },
+          "order": 120
+        },
+        {
+          "name": "Record: Line 10",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 40",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "40",
+            "index": 10,
+            "size": 40
+          },
+          "order": 121
+        },
+        {
+          "name": "Record: Line 11",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 41",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "41",
+            "index": 11,
+            "size": 40
+          },
+          "order": 122
+        },
+        {
+          "name": "Record: Line 12",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 42",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "42",
+            "index": 12,
+            "size": 40
+          },
+          "order": 123
+        },
+        {
+          "name": "Record: Line 13",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 43",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "43",
+            "index": 13,
+            "size": 40
+          },
+          "order": 124
+        },
+        {
+          "name": "Record: Line 14",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 44",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "44",
+            "index": 14,
+            "size": 40
+          },
+          "order": 125
+        },
+        {
+          "name": "Record: Line 15",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 45",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "45",
+            "index": 15,
+            "size": 40
+          },
+          "order": 126
+        },
+        {
+          "name": "Record: Line 16",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 46",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "46",
+            "index": 16,
+            "size": 40
+          },
+          "order": 127
+        },
+        {
+          "name": "Record: Line 17",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 47",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "47",
+            "index": 17,
+            "size": 40
+          },
+          "order": 128
+        },
+        {
+          "name": "Record: Line 18",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 48",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "48",
+            "index": 18,
+            "size": 40
+          },
+          "order": 129
+        },
+        {
+          "name": "Record: Line 19",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 49",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "49",
+            "index": 19,
+            "size": 40
+          },
+          "order": 130
+        },
+        {
+          "name": "Record: Line 20",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 50",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "50",
+            "index": 20,
+            "size": 40
+          },
+          "order": 131
+        },
+        {
+          "name": "Record: Line 21",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 51",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "51",
+            "index": 21,
+            "size": 40
+          },
+          "order": 132
+        },
+        {
+          "name": "Record: Line 22",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 52",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "52",
+            "index": 22,
+            "size": 40
+          },
+          "order": 133
+        },
+        {
+          "name": "Record: Line 23",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 53",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "53",
+            "index": 23,
+            "size": 40
+          },
+          "order": 134
+        },
+        {
+          "name": "Record: Line 24",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 54",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "54",
+            "index": 24,
+            "size": 40
+          },
+          "order": 135
+        },
+        {
+          "name": "Record: Line 25",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 55",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "55",
+            "index": 25,
+            "size": 40
+          },
+          "order": 136
+        },
+        {
+          "name": "Record: Line 26",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 56",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "56",
+            "index": 26,
+            "size": 40
+          },
+          "order": 137
+        },
+        {
+          "name": "Record: Line 27",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 57",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "57",
+            "index": 27,
+            "size": 40
+          },
+          "order": 138
+        },
+        {
+          "name": "Record: Line 28",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 58",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "58",
+            "index": 28,
+            "size": 40
+          },
+          "order": 139
+        },
+        {
+          "name": "Record: Line 29",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 59",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "59",
+            "index": 29,
+            "size": 40
+          },
+          "order": 140
+        },
+        {
+          "name": "Record: Line 30",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 60",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "60",
+            "index": 30,
+            "size": 40
+          },
+          "order": 141
+        },
+        {
+          "name": "Record: Line 31",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 61",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "61",
+            "index": 31,
+            "size": 40
+          },
+          "order": 142
+        },
+        {
+          "name": "Record: Line 32",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 62",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "62",
+            "index": 32,
+            "size": 40
+          },
+          "order": 143
+        },
+        {
+          "name": "Record: Line 33",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 63",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "63",
+            "index": 33,
+            "size": 40
+          },
+          "order": 144
+        },
+        {
+          "name": "Record: Line 34",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 64",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "64",
+            "index": 34,
+            "size": 40
+          },
+          "order": 145
+        },
+        {
+          "name": "Record: Line 35",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 65",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "65",
+            "index": 35,
+            "size": 40
+          },
+          "order": 146
+        },
+        {
+          "name": "Record: Line 36",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 66",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "66",
+            "index": 36,
+            "size": 40
+          },
+          "order": 147
+        },
+        {
+          "name": "Record: Line 37",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 67",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "67",
+            "index": 37,
+            "size": 40
+          },
+          "order": 148
+        },
+        {
+          "name": "Record: Line 38",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 68",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "68",
+            "index": 38,
+            "size": 40
+          },
+          "order": 149
+        },
+        {
+          "name": "Record: Line 39",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 69",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "69",
+            "index": 39,
+            "size": 40
+          },
+          "order": 150
+        },
+        {
+          "name": "Record: Line 40",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 70",
+          "group": {
+            "name": "USB Record - Line",
+            "member": "70",
+            "index": 40,
+            "size": 40
+          },
+          "order": 151
+        },
+        {
+          "name": "Record: FX Ret 1",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 5",
+          "group": {
+            "name": "USB Record - FX Return",
+            "member": "5",
+            "index": 1,
+            "size": 4
+          },
+          "order": 152
+        },
+        {
+          "name": "Record: FX Ret 2",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 6",
+          "group": {
+            "name": "USB Record - FX Return",
+            "member": "6",
+            "index": 2,
+            "size": 4
+          },
+          "order": 153
+        },
+        {
+          "name": "Record: FX Ret 3",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 7",
+          "group": {
+            "name": "USB Record - FX Return",
+            "member": "7",
+            "index": 3,
+            "size": 4
+          },
+          "order": 154
+        },
+        {
+          "name": "Record: FX Ret 4",
+          "direction": "out",
+          "routing_roles": [
+            "destination"
+          ],
+          "transport": "USB",
+          "channel": "USB 8",
+          "group": {
+            "name": "USB Record - FX Return",
+            "member": "8",
+            "index": 4,
+            "size": 4
+          },
+          "order": 155
         }
       ],
       "ports": [
@@ -5403,6 +7997,18 @@
           "order": 14
         },
         {
+          "name": "ADAT 1 In (Optical)",
+          "direction": "in",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "ADAT",
+          "group": {
+            "name": "ADAT 1 In"
+          },
+          "order": 15
+        },
+        {
           "name": "AES In",
           "direction": "in",
           "families": [
@@ -5412,7 +8018,7 @@
           "group": {
             "name": "AES In"
           },
-          "order": 15
+          "order": 16
         },
         {
           "name": "Word Clock In",
@@ -5424,7 +8030,7 @@
           "group": {
             "name": "Word Clock In"
           },
-          "order": 16
+          "order": 17
         },
         {
           "name": "AC In",
@@ -5433,28 +8039,16 @@
             "POWER"
           ],
           "transport": "IEC C14",
-          "order": 17,
+          "order": 18,
           "notes": "100–240 V AC internal switching supply, 36 W."
         },
         {
-          "name": "OPT 1 (S/PDIF)",
+          "name": "OPT 2 (SPDIF)",
           "direction": "io",
           "families": [
             "DIGI"
           ],
-          "transport": "SPDIF",
-          "group": {
-            "name": "OPT 1 (S/PDIF)"
-          },
-          "order": 18
-        },
-        {
-          "name": "OPT 2 (ADAT)",
-          "direction": "io",
-          "families": [
-            "DIGI"
-          ],
-          "transport": "ADAT",
+          "transport": "S/PDIF",
           "group": {
             "name": "OPT 2 (ADAT)"
           },
@@ -5631,6 +8225,19 @@
           "order": 31
         },
         {
+          "name": "ADAT 1 Out (Optical, S/PDIF)",
+          "direction": "out",
+          "families": [
+            "DIGI"
+          ],
+          "transport": "S/PDIF",
+          "group": {
+            "name": "ADAT 1 Out"
+          },
+          "order": 32,
+          "notes": "Optical output configured for stereo S/PDIF to the TC Electronic Clarity M Stereo."
+        },
+        {
           "name": "AES Out",
           "direction": "out",
           "families": [
@@ -5640,7 +8247,7 @@
           "group": {
             "name": "AES Out"
           },
-          "order": 32
+          "order": 33
         },
         {
           "name": "MADI Out Optical",
@@ -5652,7 +8259,7 @@
           "group": {
             "name": "MADI Out Optical"
           },
-          "order": 33
+          "order": 34
         },
         {
           "name": "MADI Out Coax",
@@ -5664,7 +8271,7 @@
           "group": {
             "name": "MADI Out Coax"
           },
-          "order": 34
+          "order": 35
         },
         {
           "name": "MIDI Out",
@@ -5676,7 +8283,7 @@
           "group": {
             "name": "MIDI Out"
           },
-          "order": 35
+          "order": 36
         },
         {
           "name": "Word Clock Out",
@@ -5688,10 +8295,18 @@
           "group": {
             "name": "Word Clock Out"
           },
-          "order": 36
+          "order": 37
         }
       ],
-      "matrix_order": 12
+      "matrix_order": 12,
+      "visible": true,
+      "hidden": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "SSL AX MADI",
@@ -6709,6 +9324,14 @@
       "rack_position": {
         "rack": 1,
         "start_u": 7
+      },
+      "visible": true,
+      "hidden": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -6730,7 +9353,15 @@
           "order": 0
         }
       ],
-      "matrix_order": 14
+      "matrix_order": 14,
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "Streamdeck #2",
@@ -6751,7 +9382,15 @@
           "order": 0
         }
       ],
-      "matrix_order": 15
+      "matrix_order": 15,
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "Talkback Mic",
@@ -6772,7 +9411,15 @@
           "order": 0
         }
       ],
-      "matrix_order": 16
+      "matrix_order": 16,
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "Tannoy System 10",
@@ -6811,7 +9458,15 @@
           "order": 1
         }
       ],
-      "matrix_order": 17
+      "matrix_order": 17,
+      "visible": true,
+      "hidden": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "Tascam MS-16",
@@ -7310,12 +9965,20 @@
           "order": 32
         }
       ],
-      "matrix_order": 18
+      "matrix_order": 18,
+      "visible": true,
+      "hidden": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "TC Electronic Clarity M Stereo",
-      "device_type": "Outboard / FX",
-      "layout_group": "Digital Core",
+      "device_type": "Speaker / Monitor",
+      "layout_group": "Monitoring",
       "rack_mountable": false,
       "ports": [
         {
@@ -7353,7 +10016,15 @@
           "order": 2
         }
       ],
-      "matrix_order": 19
+      "matrix_order": 19,
+      "visible": true,
+      "hidden": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "Thunderbolt Dock",
@@ -7456,7 +10127,15 @@
           "order": 6
         }
       ],
-      "matrix_order": 20
+      "matrix_order": 20,
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "TV Screen",
@@ -7487,7 +10166,15 @@
           "notes": "Screen model is unspecified; verify IEC C8/C14 or external adapter before cabling."
         }
       ],
-      "matrix_order": 21
+      "matrix_order": 21,
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
     },
     {
       "name": "Power Switcher",
@@ -7496,6 +10183,12 @@
       "rack_mountable": true,
       "location": "Rack",
       "rack_units": 1,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      },
       "ports": [
         {
           "name": "AC In",
@@ -7602,7 +10295,9 @@
       "rack_position": {
         "rack": 1,
         "start_u": 15
-      }
+      },
+      "visible": false,
+      "hidden": true
     },
     {
       "name": "Power Strip Rack 1 DIG",
@@ -7611,6 +10306,12 @@
       "rack_mountable": true,
       "location": "Rack",
       "rack_units": 1,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      },
       "ports": [
         {
           "name": "AC In",
@@ -7747,7 +10448,9 @@
       "rack_position": {
         "rack": 1,
         "start_u": 14
-      }
+      },
+      "visible": false,
+      "hidden": true
     },
     {
       "name": "Power Strip Rack 2 AN",
@@ -7756,6 +10459,12 @@
       "rack_mountable": true,
       "location": "Rack",
       "rack_units": 1,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      },
       "ports": [
         {
           "name": "AC In",
@@ -7892,7 +10601,9 @@
       "rack_position": {
         "rack": 2,
         "start_u": 16
-      }
+      },
+      "visible": false,
+      "hidden": true
     },
     {
       "name": "Power Strip Rack 3 AN",
@@ -7901,6 +10612,12 @@
       "rack_mountable": true,
       "location": "Rack",
       "rack_units": 1,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      },
       "ports": [
         {
           "name": "AC In",
@@ -8037,7 +10754,9 @@
       "rack_position": {
         "rack": 3,
         "start_u": 16
-      }
+      },
+      "visible": false,
+      "hidden": true
     },
     {
       "name": "TC Electronic Finalizer 48K",
@@ -8218,6 +10937,14 @@
       "rack_position": {
         "rack": 2,
         "start_u": 14
+      },
+      "visible": true,
+      "hidden": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -8399,6 +11126,14 @@
       "rack_position": {
         "rack": 2,
         "start_u": 13
+      },
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -8413,6 +11148,14 @@
       "rack_position": {
         "rack": 1,
         "start_u": 12
+      },
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -8427,6 +11170,14 @@
       "rack_position": {
         "rack": 1,
         "start_u": 11
+      },
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -8441,6 +11192,14 @@
       "rack_position": {
         "rack": 1,
         "start_u": 10
+      },
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -8455,6 +11214,14 @@
       "rack_position": {
         "rack": 1,
         "start_u": 9
+      },
+      "visible": false,
+      "hidden": true,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -8464,6 +11231,12 @@
       "rack_mountable": true,
       "location": "Rack",
       "rack_units": 1,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      },
       "ports": [
         {
           "name": "AC In",
@@ -8600,7 +11373,9 @@
       "rack_position": {
         "rack": 1,
         "start_u": 16
-      }
+      },
+      "visible": false,
+      "hidden": true
     },
     {
       "name": "Lucid 88192",
@@ -9069,6 +11844,114 @@
       "rack_position": {
         "rack": 1,
         "start_u": 5
+      },
+      "visible": true,
+      "hidden": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
+    },
+    {
+      "name": "Backline",
+      "device_type": "Power Load",
+      "layout_group": "Studio Power",
+      "rack_mountable": false,
+      "ports": [
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 0,
+          "notes": "Logical aggregate for the backline power outlets; intermediate power strips are intentionally omitted."
+        }
+      ],
+      "matrix_order": 34,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
+    },
+    {
+      "name": "Lights",
+      "device_type": "Power Load",
+      "layout_group": "Studio Power",
+      "rack_mountable": false,
+      "ports": [
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 0,
+          "notes": "Logical aggregate for studio lighting on Group 2."
+        }
+      ],
+      "matrix_order": 35,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
+    },
+    {
+      "name": "Wifi",
+      "device_type": "Network / Power Load",
+      "layout_group": "Studio Power",
+      "rack_mountable": false,
+      "ports": [
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 0,
+          "notes": "Logical Wifi power load on Group 2."
+        }
+      ],
+      "matrix_order": 36,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      }
+    },
+    {
+      "name": "Heating",
+      "device_type": "Power Load",
+      "layout_group": "Studio Power",
+      "rack_mountable": false,
+      "ports": [
+        {
+          "name": "AC In",
+          "direction": "in",
+          "families": [
+            "POWER"
+          ],
+          "transport": "SCHUKO",
+          "order": 0,
+          "notes": "Logical aggregate for heating on Group 3."
+        }
+      ],
+      "matrix_order": 37,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
       }
     },
     {
@@ -9076,6 +11959,12 @@
       "device_type": "Power Source",
       "layout_group": "Power Infrastructure",
       "rack_mountable": false,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      },
       "ports": [
         {
           "name": "Groep 1",
@@ -9123,7 +12012,9 @@
           }
         }
       ],
-      "matrix_order": 34
+      "matrix_order": 38,
+      "visible": false,
+      "hidden": true
     },
     {
       "name": "Allen & Heath RPS11",
@@ -9132,6 +12023,12 @@
       "rack_mountable": true,
       "location": "Rack",
       "rack_units": 3,
+      "visibility": {
+        "wiring_matrix": true,
+        "routing_matrix": true,
+        "connection_overview": true,
+        "visuals": true
+      },
       "ports": [
         {
           "name": "AC In",
@@ -9154,16 +12051,18 @@
           "notes": "Dedicated GS3000 DC cable; do not extend."
         }
       ],
-      "matrix_order": 35,
+      "matrix_order": 39,
       "rack_position": {
         "rack": 2,
         "start_u": 1
-      }
+      },
+      "visible": false,
+      "hidden": true
     }
   ],
   "ui_config": {
     "version": 1,
-    "updated_at": "2026-08-13T16:01:38.849Z",
+    "updated_at": "2026-08-22T03:10:15.706Z",
     "theme": {
       "mode": "dark",
       "explicit": true
@@ -9175,32 +12074,15 @@
       "allow_double_patching": false,
       "sub_tab": "connections",
       "collapsed_source_groups": [
-        "AUDIO::source::Allen & Heath GS3000::aux out",
-        "AUDIO::source::Allen & Heath GS3000::direct out",
-        "AUDIO::source::Allen & Heath GS3000::group out",
-        "AUDIO::source::Allen & Heath GS3000::insert send",
-        "AUDIO::source::Allen & Heath GS3000::monitor out",
-        "AUDIO::source::Allen & Heath GS3000::tape out",
-        "AUDIO::source::Allen & Heath GS3000::tube out",
         "AUDIO::source::RME UFX III::headphone out",
-        "AUDIO::source::RME UFX III::line out",
-        "AUDIO::source::Sony DPS-R7 Reverb::balanced out",
-        "AUDIO::source::Sony DPS-R7 Reverb::unbalanced out"
+        "AUDIO::source::RME UFX III::line out"
       ],
       "collapsed_dest_groups": [
-        "AUDIO::dest::Allen & Heath GS3000::insert return",
-        "AUDIO::dest::Allen & Heath GS3000::line in",
-        "AUDIO::dest::Allen & Heath GS3000::mic in",
-        "AUDIO::dest::Allen & Heath GS3000::monitor in",
-        "AUDIO::dest::Allen & Heath GS3000::st aux in",
-        "AUDIO::dest::Allen & Heath GS3000::tape in",
         "AUDIO::dest::Audient ASP 880::adc in",
         "AUDIO::dest::Audient ASP 880::instrument in",
         "AUDIO::dest::Audient ASP 880::mic/line in",
         "AUDIO::dest::IMG STAGELINE PPA-100/SW::ha in",
-        "AUDIO::dest::RME UFX III::line in",
-        "AUDIO::dest::Sony DPS-R7 Reverb::balanced in",
-        "AUDIO::dest::Sony DPS-R7 Reverb::unbalanced in"
+        "AUDIO::dest::RME UFX III::line in"
       ],
       "collapsed_source_devices": [],
       "collapsed_dest_devices": [],
@@ -9216,7 +12098,7 @@
       }
     },
     "editor": {
-      "selected_device_name": "Power Strip Rack 3 AN",
+      "selected_device_name": "Allen & Heath GS3000",
       "selected_port_tab": "out"
     },
     "visibility": {
@@ -9256,6 +12138,10 @@
         "Switchcraft D",
         "Black Lion Audio PG-1 Type F MKII",
         "Lucid 88192",
+        "Backline",
+        "Lights",
+        "Wifi",
+        "Heating",
         "Meterkast",
         "Allen & Heath RPS11"
       ]

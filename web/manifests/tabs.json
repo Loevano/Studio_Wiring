@@ -30,7 +30,7 @@
     {
       "key": "visibility",
       "label": "Visibility",
-      "src": "../../routing_matrix.html?embedded=1&tab=visibility"
+      "src": "../visibility/index.html"
     },
     {
       "key": "visuals",

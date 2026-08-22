@@ -25,7 +25,7 @@ The Wiring Matrix tab points directly to the canonical physical matrix. Routing 
 - `../../routing_matrix.html?embedded=1&tab=visibility`
 - `../../routing_matrix.html?embedded=1&tab=visuals`
 
-Each matrix path contains one iframe: shell to its respective matrix app. The generated app is not an intermediary for either matrix tab.
+The shell creates one iframe per distinct tab app and keeps loaded frames mounted while they are inactive. Returning to Wiring Matrix therefore restores the same live editor state, including unsaved edits, undo history, filters, collapsed folders, and scroll position. Tabs backed by `routing_matrix.html` share one cached frame and continue to switch panels through shell messages. The generated app is not an intermediary for either matrix tab.
 
 ## How Version Swaps Work
 

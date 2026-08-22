@@ -1,6 +1,6 @@
 # Studio Wiring Data Flow
 
-Last updated: 2026-08-12
+Last updated: 2026-08-22
 
 This is the canonical data-flow reference for:
 - `generate_point_to_point.py` (generator)
@@ -34,6 +34,7 @@ This is the canonical data-flow reference for:
   - Watches active config files (`model`, `connections`, `routing_rules`) and auto-regenerates visuals on file change.
   - Supports project APIs (`/api/projects`, `/api/create-project`, `/api/save-project`).
   - Provides separate logical-route APIs (`GET /api/routing` and `POST /api/save-routing`).
+  - Packages current project SVGs through `GET /api/svg-archive` for browser-independent ZIP downloads.
   - Keeps the older per-file save and mutable-target endpoints for compatibility only.
 - `routing_matrix.html`
   - Generated device editor, overview, visibility, and visual-preview application.
@@ -97,6 +98,7 @@ This is the canonical data-flow reference for:
 6. Configuration creation and Save As use the same transactional path after the user confirms the exact target and any overwrite.
 7. Server watcher baselines are refreshed after a successful transaction so the same request does not cause a second regeneration.
 8. If files are edited outside the UI, the watcher detects the change and regenerates visuals automatically.
+9. An SVG-folder download saves and regenerates first, then downloads one dated ZIP containing a dated folder and date-stamped SVG filenames.
 
 ### A1) Logical Routing Matrix runtime
 1. The shell places Routing Matrix immediately after Wiring Matrix and loads `web/routing-matrix/index.html`.

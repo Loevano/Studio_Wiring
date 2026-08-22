@@ -91,7 +91,11 @@ class ShellTabManifestContractTests(unittest.TestCase):
         self.assertTrue(audio_routing_url.path.endswith("/routing-matrix/index.html"))
 
     def test_each_sibling_tab_selects_one_unique_embedded_panel(self) -> None:
-        sibling_keys = [key for key in self.by_key if key not in {"routing", "audio-routing"}]
+        sibling_keys = [
+            key
+            for key in self.by_key
+            if key not in {"routing", "audio-routing", "visibility"}
+        ]
         selected_panels: list[str] = []
         for key in sibling_keys:
             source = urlsplit(str(self.by_key[key]["src"]))
@@ -103,6 +107,10 @@ class ShellTabManifestContractTests(unittest.TestCase):
             selected_panels.append(query["tab"][0])
         self.assertEqual(len(selected_panels), len(set(selected_panels)))
 
+        visibility_url = urlsplit(str(self.by_key["visibility"]["src"]))
+        self.assertTrue(visibility_url.path.endswith("/visibility/index.html"))
+        self.assertEqual(visibility_url.query, "")
+
 
 class ShellFrameRoutingContractTests(unittest.TestCase):
     @classmethod
@@ -110,7 +118,7 @@ class ShellFrameRoutingContractTests(unittest.TestCase):
         cls.shell_html = _read(SHELL_HTML_PATH)
         cls.shell_js = _read(SHELL_JS_PATH)
 
-    def test_shell_has_one_frame_and_embedded_apps_have_none(self) -> None:
+    def test_shell_starts_with_one_frame_and_embedded_apps_have_none(self) -> None:
         self.assertEqual(len(re.findall(r"<iframe\b", self.shell_html, re.IGNORECASE)), 1)
         self.assertNotRegex(_read(GENERATED_APP_PATH), re.compile(r"<iframe\b", re.IGNORECASE))
         self.assertNotRegex(_read(CANONICAL_MATRIX_PATH), re.compile(r"<iframe\b", re.IGNORECASE))
@@ -170,7 +178,20 @@ class ShellFrameRoutingContractTests(unittest.TestCase):
             re.DOTALL,
         )
         self.assertIsNotNone(frame_load)
-        self.assertIn("postAutoSaveToFrame(autoSaveEnabled)", frame_load.group("body"))
+        self.assertIn("handleTabFrameLoad(tabFrame)", frame_load.group("body"))
+        frame_load_handler = _function_body(self.shell_js, "handleTabFrameLoad")
+        self.assertIn("postAutoSaveToFrame(autoSaveEnabled)", frame_load_handler)
+
+    def test_tab_apps_are_cached_so_wiring_matrix_state_survives_tab_switches(self) -> None:
+        self.assertIn("const tabFramesByApp = new Map()", self.shell_js)
+        frame_for_source = _function_body(self.shell_js, "frameForSource")
+        self.assertIn("tabFramesByApp.get(key)", frame_for_source)
+        self.assertIn("tabFramesByApp.set(key, frame)", frame_for_source)
+        activate_frame = _function_body(self.shell_js, "activateTabFrame")
+        self.assertIn("cachedFrame.hidden = cachedFrame !== frame", activate_frame)
+        load_tab = _function_body(self.shell_js, "loadTab")
+        self.assertIn("const tabFrame = frameForSource(src)", load_tab)
+        self.assertIn("activateTabFrame(tabFrame)", load_tab)
 
     def test_shell_flushes_autosave_before_switching_tabs(self) -> None:
         request_flush = _function_body(self.shell_js, "requestAutoSaveFlushFromFrame")
