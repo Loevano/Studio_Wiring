@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2496" height="1398" viewBox="0 0 2496 1398">
+<svg xmlns="http://www.w3.org/2000/svg" width="2984" height="1362" viewBox="0 0 2984 1362">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
@@ -6,601 +6,526 @@
   </defs>
   <rect x="0" y="0" width="100%" height="100%" fill="#f8fafc"/>
   <text x="160.0" y="34" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#0f172a">Studio Sidecar | All Audio | 2026-08-22</text>
-  <text x="160.0" y="54" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Devices: 11 | Cables: 20 | Ports shown: 100/100 wired</text>
-  <rect x="150.0" y="218.0" width="290.0" height="240.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <rect x="150.0" y="510.0" width="290.0" height="586.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <rect x="760.0" y="218.0" width="357.8" height="212.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <rect x="760.0" y="482.0" width="357.8" height="608.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <rect x="1437.8" y="218.0" width="290.0" height="422.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <rect x="2047.8" y="218.0" width="299.0" height="966.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
-  <path d="M 1107.8 405.0 H 1189.8 V 466.0 H 58.0 V 433.0 H 160.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1107.8 405.0 H 1189.8 V 466.0 H 58.0 V 433.0 H 160.0" fill="none" stroke="#14b8a6" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-004: RME UFX III [Word Clock Out] -&gt; Audient ASP 880 [Word Clock In]</title></path>
-  <path d="M 1107.8 383.0 H 1202.0 V 1100.0 H 662.0 V 1065.0 H 770.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1107.8 383.0 H 1202.0 V 1100.0 H 662.0 V 1065.0 H 770.0" fill="none" stroke="#2563eb" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>DIGI-003↔005: RME UFX III [MADI Out Optical] -&gt; SSL AX MADI [MADI In Optical]</title></path>
-  <path d="M 444.0 306.0 H 756.0" fill="none" stroke="#f8fafc" stroke-width="4.70" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 444.0 306.0 H 756.0" fill="none" stroke="#dc2626" stroke-width="2.3" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round"><title>AUDIO-029-032: MAO Preamp (confirm model) [Line Out 1+Line Out 2+Line Out 3+Line Out 4] -&gt; RME UFX III [Line In 1+Line In 2+Line In 3+Line In 4]</title></path>
-  <line class="multichannel-source-collector" x1="444.0" y1="273.0" x2="444.0" y2="339.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="2 2"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="273.0" x2="444.0" y2="273.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="295.0" x2="444.0" y2="295.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="317.0" x2="444.0" y2="317.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="339.0" x2="444.0" y2="339.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-destination-collector" x1="756.0" y1="273.0" x2="756.0" y2="339.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="2 2"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="273.0" x2="770.0" y2="273.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="295.0" x2="770.0" y2="295.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="317.0" x2="770.0" y2="317.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="339.0" x2="770.0" y2="339.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <path d="M 430.0 433.0 H 607.0 V 361.0 H 770.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 430.0 433.0 H 607.0 V 361.0 H 770.0" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-001: Audient ASP 880 [ADAT Out 1-8] -&gt; RME UFX III [ADAT 1 In (Optical)]</title></path>
-  <path d="M 444.0 818.0 H 623.2 V 790.0 H 756.0" fill="none" stroke="#f8fafc" stroke-width="4.70" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 444.0 818.0 H 623.2 V 790.0 H 756.0" fill="none" stroke="#dc2626" stroke-width="2.3" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round"><title>AUDIO-001-024: Allen &amp; Heath GS3000 [Tape Out 1+Tape Out 2+Tape Out 3+Tape Out 4+Tape Out 5+Tape Out 6+Tape Out 7+Tape Out 8+Tape Out 9+Tape Out 10+Tape Out 11+Tape Out 12+Tape Out 13+Tape Out 14+Tape Out 15+Tape Out 16+Tape Out 17+Tape Out 18+Tape Out 19+Tape Out 20+Tape Out 21+Tape Out 22+Tape Out 23+Tape Out 24] -&gt; SSL AX MADI [Line In 1+Line In 2+Line In 3+Line In 4+Line In 5+Line In 6+Line In 7+Line In 8+Line In 9+Line In 10+Line In 11+Line In 12+Line In 13+Line In 14+Line In 15+Line In 16+Line In 17+Line In 18+Line In 19+Line In 20+Line In 21+Line In 22+Line In 23+Line In 24]</title></path>
-  <line class="multichannel-source-collector" x1="444.0" y1="565.0" x2="444.0" y2="1071.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="2 2"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="565.0" x2="444.0" y2="565.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="587.0" x2="444.0" y2="587.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="609.0" x2="444.0" y2="609.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="631.0" x2="444.0" y2="631.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="653.0" x2="444.0" y2="653.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="675.0" x2="444.0" y2="675.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="697.0" x2="444.0" y2="697.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="719.0" x2="444.0" y2="719.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="741.0" x2="444.0" y2="741.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="763.0" x2="444.0" y2="763.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="785.0" x2="444.0" y2="785.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="807.0" x2="444.0" y2="807.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="829.0" x2="444.0" y2="829.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="851.0" x2="444.0" y2="851.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="873.0" x2="444.0" y2="873.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="895.0" x2="444.0" y2="895.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="917.0" x2="444.0" y2="917.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="939.0" x2="444.0" y2="939.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="961.0" x2="444.0" y2="961.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="983.0" x2="444.0" y2="983.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="1005.0" x2="444.0" y2="1005.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="1027.0" x2="444.0" y2="1027.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="1049.0" x2="444.0" y2="1049.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-source-branch" x1="430.0" y1="1071.0" x2="444.0" y2="1071.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
-  <line class="multichannel-destination-collector" x1="756.0" y1="537.0" x2="756.0" y2="1043.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="2 2"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="537.0" x2="770.0" y2="537.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="559.0" x2="770.0" y2="559.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="581.0" x2="770.0" y2="581.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="603.0" x2="770.0" y2="603.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="625.0" x2="770.0" y2="625.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="647.0" x2="770.0" y2="647.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="669.0" x2="770.0" y2="669.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="691.0" x2="770.0" y2="691.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="713.0" x2="770.0" y2="713.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="735.0" x2="770.0" y2="735.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="757.0" x2="770.0" y2="757.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="779.0" x2="770.0" y2="779.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="801.0" x2="770.0" y2="801.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="823.0" x2="770.0" y2="823.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="845.0" x2="770.0" y2="845.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="867.0" x2="770.0" y2="867.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="889.0" x2="770.0" y2="889.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="911.0" x2="770.0" y2="911.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="933.0" x2="770.0" y2="933.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="955.0" x2="770.0" y2="955.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="977.0" x2="770.0" y2="977.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="999.0" x2="770.0" y2="999.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="1021.0" x2="770.0" y2="1021.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <line class="multichannel-destination-branch" x1="756.0" y1="1043.0" x2="770.0" y2="1043.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
-  <path d="M 1107.8 273.0 H 1447.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1107.8 273.0 H 1447.8" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-033: RME UFX III [Line Out 1 (XLR)] -&gt; Behringer A800 #1 [Input L]</title></path>
-  <path d="M 1107.8 295.0 H 1447.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1107.8 295.0 H 1447.8" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-034: RME UFX III [Line Out 2 (XLR)] -&gt; Behringer A800 #1 [Input R]</title></path>
-  <path d="M 1107.8 317.0 H 1262.3 V 389.0 H 1447.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1107.8 317.0 H 1262.3 V 389.0 H 1447.8" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-035: RME UFX III [Line Out 3] -&gt; Behringer A800 #2 [Input L]</title></path>
-  <path d="M 1107.8 339.0 H 1231.4 V 411.0 H 1447.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1107.8 339.0 H 1231.4 V 411.0 H 1447.8" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-036: RME UFX III [Line Out 4] -&gt; Behringer A800 #2 [Input R]</title></path>
-  <path d="M 1121.8 812.0 H 1201.8 V 505.0 H 1447.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1121.8 812.0 H 1201.8 V 505.0 H 1447.8" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-037: SSL AX MADI [Line Out 13+Line Out 14] -&gt; IMG STAGELINE PPA-100/SW [HA In 1]</title></path>
-  <line class="stereo-source-collector" x1="1121.8" y1="801.0" x2="1121.8" y2="823.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-collector" x1="1121.8" y1="801.0" x2="1121.8" y2="823.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="801.0" x2="1121.8" y2="801.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="801.0" x2="1121.8" y2="801.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="823.0" x2="1121.8" y2="823.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="823.0" x2="1121.8" y2="823.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <circle class="stereo-source-merge" cx="1121.8" cy="812.0" r="2.8" fill="#dc2626" stroke="#f8fafc" stroke-width="1.1"/>
-  <path d="M 1121.8 856.0 H 1201.8 V 527.0 H 1447.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1121.8 856.0 H 1201.8 V 527.0 H 1447.8" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-039: SSL AX MADI [Line Out 15+Line Out 16] -&gt; IMG STAGELINE PPA-100/SW [HA In 2]</title></path>
-  <line class="stereo-source-collector" x1="1121.8" y1="845.0" x2="1121.8" y2="867.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-collector" x1="1121.8" y1="845.0" x2="1121.8" y2="867.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="845.0" x2="1121.8" y2="845.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="845.0" x2="1121.8" y2="845.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="867.0" x2="1121.8" y2="867.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="867.0" x2="1121.8" y2="867.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <circle class="stereo-source-merge" cx="1121.8" cy="856.0" r="2.8" fill="#dc2626" stroke="#f8fafc" stroke-width="1.1"/>
-  <path d="M 1121.8 900.0 H 1201.8 V 549.0 H 1447.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1121.8 900.0 H 1201.8 V 549.0 H 1447.8" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-041: SSL AX MADI [Line Out 17+Line Out 18] -&gt; IMG STAGELINE PPA-100/SW [HA In 3]</title></path>
-  <line class="stereo-source-collector" x1="1121.8" y1="889.0" x2="1121.8" y2="911.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-collector" x1="1121.8" y1="889.0" x2="1121.8" y2="911.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="889.0" x2="1121.8" y2="889.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="889.0" x2="1121.8" y2="889.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="911.0" x2="1121.8" y2="911.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="911.0" x2="1121.8" y2="911.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <circle class="stereo-source-merge" cx="1121.8" cy="900.0" r="2.8" fill="#dc2626" stroke="#f8fafc" stroke-width="1.1"/>
-  <path d="M 1121.8 944.0 H 1201.8 V 571.0 H 1447.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1121.8 944.0 H 1201.8 V 571.0 H 1447.8" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-043: SSL AX MADI [Line Out 19+Line Out 20] -&gt; IMG STAGELINE PPA-100/SW [HA In 4]</title></path>
-  <line class="stereo-source-collector" x1="1121.8" y1="933.0" x2="1121.8" y2="955.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-collector" x1="1121.8" y1="933.0" x2="1121.8" y2="955.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="933.0" x2="1121.8" y2="933.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="933.0" x2="1121.8" y2="933.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="955.0" x2="1121.8" y2="955.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="955.0" x2="1121.8" y2="955.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <circle class="stereo-source-merge" cx="1121.8" cy="944.0" r="2.8" fill="#dc2626" stroke="#f8fafc" stroke-width="1.1"/>
-  <path d="M 1121.8 988.0 H 1201.8 V 593.0 H 1447.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1121.8 988.0 H 1201.8 V 593.0 H 1447.8" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-045: SSL AX MADI [Line Out 21+Line Out 22] -&gt; IMG STAGELINE PPA-100/SW [HA In 5]</title></path>
-  <line class="stereo-source-collector" x1="1121.8" y1="977.0" x2="1121.8" y2="999.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-collector" x1="1121.8" y1="977.0" x2="1121.8" y2="999.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="977.0" x2="1121.8" y2="977.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="977.0" x2="1121.8" y2="977.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="999.0" x2="1121.8" y2="999.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="999.0" x2="1121.8" y2="999.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <circle class="stereo-source-merge" cx="1121.8" cy="988.0" r="2.8" fill="#dc2626" stroke="#f8fafc" stroke-width="1.1"/>
-  <path d="M 1121.8 1032.0 H 1201.8 V 615.0 H 1447.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1121.8 1032.0 H 1201.8 V 615.0 H 1447.8" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-047: SSL AX MADI [Line Out 23+Line Out 24] -&gt; IMG STAGELINE PPA-100/SW [HA In 6]</title></path>
-  <line class="stereo-source-collector" x1="1121.8" y1="1021.0" x2="1121.8" y2="1043.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-collector" x1="1121.8" y1="1021.0" x2="1121.8" y2="1043.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="1021.0" x2="1121.8" y2="1021.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="1021.0" x2="1121.8" y2="1021.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="1043.0" x2="1121.8" y2="1043.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
-  <line class="stereo-source-branch" x1="1107.8" y1="1043.0" x2="1121.8" y2="1043.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
-  <circle class="stereo-source-merge" cx="1121.8" cy="1032.0" r="2.8" fill="#dc2626" stroke="#f8fafc" stroke-width="1.1"/>
-  <path d="M 1717.8 273.0 H 2057.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1717.8 273.0 H 2057.8" fill="none" stroke="#f97316" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-025: Behringer A800 #1 [Speaker Out L] -&gt; Tannoy System 10 [Speaker Input L]</title></path>
-  <path d="M 1717.8 295.0 H 2057.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1717.8 295.0 H 2057.8" fill="none" stroke="#f97316" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-026: Behringer A800 #1 [Speaker Out R] -&gt; Tannoy System 10 [Speaker Input R]</title></path>
-  <path d="M 1717.8 389.0 H 2057.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1717.8 389.0 H 2057.8" fill="none" stroke="#f97316" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-027: Behringer A800 #2 [Speaker Out L] -&gt; ATC SCM 11 [Speaker Input L]</title></path>
-  <path d="M 1717.8 411.0 H 2057.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1717.8 411.0 H 2057.8" fill="none" stroke="#f97316" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-028: Behringer A800 #2 [Speaker Out R] -&gt; ATC SCM 11 [Speaker Input R]</title></path>
-  <path d="M 1107.8 361.0 H 1201.8 V 1159.0 H 2057.8" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
-  <path d="M 1107.8 361.0 H 1201.8 V 1159.0 H 2057.8" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-002: RME UFX III [ADAT 1 Out (Optical, S/PDIF)] -&gt; TC Electronic Clarity M Stereo [Optical In]</title></path>
-  <rect x="1108.0" y="387.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1148.8" y="397.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#14b8a6">DIGI-004 CLOCK</text>
-  <rect x="169.0" y="437.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="209.8" y="447.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#14b8a6">DIGI-004 CLOCK</text>
-  <rect x="1091.8" y="365.0" width="114.0" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1148.8" y="375.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#2563eb">DIGI-003↔005 MADIOPT</text>
-  <rect x="669.0" y="1069.0" width="114.0" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="726.0" y="1079.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#2563eb">DIGI-003↔005 MADIOPT</text>
-  <rect x="444.0" y="288.0" width="97.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="492.9" y="298.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-029-032 MC4</text>
-  <rect x="661.6" y="310.0" width="97.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="710.5" y="320.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-029-032 MC4</text>
-  <rect x="445.9" y="415.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="484.0" y="425.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 ADAT</text>
-  <rect x="674.5" y="365.0" width="76.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="712.6" y="375.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 ADAT</text>
-  <rect x="444.0" y="800.0" width="103.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="495.6" y="810.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-001-024 MC24</text>
-  <rect x="653.4" y="794.0" width="103.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="705.0" y="804.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-001-024 MC24</text>
-  <rect x="1121.8" y="255.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1162.6" y="265.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-033 MONO</text>
-  <rect x="1352.2" y="277.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1393.0" y="287.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-033 MONO</text>
-  <rect x="1121.8" y="277.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1162.6" y="287.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-034 MONO</text>
-  <rect x="1352.2" y="299.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1393.0" y="309.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-034 MONO</text>
-  <rect x="1121.8" y="299.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1162.6" y="309.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-035 MONO</text>
-  <rect x="1352.2" y="393.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1393.0" y="403.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-035 MONO</text>
-  <rect x="1121.8" y="321.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1162.6" y="331.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-036 MONO</text>
-  <rect x="1352.2" y="415.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1393.0" y="425.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-036 MONO</text>
-  <rect x="1126.4" y="794.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1161.8" y="804.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-037 ST</text>
-  <rect x="1358.4" y="509.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1393.8" y="519.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-037 ST</text>
-  <rect x="1126.4" y="838.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1161.8" y="848.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-039 ST</text>
-  <rect x="1358.4" y="531.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1393.8" y="541.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-039 ST</text>
-  <rect x="1126.4" y="882.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1161.8" y="892.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-041 ST</text>
-  <rect x="1358.4" y="553.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1393.8" y="563.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-041 ST</text>
-  <rect x="1126.4" y="926.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1161.8" y="936.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-043 ST</text>
-  <rect x="1358.4" y="575.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1393.8" y="585.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-043 ST</text>
-  <rect x="1126.4" y="970.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1161.8" y="980.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-045 ST</text>
-  <rect x="1358.4" y="597.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1393.8" y="607.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-045 ST</text>
-  <rect x="1126.4" y="1014.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1161.8" y="1024.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-047 ST</text>
-  <rect x="1358.4" y="619.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1393.8" y="629.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-047 ST</text>
-  <rect x="1731.8" y="255.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1772.6" y="265.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-025 MONO</text>
-  <rect x="1962.2" y="277.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="2003.0" y="287.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-025 MONO</text>
-  <rect x="1731.8" y="277.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1772.6" y="287.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-026 MONO</text>
-  <rect x="1962.2" y="299.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="2003.0" y="309.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-026 MONO</text>
-  <rect x="1731.8" y="371.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1772.6" y="381.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-027 MONO</text>
-  <rect x="1962.2" y="393.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="2003.0" y="403.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-027 MONO</text>
-  <rect x="1731.8" y="393.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1772.6" y="403.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-028 MONO</text>
-  <rect x="1962.2" y="415.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="2003.0" y="425.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-028 MONO</text>
-  <rect x="1122.9" y="343.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="1163.7" y="353.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-002 SPDIF</text>
-  <rect x="1962.2" y="1163.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
-  <text x="2003.0" y="1173.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-002 SPDIF</text>
-  <rect x="160.0" y="226.0" width="270.0" height="130.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="160.0" y="226.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="160.0" y1="262.0" x2="430.0" y2="262.0" stroke="#334155" stroke-width="1"/>
-  <text x="170.0" y="240.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="420.0" y="240.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="295.0" y="246.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">MAO Preamp (confirm mo...</text>
-  <text x="295.0" y="257.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">4/4 wired ports</text>
-  <text x="417.0" y="276.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 1</text>
-  <circle cx="430.0" cy="273.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="284.0" x2="430.0" y2="284.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="298.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 2</text>
-  <circle cx="430.0" cy="295.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="306.0" x2="430.0" y2="306.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="320.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 3</text>
-  <circle cx="430.0" cy="317.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="328.0" x2="430.0" y2="328.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="342.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 4</text>
-  <circle cx="430.0" cy="339.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="160.0" y="386.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="160.0" y="386.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="160.0" y1="422.0" x2="430.0" y2="422.0" stroke="#334155" stroke-width="1"/>
-  <text x="170.0" y="400.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="420.0" y="400.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="295.0" y="406.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Audient ASP 880</text>
-  <text x="295.0" y="417.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">2/2 wired ports</text>
-  <text x="173.0" y="436.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Word Clock In</text>
-  <circle cx="160.0" cy="433.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="417.0" y="436.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">ADAT Out 1-8</text>
-  <circle cx="430.0" cy="433.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="160.0" y="518.0" width="270.0" height="570.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="160.0" y="518.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="160.0" y1="554.0" x2="430.0" y2="554.0" stroke="#334155" stroke-width="1"/>
-  <text x="170.0" y="532.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="420.0" y="532.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="295.0" y="538.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Allen &amp; Heath GS3000</text>
-  <text x="295.0" y="549.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">24/24 wired ports</text>
-  <text x="417.0" y="568.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 1</text>
-  <circle cx="430.0" cy="565.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="576.0" x2="430.0" y2="576.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="590.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 2</text>
-  <circle cx="430.0" cy="587.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="598.0" x2="430.0" y2="598.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="612.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 3</text>
-  <circle cx="430.0" cy="609.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="620.0" x2="430.0" y2="620.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="634.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 4</text>
-  <circle cx="430.0" cy="631.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="642.0" x2="430.0" y2="642.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="656.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 5</text>
-  <circle cx="430.0" cy="653.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="664.0" x2="430.0" y2="664.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="678.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 6</text>
-  <circle cx="430.0" cy="675.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="686.0" x2="430.0" y2="686.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="700.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 7</text>
-  <circle cx="430.0" cy="697.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="708.0" x2="430.0" y2="708.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="722.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 8</text>
-  <circle cx="430.0" cy="719.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="730.0" x2="430.0" y2="730.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="744.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 9</text>
-  <circle cx="430.0" cy="741.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="752.0" x2="430.0" y2="752.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="766.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 10</text>
-  <circle cx="430.0" cy="763.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="774.0" x2="430.0" y2="774.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="788.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 11</text>
-  <circle cx="430.0" cy="785.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="796.0" x2="430.0" y2="796.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="810.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 12</text>
-  <circle cx="430.0" cy="807.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="818.0" x2="430.0" y2="818.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="832.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 13</text>
-  <circle cx="430.0" cy="829.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="840.0" x2="430.0" y2="840.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="854.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 14</text>
-  <circle cx="430.0" cy="851.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="862.0" x2="430.0" y2="862.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="876.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 15</text>
-  <circle cx="430.0" cy="873.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="884.0" x2="430.0" y2="884.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="898.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 16</text>
-  <circle cx="430.0" cy="895.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="906.0" x2="430.0" y2="906.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="920.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 17</text>
-  <circle cx="430.0" cy="917.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="928.0" x2="430.0" y2="928.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="942.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 18</text>
-  <circle cx="430.0" cy="939.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="950.0" x2="430.0" y2="950.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="964.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 19</text>
-  <circle cx="430.0" cy="961.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="972.0" x2="430.0" y2="972.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="986.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 20</text>
-  <circle cx="430.0" cy="983.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="994.0" x2="430.0" y2="994.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="1008.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 21</text>
-  <circle cx="430.0" cy="1005.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="1016.0" x2="430.0" y2="1016.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="1030.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 22</text>
-  <circle cx="430.0" cy="1027.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="1038.0" x2="430.0" y2="1038.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="1052.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 23</text>
-  <circle cx="430.0" cy="1049.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="160.0" y1="1060.0" x2="430.0" y2="1060.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="417.0" y="1074.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 24</text>
-  <circle cx="430.0" cy="1071.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="770.0" y="226.0" width="337.8" height="196.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="770.0" y="226.0" width="337.8" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="770.0" y1="262.0" x2="1107.8" y2="262.0" stroke="#334155" stroke-width="1"/>
-  <text x="780.0" y="240.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="1097.8" y="240.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="938.9" y="246.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">RME UFX III</text>
-  <text x="938.9" y="257.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">13/13 wired ports</text>
-  <text x="783.0" y="276.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 1</text>
-  <circle cx="770.0" cy="273.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="276.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 1 (XLR)</text>
-  <circle cx="1107.8" cy="273.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="284.0" x2="1107.8" y2="284.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="298.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 2</text>
-  <circle cx="770.0" cy="295.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="298.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 2 (XLR)</text>
-  <circle cx="1107.8" cy="295.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="306.0" x2="1107.8" y2="306.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="320.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 3</text>
-  <circle cx="770.0" cy="317.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="320.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 3</text>
-  <circle cx="1107.8" cy="317.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="328.0" x2="1107.8" y2="328.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="342.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 4</text>
-  <circle cx="770.0" cy="339.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="342.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 4</text>
-  <circle cx="1107.8" cy="339.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="350.0" x2="1107.8" y2="350.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="364.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">ADAT 1 In (Opt)</text>
-  <circle cx="770.0" cy="361.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="364.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">ADAT 1 Out (Opt, S/...</text>
-  <circle cx="1107.8" cy="361.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="372.0" x2="1107.8" y2="372.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="386.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI In Opt</text>
-  <circle cx="770.0" cy="383.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="386.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI Out Opt</text>
-  <circle cx="1107.8" cy="383.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="394.0" x2="1107.8" y2="394.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="1094.8" y="408.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Word Clock Out</text>
-  <circle cx="1107.8" cy="405.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="770.0" y="490.0" width="337.8" height="592.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="770.0" y="490.0" width="337.8" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="770.0" y1="526.0" x2="1107.8" y2="526.0" stroke="#334155" stroke-width="1"/>
-  <text x="780.0" y="504.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="1097.8" y="504.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="938.9" y="510.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">SSL AX MADI</text>
-  <text x="938.9" y="521.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">38/38 wired ports</text>
-  <text x="783.0" y="540.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 1</text>
-  <circle cx="770.0" cy="537.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="548.0" x2="1107.8" y2="548.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="562.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 2</text>
-  <circle cx="770.0" cy="559.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="570.0" x2="1107.8" y2="570.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="584.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 3</text>
-  <circle cx="770.0" cy="581.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="592.0" x2="1107.8" y2="592.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="606.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 4</text>
-  <circle cx="770.0" cy="603.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="614.0" x2="1107.8" y2="614.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="628.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 5</text>
-  <circle cx="770.0" cy="625.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="636.0" x2="1107.8" y2="636.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="650.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 6</text>
-  <circle cx="770.0" cy="647.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="658.0" x2="1107.8" y2="658.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="672.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 7</text>
-  <circle cx="770.0" cy="669.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="680.0" x2="1107.8" y2="680.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="694.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 8</text>
-  <circle cx="770.0" cy="691.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="702.0" x2="1107.8" y2="702.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="716.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 9</text>
-  <circle cx="770.0" cy="713.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="724.0" x2="1107.8" y2="724.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="738.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 10</text>
-  <circle cx="770.0" cy="735.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="746.0" x2="1107.8" y2="746.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="760.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 11</text>
-  <circle cx="770.0" cy="757.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="768.0" x2="1107.8" y2="768.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="782.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 12</text>
-  <circle cx="770.0" cy="779.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="790.0" x2="1107.8" y2="790.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="804.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 13</text>
-  <circle cx="770.0" cy="801.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="804.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 13</text>
-  <circle cx="1107.8" cy="801.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="812.0" x2="1107.8" y2="812.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="826.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 14</text>
-  <circle cx="770.0" cy="823.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="826.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 14</text>
-  <circle cx="1107.8" cy="823.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="834.0" x2="1107.8" y2="834.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="848.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 15</text>
-  <circle cx="770.0" cy="845.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="848.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 15</text>
-  <circle cx="1107.8" cy="845.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="856.0" x2="1107.8" y2="856.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="870.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 16</text>
-  <circle cx="770.0" cy="867.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="870.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 16</text>
-  <circle cx="1107.8" cy="867.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="878.0" x2="1107.8" y2="878.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="892.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 17</text>
-  <circle cx="770.0" cy="889.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="892.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 17</text>
-  <circle cx="1107.8" cy="889.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="900.0" x2="1107.8" y2="900.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="914.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 18</text>
-  <circle cx="770.0" cy="911.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="914.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 18</text>
-  <circle cx="1107.8" cy="911.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="922.0" x2="1107.8" y2="922.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="936.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 19</text>
-  <circle cx="770.0" cy="933.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="936.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 19</text>
-  <circle cx="1107.8" cy="933.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="944.0" x2="1107.8" y2="944.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="958.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 20</text>
-  <circle cx="770.0" cy="955.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="958.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 20</text>
-  <circle cx="1107.8" cy="955.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="966.0" x2="1107.8" y2="966.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="980.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 21</text>
-  <circle cx="770.0" cy="977.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="980.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 21</text>
-  <circle cx="1107.8" cy="977.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="988.0" x2="1107.8" y2="988.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="1002.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 22</text>
-  <circle cx="770.0" cy="999.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="1002.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 22</text>
-  <circle cx="1107.8" cy="999.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="1010.0" x2="1107.8" y2="1010.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="1024.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 23</text>
-  <circle cx="770.0" cy="1021.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="1024.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 23</text>
-  <circle cx="1107.8" cy="1021.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="1032.0" x2="1107.8" y2="1032.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="1046.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 24</text>
-  <circle cx="770.0" cy="1043.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="1046.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 24</text>
-  <circle cx="1107.8" cy="1043.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="770.0" y1="1054.0" x2="1107.8" y2="1054.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="783.0" y="1068.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI In Opt</text>
-  <circle cx="770.0" cy="1065.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1094.8" y="1068.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI Out Opt</text>
-  <circle cx="1107.8" cy="1065.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="1447.8" y="226.0" width="270.0" height="86.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="1447.8" y="226.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="1447.8" y1="262.0" x2="1717.8" y2="262.0" stroke="#334155" stroke-width="1"/>
-  <text x="1457.8" y="240.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="1707.8" y="240.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="1582.8" y="246.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Behringer A800 #1</text>
-  <text x="1582.8" y="257.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">4/4 wired ports</text>
-  <text x="1460.8" y="276.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">In L</text>
-  <circle cx="1447.8" cy="273.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1704.8" y="276.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk Out L</text>
-  <circle cx="1717.8" cy="273.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="1447.8" y1="284.0" x2="1717.8" y2="284.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="1460.8" y="298.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">In R</text>
-  <circle cx="1447.8" cy="295.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1704.8" y="298.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk Out R</text>
-  <circle cx="1717.8" cy="295.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="1447.8" y="342.0" width="270.0" height="86.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="1447.8" y="342.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="1447.8" y1="378.0" x2="1717.8" y2="378.0" stroke="#334155" stroke-width="1"/>
-  <text x="1457.8" y="356.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="1707.8" y="356.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="1582.8" y="362.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Behringer A800 #2</text>
-  <text x="1582.8" y="373.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">4/4 wired ports</text>
-  <text x="1460.8" y="392.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">In L</text>
-  <circle cx="1447.8" cy="389.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1704.8" y="392.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk Out L</text>
-  <circle cx="1717.8" cy="389.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="1447.8" y1="400.0" x2="1717.8" y2="400.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="1460.8" y="414.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">In R</text>
-  <circle cx="1447.8" cy="411.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <text x="1704.8" y="414.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk Out R</text>
-  <circle cx="1717.8" cy="411.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="1447.8" y="458.0" width="270.0" height="174.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="1447.8" y="458.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="1447.8" y1="494.0" x2="1717.8" y2="494.0" stroke="#334155" stroke-width="1"/>
-  <text x="1457.8" y="472.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="1707.8" y="472.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="1582.8" y="478.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">IMG STAGELINE PPA-100/SW</text>
-  <text x="1582.8" y="489.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">6/6 wired ports</text>
-  <text x="1460.8" y="508.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HA In 1</text>
-  <circle cx="1447.8" cy="505.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="1447.8" y1="516.0" x2="1717.8" y2="516.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="1460.8" y="530.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HA In 2</text>
-  <circle cx="1447.8" cy="527.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="1447.8" y1="538.0" x2="1717.8" y2="538.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="1460.8" y="552.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HA In 3</text>
-  <circle cx="1447.8" cy="549.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="1447.8" y1="560.0" x2="1717.8" y2="560.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="1460.8" y="574.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HA In 4</text>
-  <circle cx="1447.8" cy="571.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="1447.8" y1="582.0" x2="1717.8" y2="582.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="1460.8" y="596.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HA In 5</text>
-  <circle cx="1447.8" cy="593.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="1447.8" y1="604.0" x2="1717.8" y2="604.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="1460.8" y="618.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HA In 6</text>
-  <circle cx="1447.8" cy="615.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="2057.8" y="226.0" width="279.0" height="86.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="2057.8" y="226.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="2057.8" y1="262.0" x2="2336.8" y2="262.0" stroke="#334155" stroke-width="1"/>
-  <text x="2067.8" y="240.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="2326.8" y="240.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="2197.3" y="246.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Tannoy System 10</text>
-  <text x="2197.3" y="257.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">2/2 wired ports</text>
-  <text x="2070.8" y="276.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk In L</text>
-  <circle cx="2057.8" cy="273.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="2057.8" y1="284.0" x2="2336.8" y2="284.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="2070.8" y="298.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk In R</text>
-  <circle cx="2057.8" cy="295.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="2057.8" y="342.0" width="279.0" height="86.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="2057.8" y="342.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="2057.8" y1="378.0" x2="2336.8" y2="378.0" stroke="#334155" stroke-width="1"/>
-  <text x="2067.8" y="356.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="2326.8" y="356.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="2197.3" y="362.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">ATC SCM 11</text>
-  <text x="2197.3" y="373.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">2/2 wired ports</text>
-  <text x="2070.8" y="392.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk In L</text>
-  <circle cx="2057.8" cy="389.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <line x1="2057.8" y1="400.0" x2="2336.8" y2="400.0" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="2070.8" y="414.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk In R</text>
-  <circle cx="2057.8" cy="411.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="2057.8" y="1112.0" width="279.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
-  <rect x="2057.8" y="1112.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
-  <line x1="2057.8" y1="1148.0" x2="2336.8" y2="1148.0" stroke="#334155" stroke-width="1"/>
-  <text x="2067.8" y="1126.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
-  <text x="2326.8" y="1126.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
-  <text x="2197.3" y="1132.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">TC Electronic Clarity M ...</text>
-  <text x="2197.3" y="1143.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
-  <text x="2070.8" y="1162.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Opt In</text>
-  <circle cx="2057.8" cy="1159.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
-  <rect x="156.0" y="205.0" width="133.4" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
-  <text x="158.0" y="214.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Preamps / Channel Strip</text>
-  <rect x="156.0" y="497.0" width="87.0" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
-  <text x="158.0" y="506.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Console / Mixer</text>
-  <rect x="766.0" y="205.0" width="52.2" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
-  <text x="768.0" y="214.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Interface</text>
-  <rect x="766.0" y="469.0" width="52.2" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
-  <text x="768.0" y="478.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Converter</text>
-  <rect x="1443.8" y="205.0" width="156.6" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
-  <text x="1445.8" y="214.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Amplifier / Monitor Control</text>
-  <rect x="2053.8" y="205.0" width="98.6" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
-  <text x="2055.8" y="214.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Speaker / Monitor</text>
-  <rect x="2196.8" y="26.0" width="280" height="132.0" rx="8" ry="8" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="2206.8" y="38.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#475569">Connection Types</text>
-  <rect x="2206.8" y="45.0" width="9" height="9" fill="#dc2626" rx="1" ry="1"/>
-  <text x="2220.8" y="53.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Analog Audio (12)</text>
-  <rect x="2206.8" y="59.0" width="9" height="9" fill="#14b8a6" rx="1" ry="1"/>
-  <text x="2220.8" y="67.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Clock/Sync (1)</text>
-  <rect x="2206.8" y="73.0" width="9" height="9" fill="#06b6d4" rx="1" ry="1"/>
-  <text x="2220.8" y="81.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Digital Audio (2)</text>
-  <rect x="2206.8" y="87.0" width="9" height="9" fill="#2563eb" rx="1" ry="1"/>
-  <text x="2220.8" y="95.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">MADI (1)</text>
-  <rect x="2206.8" y="101.0" width="9" height="9" fill="#f97316" rx="1" ry="1"/>
-  <text x="2220.8" y="109.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Speaker (4)</text>
-  <text x="2206.8" y="136.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">IN ports are left, OUT ports are right</text>
-  <text x="2206.8" y="149.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">Overview mode: only wired ports shown</text>
+  <text x="160.0" y="54" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Devices: 10 | Cables: 17 | Ports shown: 87/87 wired</text>
+  <rect x="150.0" y="204.0" width="290.0" height="80.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="720.0" y="204.0" width="290.0" height="586.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1290.0" y="204.0" width="395.0" height="190.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1290.0" y="446.0" width="395.0" height="608.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1965.0" y="204.0" width="290.0" height="400.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="2535.0" y="204.0" width="299.0" height="944.0" rx="8" ry="8" fill="#f8fafc" fill-opacity="0.55" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  <path d="M 1675.0 369.0 H 1757.0 V 1064.0 H 1192.0 V 1029.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1675.0 369.0 H 1757.0 V 1064.0 H 1192.0 V 1029.0 H 1300.0" fill="none" stroke="#2563eb" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#arrow)" marker-end="url(#arrow)"><title>DIGI-002↔003: RME UFX III [MADI Out Optical] -&gt; SSL AX MADI [MADI In Optical]</title></path>
+  <path d="M 1014.0 512.0 H 1150.0 V 754.0 H 1286.0" fill="none" stroke="#f8fafc" stroke-width="4.70" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1014.0 512.0 H 1150.0 V 754.0 H 1286.0" fill="none" stroke="#dc2626" stroke-width="2.3" stroke-dasharray="8 4" stroke-linecap="round" stroke-linejoin="round"><title>AUDIO-001-024: Allen &amp; Heath GS3000 [Tape Out 1+Tape Out 2+Tape Out 3+Tape Out 4+Tape Out 5+Tape Out 6+Tape Out 7+Tape Out 8+Tape Out 9+Tape Out 10+Tape Out 11+Tape Out 12+Tape Out 13+Tape Out 14+Tape Out 15+Tape Out 16+Tape Out 17+Tape Out 18+Tape Out 19+Tape Out 20+Tape Out 21+Tape Out 22+Tape Out 23+Tape Out 24] -&gt; SSL AX MADI [Line In 1+Line In 2+Line In 3+Line In 4+Line In 5+Line In 6+Line In 7+Line In 8+Line In 9+Line In 10+Line In 11+Line In 12+Line In 13+Line In 14+Line In 15+Line In 16+Line In 17+Line In 18+Line In 19+Line In 20+Line In 21+Line In 22+Line In 23+Line In 24]</title></path>
+  <line class="multichannel-source-collector" x1="1014.0" y1="259.0" x2="1014.0" y2="765.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="2 2"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="259.0" x2="1014.0" y2="259.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="281.0" x2="1014.0" y2="281.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="303.0" x2="1014.0" y2="303.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="325.0" x2="1014.0" y2="325.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="347.0" x2="1014.0" y2="347.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="369.0" x2="1014.0" y2="369.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="391.0" x2="1014.0" y2="391.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="413.0" x2="1014.0" y2="413.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="435.0" x2="1014.0" y2="435.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="457.0" x2="1014.0" y2="457.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="479.0" x2="1014.0" y2="479.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="501.0" x2="1014.0" y2="501.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="523.0" x2="1014.0" y2="523.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="545.0" x2="1014.0" y2="545.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="567.0" x2="1014.0" y2="567.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="589.0" x2="1014.0" y2="589.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="611.0" x2="1014.0" y2="611.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="633.0" x2="1014.0" y2="633.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="655.0" x2="1014.0" y2="655.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="677.0" x2="1014.0" y2="677.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="699.0" x2="1014.0" y2="699.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="721.0" x2="1014.0" y2="721.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="743.0" x2="1014.0" y2="743.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-source-branch" x1="1000.0" y1="765.0" x2="1014.0" y2="765.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95"/>
+  <line class="multichannel-destination-collector" x1="1286.0" y1="501.0" x2="1286.0" y2="1007.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" stroke-dasharray="2 2"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="501.0" x2="1300.0" y2="501.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="523.0" x2="1300.0" y2="523.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="545.0" x2="1300.0" y2="545.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="567.0" x2="1300.0" y2="567.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="589.0" x2="1300.0" y2="589.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="611.0" x2="1300.0" y2="611.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="633.0" x2="1300.0" y2="633.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="655.0" x2="1300.0" y2="655.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="677.0" x2="1300.0" y2="677.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="699.0" x2="1300.0" y2="699.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="721.0" x2="1300.0" y2="721.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="743.0" x2="1300.0" y2="743.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="765.0" x2="1300.0" y2="765.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="787.0" x2="1300.0" y2="787.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="809.0" x2="1300.0" y2="809.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="831.0" x2="1300.0" y2="831.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="853.0" x2="1300.0" y2="853.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="875.0" x2="1300.0" y2="875.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="897.0" x2="1300.0" y2="897.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="919.0" x2="1300.0" y2="919.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="941.0" x2="1300.0" y2="941.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="963.0" x2="1300.0" y2="963.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="985.0" x2="1300.0" y2="985.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <line class="multichannel-destination-branch" x1="1286.0" y1="1007.0" x2="1300.0" y2="1007.0" stroke="#dc2626" stroke-width="2.05" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow)"/>
+  <path d="M 1675.0 259.0 H 1975.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1675.0 259.0 H 1975.0" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-029: RME UFX III [Line Out 1 (XLR)] -&gt; Behringer A800 #1 [Input L]</title></path>
+  <path d="M 1675.0 281.0 H 1975.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1675.0 281.0 H 1975.0" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-030: RME UFX III [Line Out 2 (XLR)] -&gt; Behringer A800 #1 [Input R]</title></path>
+  <path d="M 1675.0 303.0 H 1816.2 V 375.0 H 1975.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1675.0 303.0 H 1816.2 V 375.0 H 1975.0" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-031: RME UFX III [Line Out 3] -&gt; Behringer A800 #2 [Input L]</title></path>
+  <path d="M 1675.0 325.0 H 1798.6 V 397.0 H 1975.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1675.0 325.0 H 1798.6 V 397.0 H 1975.0" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-032: RME UFX III [Line Out 4] -&gt; Behringer A800 #2 [Input R]</title></path>
+  <path d="M 1689.0 512.0 H 1796.5 V 491.0 H 1975.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1689.0 512.0 H 1796.5 V 491.0 H 1975.0" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-033: SSL AX MADI [Line Out 1+Line Out 2] -&gt; IMG STAGELINE PPA-100/SW [HA In 1]</title></path>
+  <line class="stereo-source-collector" x1="1689.0" y1="501.0" x2="1689.0" y2="523.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-collector" x1="1689.0" y1="501.0" x2="1689.0" y2="523.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="501.0" x2="1689.0" y2="501.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="501.0" x2="1689.0" y2="501.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="523.0" x2="1689.0" y2="523.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="523.0" x2="1689.0" y2="523.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <circle class="stereo-source-merge" cx="1689.0" cy="512.0" r="2.8" fill="#dc2626" stroke="#f8fafc" stroke-width="1.1"/>
+  <path d="M 1689.0 556.0 H 1810.8 V 513.0 H 1975.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1689.0 556.0 H 1810.8 V 513.0 H 1975.0" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-035: SSL AX MADI [Line Out 3+Line Out 4] -&gt; IMG STAGELINE PPA-100/SW [HA In 2]</title></path>
+  <line class="stereo-source-collector" x1="1689.0" y1="545.0" x2="1689.0" y2="567.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-collector" x1="1689.0" y1="545.0" x2="1689.0" y2="567.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="545.0" x2="1689.0" y2="545.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="545.0" x2="1689.0" y2="545.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="567.0" x2="1689.0" y2="567.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="567.0" x2="1689.0" y2="567.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <circle class="stereo-source-merge" cx="1689.0" cy="556.0" r="2.8" fill="#dc2626" stroke="#f8fafc" stroke-width="1.1"/>
+  <path d="M 1689.0 600.0 H 1825.0 V 535.0 H 1975.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1689.0 600.0 H 1825.0 V 535.0 H 1975.0" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-037: SSL AX MADI [Line Out 5+Line Out 6] -&gt; IMG STAGELINE PPA-100/SW [HA In 3]</title></path>
+  <line class="stereo-source-collector" x1="1689.0" y1="589.0" x2="1689.0" y2="611.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-collector" x1="1689.0" y1="589.0" x2="1689.0" y2="611.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="589.0" x2="1689.0" y2="589.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="589.0" x2="1689.0" y2="589.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="611.0" x2="1689.0" y2="611.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="611.0" x2="1689.0" y2="611.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <circle class="stereo-source-merge" cx="1689.0" cy="600.0" r="2.8" fill="#dc2626" stroke="#f8fafc" stroke-width="1.1"/>
+  <path d="M 1689.0 644.0 H 1839.2 V 557.0 H 1975.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1689.0 644.0 H 1839.2 V 557.0 H 1975.0" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-039: SSL AX MADI [Line Out 7+Line Out 8] -&gt; IMG STAGELINE PPA-100/SW [HA In 4]</title></path>
+  <line class="stereo-source-collector" x1="1689.0" y1="633.0" x2="1689.0" y2="655.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-collector" x1="1689.0" y1="633.0" x2="1689.0" y2="655.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="633.0" x2="1689.0" y2="633.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="633.0" x2="1689.0" y2="633.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="655.0" x2="1689.0" y2="655.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="655.0" x2="1689.0" y2="655.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <circle class="stereo-source-merge" cx="1689.0" cy="644.0" r="2.8" fill="#dc2626" stroke="#f8fafc" stroke-width="1.1"/>
+  <path d="M 1689.0 688.0 H 1853.5 V 579.0 H 1975.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1689.0 688.0 H 1853.5 V 579.0 H 1975.0" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-041: SSL AX MADI [Line Out 9+Line Out 10] -&gt; IMG STAGELINE PPA-100/SW [HA In 5]</title></path>
+  <line class="stereo-source-collector" x1="1689.0" y1="677.0" x2="1689.0" y2="699.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-collector" x1="1689.0" y1="677.0" x2="1689.0" y2="699.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="677.0" x2="1689.0" y2="677.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="677.0" x2="1689.0" y2="677.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="699.0" x2="1689.0" y2="699.0" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" aria-hidden="true"/>
+  <line class="stereo-source-branch" x1="1675.0" y1="699.0" x2="1689.0" y2="699.0" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round"/>
+  <circle class="stereo-source-merge" cx="1689.0" cy="688.0" r="2.8" fill="#dc2626" stroke="#f8fafc" stroke-width="1.1"/>
+  <path d="M 2245.0 259.0 H 2545.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 2245.0 259.0 H 2545.0" fill="none" stroke="#f97316" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-025: Behringer A800 #1 [Speaker Out L] -&gt; Tannoy System 10 [Speaker Input L]</title></path>
+  <path d="M 2245.0 281.0 H 2545.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 2245.0 281.0 H 2545.0" fill="none" stroke="#f97316" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-026: Behringer A800 #1 [Speaker Out R] -&gt; Tannoy System 10 [Speaker Input R]</title></path>
+  <path d="M 2245.0 375.0 H 2545.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 2245.0 375.0 H 2545.0" fill="none" stroke="#f97316" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-027: Behringer A800 #2 [Speaker Out L] -&gt; ATC SCM 11 [Speaker Input L]</title></path>
+  <path d="M 2245.0 397.0 H 2545.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 2245.0 397.0 H 2545.0" fill="none" stroke="#f97316" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-028: Behringer A800 #2 [Speaker Out R] -&gt; ATC SCM 11 [Speaker Input R]</title></path>
+  <path d="M 430.0 259.0 H 539.6 V 183.0 H 1190.4 V 259.0 H 1300.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 430.0 259.0 H 539.6 V 183.0 H 1190.4 V 259.0 H 1300.0" fill="none" stroke="#dc2626" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>AUDIO-043: Talkback Mic [Output] -&gt; RME UFX III [Mic/Line In 9 (Combo)]</title></path>
+  <path d="M 1675.0 347.0 H 1781.2 V 1123.0 H 2545.0" fill="none" stroke="#f8fafc" stroke-width="3.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"/>
+  <path d="M 1675.0 347.0 H 1781.2 V 1123.0 H 2545.0" fill="none" stroke="#06b6d4" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"><title>DIGI-001: RME UFX III [ADAT 1 Out (Optical, S/PDIF)] -&gt; TC Electronic Clarity M Stereo [Optical In]</title></path>
+  <rect x="1659.0" y="351.0" width="114.0" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1716.0" y="361.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#2563eb">DIGI-002↔003 MADIOPT</text>
+  <rect x="1199.0" y="1033.0" width="114.0" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1256.0" y="1043.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#2563eb">DIGI-002↔003 MADIOPT</text>
+  <rect x="1009.4" y="494.0" width="103.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1061.0" y="504.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-001-024 MC24</text>
+  <rect x="1187.4" y="758.0" width="103.2" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1239.0" y="768.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-001-024 MC24</text>
+  <rect x="1689.0" y="241.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1729.8" y="251.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-029 MONO</text>
+  <rect x="1879.4" y="263.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1920.2" y="273.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-029 MONO</text>
+  <rect x="1689.0" y="263.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1729.8" y="273.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-030 MONO</text>
+  <rect x="1879.4" y="285.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1920.2" y="295.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-030 MONO</text>
+  <rect x="1689.0" y="285.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1729.8" y="295.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-031 MONO</text>
+  <rect x="1879.4" y="379.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1920.2" y="389.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-031 MONO</text>
+  <rect x="1689.0" y="307.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1729.8" y="317.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-032 MONO</text>
+  <rect x="1879.4" y="401.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1920.2" y="411.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-032 MONO</text>
+  <rect x="1693.6" y="494.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1729.0" y="504.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-033 ST</text>
+  <rect x="1885.6" y="495.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1921.0" y="505.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-033 ST</text>
+  <rect x="1693.6" y="538.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1729.0" y="548.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-035 ST</text>
+  <rect x="1885.6" y="517.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1921.0" y="527.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-035 ST</text>
+  <rect x="1693.6" y="582.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1729.0" y="592.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-037 ST</text>
+  <rect x="1885.6" y="539.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1921.0" y="549.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-037 ST</text>
+  <rect x="1693.6" y="626.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1729.0" y="636.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-039 ST</text>
+  <rect x="1885.6" y="561.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1921.0" y="571.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-039 ST</text>
+  <rect x="1693.6" y="670.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1729.0" y="680.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-041 ST</text>
+  <rect x="1885.6" y="583.0" width="70.8" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1921.0" y="593.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-041 ST</text>
+  <rect x="2259.0" y="241.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2299.8" y="251.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-025 MONO</text>
+  <rect x="2449.4" y="263.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2490.2" y="273.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-025 MONO</text>
+  <rect x="2259.0" y="263.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2299.8" y="273.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-026 MONO</text>
+  <rect x="2449.4" y="285.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2490.2" y="295.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-026 MONO</text>
+  <rect x="2259.0" y="357.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2299.8" y="367.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-027 MONO</text>
+  <rect x="2449.4" y="379.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2490.2" y="389.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-027 MONO</text>
+  <rect x="2259.0" y="379.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2299.8" y="389.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-028 MONO</text>
+  <rect x="2449.4" y="401.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2490.2" y="411.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#f97316">AUDIO-028 MONO</text>
+  <rect x="444.0" y="241.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="484.8" y="251.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-043 MONO</text>
+  <rect x="1204.4" y="263.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1245.2" y="273.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#dc2626">AUDIO-043 MONO</text>
+  <rect x="1690.6" y="329.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="1731.4" y="339.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 SPDIF</text>
+  <rect x="2449.4" y="1127.0" width="81.6" height="14.0" rx="2" ry="2" fill="#ffffff" fill-opacity="1" stroke="#e2e8f0" stroke-width="0.9"/>
+  <text x="2490.2" y="1137.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7.0" fill="#06b6d4">DIGI-001 SPDIF</text>
+  <rect x="160.0" y="212.0" width="270.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="160.0" y="212.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="160.0" y1="248.0" x2="430.0" y2="248.0" stroke="#334155" stroke-width="1"/>
+  <text x="170.0" y="226.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="420.0" y="226.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="295.0" y="232.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Talkback Mic</text>
+  <text x="295.0" y="243.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="417.0" y="262.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Out</text>
+  <circle cx="430.0" cy="259.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="730.0" y="212.0" width="270.0" height="570.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="730.0" y="212.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="730.0" y1="248.0" x2="1000.0" y2="248.0" stroke="#334155" stroke-width="1"/>
+  <text x="740.0" y="226.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="990.0" y="226.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="865.0" y="232.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Allen &amp; Heath GS3000</text>
+  <text x="865.0" y="243.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">24/24 wired ports</text>
+  <text x="987.0" y="262.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 1</text>
+  <circle cx="1000.0" cy="259.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="270.0" x2="1000.0" y2="270.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="284.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 2</text>
+  <circle cx="1000.0" cy="281.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="292.0" x2="1000.0" y2="292.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="306.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 3</text>
+  <circle cx="1000.0" cy="303.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="314.0" x2="1000.0" y2="314.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="328.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 4</text>
+  <circle cx="1000.0" cy="325.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="336.0" x2="1000.0" y2="336.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="350.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 5</text>
+  <circle cx="1000.0" cy="347.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="358.0" x2="1000.0" y2="358.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="372.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 6</text>
+  <circle cx="1000.0" cy="369.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="380.0" x2="1000.0" y2="380.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="394.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 7</text>
+  <circle cx="1000.0" cy="391.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="402.0" x2="1000.0" y2="402.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="416.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 8</text>
+  <circle cx="1000.0" cy="413.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="424.0" x2="1000.0" y2="424.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="438.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 9</text>
+  <circle cx="1000.0" cy="435.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="446.0" x2="1000.0" y2="446.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="460.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 10</text>
+  <circle cx="1000.0" cy="457.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="468.0" x2="1000.0" y2="468.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="482.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 11</text>
+  <circle cx="1000.0" cy="479.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="490.0" x2="1000.0" y2="490.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="504.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 12</text>
+  <circle cx="1000.0" cy="501.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="512.0" x2="1000.0" y2="512.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="526.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 13</text>
+  <circle cx="1000.0" cy="523.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="534.0" x2="1000.0" y2="534.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="548.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 14</text>
+  <circle cx="1000.0" cy="545.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="556.0" x2="1000.0" y2="556.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="570.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 15</text>
+  <circle cx="1000.0" cy="567.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="578.0" x2="1000.0" y2="578.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="592.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 16</text>
+  <circle cx="1000.0" cy="589.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="600.0" x2="1000.0" y2="600.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="614.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 17</text>
+  <circle cx="1000.0" cy="611.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="622.0" x2="1000.0" y2="622.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="636.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 18</text>
+  <circle cx="1000.0" cy="633.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="644.0" x2="1000.0" y2="644.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="658.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 19</text>
+  <circle cx="1000.0" cy="655.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="666.0" x2="1000.0" y2="666.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="680.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 20</text>
+  <circle cx="1000.0" cy="677.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="688.0" x2="1000.0" y2="688.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="702.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 21</text>
+  <circle cx="1000.0" cy="699.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="710.0" x2="1000.0" y2="710.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="724.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 22</text>
+  <circle cx="1000.0" cy="721.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="732.0" x2="1000.0" y2="732.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="746.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 23</text>
+  <circle cx="1000.0" cy="743.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="730.0" y1="754.0" x2="1000.0" y2="754.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="987.0" y="768.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Tape Out 24</text>
+  <circle cx="1000.0" cy="765.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1300.0" y="212.0" width="375.0" height="174.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1300.0" y="212.0" width="375.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1300.0" y1="248.0" x2="1675.0" y2="248.0" stroke="#334155" stroke-width="1"/>
+  <text x="1310.0" y="226.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="1665.0" y="226.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1487.5" y="232.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">RME UFX III</text>
+  <text x="1487.5" y="243.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">8/8 wired ports</text>
+  <text x="1313.0" y="262.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Mic/Line In 9 (Combo)</text>
+  <circle cx="1300.0" cy="259.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="262.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 1 (XLR)</text>
+  <circle cx="1675.0" cy="259.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="270.0" x2="1675.0" y2="270.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1662.0" y="284.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 2 (XLR)</text>
+  <circle cx="1675.0" cy="281.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="292.0" x2="1675.0" y2="292.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1662.0" y="306.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 3</text>
+  <circle cx="1675.0" cy="303.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="314.0" x2="1675.0" y2="314.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1662.0" y="328.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 4</text>
+  <circle cx="1675.0" cy="325.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="336.0" x2="1675.0" y2="336.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1662.0" y="350.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">ADAT 1 Out (Opt, S/PDIF)</text>
+  <circle cx="1675.0" cy="347.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="358.0" x2="1675.0" y2="358.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="372.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI In Opt</text>
+  <circle cx="1300.0" cy="369.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="372.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI Out Opt</text>
+  <circle cx="1675.0" cy="369.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1300.0" y="454.0" width="375.0" height="592.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1300.0" y="454.0" width="375.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1300.0" y1="490.0" x2="1675.0" y2="490.0" stroke="#334155" stroke-width="1"/>
+  <text x="1310.0" y="468.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="1665.0" y="468.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="1487.5" y="474.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">SSL AX MADI</text>
+  <text x="1487.5" y="485.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">36/36 wired ports</text>
+  <text x="1313.0" y="504.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 1</text>
+  <circle cx="1300.0" cy="501.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="504.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 1</text>
+  <circle cx="1675.0" cy="501.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="512.0" x2="1675.0" y2="512.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="526.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 2</text>
+  <circle cx="1300.0" cy="523.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="526.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 2</text>
+  <circle cx="1675.0" cy="523.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="534.0" x2="1675.0" y2="534.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="548.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 3</text>
+  <circle cx="1300.0" cy="545.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="548.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 3</text>
+  <circle cx="1675.0" cy="545.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="556.0" x2="1675.0" y2="556.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="570.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 4</text>
+  <circle cx="1300.0" cy="567.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="570.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 4</text>
+  <circle cx="1675.0" cy="567.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="578.0" x2="1675.0" y2="578.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="592.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 5</text>
+  <circle cx="1300.0" cy="589.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="592.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 5</text>
+  <circle cx="1675.0" cy="589.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="600.0" x2="1675.0" y2="600.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="614.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 6</text>
+  <circle cx="1300.0" cy="611.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="614.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 6</text>
+  <circle cx="1675.0" cy="611.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="622.0" x2="1675.0" y2="622.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="636.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 7</text>
+  <circle cx="1300.0" cy="633.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="636.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 7</text>
+  <circle cx="1675.0" cy="633.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="644.0" x2="1675.0" y2="644.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="658.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 8</text>
+  <circle cx="1300.0" cy="655.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="658.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 8</text>
+  <circle cx="1675.0" cy="655.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="666.0" x2="1675.0" y2="666.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="680.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 9</text>
+  <circle cx="1300.0" cy="677.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="680.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 9</text>
+  <circle cx="1675.0" cy="677.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="688.0" x2="1675.0" y2="688.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="702.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 10</text>
+  <circle cx="1300.0" cy="699.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="702.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line Out 10</text>
+  <circle cx="1675.0" cy="699.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="710.0" x2="1675.0" y2="710.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="724.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 11</text>
+  <circle cx="1300.0" cy="721.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="732.0" x2="1675.0" y2="732.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="746.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 12</text>
+  <circle cx="1300.0" cy="743.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="754.0" x2="1675.0" y2="754.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="768.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 13</text>
+  <circle cx="1300.0" cy="765.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="776.0" x2="1675.0" y2="776.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="790.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 14</text>
+  <circle cx="1300.0" cy="787.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="798.0" x2="1675.0" y2="798.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="812.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 15</text>
+  <circle cx="1300.0" cy="809.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="820.0" x2="1675.0" y2="820.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="834.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 16</text>
+  <circle cx="1300.0" cy="831.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="842.0" x2="1675.0" y2="842.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="856.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 17</text>
+  <circle cx="1300.0" cy="853.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="864.0" x2="1675.0" y2="864.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="878.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 18</text>
+  <circle cx="1300.0" cy="875.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="886.0" x2="1675.0" y2="886.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="900.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 19</text>
+  <circle cx="1300.0" cy="897.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="908.0" x2="1675.0" y2="908.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="922.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 20</text>
+  <circle cx="1300.0" cy="919.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="930.0" x2="1675.0" y2="930.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="944.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 21</text>
+  <circle cx="1300.0" cy="941.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="952.0" x2="1675.0" y2="952.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="966.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 22</text>
+  <circle cx="1300.0" cy="963.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="974.0" x2="1675.0" y2="974.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="988.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 23</text>
+  <circle cx="1300.0" cy="985.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="996.0" x2="1675.0" y2="996.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="1010.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Line In 24</text>
+  <circle cx="1300.0" cy="1007.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1300.0" y1="1018.0" x2="1675.0" y2="1018.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1313.0" y="1032.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI In Opt</text>
+  <circle cx="1300.0" cy="1029.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="1662.0" y="1032.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">MADI Out Opt</text>
+  <circle cx="1675.0" cy="1029.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1975.0" y="212.0" width="270.0" height="86.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1975.0" y="212.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1975.0" y1="248.0" x2="2245.0" y2="248.0" stroke="#334155" stroke-width="1"/>
+  <text x="1985.0" y="226.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2235.0" y="226.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="2110.0" y="232.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Behringer A800 #1</text>
+  <text x="2110.0" y="243.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">4/4 wired ports</text>
+  <text x="1988.0" y="262.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">In L</text>
+  <circle cx="1975.0" cy="259.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="2232.0" y="262.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk Out L</text>
+  <circle cx="2245.0" cy="259.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1975.0" y1="270.0" x2="2245.0" y2="270.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1988.0" y="284.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">In R</text>
+  <circle cx="1975.0" cy="281.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="2232.0" y="284.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk Out R</text>
+  <circle cx="2245.0" cy="281.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1975.0" y="328.0" width="270.0" height="86.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1975.0" y="328.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1975.0" y1="364.0" x2="2245.0" y2="364.0" stroke="#334155" stroke-width="1"/>
+  <text x="1985.0" y="342.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2235.0" y="342.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="2110.0" y="348.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Behringer A800 #2</text>
+  <text x="2110.0" y="359.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">4/4 wired ports</text>
+  <text x="1988.0" y="378.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">In L</text>
+  <circle cx="1975.0" cy="375.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="2232.0" y="378.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk Out L</text>
+  <circle cx="2245.0" cy="375.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1975.0" y1="386.0" x2="2245.0" y2="386.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1988.0" y="400.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">In R</text>
+  <circle cx="1975.0" cy="397.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <text x="2232.0" y="400.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk Out R</text>
+  <circle cx="2245.0" cy="397.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="1975.0" y="444.0" width="270.0" height="152.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="1975.0" y="444.0" width="270.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="1975.0" y1="480.0" x2="2245.0" y2="480.0" stroke="#334155" stroke-width="1"/>
+  <text x="1985.0" y="458.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2235.0" y="458.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="2110.0" y="464.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">IMG STAGELINE PPA-100/SW</text>
+  <text x="2110.0" y="475.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">5/5 wired ports</text>
+  <text x="1988.0" y="494.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HA In 1</text>
+  <circle cx="1975.0" cy="491.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1975.0" y1="502.0" x2="2245.0" y2="502.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1988.0" y="516.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HA In 2</text>
+  <circle cx="1975.0" cy="513.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1975.0" y1="524.0" x2="2245.0" y2="524.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1988.0" y="538.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HA In 3</text>
+  <circle cx="1975.0" cy="535.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1975.0" y1="546.0" x2="2245.0" y2="546.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1988.0" y="560.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HA In 4</text>
+  <circle cx="1975.0" cy="557.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="1975.0" y1="568.0" x2="2245.0" y2="568.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1988.0" y="582.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">HA In 5</text>
+  <circle cx="1975.0" cy="579.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="2545.0" y="212.0" width="279.0" height="86.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="2545.0" y="212.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="2545.0" y1="248.0" x2="2824.0" y2="248.0" stroke="#334155" stroke-width="1"/>
+  <text x="2555.0" y="226.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2814.0" y="226.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="2684.5" y="232.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">Tannoy System 10</text>
+  <text x="2684.5" y="243.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">2/2 wired ports</text>
+  <text x="2558.0" y="262.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk In L</text>
+  <circle cx="2545.0" cy="259.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="2545.0" y1="270.0" x2="2824.0" y2="270.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="2558.0" y="284.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk In R</text>
+  <circle cx="2545.0" cy="281.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="2545.0" y="328.0" width="279.0" height="86.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="2545.0" y="328.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="2545.0" y1="364.0" x2="2824.0" y2="364.0" stroke="#334155" stroke-width="1"/>
+  <text x="2555.0" y="342.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2814.0" y="342.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="2684.5" y="348.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">ATC SCM 11</text>
+  <text x="2684.5" y="359.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">2/2 wired ports</text>
+  <text x="2558.0" y="378.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk In L</text>
+  <circle cx="2545.0" cy="375.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <line x1="2545.0" y1="386.0" x2="2824.0" y2="386.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="2558.0" y="400.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Spk In R</text>
+  <circle cx="2545.0" cy="397.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="2545.0" y="1076.0" width="279.0" height="64.0" rx="6" ry="6" fill="#ffffff" stroke="#334155" stroke-width="1.2"/>
+  <rect x="2545.0" y="1076.0" width="279.0" height="36.0" rx="6" ry="6" fill="#e2e8f0" stroke="#334155" stroke-width="1.0"/>
+  <line x1="2545.0" y1="1112.0" x2="2824.0" y2="1112.0" stroke="#334155" stroke-width="1"/>
+  <text x="2555.0" y="1090.0" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">IN</text>
+  <text x="2814.0" y="1090.0" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569">OUT</text>
+  <text x="2684.5" y="1096.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f172a">TC Electronic Clarity M ...</text>
+  <text x="2684.5" y="1107.0" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#64748b">1/1 wired ports</text>
+  <text x="2558.0" y="1126.0" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#1e293b">Opt In</text>
+  <circle cx="2545.0" cy="1123.0" r="2.2" fill="#334155" stroke="#334155" stroke-width="1"/>
+  <rect x="156.0" y="191.0" width="87.0" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="158.0" y="200.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Microphone / DI</text>
+  <rect x="726.0" y="191.0" width="87.0" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="728.0" y="200.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Console / Mixer</text>
+  <rect x="1296.0" y="191.0" width="52.2" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="1298.0" y="200.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Interface</text>
+  <rect x="1296.0" y="433.0" width="52.2" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="1298.0" y="442.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Converter</text>
+  <rect x="1971.0" y="191.0" width="156.6" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="1973.0" y="200.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Amplifier / Monitor Control</text>
+  <rect x="2541.0" y="191.0" width="98.6" height="12.5" rx="2" ry="2" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="2543.0" y="200.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Speaker / Monitor</text>
+  <rect x="2684.0" y="26.0" width="280" height="118.0" rx="8" ry="8" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="2694.0" y="38.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#475569">Connection Types</text>
+  <rect x="2694.0" y="45.0" width="9" height="9" fill="#dc2626" rx="1" ry="1"/>
+  <text x="2708.0" y="53.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Analog Audio (11)</text>
+  <rect x="2694.0" y="59.0" width="9" height="9" fill="#06b6d4" rx="1" ry="1"/>
+  <text x="2708.0" y="67.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Digital Audio (1)</text>
+  <rect x="2694.0" y="73.0" width="9" height="9" fill="#2563eb" rx="1" ry="1"/>
+  <text x="2708.0" y="81.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">MADI (1)</text>
+  <rect x="2694.0" y="87.0" width="9" height="9" fill="#f97316" rx="1" ry="1"/>
+  <text x="2708.0" y="95.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#475569">Speaker (4)</text>
+  <text x="2694.0" y="122.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">IN ports are left, OUT ports are right</text>
+  <text x="2694.0" y="135.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b">Overview mode: only wired ports shown</text>
 </svg>
